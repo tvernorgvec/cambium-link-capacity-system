@@ -5,7 +5,7 @@ export default defineConfig({
   plugins: [react()],
   base: '/linktest/',
   server: {
-    port: 5000,
+    port: 5007,
     host: '0.0.0.0',
     allowedHosts: [
       'all',
