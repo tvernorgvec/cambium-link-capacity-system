@@ -5,12 +5,12 @@ export default defineConfig({
   plugins: [react()],
   base: '/linktest/',
   server: {
-    port: 5173,
-    host: true
+    port: 5000,
+    host: '0.0.0.0'
   },
   preview: {
     port: 4173,
-    host: true
+    host: '0.0.0.0'
   },
   build: {
     outDir: 'dist',
