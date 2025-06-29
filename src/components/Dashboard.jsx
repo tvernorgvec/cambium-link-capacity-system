@@ -1,95 +1,54 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
-import { Activity, Wifi, AlertTriangle, TrendingUp } from "lucide-react";
+import {
+  Activity,
+  TrendingUp,
+  AlertTriangle,
+  Wifi,
+  Clock,
+  BarChart3,
+} from "lucide-react";
 import Card from "./Card";
 import StatusBadge from "./StatusBadge";
 import LoadingSpinner from "./LoadingSpinner";
-import Button from "./Button";
+import { useApp } from "../context/AppContext";
 
 const Dashboard = () => {
-  const [stats, setStats] = useState({
-    totalAPs: 0,
-    onlineAPs: 0,
-    totalSMs: 0,
-    onlineSMs: 0,
-    activeTests: 0,
-    avgThroughput: 0,
-  });
-  const [recentTests, setRecentTests] = useState([]);
-  const [alerts, setAlerts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const { state, actions } = useApp();
+  const { links, loading, error } = state;
 
   useEffect(() => {
-    fetchDashboardData();
-    const interval = setInterval(fetchDashboardData, 30000);
-    return () => clearInterval(interval);
+    if (links.length === 0 && !loading.links) {
+      actions.fetchLinks();
+    }
   }, []);
 
-  const fetchDashboardData = async () => {
-    try {
-      // Mock data for demonstration
-      setStats({
-        totalAPs: 24,
-        onlineAPs: 22,
-        totalSMs: 156,
-        onlineSMs: 142,
-        activeTests: 3,
-        avgThroughput: 85.6,
-      });
-
-      setRecentTests([
-        {
-          id: 1,
-          apName: "WestHill-AP1",
-          smMac: "00:04:56:11:22:33",
-          status: "success",
-          throughput: 128.5,
-          timestamp: "2024-01-15T10:30:00Z",
-        },
-        {
-          id: 2,
-          apName: "EastTower-AP2",
-          smMac: "00:04:56:44:55:66",
-          status: "running",
-          throughput: null,
-          timestamp: "2024-01-15T10:25:00Z",
-        },
-        {
-          id: 3,
-          apName: "SouthSite-AP3",
-          smMac: "00:04:56:77:88:99",
-          status: "failed",
-          throughput: null,
-          timestamp: "2024-01-15T10:20:00Z",
-        },
-      ]);
-
-      setAlerts([
-        {
-          id: 1,
-          type: "warning",
-          message: "Low throughput detected on WestHill-AP1",
-          timestamp: "2024-01-15T10:15:00Z",
-        },
-        {
-          id: 2,
-          type: "error",
-          message: "SNMP timeout on EastTower-AP2",
-          timestamp: "2024-01-15T10:10:00Z",
-        },
-      ]);
-
-      setLoading(false);
-    } catch (error) {
-      console.error("Error fetching dashboard data:", error);
-      setLoading(false);
-    }
-  };
-
-  if (loading) {
+  if (loading.links) {
     return (
       <div className="flex items-center justify-center h-64">
         <LoadingSpinner />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="bg-red-50 border border-red-200 rounded-md p-4">
+        <div className="flex">
+          <AlertTriangle className="w-5 h-5 text-red-400" />
+          <div className="ml-3">
+            <p className="text-red-800">Error loading data: {error}</p>
+            <button
+              onClick={() => {
+                actions.clearError();
+                actions.fetchLinks();
+              }}
+              className="mt-2 text-red-600 hover:text-red-500"
+            >
+              Try again
+            </button>
+          </div>
+        </div>
       </div>
     );
   }
@@ -113,7 +72,7 @@ const Dashboard = () => {
                   Access Points
                 </p>
                 <p className="text-2xl font-bold text-gray-900">
-                  {stats.onlineAPs}/{stats.totalAPs}
+                  {/*stats.onlineAPs}/{stats.totalAPs*/}
                 </p>
               </div>
             </div>
@@ -135,7 +94,7 @@ const Dashboard = () => {
                   Subscriber Modules
                 </p>
                 <p className="text-2xl font-bold text-gray-900">
-                  {stats.onlineSMs}/{stats.totalSMs}
+                  {/*stats.onlineSMs}/{stats.totalSMs*/}
                 </p>
               </div>
             </div>
@@ -157,7 +116,7 @@ const Dashboard = () => {
                   Active Tests
                 </p>
                 <p className="text-2xl font-bold text-gray-900">
-                  {stats.activeTests}
+                  {/*stats.activeTests*/}
                 </p>
               </div>
             </div>
@@ -179,7 +138,7 @@ const Dashboard = () => {
                   Avg Throughput
                 </p>
                 <p className="text-2xl font-bold text-gray-900">
-                  {stats.avgThroughput} Mbps
+                  {/*stats.avgThroughput*/} Mbps
                 </p>
               </div>
             </div>
@@ -199,12 +158,12 @@ const Dashboard = () => {
               <h3 className="text-lg font-medium text-gray-900">
                 Recent Tests
               </h3>
-              <Button variant="outline" size="sm">
+              {/*<Button variant="outline" size="sm">
                 View All
-              </Button>
+              </Button>*/}
             </div>
             <div className="space-y-3">
-              {recentTests.map((test) => (
+              {/*recentTests.map((test) => (
                 <div
                   key={test.id}
                   className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
@@ -222,7 +181,7 @@ const Dashboard = () => {
                     <StatusBadge status={test.status} />
                   </div>
                 </div>
-              ))}
+              ))*/}
             </div>
           </Card>
         </motion.div>
@@ -236,12 +195,12 @@ const Dashboard = () => {
           <Card>
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-medium text-gray-900">Alerts</h3>
-              <Button variant="outline" size="sm">
+              {/*<Button variant="outline" size="sm">
                 Clear All
-              </Button>
+              </Button>*/}
             </div>
             <div className="space-y-3">
-              {alerts.map((alert) => (
+              {/*alerts.map((alert) => (
                 <div
                   key={alert.id}
                   className="flex items-start space-x-3 p-3 bg-gray-50 rounded-lg"
@@ -262,7 +221,7 @@ const Dashboard = () => {
                     </p>
                   </div>
                 </div>
-              ))}
+              ))*/}
             </div>
           </Card>
         </motion.div>

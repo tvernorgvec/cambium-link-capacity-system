@@ -5,6 +5,8 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
+import { AppProvider } from "./context/AppContext";
+import ErrorBoundary from "./components/ErrorBoundary";
 import Layout from "./components/Layout";
 import Dashboard from "./components/Dashboard";
 import Scheduler from "./components/Scheduler";
@@ -13,17 +15,21 @@ import Settings from "./components/Settings";
 
 const App = () => {
   return (
-    <Router basename="/linktest">
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Navigate to="/dashboard" replace />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/scheduler" element={<Scheduler />} />
-          <Route path="/history" element={<History />} />
-          <Route path="/settings" element={<Settings />} />
-        </Routes>
-      </Layout>
-    </Router>
+    <ErrorBoundary>
+      <AppProvider>
+        <Router basename="/linktest">
+          <Layout>
+            <Routes>
+              <Route path="/" element={<Navigate to="/dashboard" replace />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/scheduler" element={<Scheduler />} />
+              <Route path="/history" element={<History />} />
+              <Route path="/settings" element={<Settings />} />
+            </Routes>
+          </Layout>
+        </Router>
+      </AppProvider>
+    </ErrorBoundary>
   );
 };
 
