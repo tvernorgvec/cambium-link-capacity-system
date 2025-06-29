@@ -1,0 +1,65 @@
+{
+  "name": "gvec-link-capacity-web-app",
+  "version": "1.0.0",
+  "description": "GVEC Link Capacity Web Application with comprehensive autonomous code quality tools",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "build:preview": "vite build && vite preview",
+    "preview": "vite preview",
+    "lint": "eslint src --ext .ts,.tsx,.js,.jsx --fix",
+    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,md}\"",
+    "prune": "ts-prune",
+    "jscpd": "jscpd src",
+    "madge": "madge --circular src",
+    "depcheck": "depcheck",
+    "audit": "npm audit",
+    "license-check": "license-checker --onlyAllow \"MIT;Apache-2.0;BSD-2-Clause;BSD-3-Clause;ISC;0BSD\"",
+    "quality:validate": "node scripts/validate-quality-tools.js",
+    "quality:inventory": "node scripts/inventory.js",
+    "quality:check": "node scripts/autonomous-quality.js",
+    "prepare": "husky install",
+    "commit": "cz"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.16.0",
+    "axios": "^1.6.0",
+    "framer-motion": "^10.16.0",
+    "lucide-react": "^0.292.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.29.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^9.29.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-security": "^1.7.1",
+    "eslint-plugin-sonarjs": "^0.21.0",
+    "prettier": "^3.6.1",
+    "ts-prune": "^0.10.3",
+    "jscpd": "^4.0.5",
+    "madge": "^8.0.0",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.10",
+    "@commitlint/cli": "^19.5.0",
+    "@commitlint/config-conventional": "^19.5.0",
+    "commitizen": "^4.3.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "depcheck": "^1.4.7",
+    "npm-check-updates": "^17.1.10",
+    "license-checker": "^25.0.1",
+    "audit-ci": "^7.1.0",
+    "@vitejs/plugin-react": "^4.0.0",
+    "vite": "^4.4.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
