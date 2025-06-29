@@ -1,0 +1,9 @@
+
+{
+  "threshold": 10,
+  "reporters": ["html", "console"],
+  "ignore": ["**/node_modules/**", "**/dist/**", "**/build/**"],
+  "minLines": 5,
+  "minTokens": 50,
+  "output": "./reports/jscpd"
+}
