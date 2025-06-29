@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Search, Filter, Download, Eye } from 'lucide-react';
-import Card from './Card';
-import Button from './Button';
-import StatusBadge from './StatusBadge';
-import LoadingSpinner from './LoadingSpinner';
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { Search, Filter, Download, Eye } from "lucide-react";
+import Card from "./Card";
+import Button from "./Button";
+import StatusBadge from "./StatusBadge";
+import LoadingSpinner from "./LoadingSpinner";
 
 const History = () => {
   const [testHistory, setTestHistory] = useState([]);
   const [filteredHistory, setFilteredHistory] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [statusFilter, setStatusFilter] = useState('all');
-  const [dateFilter, setDateFilter] = useState('all');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [statusFilter, setStatusFilter] = useState("all");
+  const [dateFilter, setDateFilter] = useState("all");
 
   useEffect(() => {
     fetchTestHistory();
@@ -28,56 +28,56 @@ const History = () => {
       const mockHistory = [
         {
           id: 1,
-          apName: 'WestHill-AP1',
-          apMac: '00:04:56:AA:BB:CC',
-          smMac: '00:04:56:11:22:33',
-          testType: 'individual',
-          status: 'success',
+          apName: "WestHill-AP1",
+          apMac: "00:04:56:AA:BB:CC",
+          smMac: "00:04:56:11:22:33",
+          testType: "individual",
+          status: "success",
           uplinkMbps: 63.4,
           downlinkMbps: 128.2,
           snrDl: 26.1,
           snrUl: 24.8,
-          startTime: '2024-01-15T10:30:00Z',
-          endTime: '2024-01-15T10:32:15Z',
-          duration: 135
+          startTime: "2024-01-15T10:30:00Z",
+          endTime: "2024-01-15T10:32:15Z",
+          duration: 135,
         },
         {
           id: 2,
-          apName: 'EastTower-AP2',
-          apMac: '00:04:56:DD:EE:FF',
-          smMac: '00:04:56:44:55:66',
-          testType: 'flood',
-          status: 'failed',
+          apName: "EastTower-AP2",
+          apMac: "00:04:56:DD:EE:FF",
+          smMac: "00:04:56:44:55:66",
+          testType: "flood",
+          status: "failed",
           uplinkMbps: null,
           downlinkMbps: null,
           snrDl: null,
           snrUl: null,
-          startTime: '2024-01-15T09:15:00Z',
-          endTime: '2024-01-15T09:16:30Z',
+          startTime: "2024-01-15T09:15:00Z",
+          endTime: "2024-01-15T09:16:30Z",
           duration: 90,
-          errorMessage: 'SNMP timeout'
+          errorMessage: "SNMP timeout",
         },
         {
           id: 3,
-          apName: 'SouthSite-AP3',
-          apMac: '00:04:56:11:22:33',
-          smMac: '00:04:56:77:88:99',
-          testType: 'individual',
-          status: 'success',
+          apName: "SouthSite-AP3",
+          apMac: "00:04:56:11:22:33",
+          smMac: "00:04:56:77:88:99",
+          testType: "individual",
+          status: "success",
           uplinkMbps: 45.2,
           downlinkMbps: 89.7,
           snrDl: 22.3,
           snrUl: 21.1,
-          startTime: '2024-01-14T16:45:00Z',
-          endTime: '2024-01-14T16:47:20Z',
-          duration: 140
-        }
+          startTime: "2024-01-14T16:45:00Z",
+          endTime: "2024-01-14T16:47:20Z",
+          duration: 140,
+        },
       ];
-      
+
       setTestHistory(mockHistory);
       setLoading(false);
     } catch (error) {
-      console.error('Error fetching test history:', error);
+      console.error("Error fetching test history:", error);
       setLoading(false);
     }
   };
@@ -87,39 +87,42 @@ const History = () => {
 
     // Search filter
     if (searchTerm) {
-      filtered = filtered.filter(test => 
-        test.apName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        test.apMac.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        test.smMac.toLowerCase().includes(searchTerm.toLowerCase())
+      filtered = filtered.filter(
+        (test) =>
+          test.apName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          test.apMac.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          test.smMac.toLowerCase().includes(searchTerm.toLowerCase()),
       );
     }
 
     // Status filter
-    if (statusFilter !== 'all') {
-      filtered = filtered.filter(test => test.status === statusFilter);
+    if (statusFilter !== "all") {
+      filtered = filtered.filter((test) => test.status === statusFilter);
     }
 
     // Date filter
-    if (dateFilter !== 'all') {
+    if (dateFilter !== "all") {
       const now = new Date();
       const filterDate = new Date();
-      
+
       switch (dateFilter) {
-        case 'today':
+        case "today":
           filterDate.setHours(0, 0, 0, 0);
           break;
-        case 'week':
+        case "week":
           filterDate.setDate(now.getDate() - 7);
           break;
-        case 'month':
+        case "month":
           filterDate.setMonth(now.getMonth() - 1);
           break;
         default:
           break;
       }
-      
-      if (dateFilter !== 'all') {
-        filtered = filtered.filter(test => new Date(test.startTime) >= filterDate);
+
+      if (dateFilter !== "all") {
+        filtered = filtered.filter(
+          (test) => new Date(test.startTime) >= filterDate,
+        );
       }
     }
 
@@ -128,27 +131,41 @@ const History = () => {
 
   const handleExport = () => {
     const csvContent = [
-      ['AP Name', 'AP MAC', 'SM MAC', 'Test Type', 'Status', 'Uplink (Mbps)', 'Downlink (Mbps)', 'SNR DL', 'SNR UL', 'Start Time', 'Duration (s)'].join(','),
-      ...filteredHistory.map(test => [
-        test.apName,
-        test.apMac,
-        test.smMac,
-        test.testType,
-        test.status,
-        test.uplinkMbps || 'N/A',
-        test.downlinkMbps || 'N/A',
-        test.snrDl || 'N/A',
-        test.snrUl || 'N/A',
-        test.startTime,
-        test.duration
-      ].join(','))
-    ].join('\n');
+      [
+        "AP Name",
+        "AP MAC",
+        "SM MAC",
+        "Test Type",
+        "Status",
+        "Uplink (Mbps)",
+        "Downlink (Mbps)",
+        "SNR DL",
+        "SNR UL",
+        "Start Time",
+        "Duration (s)",
+      ].join(","),
+      ...filteredHistory.map((test) =>
+        [
+          test.apName,
+          test.apMac,
+          test.smMac,
+          test.testType,
+          test.status,
+          test.uplinkMbps || "N/A",
+          test.downlinkMbps || "N/A",
+          test.snrDl || "N/A",
+          test.snrUl || "N/A",
+          test.startTime,
+          test.duration,
+        ].join(","),
+      ),
+    ].join("\n");
 
-    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const blob = new Blob([csvContent], { type: "text/csv" });
     const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
+    const a = document.createElement("a");
     a.href = url;
-    a.download = `link-test-history-${new Date().toISOString().split('T')[0]}.csv`;
+    a.download = `link-test-history-${new Date().toISOString().split("T")[0]}.csv`;
     a.click();
     window.URL.revokeObjectURL(url);
   };
@@ -164,7 +181,10 @@ const History = () => {
   return (
     <div className="space-y-6">
       {/* Filters */}
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+      >
         <Card>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div>
@@ -213,7 +233,11 @@ const History = () => {
               </select>
             </div>
             <div className="flex items-end">
-              <Button onClick={handleExport} variant="outline" className="w-full">
+              <Button
+                onClick={handleExport}
+                variant="outline"
+                className="w-full"
+              >
                 <Download className="w-4 h-4 mr-2" />
                 Export CSV
               </Button>
@@ -223,14 +247,18 @@ const History = () => {
       </motion.div>
 
       {/* Results */}
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2 }}
+      >
         <Card>
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-medium text-gray-900">
               Test History ({filteredHistory.length} results)
             </h3>
           </div>
-          
+
           {filteredHistory.length === 0 ? (
             <div className="text-center py-8 text-gray-500">
               No test results found
@@ -271,20 +299,26 @@ const History = () => {
                     <tr key={test.id} className="hover:bg-gray-50">
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div>
-                          <div className="text-sm font-medium text-gray-900">{test.apName}</div>
-                          <div className="text-sm text-gray-500">{test.apMac}</div>
+                          <div className="text-sm font-medium text-gray-900">
+                            {test.apName}
+                          </div>
+                          <div className="text-sm text-gray-500">
+                            {test.apMac}
+                          </div>
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                         {test.smMac}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                          test.testType === 'flood' 
-                            ? 'bg-purple-100 text-purple-800' 
-                            : 'bg-blue-100 text-blue-800'
-                        }`}>
-                          {test.testType === 'flood' ? 'Flood' : 'Individual'}
+                        <span
+                          className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                            test.testType === "flood"
+                              ? "bg-purple-100 text-purple-800"
+                              : "bg-blue-100 text-blue-800"
+                          }`}
+                        >
+                          {test.testType === "flood" ? "Flood" : "Individual"}
                         </span>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
