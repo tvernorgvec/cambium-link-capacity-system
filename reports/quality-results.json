@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-06-30T21:09:58.407Z",
+  "timestamp": "2025-06-30T21:12:34.683Z",
   "tools": {
     "ESLint": {
       "success": true,
@@ -9,9 +9,8 @@
     },
     "Prettier": {
       "success": true,
-      "output": "Checking formatting...\nError occurred when checking code style in the above file.\n",
-      "fixed": true,
-      "warnings": "[error] src/components/Dashboard.jsx: SyntaxError: Missing semicolon. (223:4)\n[error]   221 | ```\n[error]   222 |\n[error] > 223 | ```jsx\n[error]       |    ^\n[error]   224 | import React from 'react';"
+      "output": "Checking formatting...\n",
+      "fixed": true
     },
     "TypeScript": {
       "success": true,
@@ -25,14 +24,13 @@
     },
     "Circular Dependencies": {
       "success": true,
-      "output": "Processed 20 files (633ms) (1 warning)\n\n\n",
+      "output": "Processed 20 files (1.3s) (1 warning)\n\n\n",
       "fixed": false
     },
     "Code Duplication": {
       "success": true,
-      "output": "File /home/runner/workspace/src/App.css skipped! Format \"css\" does not included to supported formats.\nFile /home/runner/workspace/src/index.css skipped! Format \"css\" does not included to supported formats.\nFile /home/runner/workspace/src/assets/react.svg skipped! Format \"markup\" does not included to supported formats.\n\u001b[90mFile /home/runner/workspace/src/components/Dashboard.jsx skipped! Code lines=881 not in limits (5:500)\u001b[39m\n\u001b[33mSTART_DETECTION\u001b[39m\n\u001b[90mStart detection for source id=/home/",
-      "fixed": true,
-      "warnings": "\u001b[31mERROR: jscpd found too many duplicates (15.51%) over threshold (3%)\u001b[39m\n"
+      "output": "File /home/runner/workspace/src/App.css skipped! Format \"css\" does not included to supported formats.\nFile /home/runner/workspace/src/index.css skipped! Format \"css\" does not included to supported formats.\nFile /home/runner/workspace/src/assets/react.svg skipped! Format \"markup\" does not included to supported formats.\n\u001b[90mFile /home/runner/workspace/src/components/History.jsx skipped! Code lines=306 not in limits (8:300)\u001b[39m\n\u001b[90mFile /home/runner/workspace/src/components/Settings.jsx skipped!",
+      "fixed": true
     },
     "Dependencies": {
       "success": true,

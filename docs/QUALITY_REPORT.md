@@ -1,6 +1,6 @@
 # Comprehensive Quality Report
 
-Generated: 2025-06-30T21:09:58.407Z
+Generated: 2025-06-30T21:12:34.683Z
 
 ## Summary
 - **Total Checks**: 9
@@ -26,15 +26,8 @@ Rule: "security/detect-non
 ### Prettier ✅ (Auto-Fixed)
 ```
 Checking formatting...
-Error occurred when checking code style in the above file.
 
 ```
-⚠️ Warnings: [error] src/components/Dashboard.jsx: SyntaxError: Missing semicolon. (223:4)
-[error]   221 | ```
-[error]   222 |
-[error] > 223 | ```jsx
-[error]       |    ^
-[error]   224 | import React from 'react';
 
 
 ### TypeScript ✅
@@ -47,7 +40,7 @@ Error occurred when checking code style in the above file.
 
 ### Circular Dependencies ✅
 ```
-Processed 20 files (633ms) (1 warning)
+Processed 20 files (1.3s) (1 warning)
 
 
 
@@ -59,12 +52,9 @@ Processed 20 files (633ms) (1 warning)
 File /home/runner/workspace/src/App.css skipped! Format "css" does not included to supported formats.
 File /home/runner/workspace/src/index.css skipped! Format "css" does not included to supported formats.
 File /home/runner/workspace/src/assets/react.svg skipped! Format "markup" does not included to supported formats.
-[90mFile /home/runner/workspace/src/components/Dashboard.jsx skipped! Code lines=881 not in limits (5:500)[39m
-[33mSTART_DETECTION[39m
-[90mStart detection for source id=/home/
+[90mFile /home/runner/workspace/src/components/History.jsx skipped! Code lines=306 not in limits (8:300)[39m
+[90mFile /home/runner/workspace/src/components/Settings.jsx skipped!
 ```
-⚠️ Warnings: [31mERROR: jscpd found too many duplicates (15.51%) over threshold (3%)[39m
-
 
 
 ### Dependencies ✅ (Auto-Fixed)
