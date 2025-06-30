@@ -1,5 +1,4 @@
-
-import React, { createContext, useContext, useReducer, useEffect, useCallback } from 'react';
+import React, { createContext, useContext, useReducer, useEffect, useCallback, useRef } from 'react';
 import * as api from '../services/api.js';
 
 const AppContext = createContext();
@@ -79,11 +78,12 @@ function appReducer(state, action) {
 
 export function AppProvider({ children }) {
   const [state, dispatch] = useReducer(appReducer, initialState);
+  const intervalRef = useRef(null);
 
   const loadInitialData = useCallback(async () => {
     try {
       dispatch({ type: 'SET_LOADING', payload: true });
-      
+
       const [linkCapacity, testResults, scheduledTests] = await Promise.all([
         api.getLinkCapacity(),
         api.getTestResults(),
@@ -104,18 +104,46 @@ export function AppProvider({ children }) {
     loadInitialData();
   }, [loadInitialData]);
 
-  // Auto-refresh effect with proper cleanup
+  // Handle auto-refresh with proper cleanup
   useEffect(() => {
-    if (!state.data.settings.autoRefresh) {
-      return;
+    // Clear any existing interval
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
     }
 
-    const interval = setInterval(() => {
-      loadInitialData();
-    }, state.data.settings.refreshInterval);
+    // Extract settings to avoid object reference issues
+    const { autoRefresh, refreshInterval } = state.data.settings;
 
-    return () => clearInterval(interval);
-  }, [state.data.settings.autoRefresh, state.data.settings.refreshInterval, loadInitialData]);
+    // Only set up auto-refresh if enabled
+    if (autoRefresh) {
+      intervalRef.current = setInterval(async () => {
+        try {
+          const [linkCapacity, testResults, scheduledTests] = await Promise.all(
+            [
+              api.getLinkCapacity(),
+              api.getTestResults(),
+              api.getScheduledTests(),
+            ]
+          );
+
+          dispatch({ type: 'SET_LINK_CAPACITY', payload: linkCapacity });
+          dispatch({ type: 'SET_TEST_RESULTS', payload: testResults });
+          dispatch({ type: 'SET_SCHEDULED_TESTS', payload: scheduledTests });
+        } catch (error) {
+          dispatch({ type: 'SET_ERROR', payload: error.message });
+        }
+      }, refreshInterval);
+    }
+
+    // Cleanup function
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+    };
+  }, [state.data.settings]);
 
   const contextValue = {
     state,
