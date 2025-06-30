@@ -29,7 +29,7 @@ args = "npm run quality:check"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "npm run dev"
+args = "python backend/main.py"
 
 [[workflows.workflow]]
 name = "Quality Check"

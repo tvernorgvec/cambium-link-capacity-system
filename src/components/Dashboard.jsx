@@ -6,7 +6,9 @@ import LoadingSpinner from './LoadingSpinner';
 import { useAppContext } from '../context/AppContext';
 
 const Dashboard = () => {
-  const { data, loading, error, setLoading, setError } = useAppContext();
+  const { state, actions } = useAppContext();
+  const { data, loading, error } = state;
+  const { setLoading, setError } = actions;
   const { linkCapacity: links } = data;
 
   useEffect(() => {

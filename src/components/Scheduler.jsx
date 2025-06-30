@@ -4,7 +4,7 @@ import { Play, Pause, Settings, Plus, Trash2 } from 'lucide-react';
 import Card from './Card';
 import Button from './Button';
 import LoadingSpinner from './LoadingSpinner';
-import { useApp } from '../context/AppContext';
+import { useAppContext } from '../context/AppContext';
 import { DataTable } from './DataTable';
 
 const Scheduler = () => {

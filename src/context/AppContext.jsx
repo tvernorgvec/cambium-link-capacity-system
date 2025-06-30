@@ -154,7 +154,7 @@ export function AppProvider({ children }) {
         intervalRef.current = null;
       }
     };
-  }, []);
+  }, [state.data.settings.autoRefresh, state.data.settings.refreshInterval]);
 
   const contextValue = {
     state,
