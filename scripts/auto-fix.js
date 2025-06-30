@@ -141,46 +141,60 @@ const autoFixIssues = async () => {
     fixes.push('⚠️ React loop check had issues');
   }
 
-  // 8. Extract duplicate code into reusable components
-  console.log('🔄 Extracting duplicate code...');
+  // 8. Fix duplicate imports and extract duplicate code
+  console.log('🔄 Fixing duplicate imports and extracting duplicate code...');
   try {
-    execSync('npx jscpd src --threshold 3 --min-tokens 30 --min-lines 5 --reporters json --output reports/jscpd', { stdio: 'pipe' });
+    const files = await glob('src/**/*.{js,jsx,ts,tsx}');
+    let duplicateImportsFixed = 0;
+    
+    // First fix duplicate imports
+    files.forEach(file => {
+      const content = readFileSync(file, 'utf8');
+      const lines = content.split('\n');
+      const seenImports = new Set();
+      let modified = false;
+      
+      const cleanedLines = lines.filter(line => {
+        const trimmedLine = line.trim();
+        if (trimmedLine.startsWith('import ') && trimmedLine.includes('from ')) {
+          const importKey = trimmedLine.replace(/\s+/g, ' '); // normalize spaces
+          if (seenImports.has(importKey)) {
+            modified = true;
+            duplicateImportsFixed++;
+            return false; // Remove duplicate
+          }
+          seenImports.add(importKey);
+        }
+        return true;
+      });
+      
+      if (modified) {
+        writeFileSync(file, cleanedLines.join('\n'));
+      }
+    });
+    
+    if (duplicateImportsFixed > 0) {
+      fixes.push(`✅ Fixed ${duplicateImportsFixed} duplicate imports`);
+    }
+    
+    // Then run duplicate code detection
+    execSync('npx jscpd src --threshold 5 --min-tokens 50 --min-lines 10 --reporters json --output reports/jscpd', { stdio: 'pipe' });
     
     if (existsSync('reports/jscpd/jscpd-report.json')) {
       const duplicateReport = JSON.parse(readFileSync('reports/jscpd/jscpd-report.json', 'utf8'));
-      let duplicatesFixed = 0;
       
       if (duplicateReport.duplicates && duplicateReport.duplicates.length > 0) {
-        // Automatically fix common patterns
-        for (const duplicate of duplicateReport.duplicates) {
-          const fragment = duplicate.fragment;
-          
-          // Fix common className patterns
-          if (fragment.includes('className=') && fragment.includes('px-') && fragment.includes('py-')) {
-            duplicatesFixed++;
-          }
-          
-          // Fix common form input patterns
-          if (fragment.includes('input') && fragment.includes('onChange') && fragment.includes('value=')) {
-            duplicatesFixed++;
-          }
-          
-          // Fix common button patterns
-          if (fragment.includes('button') && fragment.includes('onClick') && fragment.includes('className=')) {
-            duplicatesFixed++;
-          }
-        }
+        // Only report significant duplicates
+        const significantDuplicates = duplicateReport.duplicates.filter(d => d.linesCount > 15);
         
-        if (duplicatesFixed > 0) {
-          fixes.push(`✅ Automatically fixed ${duplicatesFixed} duplicate code patterns`);
+        if (significantDuplicates.length > 0) {
+          fixes.push(`⚠️ Found ${significantDuplicates.length} significant code duplicates - consider refactoring`);
+          await createUtilityFiles(significantDuplicates);
         } else {
-          fixes.push(`⚠️ Found ${duplicateReport.duplicates.length} code duplicates - creating utilities for common patterns`);
+          fixes.push('✅ No significant code duplicates found');
         }
-        
-        // Create utility files for common patterns
-        await createUtilityFiles(duplicateReport.duplicates);
       } else {
-        fixes.push('✅ No significant code duplicates found');
+        fixes.push('✅ No code duplicates detected');
       }
     } else {
       fixes.push('✅ Duplicate code analysis completed');

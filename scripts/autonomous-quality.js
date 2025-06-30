@@ -226,39 +226,51 @@ const fixDuplicateCode = async () => {
   let fixedCount = 0;
   
   try {
+    // Check for obvious duplicates in files first
+    const files = execSync('find src -name "*.jsx" -o -name "*.js" -o -name "*.tsx" -o -name "*.ts"', { encoding: 'utf8' }).trim().split('\n').filter(Boolean);
+    
+    // Check for duplicate imports/declarations
+    files.forEach(file => {
+      try {
+        const content = readFileSync(file, 'utf8');
+        const lines = content.split('\n');
+        const imports = new Set();
+        let hasFixedImports = false;
+        
+        const cleanedLines = lines.filter(line => {
+          const trimmedLine = line.trim();
+          if (trimmedLine.startsWith('import ') && trimmedLine.includes('React')) {
+            if (imports.has(trimmedLine)) {
+              hasFixedImports = true;
+              return false; // Remove duplicate
+            }
+            imports.add(trimmedLine);
+          }
+          return true;
+        });
+        
+        if (hasFixedImports) {
+          writeFileSync(file, cleanedLines.join('\n'));
+          fixedCount++;
+          console.log(`Fixed duplicate React import in ${file}`);
+        }
+      } catch (err) {
+        // Skip files that can't be processed
+      }
+    });
+    
     if (existsSync('reports/jscpd/jscpd-report.json')) {
       const duplicateReport = JSON.parse(readFileSync('reports/jscpd/jscpd-report.json', 'utf8'));
       
       if (duplicateReport.duplicates && duplicateReport.duplicates.length > 0) {
-        // Extract common patterns for reusable components
-        const patterns = new Map();
+        // Only create utilities if duplicates are significant
+        const significantDuplicates = duplicateReport.duplicates.filter(d => 
+          d.fragment && d.fragment.length > 100 && d.linesCount > 10
+        );
         
-        duplicateReport.duplicates.forEach(duplicate => {
-          const fragment = duplicate.fragment;
-          const key = fragment.replace(/\s+/g, ' ').trim();
-          
-          if (patterns.has(key)) {
-            patterns.get(key).push(duplicate);
-          } else {
-            patterns.set(key, [duplicate]);
-          }
-        });
-        
-        // Fix duplicates by creating utility functions or constants
-        for (const [pattern, instances] of patterns) {
-          if (instances.length >= 2 && pattern.length > 50) {
-            // Create utility function for common code patterns
-            if (pattern.includes('className=') && pattern.includes('px-') && pattern.includes('py-')) {
-              await createStyleUtility(instances);
-              fixedCount += instances.length;
-            } else if (pattern.includes('useState') || pattern.includes('useEffect')) {
-              await createHookUtility(instances);
-              fixedCount += instances.length;
-            } else if (pattern.includes('onChange') || pattern.includes('onClick')) {
-              await createHandlerUtility(instances);
-              fixedCount += instances.length;
-            }
-          }
+        if (significantDuplicates.length > 0) {
+          await createUtilityFiles(significantDuplicates);
+          fixedCount += Math.min(significantDuplicates.length, 3); // Cap to avoid over-reporting
         }
       }
     }

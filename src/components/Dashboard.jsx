@@ -1,105 +1,25 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { fetchSettings } from '../services/api';
-
-// Create the AppContext
-const AppContext = createContext();
-
-// Create a custom hook to access the context
-export const useApp = () => {
-  return useContext(AppContext);
-};
-
-// AppProvider component to wrap the app and provide the context
-export const AppProvider = ({ children }) => {
-  const [state, setState] = useState({
-    links: [],
-    settings: {},
-    loading: { links: false, settings: false },
-    error: null,
-  });
-
-  // Actions to update the state
-  const actions = {
-    fetchLinks: async () => {
-      setState(prevState => ({
-        ...prevState,
-        loading: { ...prevState.loading, links: true },
-      }));
-      try {
-        //const data = await fetchLinksFromApi(); // Replace with your actual API call
-        //Simulate API
-        const data = [
-          { id: 1, name: 'Link 1' },
-          { id: 2, name: 'Link 2' },
-        ];
-        setState(prevState => ({
-          ...prevState,
-          links: data,
-          loading: { ...prevState.loading, links: false },
-        }));
-      } catch (error) {
-        setState(prevState => ({
-          ...prevState,
-          error: error.message,
-          loading: { ...prevState.loading, links: false },
-        }));
-      }
-    },
-    fetchSettings: async () => {
-      setState(prevState => ({
-        ...prevState,
-        loading: { ...prevState.loading, settings: true },
-      }));
-      try {
-        const settings = await fetchSettings();
-        setState(prevState => ({
-          ...prevState,
-          settings: settings,
-          loading: { ...prevState.loading, settings: false },
-        }));
-      } catch (error) {
-        setState(prevState => ({
-          ...prevState,
-          error: error.message,
-          loading: { ...prevState.loading, settings: false },
-        }));
-      }
-    },
-    clearError: () => {
-      setState(prevState => ({ ...prevState, error: null }));
-    },
-  };
-
-  // Fetch settings on component mount
-  useEffect(() => {
-    actions.fetchSettings();
-  }, [actions]); // Removed actions from dependency array
-
-  return (
-    <AppContext.Provider value={{ state, actions }}>
-      {children}
-    </AppContext.Provider>
-  );
-};
-
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Activity, TrendingUp, AlertTriangle, Wifi } from 'lucide-react';
 import Card from './Card';
 import LoadingSpinner from './LoadingSpinner';
-import { useApp } from '../context/AppContext';
+import { useAppContext } from '../context/AppContext';
 
 const Dashboard = () => {
-  const { state, actions } = useApp();
-  const { links, loading, error } = state;
+  const { data, loading, error, setLoading, setError } = useAppContext();
+  const { linkCapacity: links } = data;
 
   useEffect(() => {
-    if (links.length === 0 && !loading.links) {
-      actions.fetchLinks();
+    if (links.length === 0 && !loading) {
+      setLoading(true);
+      // Simulate API call
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
     }
-  }, [links.length, loading.links, actions]);
+  }, [links.length, loading, setLoading]);
 
-  if (loading.links) {
+  if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
         <LoadingSpinner />
@@ -116,8 +36,9 @@ const Dashboard = () => {
             <p className="text-red-800">Error loading data: {error}</p>
             <button
               onClick={() => {
-                actions.clearError();
-                actions.fetchLinks();
+                setError(null);
+                setLoading(true);
+                setTimeout(() => setLoading(false), 1000);
               }}
               className="mt-2 text-red-600 hover:text-red-500"
             >
@@ -170,7 +91,7 @@ const Dashboard = () => {
                   Active Links
                 </p>
                 <p className="text-2xl font-bold text-gray-900">
-                  {links.filter(link => link.name).length}
+                  {links.filter(link => link.status === 'active').length}
                 </p>
               </div>
             </div>
