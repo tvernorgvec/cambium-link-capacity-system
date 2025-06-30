@@ -99,9 +99,18 @@ export default [
       'sonarjs/prefer-immediate-return': 'error',
       'sonarjs/prefer-object-literal': 'error',
       'sonarjs/prefer-single-boolean-return': 'error'
-    },
-    settings: {
-      react: { version: 'detect' }
+    }
+  },
+  {
+    files: ['scripts/**/*.js'],
+    languageOptions: {
+      globals: {
+        process: 'readonly',
+        console: 'readonly',
+        Buffer: 'readonly',
+        __dirname: 'readonly',
+        __filename: 'readonly'
+      }
     }
   }
 ];

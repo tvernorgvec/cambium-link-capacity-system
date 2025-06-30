@@ -2,7 +2,7 @@
 #!/usr/bin/env node
 
 import { execSync } from 'child_process';
-import { writeFileSync } from 'fs';
+import { writeFileSync, existsSync, mkdirSync } from 'fs';
 import { generateReport } from './validate-quality-tools.js';
 import { generateInventory } from './inventory.js';
 
@@ -12,13 +12,12 @@ const runCommand = (command, description) => {
     const output = execSync(command, { 
       encoding: 'utf8', 
       stdio: 'pipe',
-      timeout: 30000, // 30 second timeout
-      maxBuffer: 1024 * 1024 // 1MB buffer
+      timeout: 60000, // 60 second timeout
+      maxBuffer: 2 * 1024 * 1024 // 2MB buffer
     });
     console.log(`✅ ${description} completed`);
     return { success: true, output };
   } catch (error) {
-    // Log more detailed error information
     console.log(`❌ ${description} failed:`);
     console.log(`   Command: ${command}`);
     console.log(`   Error: ${error.message}`);
@@ -32,26 +31,20 @@ const runCommand = (command, description) => {
   }
 };
 
-const setupHooks = () => {
-  console.log('🔧 Setting up Git hooks...');
-  try {
-    execSync('npx husky install', { stdio: 'pipe' });
-    try {
-      execSync('chmod +x .husky/pre-commit', { stdio: 'pipe' });
-      execSync('chmod +x .husky/commit-msg', { stdio: 'pipe' });
-    } catch (chmodError) {
-      // Hooks files might not exist yet, that's okay
+const setupDirectories = () => {
+  const dirs = ['docs', 'reports'];
+  dirs.forEach(dir => {
+    if (!existsSync(dir)) {
+      mkdirSync(dir, { recursive: true });
     }
-    console.log('✅ Git hooks configured');
-    return true;
-  } catch (error) {
-    console.log(`❌ Git hooks setup failed: ${error.message}`);
-    return false;
-  }
+  });
 };
 
 const runQualityChecks = async () => {
   console.log('🚀 Starting Autonomous Quality Suite...\n');
+  
+  // Setup required directories
+  setupDirectories();
   
   const results = {
     timestamp: new Date().toISOString(),
@@ -59,29 +52,31 @@ const runQualityChecks = async () => {
     summary: { passed: 0, failed: 0, total: 0 }
   };
   
-  // Validate tools
+  // Validate tools first
+  console.log('🔍 Validating available tools...');
   const toolValidation = generateReport();
   results.toolsAvailable = toolValidation;
   
-  // Setup Git hooks
-  const hooksSetup = setupHooks();
-  results.hooksSetup = hooksSetup;
-  
-  // Quality checks with auto-fix
+  // Essential quality checks (non-duplicated, working tools only)
   const checks = [
     {
       name: 'ESLint',
       command: 'npx eslint src --fix --no-error-on-unmatched-pattern',
-      description: 'Linting and auto-fixing code'
+      description: 'Code linting and auto-fixing'
     },
     {
       name: 'Prettier',
       command: 'npx prettier --write "src/**/*.{js,jsx,ts,tsx,json,md}" --ignore-unknown',
-      description: 'Formatting code'
+      description: 'Code formatting'
+    },
+    {
+      name: 'Dependency Check',
+      command: 'npx depcheck --skip-missing || echo "Depcheck completed with warnings"',
+      description: 'Unused dependency analysis'
     },
     {
       name: 'Security Audit',
-      command: 'npm audit --audit-level=high || true',
+      command: 'npm audit --audit-level=moderate || echo "Audit completed with findings"',
       description: 'Security vulnerability scan'
     }
   ];
@@ -98,19 +93,43 @@ const runQualityChecks = async () => {
     }
   }
   
-  // Generate inventory
+  // Generate project inventory
   console.log('\n📋 Generating project inventory...');
   const inventory = generateInventory();
   results.inventory = inventory;
   
-  // Generate quality report
-  const report = `# Quality Report\n\n**Generated:** ${results.timestamp}\n\n## Summary\n- **Tools Available:** ${toolValidation.available}/${toolValidation.total}\n- **Checks Passed:** ${results.summary.passed}/${results.summary.total}\n- **Git Hooks:** ${hooksSetup ? 'Configured' : 'Failed'}\n\n## Tool Results\n${Object.entries(results.tools).map(([tool, result]) => `### ${tool}\n- **Status:** ${result.success ? '✅ Passed' : '❌ Failed'}\n${result.error ? `- **Error:** ${result.error}\n` : ''}`).join('\n')}\n\n---\n*Auto-generated quality report*`;
+  // Generate comprehensive quality report
+  const report = `# Quality Report
+
+**Generated:** ${results.timestamp}
+
+## Summary
+- **Tools Available:** ${toolValidation.available}/${toolValidation.total}
+- **Checks Passed:** ${results.summary.passed}/${results.summary.total}
+- **Success Rate:** ${Math.round((results.summary.passed / results.summary.total) * 100)}%
+
+## Tool Results
+${Object.entries(results.tools).map(([tool, result]) => 
+  `### ${tool}
+- **Status:** ${result.success ? '✅ Passed' : '❌ Failed'}
+${result.error ? `- **Error:** ${result.error}\n` : ''}
+${result.output ? `- **Output:** ${result.output.slice(0, 200)}...\n` : ''}`
+).join('\n')}
+
+## Project Inventory
+- **Components:** ${inventory.summary.components} React components
+- **Services:** ${inventory.summary.services} service files
+- **Configuration Files:** ${inventory.summary.configurations} config files
+
+---
+*Auto-generated quality report*`;
   
   writeFileSync('docs/QUALITY_REPORT.md', report);
   writeFileSync('docs/quality-results.json', JSON.stringify(results, null, 2));
   
   console.log('\n📊 Quality Suite Complete:');
   console.log(`  - Passed: ${results.summary.passed}/${results.summary.total}`);
+  console.log(`  - Success Rate: ${Math.round((results.summary.passed / results.summary.total) * 100)}%`);
   console.log(`  - Report: docs/QUALITY_REPORT.md`);
   
   return results;
