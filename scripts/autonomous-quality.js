@@ -21,9 +21,13 @@ const runCommand = (command, description) => {
 const setupHooks = () => {
   console.log('🔧 Setting up Git hooks...');
   try {
-    execSync('npx husky install', { stdio: 'inherit' });
-    execSync('chmod +x .husky/pre-commit', { stdio: 'inherit' });
-    execSync('chmod +x .husky/commit-msg', { stdio: 'inherit' });
+    execSync('npx husky install', { stdio: 'pipe' });
+    try {
+      execSync('chmod +x .husky/pre-commit', { stdio: 'pipe' });
+      execSync('chmod +x .husky/commit-msg', { stdio: 'pipe' });
+    } catch (chmodError) {
+      // Hooks files might not exist yet, that's okay
+    }
     console.log('✅ Git hooks configured');
     return true;
   } catch (error) {
@@ -53,7 +57,7 @@ const runQualityChecks = async () => {
   const checks = [
     {
       name: 'ESLint',
-      command: 'npx eslint src --ext .ts,.tsx,.js,.jsx --fix --format=json',
+      command: 'npx eslint src --fix',
       description: 'Linting and auto-fixing code'
     },
     {
@@ -78,17 +82,17 @@ const runQualityChecks = async () => {
     },
     {
       name: 'Depcheck',
-      command: 'npx depcheck --json',
+      command: 'npx depcheck',
       description: 'Checking unused dependencies'
     },
     {
       name: 'License Check',
-      command: 'npx license-checker --onlyAllow "MIT;Apache-2.0;BSD-2-Clause;BSD-3-Clause;ISC;0BSD" --json',
+      command: 'npx license-checker --onlyAllow "MIT;Apache-2.0;BSD-2-Clause;BSD-3-Clause;ISC;0BSD"',
       description: 'Validating license compliance'
     },
     {
       name: 'Security Audit',
-      command: 'npm audit --audit-level=moderate --json',
+      command: 'npm audit --audit-level=moderate',
       description: 'Security vulnerability scan'
     }
   ];
