@@ -95,3 +95,160 @@ if (import.meta.url === `file://${process.argv[1]}`) {
 }
 
 export { generateInventory };
+#!/usr/bin/env node
+
+import { readdirSync, statSync, readFileSync, writeFileSync } from 'fs';
+import { join, extname } from 'path';
+import { execSync } from 'child_process';
+
+const getDirectorySize = (dirPath) => {
+  let size = 0;
+  try {
+    const files = readdirSync(dirPath);
+    for (const file of files) {
+      const filePath = join(dirPath, file);
+      const stats = statSync(filePath);
+      if (stats.isDirectory()) {
+        size += getDirectorySize(filePath);
+      } else {
+        size += stats.size;
+      }
+    }
+  } catch (error) {
+    // Skip inaccessible directories
+  }
+  return size;
+};
+
+const getFilesByExtension = (dirPath, extensions = ['.js', '.jsx', '.ts', '.tsx', '.css', '.json']) => {
+  const files = {};
+  extensions.forEach(ext => files[ext] = []);
+
+  const walkDir = (currentPath) => {
+    try {
+      const items = readdirSync(currentPath);
+      for (const item of items) {
+        const itemPath = join(currentPath, item);
+        const stats = statSync(itemPath);
+        
+        if (stats.isDirectory() && !item.startsWith('.') && item !== 'node_modules') {
+          walkDir(itemPath);
+        } else if (stats.isFile()) {
+          const ext = extname(item);
+          if (extensions.includes(ext)) {
+            files[ext].push(itemPath);
+          }
+        }
+      }
+    } catch (error) {
+      // Skip inaccessible directories
+    }
+  };
+
+  walkDir(dirPath);
+  return files;
+};
+
+const getPackageInfo = () => {
+  try {
+    const packageJson = JSON.parse(readFileSync('package.json', 'utf8'));
+    return {
+      name: packageJson.name,
+      version: packageJson.version,
+      dependencies: Object.keys(packageJson.dependencies || {}).length,
+      devDependencies: Object.keys(packageJson.devDependencies || {}).length,
+      scripts: Object.keys(packageJson.scripts || {}).length
+    };
+  } catch (error) {
+    return null;
+  }
+};
+
+const getGitInfo = () => {
+  try {
+    const branch = execSync('git rev-parse --abbrev-ref HEAD', { encoding: 'utf8' }).trim();
+    const commit = execSync('git rev-parse --short HEAD', { encoding: 'utf8' }).trim();
+    const status = execSync('git status --porcelain', { encoding: 'utf8' }).trim();
+    return {
+      branch,
+      commit,
+      hasUncommittedChanges: status.length > 0,
+      uncommittedFiles: status.split('\n').filter(line => line.trim()).length
+    };
+  } catch (error) {
+    return null;
+  }
+};
+
+const generateInventory = () => {
+  console.log('📋 Generating project inventory...');
+  
+  const inventory = {
+    timestamp: new Date().toISOString(),
+    project: getPackageInfo(),
+    git: getGitInfo(),
+    structure: {
+      totalSize: getDirectorySize('.'),
+      files: getFilesByExtension('src'),
+      directories: []
+    }
+  };
+
+  // Get directory structure
+  try {
+    const srcDirs = readdirSync('src', { withFileTypes: true })
+      .filter(dirent => dirent.isDirectory())
+      .map(dirent => dirent.name);
+    inventory.structure.directories = srcDirs;
+  } catch (error) {
+    inventory.structure.directories = [];
+  }
+
+  // Calculate file counts
+  inventory.structure.fileCounts = {};
+  Object.entries(inventory.structure.files).forEach(([ext, files]) => {
+    inventory.structure.fileCounts[ext] = files.length;
+  });
+
+  // Generate markdown report
+  const report = `# Project Inventory
+
+**Generated:** ${inventory.timestamp}
+
+## Project Information
+- **Name:** ${inventory.project?.name || 'Unknown'}
+- **Version:** ${inventory.project?.version || 'Unknown'}
+- **Dependencies:** ${inventory.project?.dependencies || 0}
+- **Dev Dependencies:** ${inventory.project?.devDependencies || 0}
+- **Scripts:** ${inventory.project?.scripts || 0}
+
+## Git Information
+${inventory.git ? `
+- **Branch:** ${inventory.git.branch}
+- **Commit:** ${inventory.git.commit}
+- **Uncommitted Changes:** ${inventory.git.hasUncommittedChanges ? 'Yes' : 'No'}
+- **Uncommitted Files:** ${inventory.git.uncommittedFiles || 0}
+` : '- Git information not available'}
+
+## Project Structure
+- **Total Size:** ${(inventory.structure.totalSize / 1024 / 1024).toFixed(2)} MB
+- **Source Directories:** ${inventory.structure.directories.join(', ') || 'None'}
+
+## File Counts by Extension
+${Object.entries(inventory.structure.fileCounts).map(([ext, count]) => `- **${ext}:** ${count} files`).join('\n')}
+
+---
+*Auto-generated inventory report*`;
+
+  writeFileSync('docs/INVENTORY.md', report);
+  writeFileSync('docs/inventory.json', JSON.stringify(inventory, null, 2));
+  
+  console.log('✅ Inventory generated: docs/INVENTORY.md');
+  return inventory;
+};
+
+if (import.meta.url === `file://${process.argv[1]}`) {
+  generateInventory();
+}
+
+export { generateInventory };

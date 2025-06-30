@@ -1,8 +1,8 @@
+
 #!/usr/bin/env node
 
 import { execSync } from 'child_process';
 import { existsSync } from 'fs';
-import { join } from 'path';
 
 const tools = [
   { name: 'ESLint', command: 'npx eslint --version', config: 'eslint.config.js' },

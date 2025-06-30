@@ -1,3 +1,4 @@
+
 #!/usr/bin/env node
 
 import { execSync } from 'child_process';
@@ -118,7 +119,6 @@ const runQualityChecks = async () => {
   console.log('\n📊 Quality Suite Complete:');
   console.log(`  - Passed: ${results.summary.passed}/${results.summary.total}`);
   console.log(`  - Report: docs/QUALITY_REPORT.md`);
-  console.log(`  - Results: docs/quality-results.json`);
   
   return results;
 };

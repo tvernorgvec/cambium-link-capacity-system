@@ -23,6 +23,32 @@ args = "npm install"
 task = "shell.exec"
 args = "npm run dev"
 
+[[workflows.workflow]]
+name = "Quality Check"
+author = 40704979
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run quality:check"
+
+[[workflows.workflow]]
+name = "Full Quality Suite"
+author = 40704979
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run quality:validate"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run quality:inventory"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run quality:check"
+
 [[ports]]
 localPort = 5000
 externalPort = 80
