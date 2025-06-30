@@ -1,6 +1,6 @@
 # Comprehensive Quality Report
 
-Generated: 2025-06-30T20:49:10.358Z
+Generated: 2025-06-30T20:55:53.395Z
 
 ## Summary
 - **Total Checks**: 9
@@ -26,7 +26,6 @@ Rule: "security/detect-non
 ### Prettier ✅ (Auto-Fixed)
 ```
 Checking formatting...
-All matched files use Prettier code style!
 
 ```
 
@@ -41,7 +40,7 @@ All matched files use Prettier code style!
 
 ### Circular Dependencies ✅
 ```
-Processed 19 files (644ms) 
+Processed 19 files (788ms) (1 warning)
 
 
 
@@ -57,7 +56,7 @@ Clone found (javascript):
 [90m┌────────────[39m[90m┬────────────────[39m[90m┬─────────────[39m[90m┬──────────────[39m[90m┬──────────────[39m[90m┬──────────────────[39m[90m┬───────────────────┐[39m
 [90m│[39m[31m Format     [39m[90m│[39m[31m Files analyzed [39m[90m│[39m[3
 ```
-⚠️ Warnings: [31mERROR: jscpd found too many duplicates (3.04%) over threshold (3%)[39m
+⚠️ Warnings: [31mERROR: jscpd found too many duplicates (3.12%) over threshold (3%)[39m
 
 
 
@@ -72,9 +71,8 @@ found 0 vulnerabilities
 ```
 Unused dependencies
 * postcss-import
-* tailwindcss
-Missing dependencies
-* @tailwindcss/typography: ./tailwind.config.cjs
+Unused devDependencies
+* @tailwindcss/postcss
 Dependency check completed with warnings
 
 ```

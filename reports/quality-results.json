@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-06-30T20:49:10.358Z",
+  "timestamp": "2025-06-30T20:55:53.395Z",
   "tools": {
     "ESLint": {
       "success": true,
@@ -9,7 +9,7 @@
     },
     "Prettier": {
       "success": true,
-      "output": "Checking formatting...\nAll matched files use Prettier code style!\n",
+      "output": "Checking formatting...\n",
       "fixed": true
     },
     "TypeScript": {
@@ -24,14 +24,14 @@
     },
     "Circular Dependencies": {
       "success": true,
-      "output": "Processed 19 files (644ms) \n\n\n",
+      "output": "Processed 19 files (788ms) (1 warning)\n\n\n",
       "fixed": false
     },
     "Code Duplication": {
       "success": true,
       "output": "Clone found (javascript):\n - \u001b[1m\u001b[32m/home/runner/workspace/src/components/History.jsx\u001b[39m\u001b[22m [237:13 - 325:5] (88 lines, 644 tokens)\n   \u001b[1m\u001b[32m/home/runner/workspace/src/components/Scheduler.jsx\u001b[39m\u001b[22m [191:11 - 255:74]\n\n\u001b[90m┌────────────\u001b[39m\u001b[90m┬────────────────\u001b[39m\u001b[90m┬─────────────\u001b[39m\u001b[90m┬──────────────\u001b[39m\u001b[90m┬──────────────\u001b[39m\u001b[90m┬──────────────────\u001b[39m\u001b[90m┬───────────────────┐\u001b[39m\n\u001b[90m│\u001b[39m\u001b[31m Format     \u001b[39m\u001b[90m│\u001b[39m\u001b[31m Files analyzed \u001b[39m\u001b[90m│\u001b[39m\u001b[3",
       "fixed": true,
-      "warnings": "\u001b[31mERROR: jscpd found too many duplicates (3.04%) over threshold (3%)\u001b[39m\n"
+      "warnings": "\u001b[31mERROR: jscpd found too many duplicates (3.12%) over threshold (3%)\u001b[39m\n"
     },
     "Dependencies": {
       "success": true,
@@ -40,7 +40,7 @@
     },
     "Unused Dependencies": {
       "success": true,
-      "output": "Unused dependencies\n* postcss-import\n* tailwindcss\nMissing dependencies\n* @tailwindcss/typography: ./tailwind.config.cjs\nDependency check completed with warnings\n",
+      "output": "Unused dependencies\n* postcss-import\nUnused devDependencies\n* @tailwindcss/postcss\nDependency check completed with warnings\n",
       "fixed": false
     },
     "License Check": {
