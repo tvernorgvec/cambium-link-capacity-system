@@ -127,6 +127,51 @@ const autoFixIssues = async () => {
         }).join('\n');
       }
       
+      // Check for problematic useEffect patterns that cause infinite loops
+      if (content.includes('useEffect') && content.includes('dispatch') && content.includes('SET_LOADING')) {
+        const lines = fixedContent.split('\n');
+        let inUseEffect = false;
+        let useEffectStart = -1;
+        
+        for (let i = 0; i < lines.length; i++) {
+          const line = lines[i].trim();
+          
+          if (line.includes('useEffect(')) {
+            inUseEffect = true;
+            useEffectStart = i;
+          }
+          
+          if (inUseEffect && line.includes('}, [') && line.includes('])')) {
+            // Check if this useEffect has conditional data loading that might cause loops
+            const useEffectBlock = lines.slice(useEffectStart, i + 1).join('\n');
+            
+            if (useEffectBlock.includes('if (state.data.linkCapacity.length === 0') && 
+                useEffectBlock.includes('loadInitialData();')) {
+              // Replace conditional loading with simple loading
+              const newBlock = useEffectBlock.replace(
+                /if \(state\.data\.linkCapacity\.length === 0[^}]*\n[^}]*loadInitialData\(\);[^}]*}/,
+                'loadInitialData();'
+              );
+              
+              if (newBlock !== useEffectBlock) {
+                // Replace the block in the lines array
+                const blockLines = newBlock.split('\n');
+                lines.splice(useEffectStart, i - useEffectStart + 1, ...blockLines);
+                modified = true;
+                loopFixed++;
+              }
+            }
+            
+            inUseEffect = false;
+            useEffectStart = -1;
+          }
+        }
+        
+        if (modified) {
+          fixedContent = lines.join('\n');
+        }
+      }
+      
       // Check for dispatch calls without proper SET_LOADING handling
       if (content.includes('dispatch') && content.includes('SET_LOADING') && content.includes('useEffect')) {
         const lines = fixedContent.split('\n');

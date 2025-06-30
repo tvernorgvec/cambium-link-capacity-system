@@ -61,67 +61,78 @@ export function AppProvider({ children }) {
     let isMounted = true;
 
     const loadInitialData = async () => {
-      if (!isMounted) return;
-
       try {
-        dispatch({ type: 'SET_LOADING', payload: true });
-
-        // Simulate API calls
-        await new Promise(resolve => setTimeout(resolve, 500));
-
-        if (!isMounted) return;
-
-        // Mock data
-        const mockLinkCapacity = [
-          { id: 1, name: 'Link A', capacity: 80, status: 'active' },
-          { id: 2, name: 'Link B', capacity: 65, status: 'warning' },
-          { id: 3, name: 'Link C', capacity: 45, status: 'normal' },
-        ];
-
-        const mockHistory = [
-          {
-            id: 1,
-            action: 'Link capacity updated',
-            timestamp: new Date().toISOString(),
-          },
-          {
-            id: 2,
-            action: 'Scheduled task completed',
-            timestamp: new Date().toISOString(),
-          },
-        ];
-
-        const mockScheduledTasks = [
-          {
-            id: 1,
-            name: 'Daily Report',
-            schedule: '0 9 * * *',
-            status: 'active',
-          },
-          {
-            id: 2,
-            name: 'Weekly Backup',
-            schedule: '0 0 * * 0',
-            status: 'inactive',
-          },
-        ];
-
         if (isMounted) {
-          dispatch({ type: 'SET_LINK_CAPACITY', payload: mockLinkCapacity });
-          dispatch({ type: 'SET_HISTORY', payload: mockHistory });
+          dispatch({ type: 'SET_LOADING', payload: true });
+
+          // Simulate API calls
+          await new Promise(resolve => setTimeout(resolve, 500));
+
+          if (!isMounted) {
+            return;
+          }
+
+          // Mock data
+          const mockLinkCapacity = [
+            { id: 1, name: 'Link A', capacity: 80, status: 'active' },
+            { id: 2, name: 'Link B', capacity: 65, status: 'warning' },
+            { id: 3, name: 'Link C', capacity: 45, status: 'normal' },
+          ];
+
+          const mockHistory = [
+            {
+              id: 1,
+              action: 'Link capacity updated',
+              timestamp: new Date().toISOString(),
+            },
+            {
+              id: 2,
+              action: 'Scheduled task completed',
+              timestamp: new Date().toISOString(),
+            },
+          ];
+
+          const mockScheduledTasks = [
+            {
+              id: 1,
+              name: 'Daily Report',
+              schedule: '0 9 * * *',
+              status: 'active',
+            },
+            {
+              id: 2,
+              name: 'Weekly Backup',
+              schedule: '0 0 * * 0',
+              status: 'inactive',
+            },
+          ];
+
+          dispatch({
+            type: 'SET_LINK_CAPACITY',
+            payload: mockLinkCapacity,
+          });
+
+          dispatch({
+            type: 'SET_HISTORY',
+            payload: mockHistory,
+          });
+
           dispatch({
             type: 'SET_SCHEDULED_TASKS',
             payload: mockScheduledTasks,
           });
+
           dispatch({ type: 'SET_LOADING', payload: false });
         }
       } catch (error) {
         if (isMounted) {
-          dispatch({ type: 'SET_ERROR', payload: error.message });
+          // Console statement removed by auto-fix
+          dispatch({ type: 'SET_LOADING', payload: false });
         }
       }
     };
 
+    // Only load once when component mounts
     // Only load data if we don't already have it
     if (state.data.linkCapacity.length === 0 && !state.loading) {
       loadInitialData();

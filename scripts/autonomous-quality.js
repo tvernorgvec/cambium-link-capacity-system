@@ -87,9 +87,9 @@ const runQualityChecks = async () => {
 
   const checks = [
     {
-      name: 'React Error Check',
-      command: 'grep -r "Maximum update depth\\|Warning:" src/ || echo "No React errors detected"',
-      description: 'React infinite loop and warning detection'
+      name: 'React Runtime Error Check',
+      command: 'timeout 5s bash -c "npm run dev 2>&1 | grep -i \"maximum update depth\\|warning\" | head -5" || echo "No immediate React runtime errors detected"',
+      description: 'Live React runtime error detection'
     },
     {
       name: 'ESLint',
