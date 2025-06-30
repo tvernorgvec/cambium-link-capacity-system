@@ -7,7 +7,9 @@ import { existsSync } from 'fs';
 const tools = [
   { name: 'ESLint', command: 'npx eslint --version', config: 'eslint.config.js' },
   { name: 'Prettier', command: 'npx prettier --version', config: '.prettierrc' },
-  { name: 'TypeScript', command: 'npx tsc --version', config: 'tsconfig.json' }
+  { name: 'TypeScript', command: 'npx tsc --version', config: 'tsconfig.json' },
+  { name: 'Node.js', command: 'node --version', config: null },
+  { name: 'npm', command: 'npm --version', config: null }
 ];
 
 const validateTool = (tool) => {
@@ -23,7 +25,7 @@ const validateTool = (tool) => {
     return {
       name: tool.name,
       status: 'available',
-      version: output.split('\n')[0], // First line only
+      version: output.split('\n')[0],
       configExists,
       config: tool.config
     };
@@ -48,7 +50,7 @@ const generateReport = () => {
   
   results.forEach(tool => {
     const status = tool.status === 'available' ? '✅' : '❌';
-    const config = tool.configExists ? '✅' : '❌';
+    const config = tool.configExists ? '✅' : (tool.config ? '❌' : 'N/A');
     console.log(`  ${tool.name}: ${status} ${tool.version || 'Not available'} Config: ${config}`);
   });
   

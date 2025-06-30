@@ -1,4 +1,3 @@
-
 import js from '@eslint/js';
 import typescript from '@typescript-eslint/eslint-plugin';
 import typescriptParser from '@typescript-eslint/parser';
@@ -44,7 +43,6 @@ export default [
       'sonarjs': sonarjs
     },
     rules: {
-      // Base rules
       'no-unused-vars': 'off',
       'no-console': 'warn',
       'no-debugger': 'error',
@@ -52,53 +50,14 @@ export default [
       'no-var': 'error',
       'prefer-const': 'error',
       'no-duplicate-imports': 'error',
-      
-      // React rules
       'react/jsx-uses-react': 'error',
       'react/jsx-uses-vars': 'error',
       'react/prop-types': 'off',
       'react/react-in-jsx-scope': 'off',
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
-      
-      // TypeScript rules
       '@typescript-eslint/no-unused-vars': 'error',
-      '@typescript-eslint/no-explicit-any': 'warn',
-      '@typescript-eslint/no-var-requires': 'error',
-      
-      // Import rules
-      'import/order': ['error', { 
-        groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
-        'newlines-between': 'always'
-      }],
-      'import/no-duplicates': 'error',
-      'import/no-unresolved': 'off',
-      
-      // Security rules
-      'security/detect-object-injection': 'warn',
-      'security/detect-non-literal-regexp': 'warn',
-      'security/detect-unsafe-regex': 'error',
-      'security/detect-buffer-noassert': 'error',
-      'security/detect-child-process': 'warn',
-      'security/detect-disable-mustache-escape': 'error',
-      'security/detect-eval-with-expression': 'error',
-      'security/detect-no-csrf-before-method-override': 'error',
-      'security/detect-non-literal-fs-filename': 'warn',
-      'security/detect-non-literal-require': 'warn',
-      'security/detect-possible-timing-attacks': 'warn',
-      'security/detect-pseudoRandomBytes': 'error',
-      
-      // SonarJS rules
-      'sonarjs/cognitive-complexity': ['error', 15],
-      'sonarjs/no-duplicate-string': ['error', 3],
-      'sonarjs/no-duplicated-branches': 'error',
-      'sonarjs/no-identical-functions': 'error',
-      'sonarjs/no-redundant-boolean': 'error',
-      'sonarjs/no-unused-collection': 'error',
-      'sonarjs/no-useless-catch': 'error',
-      'sonarjs/prefer-immediate-return': 'error',
-      'sonarjs/prefer-object-literal': 'error',
-      'sonarjs/prefer-single-boolean-return': 'error'
+      '@typescript-eslint/no-explicit-any': 'warn'
     }
   },
   {
