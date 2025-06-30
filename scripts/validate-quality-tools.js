@@ -72,4 +72,4 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   generateReport();
 }
 
-export { validateTool, generateReport };
+export { validateTool, generateReport };erateReport };

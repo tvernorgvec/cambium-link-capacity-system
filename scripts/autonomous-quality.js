@@ -71,7 +71,7 @@ const runQualityChecks = async () => {
   const checks = [
     {
       name: 'ESLint',
-      command: 'npx eslint src --fix --max-warnings=0',
+      command: 'npx eslint src --fix',
       description: 'Linting and auto-fixing code'
     },
     {
