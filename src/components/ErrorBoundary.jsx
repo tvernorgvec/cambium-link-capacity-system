@@ -28,7 +28,8 @@ class ErrorBoundary extends React.Component {
                 Something went wrong
               </h3>
               <p className="mt-2 text-sm text-gray-500">
-                We're sorry for the inconvenience. Please refresh the page or try again later.
+                We're sorry for the inconvenience. Please refresh the page or
+                try again later.
               </p>
               <button
                 onClick={() => this.setState({ hasError: false })}

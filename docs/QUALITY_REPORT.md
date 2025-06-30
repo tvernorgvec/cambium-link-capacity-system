@@ -1,6 +1,6 @@
 # Comprehensive Quality Report
 
-Generated: 2025-06-30T20:55:53.395Z
+Generated: 2025-06-30T20:57:23.952Z
 
 ## Summary
 - **Total Checks**: 9
@@ -19,8 +19,8 @@ Oops! Something went wrong! :(
 ESLint: 9.30.0
 
 TypeError: context.getScope is not a function
-Occurred while linting /home/runner/workspace/dist/assets/index-LK7OlPv2.js:49
-Rule: "security/detect-non
+Occurred while linting /home/runner/workspace/vite.preview.config.js:123
+Rule: "security/detect-non-liter
 
 
 ### Prettier ✅ (Auto-Fixed)
@@ -40,7 +40,7 @@ Checking formatting...
 
 ### Circular Dependencies ✅
 ```
-Processed 19 files (788ms) (1 warning)
+Processed 19 files (1s) (1 warning)
 
 
 
@@ -56,7 +56,7 @@ Clone found (javascript):
 [90m┌────────────[39m[90m┬────────────────[39m[90m┬─────────────[39m[90m┬──────────────[39m[90m┬──────────────[39m[90m┬──────────────────[39m[90m┬───────────────────┐[39m
 [90m│[39m[31m Format     [39m[90m│[39m[31m Files analyzed [39m[90m│[39m[3
 ```
-⚠️ Warnings: [31mERROR: jscpd found too many duplicates (3.12%) over threshold (3%)[39m
+⚠️ Warnings: [31mERROR: jscpd found too many duplicates (3.14%) over threshold (3%)[39m
 
 
 

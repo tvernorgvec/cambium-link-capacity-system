@@ -31,9 +31,12 @@ export const AppProvider = ({ children }) => {
     setTestResults([]);
   }, []);
 
-  const updateSettings = useCallback(newSettings => {
-    setSettings(prev => ({ ...prev, ...newSettings }));
-  }, [setSettings]);
+  const updateSettings = useCallback(
+    newSettings => {
+      setSettings(prev => ({ ...prev, ...newSettings }));
+    },
+    [setSettings]
+  );
 
   const value = {
     currentTest,
