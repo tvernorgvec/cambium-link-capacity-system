@@ -1,14 +1,14 @@
-
 # COMPREHENSIVE FULL-STACK CATALOG
 
-*Generated: $(date)*
-*Every single file, function, API endpoint, route, module, and configuration cataloged*
+_Generated: $(date)_
+_Every single file, function, API endpoint, route, module, and configuration cataloged_
 
 ## COMPLETE FILE INVENTORY
 
 ### Configuration Files Analysis
 
 #### .replit
+
 ```toml
 modules = ["nodejs-20", "web"]
 run = "npm run dev"
@@ -100,6 +100,7 @@ externalPort = 3003
 ```
 
 **Configuration Analysis:**
+
 - **Runtime**: Node.js 20, Web modules
 - **Entry Command**: npm run dev
 - **Deployment**: Same as development
@@ -107,6 +108,7 @@ externalPort = 3003
 - **Port Mappings**: 5 ports (5000→80, 5001→3000, 5002→3001, 5003→3002, 5004→3003)
 
 #### package.json
+
 ```json
 {
   "name": "gvec-link-capacity-web-app",
@@ -175,15 +177,17 @@ externalPort = 3003
 ```
 
 **Dependencies Analysis:**
+
 - **Production Dependencies**: 10 packages
 - **Development Dependencies**: 23 packages
 - **Scripts**: 19 npm scripts
 - **Module Type**: ESM
 
 #### vite.config.js
+
 ```javascript
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
@@ -195,10 +199,11 @@ export default defineConfig({
   build: {
     outDir: 'dist',
   },
-})
+});
 ```
 
 **Build Configuration:**
+
 - **Server**: Host 0.0.0.0, Port 5000
 - **Base Path**: /linktest/
 - **Output Directory**: dist
@@ -209,24 +214,27 @@ export default defineConfig({
 ### Entry Points
 
 #### src/main.jsx
+
 ```javascript
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App.jsx';
+import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>,
-)
+  </React.StrictMode>
+);
 ```
 
 **Functions:**
+
 - `ReactDOM.createRoot()` - Creates React root
 - `render()` - Renders App component
 
 #### src/App.jsx
+
 ```javascript
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -263,6 +271,7 @@ export default App;
 ```
 
 **Routes Defined:**
+
 - `/linktest/` → Dashboard
 - `/linktest/dashboard` → Dashboard
 - `/linktest/scheduler` → Scheduler
@@ -270,6 +279,7 @@ export default App;
 - `/linktest/settings` → Settings
 
 **Components Used:**
+
 - ErrorBoundary
 - AppProvider
 - Router
@@ -279,6 +289,7 @@ export default App;
 ### Context Management
 
 #### src/context/AppContext.jsx
+
 ```javascript
 import React, {
   createContext,
@@ -429,6 +440,7 @@ export const useApp = () => {
 ```
 
 **State Structure:**
+
 ```javascript
 {
   loading: boolean,
@@ -447,6 +459,7 @@ export const useApp = () => {
 ```
 
 **Action Types:**
+
 - SET_LOADING
 - SET_ERROR
 - SET_LINK_CAPACITY
@@ -455,12 +468,14 @@ export const useApp = () => {
 - UPDATE_SETTINGS
 
 **Functions:**
+
 - `appReducer(state, action)` - State reducer
 - `AppProvider({ children })` - Context provider component
 - `loadInitialData()` - Loads all initial data
 - `useApp()` - Hook to access context
 
 **API Calls:**
+
 - api.getLinkCapacity()
 - api.getTestResults()
 - api.getScheduledTests()
@@ -468,6 +483,7 @@ export const useApp = () => {
 ### API Service Layer
 
 #### src/services/api.js
+
 ```javascript
 import axios from 'axios';
 
@@ -482,22 +498,22 @@ const apiClient = axios.create({
 });
 
 apiClient.interceptors.request.use(
-  (config) => {
+  config => {
     console.log('API Request:', config.method?.toUpperCase(), config.url);
     return config;
   },
-  (error) => {
+  error => {
     console.error('API Request Error:', error);
     return Promise.reject(error);
   }
 );
 
 apiClient.interceptors.response.use(
-  (response) => {
+  response => {
     console.log('API Response:', response.status, response.config.url);
     return response;
   },
-  (error) => {
+  error => {
     console.error('API Response Error:', error.response?.status, error.message);
     return Promise.reject(error);
   }
@@ -616,6 +632,7 @@ export const api = {
 ```
 
 **API Endpoints:**
+
 - `GET /link-capacity` - Get link capacity data
 - `GET /test-results` - Get test results
 - `GET /scheduled-tests` - Get scheduled tests
@@ -624,6 +641,7 @@ export const api = {
 - `PUT /settings` - Update settings
 
 **Functions:**
+
 - `getLinkCapacity()` - Fetch link capacity data
 - `getTestResults()` - Fetch test results
 - `getScheduledTests()` - Fetch scheduled tests
@@ -632,11 +650,13 @@ export const api = {
 - `updateSettings(settings)` - Update application settings
 
 **Configuration:**
+
 - Base URL: http://localhost:3001/api
 - Timeout: 10000ms
 - Content-Type: application/json
 
 **Mock Data Schema:**
+
 ```javascript
 linkCapacity: {
   id: number,
@@ -669,18 +689,12 @@ scheduledTests: {
 ### Component Analysis
 
 #### src/components/Layout.jsx
+
 ```javascript
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import {
-  BarChart3,
-  Calendar,
-  History,
-  Settings,
-  Menu,
-  X,
-} from 'lucide-react';
+import { BarChart3, Calendar, History, Settings, Menu, X } from 'lucide-react';
 
 const Layout = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -691,7 +705,9 @@ const Layout = ({ children }) => {
       name: 'Dashboard',
       href: '/linktest/dashboard',
       icon: BarChart3,
-      current: location.pathname === '/linktest/dashboard' || location.pathname === '/linktest/',
+      current:
+        location.pathname === '/linktest/dashboard' ||
+        location.pathname === '/linktest/',
     },
     {
       name: 'Scheduler',
@@ -743,7 +759,7 @@ const Layout = ({ children }) => {
                 </button>
               </div>
               <nav className="flex-1 p-4 space-y-2">
-                {navigation.map((item) => (
+                {navigation.map(item => (
                   <Link
                     key={item.name}
                     to={item.href}
@@ -768,12 +784,10 @@ const Layout = ({ children }) => {
       <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
         <div className="flex flex-col flex-grow bg-white border-r border-gray-200 shadow-sm">
           <div className="flex items-center px-6 py-4 border-b">
-            <h1 className="text-xl font-bold text-gray-900">
-              GVEC Link Test
-            </h1>
+            <h1 className="text-xl font-bold text-gray-900">GVEC Link Test</h1>
           </div>
           <nav className="flex-1 p-4 space-y-2">
-            {navigation.map((item) => (
+            {navigation.map(item => (
               <Link
                 key={item.name}
                 to={item.href}
@@ -805,9 +819,7 @@ const Layout = ({ children }) => {
           </h1>
           <div className="w-10" />
         </div>
-        <main className="flex-1 p-6">
-          {children}
-        </main>
+        <main className="flex-1 p-6">{children}</main>
       </div>
     </div>
   );
@@ -817,26 +829,31 @@ export default Layout;
 ```
 
 **Props:**
+
 - `children` - React children to render in main content area
 
 **State:**
+
 - `sidebarOpen` - Boolean for mobile sidebar visibility
 
 **Navigation Items:**
+
 ```javascript
 [
   { name: 'Dashboard', href: '/linktest/dashboard', icon: BarChart3 },
   { name: 'Scheduler', href: '/linktest/scheduler', icon: Calendar },
   { name: 'History', href: '/linktest/history', icon: History },
-  { name: 'Settings', href: '/linktest/settings', icon: Settings }
-]
+  { name: 'Settings', href: '/linktest/settings', icon: Settings },
+];
 ```
 
 **Functions:**
+
 - `setSidebarOpen(boolean)` - Toggle mobile sidebar
 - Layout responsive design with mobile/desktop variants
 
 #### src/components/Dashboard.jsx
+
 ```javascript
 import React from 'react';
 import { motion } from 'framer-motion';
@@ -867,10 +884,19 @@ const Dashboard = () => {
     );
   }
 
-  const totalCapacity = data.linkCapacity.reduce((sum, link) => sum + link.capacity, 0);
-  const totalUsage = data.linkCapacity.reduce((sum, link) => sum + link.usage, 0);
-  const utilizationPercentage = totalCapacity > 0 ? (totalUsage / totalCapacity) * 100 : 0;
-  const activeLinks = data.linkCapacity.filter(link => link.status === 'active').length;
+  const totalCapacity = data.linkCapacity.reduce(
+    (sum, link) => sum + link.capacity,
+    0
+  );
+  const totalUsage = data.linkCapacity.reduce(
+    (sum, link) => sum + link.usage,
+    0
+  );
+  const utilizationPercentage =
+    totalCapacity > 0 ? (totalUsage / totalCapacity) * 100 : 0;
+  const activeLinks = data.linkCapacity.filter(
+    link => link.status === 'active'
+  ).length;
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -932,8 +958,12 @@ const Dashboard = () => {
               <Zap className="w-6 h-6 text-green-600" />
             </div>
             <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600">Total Capacity</p>
-              <p className="text-2xl font-bold text-gray-900">{totalCapacity}</p>
+              <p className="text-sm font-medium text-gray-600">
+                Total Capacity
+              </p>
+              <p className="text-2xl font-bold text-gray-900">
+                {totalCapacity}
+              </p>
             </div>
           </div>
         </Card>
@@ -980,7 +1010,7 @@ const Dashboard = () => {
             />
           </div>
           <div className="space-y-4">
-            {data.linkCapacity.map((link) => (
+            {data.linkCapacity.map(link => (
               <div
                 key={link.id}
                 className="flex items-center justify-between p-4 bg-gray-50 rounded-lg"
@@ -1041,8 +1071,10 @@ const Dashboard = () => {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {data.testResults.slice(0, 5).map((result) => {
-                  const link = data.linkCapacity.find(l => l.id === result.linkId);
+                {data.testResults.slice(0, 5).map(result => {
+                  const link = data.linkCapacity.find(
+                    l => l.id === result.linkId
+                  );
                   return (
                     <tr key={result.id}>
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
@@ -1057,7 +1089,9 @@ const Dashboard = () => {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <StatusBadge
-                          status={result.status === 'passed' ? 'success' : 'error'}
+                          status={
+                            result.status === 'passed' ? 'success' : 'error'
+                          }
                           text={result.status}
                         />
                       </td>
@@ -1080,6 +1114,7 @@ export default Dashboard;
 ```
 
 **Functions:**
+
 - `Dashboard()` - Main dashboard component
 - Data calculations: totalCapacity, totalUsage, utilizationPercentage, activeLinks
 - Responsive grid layout with statistics cards
@@ -1087,6 +1122,7 @@ export default Dashboard;
 - Recent test results table
 
 **Data Displayed:**
+
 - Active links count
 - Total capacity
 - Utilization percentage
@@ -1095,6 +1131,7 @@ export default Dashboard;
 - Recent test results table
 
 #### src/components/ErrorBoundary.jsx
+
 ```javascript
 import React from 'react';
 
@@ -1144,7 +1181,8 @@ class ErrorBoundary extends React.Component {
               </div>
             </div>
             <div className="text-sm text-gray-500 mb-4">
-              An error occurred while rendering this component. Please refresh the page or try again later.
+              An error occurred while rendering this component. Please refresh
+              the page or try again later.
             </div>
             <div className="flex space-x-3">
               <button
@@ -1154,7 +1192,13 @@ class ErrorBoundary extends React.Component {
                 Refresh Page
               </button>
               <button
-                onClick={() => this.setState({ hasError: false, error: null, errorInfo: null })}
+                onClick={() =>
+                  this.setState({
+                    hasError: false,
+                    error: null,
+                    errorInfo: null,
+                  })
+                }
                 className="inline-flex items-center px-3 py-2 border border-gray-300 text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
                 Try Again
@@ -1162,7 +1206,9 @@ class ErrorBoundary extends React.Component {
             </div>
             {process.env.NODE_ENV === 'development' && this.state.error && (
               <details className="mt-4 text-xs">
-                <summary className="cursor-pointer text-gray-600">Error Details (Dev)</summary>
+                <summary className="cursor-pointer text-gray-600">
+                  Error Details (Dev)
+                </summary>
                 <pre className="mt-2 whitespace-pre-wrap text-red-600">
                   {this.state.error.toString()}
                   {this.state.errorInfo.componentStack}
@@ -1182,11 +1228,13 @@ export default ErrorBoundary;
 ```
 
 **Functions:**
+
 - `getDerivedStateFromError(error)` - Static method to update state on error
 - `componentDidCatch(error, errorInfo)` - Lifecycle method to handle errors
 - `render()` - Renders error UI or children
 
 **State:**
+
 - `hasError` - Boolean indicating if error occurred
 - `error` - Error object
 - `errorInfo` - Additional error information
@@ -1196,12 +1244,13 @@ export default ErrorBoundary;
 ### Quality Tools Configuration
 
 #### eslint.config.js
+
 ```javascript
-import js from '@eslint/js'
-import globals from 'globals'
-import react from 'eslint-plugin-react'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
+import js from '@eslint/js';
+import globals from 'globals';
+import react from 'eslint-plugin-react';
+import reactHooks from 'eslint-plugin-react-hooks';
+import reactRefresh from 'eslint-plugin-react-refresh';
 
 export default [
   { ignores: ['dist'] },
@@ -1234,10 +1283,11 @@ export default [
       ],
     },
   },
-]
+];
 ```
 
 #### .jscpd.json
+
 ```json
 {
   "threshold": 0.1,
@@ -1251,6 +1301,7 @@ export default [
 ```
 
 #### commitlint.config.js
+
 ```javascript
 export default {
   extends: ['@commitlint/config-conventional'],
@@ -1269,19 +1320,20 @@ export default {
         'perf',
         'ci',
         'build',
-        'revert'
-      ]
+        'revert',
+      ],
     ],
     'subject-case': [2, 'never', ['start-case', 'pascal-case', 'upper-case']],
     'subject-max-length': [2, 'always', 72],
-    'body-max-line-length': [2, 'always', 100]
-  }
+    'body-max-line-length': [2, 'always', 100],
+  },
 };
 ```
 
 ### TypeScript Configuration
 
 #### tsconfig.json
+
 ```json
 {
   "compilerOptions": {
@@ -1307,6 +1359,7 @@ export default {
 ```
 
 #### tsconfig.node.json
+
 ```json
 {
   "compilerOptions": {
@@ -1324,21 +1377,25 @@ export default {
 ## CRITICAL ISSUES IDENTIFIED
 
 ### 1. React Infinite Loop Error (CRITICAL)
+
 - **Location**: src/context/AppContext.jsx:100:31
 - **Issue**: useEffect dependency causing maximum update depth exceeded
 - **Impact**: Application crashes with infinite re-renders
 - **Console Errors**: 100+ "Maximum update depth exceeded" warnings
 
 ### 2. Missing Backend API Server
+
 - **Expected URL**: http://localhost:3001/api
 - **Status**: No backend server implemented
 - **Impact**: All API calls fail, falling back to mock data
 - **Affected Endpoints**: All 6 API endpoints
 
 ### 3. Incomplete Component Files
+
 Based on the catalog, these component files are missing complete analysis:
 
 **Remaining to catalog:**
+
 - src/components/Scheduler.jsx
 - src/components/History.jsx
 - src/components/Settings.jsx
@@ -1349,6 +1406,7 @@ Based on the catalog, these component files are missing complete analysis:
 - src/components/StatusBadge.jsx
 
 **Configuration files to catalog:**
+
 - src/config/environment.js
 - src/types/index.js
 - src/utils/motion.js

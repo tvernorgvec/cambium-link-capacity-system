@@ -1,9 +1,8 @@
-
 import { readFileSync, writeFileSync, readdirSync, statSync } from 'fs';
 import { execSync } from 'child_process';
 import { join, extname } from 'path';
 
-const getDirectorySize = (dirPath) => {
+const getDirectorySize = dirPath => {
   let size = 0;
   try {
     const files = readdirSync(dirPath);
@@ -22,18 +21,25 @@ const getDirectorySize = (dirPath) => {
   return size;
 };
 
-const getFilesByExtension = (dirPath, extensions = ['.js', '.jsx', '.ts', '.tsx', '.css', '.json']) => {
+const getFilesByExtension = (
+  dirPath,
+  extensions = ['.js', '.jsx', '.ts', '.tsx', '.css', '.json']
+) => {
   const files = {};
-  extensions.forEach(ext => files[ext] = []);
+  extensions.forEach(ext => (files[ext] = []));
 
-  const walkDir = (currentPath) => {
+  const walkDir = currentPath => {
     try {
       const items = readdirSync(currentPath);
       for (const item of items) {
         const itemPath = join(currentPath, item);
         const stats = statSync(itemPath);
-        
-        if (stats.isDirectory() && !item.startsWith('.') && item !== 'node_modules') {
+
+        if (
+          stats.isDirectory() &&
+          !item.startsWith('.') &&
+          item !== 'node_modules'
+        ) {
           walkDir(itemPath);
         } else if (stats.isFile()) {
           const ext = extname(item);
@@ -59,7 +65,7 @@ const getPackageInfo = () => {
       version: packageJson.version,
       dependencies: Object.keys(packageJson.dependencies || {}).length,
       devDependencies: Object.keys(packageJson.devDependencies || {}).length,
-      scripts: Object.keys(packageJson.scripts || {}).length
+      scripts: Object.keys(packageJson.scripts || {}).length,
     };
   } catch (error) {
     return null;
@@ -68,14 +74,20 @@ const getPackageInfo = () => {
 
 const getGitInfo = () => {
   try {
-    const branch = execSync('git rev-parse --abbrev-ref HEAD', { encoding: 'utf8' }).trim();
-    const commit = execSync('git rev-parse --short HEAD', { encoding: 'utf8' }).trim();
-    const status = execSync('git status --porcelain', { encoding: 'utf8' }).trim();
+    const branch = execSync('git rev-parse --abbrev-ref HEAD', {
+      encoding: 'utf8',
+    }).trim();
+    const commit = execSync('git rev-parse --short HEAD', {
+      encoding: 'utf8',
+    }).trim();
+    const status = execSync('git status --porcelain', {
+      encoding: 'utf8',
+    }).trim();
     return {
       branch,
       commit,
       hasUncommittedChanges: status.length > 0,
-      uncommittedFiles: status.split('\n').filter(line => line.trim()).length
+      uncommittedFiles: status.split('\n').filter(line => line.trim()).length,
     };
   } catch (error) {
     return null;
@@ -84,31 +96,31 @@ const getGitInfo = () => {
 
 const generateInventory = () => {
   console.log('📋 Generating project inventory...');
-  
+
   const timestamp = new Date().toISOString();
-  
+
   // Read package.json for additional info
   const packageJson = JSON.parse(readFileSync('package.json', 'utf8'));
-  
+
   // Get system info
   const nodeVersion = execSync('node --version', { encoding: 'utf8' }).trim();
   const npmVersion = execSync('npm --version', { encoding: 'utf8' }).trim();
-  
+
   // Quality tools inventory
   const qualityTools = {
-    'ESLint': '9.29.0',
-    'Prettier': '3.6.1',
+    ESLint: '9.29.0',
+    Prettier: '3.6.1',
     'TypeScript Prune': '0.10.3',
-    'JSCPD': '4.0.5',
-    'Madge': '8.0.0',
-    'Husky': '9.0.11',
+    JSCPD: '4.0.5',
+    Madge: '8.0.0',
+    Husky: '9.0.11',
     'Lint-Staged': '15.2.10',
-    'Commitlint': '19.5.0',
-    'Commitizen': '4.3.1',
-    'Depcheck': '1.4.7',
+    Commitlint: '19.5.0',
+    Commitizen: '4.3.1',
+    Depcheck: '1.4.7',
     'npm-check-updates': '17.1.10',
     'License Checker': '25.0.1',
-    'Audit CI': '7.1.0'
+    'Audit CI': '7.1.0',
   };
 
   const inventory = {
@@ -116,15 +128,16 @@ const generateInventory = () => {
     project: {
       name: packageJson.name || 'GVEC Link Capacity',
       version: packageJson.version || '1.0.0',
-      description: packageJson.description || 'Link capacity testing application',
+      description:
+        packageJson.description || 'Link capacity testing application',
       dependencies: Object.keys(packageJson.dependencies || {}).length,
       devDependencies: Object.keys(packageJson.devDependencies || {}).length,
-      scripts: Object.keys(packageJson.scripts || {}).length
+      scripts: Object.keys(packageJson.scripts || {}).length,
     },
     git: getGitInfo(),
     runtime: {
       node: nodeVersion,
-      npm: npmVersion
+      npm: npmVersion,
     },
     frontend: {
       framework: 'React 18.2.0',
@@ -132,13 +145,13 @@ const generateInventory = () => {
       styling: 'Tailwind CSS',
       animation: 'Framer Motion',
       routing: 'React Router DOM',
-      bundler: 'Vite'
+      bundler: 'Vite',
     },
     qualityTools,
     structure: {
       totalSize: getDirectorySize('.'),
       files: getFilesByExtension('src'),
-      directories: []
+      directories: [],
     },
     routes: {
       frontend: [
@@ -146,8 +159,8 @@ const generateInventory = () => {
         '/linktest/dashboard',
         '/linktest/scheduler',
         '/linktest/history',
-        '/linktest/settings'
-      ]
+        '/linktest/settings',
+      ],
     },
     configurations: [
       'eslint.config.js',
@@ -156,8 +169,8 @@ const generateInventory = () => {
       '.lintstagedrc.json',
       'commitlint.config.js',
       '.czrc',
-      'tsconfig.json'
-    ]
+      'tsconfig.json',
+    ],
   };
 
   // Get directory structure
@@ -190,12 +203,16 @@ const generateInventory = () => {
 - **Scripts:** ${inventory.project.scripts}
 
 ## Git Information
-${inventory.git ? `
+${
+  inventory.git
+    ? `
 - **Branch:** ${inventory.git.branch}
 - **Commit:** ${inventory.git.commit}
 - **Uncommitted Changes:** ${inventory.git.hasUncommittedChanges ? 'Yes' : 'No'}
 - **Uncommitted Files:** ${inventory.git.uncommittedFiles || 0}
-` : '- Git information not available'}
+`
+    : '- Git information not available'
+}
 
 ## Runtime Environment
 - **Node.js:** ${inventory.runtime.node}
@@ -212,14 +229,18 @@ ${inventory.git ? `
 - **Bundler:** ${inventory.frontend.bundler}
 
 ### Quality Tools (${Object.keys(qualityTools).length} tools)
-${Object.entries(qualityTools).map(([tool, version]) => `- **${tool}:** ${version}`).join('\n')}
+${Object.entries(qualityTools)
+  .map(([tool, version]) => `- **${tool}:** ${version}`)
+  .join('\n')}
 
 ## Project Structure
 - **Total Size:** ${(inventory.structure.totalSize / 1024 / 1024).toFixed(2)} MB
 - **Source Directories:** ${inventory.structure.directories.join(', ') || 'None'}
 
 ## File Counts by Extension
-${Object.entries(inventory.structure.fileCounts).map(([ext, count]) => `- **${ext}:** ${count} files`).join('\n')}
+${Object.entries(inventory.structure.fileCounts)
+  .map(([ext, count]) => `- **${ext}:** ${count} files`)
+  .join('\n')}
 
 ## Routes
 ${inventory.routes.frontend.map(route => `- ${route}`).join('\n')}
@@ -229,15 +250,15 @@ ${inventory.configurations.map(config => `- ${config}`).join('\n')}
 
 ---
 *Auto-generated by inventory script*`;
-  
+
   // Write files
   writeFileSync('docs/INVENTORY.md', markdown);
   writeFileSync('docs/inventory.json', JSON.stringify(inventory, null, 2));
-  
+
   console.log('📋 Project inventory generated:');
   console.log('  - docs/INVENTORY.md');
   console.log('  - docs/inventory.json');
-  
+
   return inventory;
 };
 

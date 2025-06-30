@@ -1,0 +1,198 @@
+  25 |  const StatusBadge = ({ status, className = '' }) => {
+     |        ^
+  26 |    const getStatusStyles = (status) => {
+  27 |      switch (status?.toLowerCase()) { (x2)
+
+
+10:54:24 PM [vite] (client) hmr update /src/components/StatusBadge.jsx, /src/index.css
+
+
+10:54:25 PM [vite] (client) page reload .replit
+
+
+10:54:26 PM [vite] (client) page reload .cache/replit/toolchain.json
+
+
+10:54:26 PM [vite] (client) page reload .replit
+
+
+10:54:27 PM [vite] (client) page reload .cache/replit/toolchain.json
+
+
+10:54:29 PM [vite] (client) page reload .cache/replit/env/latest
+
+
+10:54:29 PM [vite] (client) page reload .cache/replit/env/latest.json
+
+
+10:55:42 PM [vite] (client) hmr update /src/components/DataTable.jsx, /src/index.css
+
+
+10:55:43 PM [vite] (client) page reload .replit
+
+
+10:55:44 PM [vite] (client) page reload .cache/replit/toolchain.json
+
+
+10:55:44 PM [vite] (client) page reload .cache/replit/env/latest
+
+
+10:55:44 PM [vite] (client) page reload .cache/replit/env/latest.json
+
+
+10:55:44 PM [vite] (client) page reload .replit
+
+
+10:55:45 PM [vite] (client) page reload .cache/replit/toolchain.json
+
+
+10:55:49 PM [vite] (client) page reload .cache/replit/env/latest
+
+
+10:55:49 PM [vite] (client) page reload .cache/replit/env/latest.json
+
+
+10:56:02 PM [vite] (client) hmr update /src/components/Card.jsx, /src/index.css
+
+
+10:56:02 PM [vite] (client) hmr update /src/components/StatusBadge.jsx, /src/index.css
+
+
+10:56:02 PM [vite] (client) hmr update /src/components/DataTable.jsx, /src/index.css
+
+
+10:57:02 PM [vite] (client) hmr update /src/components/Card.jsx, /src/index.css
+
+
+10:57:03 PM [vite] (client) hmr update /src/components/StatusBadge.jsx, /src/index.css
+
+
+10:57:03 PM [vite] (client) hmr update /src/components/DataTable.jsx, /src/index.css
+
+
+10:57:03 PM [vite] (client) hmr update /src/context/AppContext.jsx, /src/index.css
+
+
+10:57:04 PM [vite] (client) page reload .replit
+
+
+10:57:05 PM [vite] (client) page reload .cache/replit/toolchain.json
+
+
+10:57:05 PM [vite] (client) page reload .replit
+
+
+10:57:06 PM [vite] (client) page reload .cache/replit/toolchain.json
+
+
+10:57:09 PM [vite] (client) page reload .cache/replit/env/latest
+
+
+10:57:09 PM [vite] (client) page reload .cache/replit/env/latest.json
+
+
+10:59:32 PM [vite] (client) hmr update /src/components/Card.jsx, /src/index.css
+
+
+10:59:32 PM [vite] (client) hmr update /src/components/StatusBadge.jsx, /src/index.css
+
+
+10:59:32 PM [vite] (client) hmr update /src/context/AppContext.jsx, /src/index.css
+
+
+10:59:32 PM [vite] (client) hmr update /src/components/DataTable.jsx, /src/index.css
+
+
+11:03:45 PM [vite] (client) hmr update /src/components/Layout.jsx, /src/index.css
+
+
+11:03:45 PM [vite] (client) hmr update /src/components/Button.jsx, /src/index.css
+
+
+11:03:45 PM [vite] (client) hmr update /src/components/LoadingSpinner.jsx, /src/index.css
+
+
+11:03:45 PM [vite] (client) hmr update /src/components/ErrorBoundary.jsx, /src/index.css
+
+
+11:03:45 PM [vite] (client) hmr update /src/components/Settings.jsx, /src/index.css
+
+
+11:03:45 PM [vite] (client) hmr update /src/components/History.jsx, /src/index.css
+
+
+11:03:45 PM [vite] (client) hmr update /src/components/Dashboard.jsx, /src/index.css
+
+
+11:03:45 PM [vite] (client) hmr update /src/components/Scheduler.jsx, /src/index.css
+
+
+11:03:45 PM [vite] (client) hmr update /src/components/Card.jsx, /src/index.css
+
+
+11:03:45 PM [vite] (client) hmr update /src/components/StatusBadge.jsx, /src/index.css
+
+
+11:03:45 PM [vite] (client) hmr update /src/components/DataTable.jsx, /src/index.css
+
+
+11:03:46 PM [vite] (client) hmr update /src/context/AppContext.jsx, /src/index.css
+
+
+11:03:47 PM [vite] (client) hmr update /src/App.jsx
+
+
+11:03:47 PM [vite] (client) page reload src/App.css
+
+
+11:03:47 PM [vite] (client) hmr update /src/index.css
+11:03:48 PM [vite] (client) Pre-transform error: Failed to load url /src/index.css (resolved id: /home/runner/workspace/src/index.css) in /home/runner/workspace/src/main.jsx. Does the file exist?
+11:03:48 PM [vite] (client) Pre-transform error: Failed to load url /src/App.jsx (resolved id: /home/runner/workspace/src/App.jsx) in /home/runner/workspace/src/main.jsx. Does the file exist?
+
+
+11:03:48 PM [vite] (client) page reload src/main.jsx
+
+
+11:03:48 PM [vite] (client) page reload src/index.jsx
+
+
+11:03:49 PM [vite] (client) page reload src/utils/motion.js
+
+
+11:03:49 PM [vite] (client) page reload src/types/index.js
+
+
+11:03:49 PM [vite] (client) page reload src/services/api.js
+11:03:49 PM [vite] Pre-transform error: Failed to load url /src/main.jsx (resolved id: /home/runner/workspace/src/main.jsx). Does the file exist?
+
+
+11:09:48 PM [vite] (client) page reload scripts/autonomous-quality.js
+
+
+11:09:48 PM [vite] (client) page reload scripts/auto-fix.js
+
+
+11:09:48 PM [vite] (client) page reload package.json
+11:09:49 PM [vite] Pre-transform error: Failed to load url /src/main.jsx (resolved id: /home/runner/workspace/src/main.jsx). Does the file exist?
+
+
+11:09:49 PM [vite] (client) page reload .replit
+
+
+11:09:50 PM [vite] (client) page reload .cache/replit/toolchain.json
+
+
+11:09:50 PM [vite] (client) page reload .replit
+11:09:50 PM [vite] Pre-transform error: Failed to load url /src/main.jsx (resolved id: /home/runner/workspace/src/main.jsx). Does the file exist?
+
+
+11:09:50 PM [vite] Pre-transform error: Failed to load url /src/main.jsx (resolved id: /home/runner/workspace/src/main.jsx). Does the file exist? (x2)
+
+
+11:09:51 PM [vite] (client) page reload .cache/replit/toolchain.json
+11:09:51 PM [vite] Pre-transform error: Failed to load url /src/main.jsx (resolved id: /home/runner/workspace/src/main.jsx). Does the file exist?
+
+
+11:09:54 PM [vite] (client) page reload .cache/replit/env/latest
+
+

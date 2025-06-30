@@ -1,0 +1,176 @@
+{
+  "timestamp": "2025-06-30T23:10:31.657Z",
+  "codebaseStats": {
+    "totalFiles": 278,
+    "byExtension": {
+      "res": 4,
+      "stamp": 1,
+      "cache/replit/env/latest": 1,
+      "json": 32,
+      "md": 22,
+      "8/node_modules/undici-types/LICENSE": 1,
+      "ts": 163,
+      "8/node_modules/csstype/LICENSE": 1,
+      "flow": 1,
+      "8/node_modules/@types/license-checker/LICENSE": 1,
+      "8/node_modules/@types/react-dom/LICENSE": 1,
+      "8/node_modules/@types/stylus/LICENSE": 1,
+      "8/node_modules/@types/lint-staged/LICENSE": 1,
+      "8/node_modules/@types/json-schema/LICENSE": 1,
+      "8/node_modules/@types/node/LICENSE": 1,
+      "8/node_modules/@types/eslint-plugin-security/LICENSE": 1,
+      "8/node_modules/@types/less/LICENSE": 1,
+      "8/node_modules/@types/react/LICENSE": 1,
+      "8/node_modules/@types/madge/LICENSE": 1,
+      "8/node_modules/@types/eslint/LICENSE": 1,
+      "8/node_modules/@types/estree/LICENSE": 1,
+      "DS_Store": 1,
+      "gitattributes": 1,
+      "js": 11,
+      "html": 2,
+      "map": 1,
+      "css": 1,
+      "svg": 6,
+      "gitkeep": 1,
+      "cjs": 2,
+      "py": 5,
+      "/attached_assets/NGINX reverse Proxy 06-30-2025": 1,
+      "czrc": 1,
+      "husky/pre-commit": 1,
+      "husky/commit-msg": 1,
+      "husky/post-checkout": 1,
+      "example": 1,
+      "prettierrc": 1,
+      "txt": 1,
+      "replit": 1
+    },
+    "byDirectory": {
+      ".cache": 221,
+      ".DS_Store": 1,
+      ".gitattributes": 1,
+      "README.md": 1,
+      "commitlint.config.js": 1,
+      "index.html": 1,
+      "preview-dist": 5,
+      "public": 2,
+      "scripts": 5,
+      "src": 2,
+      "tailwind.config.cjs": 1,
+      "vite.preview.config.js": 1,
+      ".upm": 1,
+      "attached_assets": 7,
+      "tsconfig.json": 1,
+      "tsconfig.node.json": 1,
+      ".czrc": 1,
+      ".husky": 3,
+      "reports": 2,
+      "package-lock.json": 1,
+      ".env.example": 1,
+      "vite.config.js": 1,
+      "docs": 6,
+      ".lintstagedrc.json": 1,
+      ".prettierrc": 1,
+      "eslint.config.js": 1,
+      "postcss.config.cjs": 1,
+      ".jscpd.json": 1,
+      "backend": 3,
+      "requirements.txt": 1,
+      "package.json": 1,
+      ".replit": 1
+    },
+    "codeFiles": 182,
+    "configFiles": 32,
+    "documentFiles": 23
+  },
+  "problems": {},
+  "tools": {
+    "Full Codebase Scan": {
+      "success": true,
+      "output": "./.cache/replit/modules/replit.res\n./.cache/replit/modules/nodejs-20.res\n./.cache/replit/modules/web.res\n./.cache/replit/modules/replit-rtld-loader.res\n./.cache/replit/modules.stamp\n./.cache/replit/env/latest\n./.cache/replit/env/latest.json\n./.cache/replit/toolchain.json\n./.cache/replit/nix/dotreplitenv.json\n./.cache/typescript/5.8/package.json\n./.cache/typescript/5.8/node_modules/types-registry/README.md\n./.cache/typescript/5.8/node_modules/types-registry/index.json\n./.cache/typescript/5.8/node_modules/types-registry/package.json\n./.cache/typescript/5.8/node_modules/.package-lock.json\n./.cache/typescript/5.8/node_modules/undici-types/LICENSE\n./.cache/typescript/5.8/node_modules/undici-types/package.json\n./.cache/typescript/5.8/node_modules/undici-types/README.md\n./.cache/typescript/5.8/node_modules/undici-types/agent.d.ts\n./.cache/typescript/5.8/node_modules/undici-types/api.d.ts\n./.cache/typescript/5.8/node_modules/undici-types/balanced-pool.d.ts\n",
+      "fixed": false
+    },
+    "React Issues - All Files": {
+      "success": true,
+      "output": "",
+      "fixed": false
+    },
+    "JavaScript Errors - All Files": {
+      "success": true,
+      "output": "./dist/assets/index-LK7OlPv2.js\n./preview-dist/assets/index-CZKHK-VA.js\n./scripts/validate-quality-tools.js\n./scripts/inventory.js\n./scripts/startup-quality.js\n./scripts/autonomous-quality.js\n./scripts/auto-fix.js\n./vite.preview.config.js\n",
+      "fixed": false
+    },
+    "Python Issues - All Files": {
+      "success": true,
+      "output": "./attached_assets/link_test_data_450m.py\n./attached_assets/link_test_data_450v.py\n",
+      "fixed": false
+    },
+    "ESLint - All Directories": {
+      "success": true,
+      "output": "",
+      "fixed": true,
+      "warnings": "Invalid option '--ignore-path' - perhaps you meant '--ignore-pattern'?\nYou're using eslint.config.js, some command line flags are no longer available. Please see https://eslint.org/docs/latest/use/command-line-interface for details.\n"
+    },
+    "Prettier - All Files": {
+      "success": true,
+      "output": ".cache/replit/env/latest.json 60ms\n.cache/replit/nix/dotreplitenv.json 3ms\n.cache/replit/toolchain.json 16ms\n.cache/typescript/5.8/package-lock.json 7ms (unchanged)\n.cache/typescript/5.8/package.json 2ms\n.jscpd.json 4ms\n.upm/store.json 2ms\nattached_assets/cambium_link_capacity_test_system_instructions.md 235ms\ncommitlint.config.js 12ms\ndist/assets/index-CM95rO2-.css 166ms\ndist/assets/index-LK7OlPv2.js 1837ms\ndist/index.html 46ms\ndocs/AUTO_FIX_REPORT.md 11ms (unchanged)\ndocs/COMPREHENSIVE_CATALOG.md 323ms\ndocs/FULL_STACK_CATALOG.md 84ms\ndocs/inventory.json 4ms\ndocs/INVENTORY.md 11ms\ndocs/QUALITY_REPORT.md 15ms\neslint.config.js 7ms\nindex.html 5ms (unchanged)\npackage-lock.json 197ms (unchanged)\npackage.json 1ms\npreview-dist/assets/index-CZKHK-VA.js 3497ms\npreview-dist/assets/index-YPGZo8n8.css 109ms\npreview-dist/index.html 25ms\nREADME.md 7ms (unchanged)\nreports/jscpd/jscpd-report.json 16ms\nreports/quality-results.json 3ms\nscripts/auto-fix.js 31ms\nscripts/autonomous-quality.js 55ms\nscripts",
+      "fixed": true,
+      "warnings": "[error] .lintstagedrc.json: SyntaxError: The input should contain exactly one expression, but the first expression is followed by the unexpected character `{`. (11:1)\n[error]    9 |   ]\n[error]   10 | }\n[error] > 11 | {\n[error]      | ^\n[error]   12 |   \"*.{js,jsx,ts,tsx}\": [\"eslint --fix\", \"prettier --write\"],\n[error]   13 |   \"*.{json,md}\": [\"prettier --write\"]\n[error]   14 | }\n[error] No parser could be inferred for file \"/home/runner/workspace/attached_assets/link_test_data_450m.py\".\n[error]"
+    },
+    "TypeScript - All Projects": {
+      "success": true,
+      "output": "",
+      "fixed": false
+    },
+    "Security Scan - All Files": {
+      "success": true,
+      "output": "found 0 vulnerabilities\n./dist/assets/index-LK7OlPv2.js\n./preview-dist/assets/index-CZKHK-VA.js\n./scripts/autonomous-quality.js\n./scripts/auto-fix.js\n./node_modules/@typescript-eslint/utils/dist/ts-eslint/Linter.js\n",
+      "fixed": true
+    },
+    "Dead Code - All Modules": {
+      "success": true,
+      "output": "Dead code analysis completed\n",
+      "fixed": false
+    },
+    "Circular Dependencies - All Directories": {
+      "success": true,
+      "output": "Processed 17 files (2.8s) (2 warnings)\n\n\n",
+      "fixed": false
+    },
+    "Code Duplication - Entire Codebase": {
+      "success": true,
+      "output": "File /home/runner/workspace/.DS_Store skipped! Format \"undefined\" does not included to supported formats.\nFile /home/runner/workspace/.czrc skipped! Format \"undefined\" does not included to supported formats.\nFile /home/runner/workspace/.env.example skipped! Format \"undefined\" does not included to supported formats.\nFile /home/runner/workspace/.gitattributes skipped! Format \"undefined\" does not included to supported formats.\nFile /home/runner/workspace/.jscpd.json skipped! Format \"json\" does not included to supported formats.\nFile /home/runner/workspace/.lintstagedrc.json skipped! Format \"json\" does not included to supported formats.\nFile /home/runner/workspace/.prettierrc skipped! Format \"undefined\" does not included to supported formats.\nFile /home/runner/workspace/.replit skipped! Format \"undefined\" does not included to supported formats.\nFile /home/runner/workspace/README.md skipped! Format \"markdown\" does not included to supported formats.\nFile /home/runner/workspace/index.html ski\nFixed 1 duplicate code instances across entire codebase",
+      "fixed": true
+    },
+    "Dependencies - All Package Files": {
+      "success": true,
+      "output": "found 0 vulnerabilities\n./.cache/typescript/5.8/package.json\n./.cache/typescript/5.8/node_modules/types-registry/package.json\n./.cache/typescript/5.8/node_modules/undici-types/package.json\n./.cache/typescript/5.8/node_modules/csstype/package.json\n./.cache/typescript/5.8/node_modules/@types/license-checker/package.json\n",
+      "fixed": true
+    },
+    "File Permissions - All Files": {
+      "success": true,
+      "output": "./.husky/pre-commit\n./.husky/commit-msg\n",
+      "fixed": false
+    },
+    "Large Files - All Directories": {
+      "success": true,
+      "output": "./.cache/typescript/5.8/node_modules/types-registry/index.json\n./dist/assets/index-LK7OlPv2.js.map\n./preview-dist/assets/index-CZKHK-VA.js\n./preview-dist/assets/index-CZKHK-VA.js.map\n",
+      "fixed": false
+    },
+    "Git Issues - All Tracked Files": {
+      "success": true,
+      "output": " M .jscpd.json\n M attached_assets/cambium_link_capacity_test_system_instructions.md\n M commitlint.config.js\n M dist/assets/index-CM95rO2-.css\n M dist/assets/index-LK7OlPv2.js\n M dist/index.html\n M docs/COMPREHENSIVE_CATALOG.md\n M docs/FULL_STACK_CATALOG.md\n M docs/INVENTORY.md\n M docs/QUALITY_REPORT.md\nf7fd263 Assistant checkpoint: Enhanced quality tools for entire codebase scanning\n66def64 Checkpoint before assistant change: Remove all source code from the project\n680f998 Assistant checkpoint: Fix all export/import mismatches in components\n37591e7 Assistant checkpoint: Fix component exports and parallel workflow\n0fe2a6a Assistant checkpoint: Fix component export issues\n",
+      "fixed": false
+    },
+    "Config Validation - All Config Files": {
+      "success": true,
+      "output": "Checking ./.cache/replit/env/latest.json\nChecking ./.cache/replit/toolchain.json\nChecking ./.cache/replit/nix/dotreplitenv.json\nChecking ./.cache/typescript/5.8/package.json\nChecking ./.cache/typescript/5.8/node_modules/types-registry/index.json\nChecking ./.cache/typescript/5.8/node_modules/types-registry/package.json\nChecking ./.cache/typescript/5.8/node_modules/.package-lock.json\nChecking ./.cache/typescript/5.8/node_modules/undici-types/package.json\nChecking ./.cache/typescript/5.8/node_modules/csstype/package.json\nChecking ./.cache/typescript/5.8/node_modules/@types/license-checker/package.json\nChecking ./.cache/typescript/5.8/node_modules/@types/react-dom/package.json\nChecking ./.cache/typescript/5.8/node_modules/@types/stylus/package.json\nChecking ./.cache/typescript/5.8/node_modules/@types/lint-staged/package.json\nChecking ./.cache/typescript/5.8/node_modules/@types/json-schema/package.json\nChecking ./.cache/typescript/5.8/node_modules/@types/node/package.json\nChecking ./.cache/",
+      "fixed": false
+    }
+  },
+  "summary": {
+    "passed": 16,
+    "failed": 0,
+    "total": 16,
+    "fixed": 5
+  }
+}

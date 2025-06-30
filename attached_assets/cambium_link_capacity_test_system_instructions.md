@@ -3,6 +3,7 @@
 ## 🔰 Overview
 
 This project transforms two SNMPv2-based Python scripts (`450v_link_capacity.py` and `450m_link_capacity.py`) into a containerized web application deployed on `isp-pybox` (Ubuntu 24.04.2 LTS, IP: `192.168.67.150`). The application performs link capacity testing for Cambium Networks PMP 450v and 450m access points (APs) and subscriber modules (SMs), integrating with:
+
 - **cnMaestro** for live data (`https://cnmaestro.gvec.net/api/v2/`).
 - **PostgreSQL** (host-installed at `localhost:5432`) for test results.
 - **InfluxDB** (host-installed at `localhost:8086`) for time-series metrics.
@@ -16,45 +17,45 @@ These instructions provide a comprehensive guide for building on Replit and depl
 
 ### 🔌 Server Specifications
 
-| Field                  | Value                                             |
-|------------------------|---------------------------------------------------|
-| Hostname               | `isp-pybox`                                       |
-| OS                     | Ubuntu 24.04.2 LTS (Kernel: 6.8.0-60-generic)     |
-| RAM                    | 15 GiB                                            |
-| CPU                    | 8-core Intel Xeon Gold 6326 @ 2.90GHz             |
-| Host IP                | `192.168.67.150`                                  |
-| Docker Network         | `10.250.251.0/24` (bridge, gateway: `10.250.251.1`) |
-| NGINX                  | Host-installed (`/etc/nginx/`)                    |
-| PostgreSQL             | Host-installed (`/var/lib/postgresql/`)           |
-| InfluxDB               | Host-installed (`/var/lib/influxdb/`)             |
-| Docker                 | v27.5.1                                           |
-| Portainer              | Docker container (port 9000)                      |
-| AppArmor               | Enforced                                          |
+| Field          | Value                                               |
+| -------------- | --------------------------------------------------- |
+| Hostname       | `isp-pybox`                                         |
+| OS             | Ubuntu 24.04.2 LTS (Kernel: 6.8.0-60-generic)       |
+| RAM            | 15 GiB                                              |
+| CPU            | 8-core Intel Xeon Gold 6326 @ 2.90GHz               |
+| Host IP        | `192.168.67.150`                                    |
+| Docker Network | `10.250.251.0/24` (bridge, gateway: `10.250.251.1`) |
+| NGINX          | Host-installed (`/etc/nginx/`)                      |
+| PostgreSQL     | Host-installed (`/var/lib/postgresql/`)             |
+| InfluxDB       | Host-installed (`/var/lib/influxdb/`)               |
+| Docker         | v27.5.1                                             |
+| Portainer      | Docker container (port 9000)                        |
+| AppArmor       | Enforced                                            |
 
 ### ⚙️ Key System Paths
 
-| Component         | Path                                                                     |
-|-------------------|--------------------------------------------------------------------------|
-| NGINX Config      | `/etc/nginx/sites-available/reverse-proxy` → `/etc/nginx/sites-enabled/` |
-| Docker Config     | `/etc/docker/daemon.json`                                                |
-| InfluxDB Config   | `/etc/influxdb/influxdb.conf`                                            |
-| PostgreSQL Data   | `/var/lib/postgresql/`                                                   |
-| NGINX Logs        | `/var/log/nginx/`                                                        |
-| Docker Logs       | `/var/log/docker.log`                                                    |
-| InfluxDB Logs     | `/var/log/influxdb/`                                                     |
-| PostgreSQL Logs   | `/var/log/postgresql/`                                                   |
+| Component       | Path                                                                     |
+| --------------- | ------------------------------------------------------------------------ |
+| NGINX Config    | `/etc/nginx/sites-available/reverse-proxy` → `/etc/nginx/sites-enabled/` |
+| Docker Config   | `/etc/docker/daemon.json`                                                |
+| InfluxDB Config | `/etc/influxdb/influxdb.conf`                                            |
+| PostgreSQL Data | `/var/lib/postgresql/`                                                   |
+| NGINX Logs      | `/var/log/nginx/`                                                        |
+| Docker Logs     | `/var/log/docker.log`                                                    |
+| InfluxDB Logs   | `/var/log/influxdb/`                                                     |
+| PostgreSQL Logs | `/var/log/postgresql/`                                                   |
 
 ### 🔒 Port Status
 
-| Port  | Status     | Service                  |
-|-------|------------|--------------------------|
-| 80    | Occupied   | NGINX (host)             |
-| 5432  | Occupied   | PostgreSQL (host)        |
-| 8086  | Occupied   | InfluxDB (host)          |
-| 5000  | Occupied   | cambium-monitor (Docker) |
-| 5010  | Occupied   | cnmaestro-cleanup (Docker) |
-| 9000  | Occupied   | Portainer (Docker)       |
-| 5020  | Available  | linktest (Docker)        |
+| Port | Status    | Service                    |
+| ---- | --------- | -------------------------- |
+| 80   | Occupied  | NGINX (host)               |
+| 5432 | Occupied  | PostgreSQL (host)          |
+| 8086 | Occupied  | InfluxDB (host)            |
+| 5000 | Occupied  | cambium-monitor (Docker)   |
+| 5010 | Occupied  | cnmaestro-cleanup (Docker) |
+| 9000 | Occupied  | Portainer (Docker)         |
+| 5020 | Available | linktest (Docker)          |
 
 ---
 
@@ -77,13 +78,13 @@ Provided in Replit root:
 
 ### 💡 Core Behaviors
 
-| Component     | Behavior                                                                 |
-|---------------|--------------------------------------------------------------------------|
-| **450v**      | Tests one SM per AP; multiple APs can test in parallel.                  |
-| **450m**      | Tests SMs individually or in "flood mode" (simultaneous).                |
+| Component     | Behavior                                                                                |
+| ------------- | --------------------------------------------------------------------------------------- |
+| **450v**      | Tests one SM per AP; multiple APs can test in parallel.                                 |
+| **450m**      | Tests SMs individually or in "flood mode" (simultaneous).                               |
 | **cnMaestro** | Live GET requests (`https://cnmaestro.gvec.net/api/v2/`), paginated (100 entries/call). |
-| **SSL**       | Ignore cnMaestro SSL errors.                                             |
-| **SNMP**      | Disabled on Replit; enabled on `isp-pybox`.                              |
+| **SSL**       | Ignore cnMaestro SSL errors.                                                            |
+| **SNMP**      | Disabled on Replit; enabled on `isp-pybox`.                                             |
 
 ### 🎯 MVP Goals
 
@@ -247,21 +248,21 @@ black==23.10.1
 
 A suite of tools ensures code quality, with autonomous execution and auto-fixing via CI/CD. Tools are configured to run on every commit and in daily pipelines, fixing issues where possible.
 
-| Tool                | Purpose                              | Auto-Fix | Configuration                | Command                     |
-|---------------------|--------------------------------------|----------|------------------------------|-----------------------------|
-| **ESLint**          | Linting for TypeScript/React         | Yes      | `.eslintrc.json`             | `eslint --fix`              |
-| **Prettier**        | Code formatting                      | Yes      | `.prettierrc`                | `prettier --write`          |
-| **Pylint**          | Python linting                       | Partial  | `.pylintrc`                  | `pylint backend`            |
-| **Black**           | Python code formatting               | Yes      | `.black`                     | `black backend`             |
-| **ts-prune**        | Dead code detection                  | No       | `tsconfig.json`              | `ts-prune`                  |
-| **jscpd**           | Duplicate code detection             | No       | `.jscpd.json`                | `jscpd src backend`         |
+| Tool                | Purpose                              | Auto-Fix | Configuration                | Command                        |
+| ------------------- | ------------------------------------ | -------- | ---------------------------- | ------------------------------ |
+| **ESLint**          | Linting for TypeScript/React         | Yes      | `.eslintrc.json`             | `eslint --fix`                 |
+| **Prettier**        | Code formatting                      | Yes      | `.prettierrc`                | `prettier --write`             |
+| **Pylint**          | Python linting                       | Partial  | `.pylintrc`                  | `pylint backend`               |
+| **Black**           | Python code formatting               | Yes      | `.black`                     | `black backend`                |
+| **ts-prune**        | Dead code detection                  | No       | `tsconfig.json`              | `ts-prune`                     |
+| **jscpd**           | Duplicate code detection             | No       | `.jscpd.json`                | `jscpd src backend`            |
 | **madge**           | Circular dependency detection        | No       | None                         | `madge --circular src backend` |
-| **Jest**            | Frontend unit testing                | No       | `jest.config.js`             | `jest --coverage`           |
-| **Pytest**          | Backend unit testing                 | No       | `pytest.ini`                 | `pytest --cov`              |
-| **apiDoc**          | API documentation generation         | Yes      | `apidoc.json`                | `apidoc -o docs/api`        |
-| **typedoc**         | TypeScript documentation             | Yes      | `typedoc.json`               | `typedoc src --out docs/ts` |
-| **pydocstyle**      | Python docstring validation          | Partial  | `.pydocstyle`                | `pydocstyle backend`        |
-| **route-validator** | API route validation (custom script) | Yes      | `scripts/validate_routes.py` | `python validate_routes.py` |
+| **Jest**            | Frontend unit testing                | No       | `jest.config.js`             | `jest --coverage`              |
+| **Pytest**          | Backend unit testing                 | No       | `pytest.ini`                 | `pytest --cov`                 |
+| **apiDoc**          | API documentation generation         | Yes      | `apidoc.json`                | `apidoc -o docs/api`           |
+| **typedoc**         | TypeScript documentation             | Yes      | `typedoc.json`               | `typedoc src --out docs/ts`    |
+| **pydocstyle**      | Python docstring validation          | Partial  | `.pydocstyle`                | `pydocstyle backend`           |
+| **route-validator** | API route validation (custom script) | Yes      | `scripts/validate_routes.py` | `python validate_routes.py`    |
 
 **Configurations:**
 
@@ -280,7 +281,10 @@ A suite of tools ensures code quality, with autonomous execution and auto-fixing
   "plugins": ["@typescript-eslint", "react", "react-hooks", "import"],
   "rules": {
     "react/prop-types": "off",
-    "import/order": ["error", { "groups": ["builtin", "external", "internal"] }],
+    "import/order": [
+      "error",
+      { "groups": ["builtin", "external", "internal"] }
+    ],
     "@typescript-eslint/no-unused-vars": "error"
   }
 }
@@ -409,7 +413,7 @@ A continuous inventory system generates and updates documentation in `/docs/`, i
 
 **Inventory Script (`scripts/inventory.py`)**:
 
-```python
+````python
 import json
 import subprocess
 from datetime import datetime
@@ -437,9 +441,10 @@ def inventory_stack():
     with open("docs/INVENTORY.md", "w") as f:
         f.write(f"# Stack Inventory\n\n```json\n{json.dumps(stack, indent=2)}\n```")
 inventory_stack()
-```
+````
 
 **CI/CD Integration**:
+
 - Runs daily via GitHub Actions.
 - Updates `/docs/` files.
 - Logs discrepancies to `/docs/QUALITY_ISSUES.md`.
@@ -469,17 +474,25 @@ services:
       - CNMAESTRO_CLIENT_ID=${CNMAESTRO_CLIENT_ID}
       - CNMAESTRO_CLIENT_SECRET=${CNMAESTRO_CLIENT_SECRET}
     extra_hosts:
-      - "host.docker.internal:host-gateway"
+      - 'host.docker.internal:host-gateway'
     ports:
-      - "127.0.0.1:5020:5020"
+      - '127.0.0.1:5020:5020'
     restart: unless-stopped
     logging:
-      driver: "json-file"
+      driver: 'json-file'
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: '10m'
+        max-file: '3'
     healthcheck:
-      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:5020/linktest/api/healthz"]
+      test:
+        [
+          'CMD',
+          'wget',
+          '--quiet',
+          '--tries=1',
+          '--spider',
+          'http://localhost:5020/linktest/api/healthz',
+        ]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -734,15 +747,15 @@ GROUP BY time(15m), "ap_mac", "sm_mac"
 
 #### Features
 
-| Feature           | Source                     |
-|-------------------|----------------------------|
-| `mean_downlink`   | InfluxDB                   |
-| `mean_uplink`     | InfluxDB                   |
-| `snr_avg`         | InfluxDB                   |
-| `link_age_days`   | PostgreSQL                 |
-| `test_frequency`  | PostgreSQL                 |
-| `last_error_code` | InfluxDB/PostgreSQL        |
-| `hardware_model`  | PostgreSQL                 |
+| Feature           | Source              |
+| ----------------- | ------------------- |
+| `mean_downlink`   | InfluxDB            |
+| `mean_uplink`     | InfluxDB            |
+| `snr_avg`         | InfluxDB            |
+| `link_age_days`   | PostgreSQL          |
+| `test_frequency`  | PostgreSQL          |
+| `last_error_code` | InfluxDB/PostgreSQL |
+| `hardware_model`  | PostgreSQL          |
 
 #### Models
 
@@ -809,18 +822,18 @@ Cron:
 
 ### Checklist
 
-| Deliverable                     | Status |
-|---------------------------------|--------|
-| Single-container app            | ✅     |
-| PostgreSQL schema               | ✅     |
-| InfluxDB measurement            | ✅     |
-| docker-compose.yml              | ✅     |
-| NGINX config                    | ✅     |
-| SNMP modularization             | ✅     |
-| ML integration                  | ✅     |
-| Code quality tools              | ✅     |
-| Documentation system            | ✅     |
-| Deployment script               | ✅     |
+| Deliverable          | Status |
+| -------------------- | ------ |
+| Single-container app | ✅     |
+| PostgreSQL schema    | ✅     |
+| InfluxDB measurement | ✅     |
+| docker-compose.yml   | ✅     |
+| NGINX config         | ✅     |
+| SNMP modularization  | ✅     |
+| ML integration       | ✅     |
+| Code quality tools   | ✅     |
+| Documentation system | ✅     |
+| Deployment script    | ✅     |
 
 ---
 

@@ -10,17 +10,17 @@ export default defineConfig({
     allowedHosts: [
       'all',
       '7abe11d8-6835-47fb-a9cb-67f1bce57c74-00-z5hycn6qgkic.spock.replit.dev',
-      '.replit.dev'
-    ]
+      '.replit.dev',
+    ],
   },
   preview: {
     port: 4173,
-    host: '0.0.0.0'
+    host: '0.0.0.0',
   },
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
-    sourcemap: true
+    sourcemap: true,
   },
-  publicDir: 'public'
+  publicDir: 'public',
 });

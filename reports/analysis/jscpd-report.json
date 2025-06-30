@@ -1,0 +1,337 @@
+{
+  "statistics": {
+    "detectionDate": "2025-06-30T23:10:49.331Z",
+    "formats": {
+      "javascript": {
+        "sources": {
+          "/home/runner/workspace/src/config/environment.js": {
+            "lines": 37,
+            "tokens": 298,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/home/runner/workspace/scripts/validate-quality-tools.js": {
+            "lines": 77,
+            "tokens": 685,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/home/runner/workspace/scripts/startup-quality.js": {
+            "lines": 32,
+            "tokens": 221,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/home/runner/workspace/scripts/inventory.js": {
+            "lines": 269,
+            "tokens": 2010,
+            "sources": 1,
+            "clones": 2,
+            "duplicatedLines": 14,
+            "duplicatedTokens": 70,
+            "percentage": 5.2,
+            "percentageTokens": 3.48,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/home/runner/workspace/scripts/auto-fix.js": {
+            "lines": 413,
+            "tokens": 3438,
+            "sources": 1,
+            "clones": 8,
+            "duplicatedLines": 58,
+            "duplicatedTokens": 410,
+            "percentage": 14.04,
+            "percentageTokens": 11.93,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/home/runner/workspace/vite.config.js": {
+            "lines": 26,
+            "tokens": 160,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/home/runner/workspace/tailwind.config.cjs": {
+            "lines": 33,
+            "tokens": 198,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/home/runner/workspace/postcss.config.cjs": {
+            "lines": 7,
+            "tokens": 36,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/home/runner/workspace/eslint.config.js": {
+            "lines": 93,
+            "tokens": 619,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/home/runner/workspace/commitlint.config.js": {
+            "lines": 32,
+            "tokens": 198,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "total": {
+          "lines": 1019,
+          "tokens": 7863,
+          "sources": 10,
+          "clones": 5,
+          "duplicatedLines": 36,
+          "duplicatedTokens": 240,
+          "percentage": 3.53,
+          "percentageTokens": 3.05,
+          "newDuplicatedLines": 0,
+          "newClones": 0
+        }
+      }
+    },
+    "total": {
+      "lines": 1019,
+      "tokens": 7863,
+      "sources": 10,
+      "clones": 5,
+      "duplicatedLines": 36,
+      "duplicatedTokens": 240,
+      "percentage": 3.53,
+      "percentageTokens": 3.05,
+      "newDuplicatedLines": 0,
+      "newClones": 0
+    }
+  },
+  "duplicates": [
+    {
+      "format": "javascript",
+      "lines": 8,
+      "fragment": ").length,\n    };\n  } catch (error) {\n    return null;\n  }\n};\n\nconst generateInventory",
+      "tokens": 0,
+      "firstFile": {
+        "name": "/home/runner/workspace/scripts/inventory.js",
+        "start": 90,
+        "end": 97,
+        "startLoc": {
+          "line": 90,
+          "column": 2,
+          "position": 820
+        },
+        "endLoc": {
+          "line": 97,
+          "column": 18,
+          "position": 855
+        }
+      },
+      "secondFile": {
+        "name": "/home/runner/workspace/scripts/inventory.js",
+        "start": 68,
+        "end": 75,
+        "startLoc": {
+          "line": 68,
+          "column": 2,
+          "position": 631
+        },
+        "endLoc": {
+          "line": 75,
+          "column": 11,
+          "position": 666
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 8,
+      "fragment": ");\n        }\n      } catch (err) {\n        // Skip unreadable files\n      }\n    });\n\n    if (pythonFixed",
+      "tokens": 0,
+      "firstFile": {
+        "name": "/home/runner/workspace/scripts/auto-fix.js",
+        "start": 176,
+        "end": 183,
+        "startLoc": {
+          "line": 176,
+          "column": 13,
+          "position": 1294
+        },
+        "endLoc": {
+          "line": 183,
+          "column": 12,
+          "position": 1334
+        }
+      },
+      "secondFile": {
+        "name": "/home/runner/workspace/scripts/auto-fix.js",
+        "start": 96,
+        "end": 103,
+        "startLoc": {
+          "line": 96,
+          "column": 2,
+          "position": 686
+        },
+        "endLoc": {
+          "line": 103,
+          "column": 13,
+          "position": 726
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 7,
+      "fragment": ".forEach(file => {\n      try {\n        const content = readFileSync(file, 'utf8');\n        let modified = false;\n        let fixedContent = content;\n\n        // Fix useEffect infinite loops",
+      "tokens": 0,
+      "firstFile": {
+        "name": "/home/runner/workspace/scripts/auto-fix.js",
+        "start": 198,
+        "end": 204,
+        "startLoc": {
+          "line": 198,
+          "column": 11,
+          "position": 1463
+        },
+        "endLoc": {
+          "line": 204,
+          "column": 32,
+          "position": 1515
+        }
+      },
+      "secondFile": {
+        "name": "/home/runner/workspace/scripts/auto-fix.js",
+        "start": 120,
+        "end": 126,
+        "startLoc": {
+          "line": 120,
+          "column": 8,
+          "position": 851
+        },
+        "endLoc": {
+          "line": 126,
+          "column": 51,
+          "position": 903
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 6,
+      "fragment": " = false;\n\n        const cleanedLines = lines.filter(line => {\n          const trimmedLine = line.trim();\n          if (\n            (",
+      "tokens": 0,
+      "firstFile": {
+        "name": "/home/runner/workspace/scripts/auto-fix.js",
+        "start": 280,
+        "end": 285,
+        "startLoc": {
+          "line": 280,
+          "column": 9,
+          "position": 2164
+        },
+        "endLoc": {
+          "line": 285,
+          "column": 2,
+          "position": 2208
+        }
+      },
+      "secondFile": {
+        "name": "/home/runner/workspace/scripts/auto-fix.js",
+        "start": 152,
+        "end": 157,
+        "startLoc": {
+          "line": 152,
+          "column": 16,
+          "position": 1111
+        },
+        "endLoc": {
+          "line": 157,
+          "column": 12,
+          "position": 1155
+        }
+      }
+    },
+    {
+      "format": "javascript",
+      "lines": 12,
+      "fragment": ";\n        });\n\n        if (modified) {\n          writeFileSync(file, cleanedLines.join('\\n'));\n        }\n      } catch (err) {\n        // Skip unreadable files\n      }\n    });\n\n    if (duplicateImportsFixed",
+      "tokens": 0,
+      "firstFile": {
+        "name": "/home/runner/workspace/scripts/auto-fix.js",
+        "start": 297,
+        "end": 308,
+        "startLoc": {
+          "line": 297,
+          "column": 5,
+          "position": 2332
+        },
+        "endLoc": {
+          "line": 308,
+          "column": 22,
+          "position": 2401
+        }
+      },
+      "secondFile": {
+        "name": "/home/runner/workspace/scripts/auto-fix.js",
+        "start": 92,
+        "end": 103,
+        "startLoc": {
+          "line": 92,
+          "column": 5,
+          "position": 657
+        },
+        "endLoc": {
+          "line": 103,
+          "column": 13,
+          "position": 726
+        }
+      }
+    }
+  ]
+}

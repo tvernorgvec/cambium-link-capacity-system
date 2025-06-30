@@ -12,68 +12,143 @@ const handleTailwindArbitraryValues = () => {
     transform(code, id) {
       if (id.match(/\.(jsx|tsx)$/)) {
         // Detect probable tailwind arbitrary value syntax issues
-        if (code.includes('[') && code.includes(']') && 
-            (code.includes('className=') || code.includes('class='))) {
+        if (
+          code.includes('[') &&
+          code.includes(']') &&
+          (code.includes('className=') || code.includes('class='))
+        ) {
           try {
             // Simple approach: handle common cases of Tailwind arbitrary values
             // This replaces problematic patterns that often cause parsing errors
-            
+
             // Replace className="... w-[42rem] ..." with className="... w-full ..."
-            let modifiedCode = code.replace(/(\s|"|'|{)w-\[.*?\](\s|"|'|})/g, '$1w-full$2');
-            
+            let modifiedCode = code.replace(
+              /(\s|"|'|{)w-\[.*?\](\s|"|'|})/g,
+              '$1w-full$2'
+            );
+
             // Replace className="... h-[600px] ..." with className="... h-64 ..."
-            modifiedCode = modifiedCode.replace(/(\s|"|'|{)h-\[.*?\](\s|"|'|})/g, '$1h-64$2');
-            
+            modifiedCode = modifiedCode.replace(
+              /(\s|"|'|{)h-\[.*?\](\s|"|'|})/g,
+              '$1h-64$2'
+            );
+
             // Replace className="... text-[17px] ..." with className="... text-base ..."
-            modifiedCode = modifiedCode.replace(/(\s|"|'|{)text-\[.*?\](\s|"|'|})/g, '$1text-base$2');
-            
+            modifiedCode = modifiedCode.replace(
+              /(\s|"|'|{)text-\[.*?\](\s|"|'|})/g,
+              '$1text-base$2'
+            );
+
             // Replace className="... mt-[27px] ..." with className="... mt-6 ..."
-            modifiedCode = modifiedCode.replace(/(\s|"|'|{)mt-\[.*?\](\s|"|'|})/g, '$1mt-6$2');
-            
+            modifiedCode = modifiedCode.replace(
+              /(\s|"|'|{)mt-\[.*?\](\s|"|'|})/g,
+              '$1mt-6$2'
+            );
+
             // Replace className="... mb-[27px] ..." with className="... mb-6 ..."
-            modifiedCode = modifiedCode.replace(/(\s|"|'|{)mb-\[.*?\](\s|"|'|})/g, '$1mb-6$2');
-            
+            modifiedCode = modifiedCode.replace(
+              /(\s|"|'|{)mb-\[.*?\](\s|"|'|})/g,
+              '$1mb-6$2'
+            );
+
             // Replace className="... p-[15px] ..." with className="... p-4 ..."
-            modifiedCode = modifiedCode.replace(/(\s|"|'|{)p-\[.*?\](\s|"|'|})/g, '$1p-4$2');
-            
+            modifiedCode = modifiedCode.replace(
+              /(\s|"|'|{)p-\[.*?\](\s|"|'|})/g,
+              '$1p-4$2'
+            );
+
             // Replace className="... px-[15px] ..." with className="... px-4 ..."
-            modifiedCode = modifiedCode.replace(/(\s|"|'|{)px-\[.*?\](\s|"|'|})/g, '$1px-4$2');
-            
+            modifiedCode = modifiedCode.replace(
+              /(\s|"|'|{)px-\[.*?\](\s|"|'|})/g,
+              '$1px-4$2'
+            );
+
             // Replace className="... py-[15px] ..." with className="... py-4 ..."
-            modifiedCode = modifiedCode.replace(/(\s|"|'|{)py-\[.*?\](\s|"|'|})/g, '$1py-4$2');
-            
+            modifiedCode = modifiedCode.replace(
+              /(\s|"|'|{)py-\[.*?\](\s|"|'|})/g,
+              '$1py-4$2'
+            );
+
             // Replace className="... font-[600] ..." with className="... font-bold ..."
-            modifiedCode = modifiedCode.replace(/(\s|"|'|{)font-\[.*?\](\s|"|'|})/g, '$1font-bold$2');
-            
+            modifiedCode = modifiedCode.replace(
+              /(\s|"|'|{)font-\[.*?\](\s|"|'|})/g,
+              '$1font-bold$2'
+            );
+
             // Replace className="... rounded-[10px] ..." with className="... rounded-lg ..."
-            modifiedCode = modifiedCode.replace(/(\s|"|'|{)rounded-\[.*?\](\s|"|'|})/g, '$1rounded-lg$2');
-            
+            modifiedCode = modifiedCode.replace(
+              /(\s|"|'|{)rounded-\[.*?\](\s|"|'|})/g,
+              '$1rounded-lg$2'
+            );
+
             // Replace other common tailwind arbitrary values
-            modifiedCode = modifiedCode.replace(/(\s|"|'|{)gap-\[.*?\](\s|"|'|})/g, '$1gap-4$2');
-            modifiedCode = modifiedCode.replace(/(\s|"|'|{)grid-cols-\[.*?\](\s|"|'|})/g, '$1grid-cols-3$2');
-            modifiedCode = modifiedCode.replace(/(\s|"|'|{)cols-\[.*?\](\s|"|'|})/g, '$1cols-3$2');
-            modifiedCode = modifiedCode.replace(/(\s|"|'|{)inset-\[.*?\](\s|"|'|})/g, '$1inset-0$2');
-            modifiedCode = modifiedCode.replace(/(\s|"|'|{)top-\[.*?\](\s|"|'|})/g, '$1top-0$2');
-            modifiedCode = modifiedCode.replace(/(\s|"|'|{)left-\[.*?\](\s|"|'|})/g, '$1left-0$2');
-            modifiedCode = modifiedCode.replace(/(\s|"|'|{)right-\[.*?\](\s|"|'|})/g, '$1right-0$2');
-            modifiedCode = modifiedCode.replace(/(\s|"|'|{)bottom-\[.*?\](\s|"|'|})/g, '$1bottom-0$2');
-            modifiedCode = modifiedCode.replace(/(\s|"|'|{)translate-\[.*?\](\s|"|'|})/g, '$1translate-x-0$2');
-            modifiedCode = modifiedCode.replace(/(\s|"|'|{)rotate-\[.*?\](\s|"|'|})/g, '$1rotate-0$2');
-            modifiedCode = modifiedCode.replace(/(\s|"|'|{)scale-\[.*?\](\s|"|'|})/g, '$1scale-100$2');
-            modifiedCode = modifiedCode.replace(/(\s|"|'|{)skew-\[.*?\](\s|"|'|})/g, '$1skew-x-0$2');
-            modifiedCode = modifiedCode.replace(/(\s|"|'|{)origin-\[.*?\](\s|"|'|})/g, '$1origin-center$2');
-            
+            modifiedCode = modifiedCode.replace(
+              /(\s|"|'|{)gap-\[.*?\](\s|"|'|})/g,
+              '$1gap-4$2'
+            );
+            modifiedCode = modifiedCode.replace(
+              /(\s|"|'|{)grid-cols-\[.*?\](\s|"|'|})/g,
+              '$1grid-cols-3$2'
+            );
+            modifiedCode = modifiedCode.replace(
+              /(\s|"|'|{)cols-\[.*?\](\s|"|'|})/g,
+              '$1cols-3$2'
+            );
+            modifiedCode = modifiedCode.replace(
+              /(\s|"|'|{)inset-\[.*?\](\s|"|'|})/g,
+              '$1inset-0$2'
+            );
+            modifiedCode = modifiedCode.replace(
+              /(\s|"|'|{)top-\[.*?\](\s|"|'|})/g,
+              '$1top-0$2'
+            );
+            modifiedCode = modifiedCode.replace(
+              /(\s|"|'|{)left-\[.*?\](\s|"|'|})/g,
+              '$1left-0$2'
+            );
+            modifiedCode = modifiedCode.replace(
+              /(\s|"|'|{)right-\[.*?\](\s|"|'|})/g,
+              '$1right-0$2'
+            );
+            modifiedCode = modifiedCode.replace(
+              /(\s|"|'|{)bottom-\[.*?\](\s|"|'|})/g,
+              '$1bottom-0$2'
+            );
+            modifiedCode = modifiedCode.replace(
+              /(\s|"|'|{)translate-\[.*?\](\s|"|'|})/g,
+              '$1translate-x-0$2'
+            );
+            modifiedCode = modifiedCode.replace(
+              /(\s|"|'|{)rotate-\[.*?\](\s|"|'|})/g,
+              '$1rotate-0$2'
+            );
+            modifiedCode = modifiedCode.replace(
+              /(\s|"|'|{)scale-\[.*?\](\s|"|'|})/g,
+              '$1scale-100$2'
+            );
+            modifiedCode = modifiedCode.replace(
+              /(\s|"|'|{)skew-\[.*?\](\s|"|'|})/g,
+              '$1skew-x-0$2'
+            );
+            modifiedCode = modifiedCode.replace(
+              /(\s|"|'|{)origin-\[.*?\](\s|"|'|})/g,
+              '$1origin-center$2'
+            );
+
             // Handle font family arbitrary values which are common issues
-            modifiedCode = modifiedCode.replace(/(\s|"|'|{)font-\[("|').*?("|')\](\s|"|'|})/g, '$1font-sans$4');
-            
+            modifiedCode = modifiedCode.replace(
+              /(\s|"|'|{)font-\[("|').*?("|')\](\s|"|'|})/g,
+              '$1font-sans$4'
+            );
+
             // Log the changes for debugging
             if (code !== modifiedCode) {
               console.log(`[Tailwind Fix] Modified JSX file: ${id}`);
             }
-            
+
             return {
               code: modifiedCode,
-              map: null
+              map: null,
             };
           } catch (error) {
             console.error(`[Tailwind Fix] Error processing file ${id}:`, error);
@@ -83,7 +158,7 @@ const handleTailwindArbitraryValues = () => {
         }
       }
       return null;
-    }
+    },
   };
 };
 
@@ -94,40 +169,48 @@ const createErrorFreeBuilder = () => {
     missingModules: new Set(),
     missingPackages: new Set(),
     missingComponents: new Set(),
-    runtimeErrors: new Set()
+    runtimeErrors: new Set(),
   };
-  
+
   // Track specific exports requested from specific modules
   const requestedExports = new Map();
-  
+
   return {
     name: 'error-free-builder',
-    
+
     // Handle icons/libraries imported but not available
     resolveId(source, importer) {
       // Special case for Vite's preload helper
-      if (source === 'vite/preload-helper' || 
-        source === 'vite/preload-helper.js' || 
+      if (
+        source === 'vite/preload-helper' ||
+        source === 'vite/preload-helper.js' ||
         source === 'vite/preload-helper.mjs' ||
-        source.includes('preload-helper')) {
-      console.log('[Preview] Silently handling internal Vite module:', source);
-      return '\0virtual:vite-preload-helper';
-    }
-      
+        source.includes('preload-helper')
+      ) {
+        console.log(
+          '[Preview] Silently handling internal Vite module:',
+          source
+        );
+        return '\0virtual:vite-preload-helper';
+      }
+
       // Analyze imports to track requested exports
       if (importer && source) {
         try {
           const importerContent = fs.readFileSync(importer, 'utf8');
-          
+
           // Look for named imports from this source
-          const importRegex = new RegExp(`import\\s+{([^}]*)}\\s+from\\s+['"]${source.replace(/\./g, '\\.')}['"]`, 'g');
+          const importRegex = new RegExp(
+            `import\\s+{([^}]*)}\\s+from\\s+['"]${source.replace(/\./g, '\\.')}['"]`,
+            'g'
+          );
           const matches = [...importerContent.matchAll(importRegex)];
-          
+
           if (matches.length > 0) {
             if (!requestedExports.has(source)) {
               requestedExports.set(source, new Set());
             }
-            
+
             matches.forEach(match => {
               const namedImports = match[1].split(',').map(i => i.trim());
               namedImports.forEach(name => {
@@ -141,9 +224,14 @@ const createErrorFreeBuilder = () => {
           // Ignore read errors
         }
       }
-      
+
       // Handle node_modules imports
-      if (importer && !source.startsWith('.') && !source.startsWith('/') && !path.isAbsolute(source)) {
+      if (
+        importer &&
+        !source.startsWith('.') &&
+        !source.startsWith('/') &&
+        !path.isAbsolute(source)
+      ) {
         try {
           // Try to resolve in node_modules
           require.resolve(source);
@@ -154,29 +242,39 @@ const createErrorFreeBuilder = () => {
           return `\0virtual:missing-package:${source}`;
         }
       }
-      
+
       // Handle local imports (from user's code)
       if (importer && (source.startsWith('./') || source.startsWith('../'))) {
         const importerDir = path.dirname(importer);
         const absolutePath = path.resolve(importerDir, source);
-        
+
         // Try to resolve with various extensions
-        const extensions = ['.jsx', '.js', '.tsx', '.ts', '.json', '/index.jsx', '/index.js', '/index.tsx', '/index.ts'];
+        const extensions = [
+          '.jsx',
+          '.js',
+          '.tsx',
+          '.ts',
+          '.json',
+          '/index.jsx',
+          '/index.js',
+          '/index.tsx',
+          '/index.ts',
+        ];
         for (const ext of extensions) {
           const fullPath = `${absolutePath}${ext}`;
           if (fs.existsSync(fullPath)) {
             return null; // File exists, let Vite handle it normally
           }
         }
-        
+
         // Local file doesn't exist, track error and return virtual module
         buildErrors.missingModules.add(source);
         return `\0virtual:missing-module:${source}`;
       }
-      
+
       return null;
     },
-    
+
     // Load appropriate content for missing modules
     load(id) {
       // Special handling for Vite's preload helper
@@ -203,11 +301,11 @@ const createErrorFreeBuilder = () => {
           };
         `;
       }
-      
+
       // Handle missing packages (node_modules)
       if (id.startsWith('\0virtual:missing-package:')) {
         const packageName = id.slice('\0virtual:missing-package:'.length);
-        
+
         // Special handling for use-sound package
         if (packageName === 'use-sound' || packageName.includes('sound')) {
           return `
@@ -251,11 +349,11 @@ const createErrorFreeBuilder = () => {
             export const useHowler = () => {};
           `;
         }
-        
+
         // Special handling for icon libraries
         if (
-          packageName.includes('icon') || 
-          packageName.includes('lucide') || 
+          packageName.includes('icon') ||
+          packageName.includes('lucide') ||
           packageName.includes('feather') ||
           packageName.includes('heroicons') ||
           packageName.includes('font-awesome') ||
@@ -264,7 +362,6 @@ const createErrorFreeBuilder = () => {
           packageName.includes('mdi')
         ) {
           return `
-            import React from 'react';
             
             // Register error with the global registry
             if (typeof window !== 'undefined') {
@@ -383,11 +480,14 @@ const createErrorFreeBuilder = () => {
             });
           `;
         }
-        
+
         // Handle animation libraries
-        if (packageName.includes('motion') || packageName.includes('anim') || packageName.includes('framer')) {
+        if (
+          packageName.includes('motion') ||
+          packageName.includes('anim') ||
+          packageName.includes('framer')
+        ) {
           return `
-            import React from 'react';
             
             // Register error with the global registry
             if (typeof window !== 'undefined') {
@@ -475,10 +575,9 @@ const createErrorFreeBuilder = () => {
             export default motion;
           `;
         }
-        
+
         // Generic package stub for other libraries
         return `
-          import React from 'react';
           
           // Register error with the global registry
           if (typeof window !== 'undefined') {
@@ -573,35 +672,58 @@ const createErrorFreeBuilder = () => {
           export const Col = (props) => React.createElement('div', props, props.children);
         `;
       }
-      
+
       // Handle missing local modules
       if (id.startsWith('\0virtual:missing-module:')) {
         const moduleName = id.slice('\0virtual:missing-module:'.length);
-        
+
         // Check if this module has requested specific exports
-        const requestedSpecificExports = requestedExports.get(moduleName) || new Set();
-        
+        const requestedSpecificExports =
+          requestedExports.get(moduleName) || new Set();
+
         // Create additional exports based on module name or requested exports
         let additionalExports = '';
-        
+
         // Add exports for specific requested exports not covered by the general exports
         if (requestedSpecificExports.size > 0) {
-          console.log(`Requested exports for ${moduleName}:`, Array.from(requestedSpecificExports));
-          
+          console.log(
+            `Requested exports for ${moduleName}:`,
+            Array.from(requestedSpecificExports)
+          );
+
           for (const exportName of requestedSpecificExports) {
             // Skip exports that will be generated automatically
-            if ([
-              'motion', 'fadeIn', 'slideIn', 'staggerContainer', 'textVariant', 'zoomIn',
-              'data', 'items', 'products', 'routes', 'config', 'settings', 'constants', 'theme', 'styles',
-              'App', 'Home', 'Layout', 'CategoryDetails'
-            ].includes(exportName)) {
+            if (
+              [
+                'motion',
+                'fadeIn',
+                'slideIn',
+                'staggerContainer',
+                'textVariant',
+                'zoomIn',
+                'data',
+                'items',
+                'products',
+                'routes',
+                'config',
+                'settings',
+                'constants',
+                'theme',
+                'styles',
+                'App',
+                'Home',
+                'Layout',
+                'CategoryDetails',
+              ].includes(exportName)
+            ) {
               continue;
             }
-            
+
             additionalExports += `
               // Export ${exportName} specifically requested from ${moduleName}
-              export const ${exportName} = ${exportName.match(/^[A-Z]/) 
-                ? `(props) => React.createElement('div', {
+              export const ${exportName} = ${
+                exportName.match(/^[A-Z]/)
+                  ? `(props) => React.createElement('div', {
                     style: {
                       color: 'red',
                       border: '1px solid red',
@@ -610,7 +732,7 @@ const createErrorFreeBuilder = () => {
                       borderRadius: '4px'
                     }
                   }, \`Error: Component "${exportName}" not found in "${moduleName}"\`)`
-                : `() => {
+                  : `() => {
                     if (typeof window !== 'undefined') {
                       window.__ERROR_REGISTRY.missingComponents.add(\`${exportName} (from ${moduleName})\`);
                     }
@@ -621,10 +743,9 @@ const createErrorFreeBuilder = () => {
             `;
           }
         }
-        
+
         // Create a placeholder for the missing module with error registry
         return `
-          import React from 'react';
           
           // Register error with the global registry
           if (typeof window !== 'undefined') {
@@ -801,14 +922,16 @@ const createErrorFreeBuilder = () => {
           });
         `;
       }
-      
+
       return null;
     },
-    
+
     // Add error registry to HTML
     transformIndexHtml(html) {
       // Create error registry for tracking all errors
-      return html.replace('</head>', `
+      return html.replace(
+        '</head>',
+        `
         <script>
           console.log("[Preview] Initializing error tracking...");
           
@@ -929,14 +1052,17 @@ const createErrorFreeBuilder = () => {
           
           console.log("[Preview] Error tracking initialized");
         </script>
-      </head>`);
+      </head>`
+      );
     },
-    
+
     // Handle end of build
     closeBundle() {
       // Log build errors when done
-      console.log('Build completed with errors tracked in window.__ERROR_REGISTRY');
-    }
+      console.log(
+        'Build completed with errors tracked in window.__ERROR_REGISTRY'
+      );
+    },
   };
 };
 
@@ -944,15 +1070,15 @@ const createErrorFreeBuilder = () => {
 const ensureBuildCompletes = () => {
   return {
     name: 'ensure-build-completes',
-    
+
     apply: 'build',
-    
+
     // Override build hooks to prevent failures
     buildStart() {
       // Set to development mode for more lenient checks
       process.env.NODE_ENV = 'development';
     },
-    
+
     // Used for more aggressive error handling
     transform(code, id) {
       // Always return valid code even if there are errors
@@ -960,39 +1086,39 @@ const ensureBuildCompletes = () => {
         return { code, map: null };
       } catch (e) {
         console.error(`Error in transform for ${id}:`, e);
-        return { 
+        return {
           code: `
             // Replacing problematic file with stub
             console.error("Error in file ${id}, replaced with stub");
             export default function ErrorComponent() { 
               return document.createTextNode("Error in module: ${id}"); 
             }
-          `, 
-          map: null 
+          `,
+          map: null,
         };
       }
     },
-    
+
     // Force build to complete despite errors
     renderChunk(code, chunk) {
       try {
         return { code, map: null };
       } catch (e) {
         console.error(`Error in chunk ${chunk.name}:`, e);
-        return { 
-          code: `console.error("Error in chunk: ${chunk.name}");`, 
-          map: null 
+        return {
+          code: `console.error("Error in chunk: ${chunk.name}");`,
+          map: null,
         };
       }
     },
-    
+
     // Force build to complete
     buildEnd(error) {
       if (error) {
         console.log('Errors suppressed during build:', error.message);
         return null; // Return null to suppress the error
       }
-    }
+    },
   };
 };
 
@@ -1001,14 +1127,14 @@ export default defineConfig({
     handleTailwindArbitraryValues(), // Add this plugin first to handle Tailwind arbitrary values
     react(),
     createErrorFreeBuilder(),
-    ensureBuildCompletes()
+    ensureBuildCompletes(),
   ],
   build: {
     outDir: 'preview-dist',
     minify: false,
     sourcemap: true,
     cssMinify: false,
-    
+
     rollupOptions: {
       onwarn() {
         // Suppress all Rollup warnings
@@ -1016,16 +1142,16 @@ export default defineConfig({
       },
       // Disable tree-shaking to avoid unused import errors
       treeshake: false,
-      preserveEntrySignatures: false
-    }
+      preserveEntrySignatures: false,
+    },
   },
-  
+
   // Updated optimizeDeps configuration for Vite 5.1+
   optimizeDeps: {
     noDiscovery: true,
-    include: []
+    include: [],
   },
-  
+
   // Make ESBuild more lenient
   esbuild: {
     logOverride: {
@@ -1034,11 +1160,11 @@ export default defineConfig({
       'unused-import': 'silent',
       'unused-variable': 'silent',
       'parse-error': 'silent',
-      'syntax-error': 'silent'
+      'syntax-error': 'silent',
     },
     // Prevent syntax errors from failing the build
     legalComments: 'none',
     // Add this to make esbuild more lenient with JSX
-    jsx: 'preserve'
-  }
+    jsx: 'preserve',
+  },
 });

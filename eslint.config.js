@@ -17,8 +17,8 @@ export default [
         ecmaVersion: 'latest',
         sourceType: 'module',
         ecmaFeatures: {
-          jsx: true
-        }
+          jsx: true,
+        },
       },
       globals: {
         window: 'readonly',
@@ -34,16 +34,16 @@ export default [
         exports: 'readonly',
         setTimeout: 'readonly',
         localStorage: 'readonly',
-        Blob: 'readonly'
-      }
+        Blob: 'readonly',
+      },
     },
     plugins: {
       '@typescript-eslint': typescript,
-      'react': react,
+      react: react,
       'react-hooks': reactHooks,
-      'import': importPlugin,
-      'security': security,
-      'sonarjs': sonarjs
+      import: importPlugin,
+      security: security,
+      sonarjs: sonarjs,
     },
     rules: {
       'no-unused-vars': 'off',
@@ -56,8 +56,8 @@ export default [
       'no-unreachable': 'error',
       'no-constant-condition': 'error',
       'no-empty': 'error',
-      'eqeqeq': 'error',
-      'curly': 'error',
+      eqeqeq: 'error',
+      curly: 'error',
       'react/jsx-uses-react': 'error',
       'react/jsx-uses-vars': 'error',
       'react/prop-types': 'off',
@@ -75,8 +75,8 @@ export default [
       'security/detect-non-literal-regexp': 'warn',
       'sonarjs/cognitive-complexity': ['error', 15],
       'sonarjs/no-duplicate-string': 'error',
-      'sonarjs/no-identical-functions': 'error'
-    }
+      'sonarjs/no-identical-functions': 'error',
+    },
   },
   {
     files: ['scripts/**/*.js'],
@@ -86,8 +86,8 @@ export default [
         console: 'readonly',
         Buffer: 'readonly',
         __dirname: 'readonly',
-        __filename: 'readonly'
-      }
-    }
-  }
+        __filename: 'readonly',
+      },
+    },
+  },
 ];

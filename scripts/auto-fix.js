@@ -3,15 +3,22 @@ import { writeFileSync, readFileSync, existsSync } from 'fs';
 import { glob } from 'glob';
 
 const autoFixEntireCodebase = async () => {
-  console.log('🔧 Running COMPREHENSIVE Automated Issue Fixes Across ENTIRE Codebase...\n');
+  console.log(
+    '🔧 Running COMPREHENSIVE Automated Issue Fixes Across ENTIRE Codebase...\n'
+  );
 
   const fixes = [];
 
   // 1. Fix ALL files - not just src
   console.log('🔄 Removing unused imports from ALL files...');
   try {
-    execSync('find . -name "*.js" -o -name "*.jsx" -o -name "*.ts" -o -name "*.tsx" | grep -v node_modules | xargs npx eslint --fix --quiet', { stdio: 'pipe' });
-    fixes.push('✅ Unused imports removed from ALL JavaScript/TypeScript files');
+    execSync(
+      'find . -name "*.js" -o -name "*.jsx" -o -name "*.ts" -o -name "*.tsx" | grep -v node_modules | xargs npx eslint --fix --quiet',
+      { stdio: 'pipe' }
+    );
+    fixes.push(
+      '✅ Unused imports removed from ALL JavaScript/TypeScript files'
+    );
   } catch (error) {
     fixes.push('⚠️ Some import issues may remain in certain files');
   }
@@ -19,7 +26,10 @@ const autoFixEntireCodebase = async () => {
   // 2. Format ALL file types
   console.log('🔄 Formatting ALL code files...');
   try {
-    execSync('npx prettier --write "**/*.{js,jsx,ts,tsx,json,md,css,html,py,yml,yaml}" --ignore-path .gitignore', { stdio: 'pipe' });
+    execSync(
+      'npx prettier --write "**/*.{js,jsx,ts,tsx,json,md,css,html,py,yml,yaml}" --ignore-path .gitignore',
+      { stdio: 'pipe' }
+    );
     fixes.push('✅ Code formatting applied to ALL file types');
   } catch (error) {
     fixes.push('❌ Some formatting failed');
@@ -31,7 +41,10 @@ const autoFixEntireCodebase = async () => {
     execSync('npm audit fix --force', { stdio: 'pipe' });
 
     // Check for common security issues in ALL files
-    const securityIssues = execSync('find . -name "*.js" -o -name "*.jsx" | grep -v node_modules | xargs grep -l "eval\\|innerHTML\\|dangerouslySetInnerHTML" || echo ""', { encoding: 'utf8' }).trim();
+    const securityIssues = execSync(
+      'find . -name "*.js" -o -name "*.jsx" | grep -v node_modules | xargs grep -l "eval\\|innerHTML\\|dangerouslySetInnerHTML" || echo ""',
+      { encoding: 'utf8' }
+    ).trim();
     if (securityIssues) {
       fixes.push('⚠️ Security vulnerabilities found - manual review needed');
     } else {
@@ -44,11 +57,17 @@ const autoFixEntireCodebase = async () => {
   // 4. Clean console statements from ALL files
   console.log('🔄 Cleaning up console statements in ALL files...');
   try {
-    const files = await glob('**/*.{js,jsx,ts,tsx}', { ignore: ['node_modules/**', 'dist/**', 'build/**'] });
+    const files = await glob('**/*.{js,jsx,ts,tsx}', {
+      ignore: ['node_modules/**', 'dist/**', 'build/**'],
+    });
     let consoleFixed = 0;
 
     files.forEach(file => {
-      if (file.includes('ErrorBoundary') || file.includes('.test.') || file.includes('.spec.')) {
+      if (
+        file.includes('ErrorBoundary') ||
+        file.includes('.test.') ||
+        file.includes('.spec.')
+      ) {
         return; // Skip test files and error boundaries
       }
 
@@ -58,10 +77,17 @@ const autoFixEntireCodebase = async () => {
         let modified = false;
 
         const cleanedLines = lines.map(line => {
-          if (line.trim().startsWith('console.log(') || line.trim().startsWith('console.error(') || line.trim().startsWith('console.warn(')) {
+          if (
+            line.trim().startsWith('console.log(') ||
+            line.trim().startsWith('console.error(') ||
+            line.trim().startsWith('console.warn(')
+          ) {
             modified = true;
             consoleFixed++;
-            return line.replace(/console\.(log|error|warn)\([^)]*\);?/, '// Console statement removed by auto-fix');
+            return line.replace(
+              /console\.(log|error|warn)\([^)]*\);?/,
+              '// Console statement removed by auto-fix'
+            );
           }
           return line;
         });
@@ -75,7 +101,9 @@ const autoFixEntireCodebase = async () => {
     });
 
     if (consoleFixed > 0) {
-      fixes.push(`✅ Removed ${consoleFixed} console statements from ALL files`);
+      fixes.push(
+        `✅ Removed ${consoleFixed} console statements from ALL files`
+      );
     }
   } catch (error) {
     fixes.push('⚠️ Console cleanup had issues in some files');
@@ -84,7 +112,9 @@ const autoFixEntireCodebase = async () => {
   // 5. Fix Python files
   console.log('🔄 Fixing Python files...');
   try {
-    const pyFiles = await glob('**/*.py', { ignore: ['node_modules/**', '__pycache__/**'] });
+    const pyFiles = await glob('**/*.py', {
+      ignore: ['node_modules/**', '__pycache__/**'],
+    });
     let pythonFixed = 0;
 
     pyFiles.forEach(file => {
@@ -94,13 +124,19 @@ const autoFixEntireCodebase = async () => {
         let fixedContent = content;
 
         // Remove print statements (except in main blocks)
-        if (content.includes('print(') && !content.includes('if __name__ == "__main__"')) {
+        if (
+          content.includes('print(') &&
+          !content.includes('if __name__ == "__main__"')
+        ) {
           const lines = fixedContent.split('\n');
           const cleanedLines = lines.map(line => {
             if (line.trim().startsWith('print(') && !line.includes('# keep')) {
               modified = true;
               pythonFixed++;
-              return line.replace(/print\([^)]*\)/, '# Print statement removed by auto-fix');
+              return line.replace(
+                /print\([^)]*\)/,
+                '# Print statement removed by auto-fix'
+              );
             }
             return line;
           });
@@ -117,7 +153,10 @@ const autoFixEntireCodebase = async () => {
 
         const cleanedLines = lines.filter(line => {
           const trimmedLine = line.trim();
-          if (trimmedLine.startsWith('import ') || trimmedLine.startsWith('from ')) {
+          if (
+            trimmedLine.startsWith('import ') ||
+            trimmedLine.startsWith('from ')
+          ) {
             if (imports.has(trimmedLine)) {
               hasFixedImports = true;
               return false; // Remove duplicate
@@ -151,7 +190,9 @@ const autoFixEntireCodebase = async () => {
   // 6. Fix React issues across ALL React files
   console.log('🔄 Checking React infinite loop patterns in ALL React files...');
   try {
-    const reactFiles = await glob('**/*.{jsx,tsx}', { ignore: ['node_modules/**', 'dist/**'] });
+    const reactFiles = await glob('**/*.{jsx,tsx}', {
+      ignore: ['node_modules/**', 'dist/**'],
+    });
     let loopFixed = 0;
 
     reactFiles.forEach(file => {
@@ -175,15 +216,24 @@ const autoFixEntireCodebase = async () => {
             }
 
             if (inUseEffect && line.includes('}, [') && line.includes('])')) {
-              const useEffectBlock = lines.slice(useEffectStart, i + 1).join('\n');
+              const useEffectBlock = lines
+                .slice(useEffectStart, i + 1)
+                .join('\n');
 
               // Detect and fix dangerous dependency patterns
-              if (useEffectBlock.includes('dispatch') && /\[.*state.*\]/.test(useEffectBlock)) {
+              if (
+                useEffectBlock.includes('dispatch') &&
+                /\[.*state.*\]/.test(useEffectBlock)
+              ) {
                 const newBlock = useEffectBlock.replace(/\[.*state.*\]/, '[]');
 
                 if (newBlock !== useEffectBlock) {
                   const blockLines = newBlock.split('\n');
-                  lines.splice(useEffectStart, i - useEffectStart + 1, ...blockLines);
+                  lines.splice(
+                    useEffectStart,
+                    i - useEffectStart + 1,
+                    ...blockLines
+                  );
                   modified = true;
                   loopFixed++;
                 }
@@ -204,7 +254,9 @@ const autoFixEntireCodebase = async () => {
     });
 
     if (loopFixed > 0) {
-      fixes.push(`✅ Fixed ${loopFixed} React infinite loop patterns across ALL React files`);
+      fixes.push(
+        `✅ Fixed ${loopFixed} React infinite loop patterns across ALL React files`
+      );
     } else {
       fixes.push('✅ No React infinite loops detected in ANY files');
     }
@@ -215,7 +267,9 @@ const autoFixEntireCodebase = async () => {
   // 7. Fix duplicate imports across ALL files
   console.log('🔄 Fixing duplicate imports across ALL files...');
   try {
-    const allFiles = await glob('**/*.{js,jsx,ts,tsx,py}', { ignore: ['node_modules/**', 'dist/**', 'build/**'] });
+    const allFiles = await glob('**/*.{js,jsx,ts,tsx,py}', {
+      ignore: ['node_modules/**', 'dist/**', 'build/**'],
+    });
     let duplicateImportsFixed = 0;
 
     allFiles.forEach(file => {
@@ -227,8 +281,11 @@ const autoFixEntireCodebase = async () => {
 
         const cleanedLines = lines.filter(line => {
           const trimmedLine = line.trim();
-          if ((trimmedLine.startsWith('import ') && trimmedLine.includes('from ')) ||
-              (trimmedLine.startsWith('from ') && trimmedLine.includes('import'))) {
+          if (
+            (trimmedLine.startsWith('import ') &&
+              trimmedLine.includes('from ')) ||
+            (trimmedLine.startsWith('from ') && trimmedLine.includes('import'))
+          ) {
             const importKey = trimmedLine.replace(/\s+/g, ' '); // normalize spaces
             if (seenImports.has(importKey)) {
               modified = true;
@@ -249,7 +306,9 @@ const autoFixEntireCodebase = async () => {
     });
 
     if (duplicateImportsFixed > 0) {
-      fixes.push(`✅ Fixed ${duplicateImportsFixed} duplicate imports across ALL files`);
+      fixes.push(
+        `✅ Fixed ${duplicateImportsFixed} duplicate imports across ALL files`
+      );
     }
   } catch (error) {
     fixes.push('⚠️ Duplicate import fixing had issues');
@@ -341,7 +400,9 @@ Run \`npm run quality:comprehensive\` to validate ALL fixes across the entire co
 
   console.log('\n📋 COMPREHENSIVE Auto-fix Summary (Entire Codebase):');
   fixes.forEach(fix => console.log(`  ${fix}`));
-  console.log('\n📄 Detailed report saved to docs/COMPREHENSIVE_AUTO_FIX_REPORT.md');
+  console.log(
+    '\n📄 Detailed report saved to docs/COMPREHENSIVE_AUTO_FIX_REPORT.md'
+  );
   console.log('🎯 ALL files across the entire codebase have been processed!');
 };
 

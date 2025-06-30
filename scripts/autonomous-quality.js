@@ -1,4 +1,3 @@
-
 import { execSync } from 'child_process';
 import { writeFileSync, existsSync, mkdirSync, readFileSync } from 'fs';
 import { glob } from 'glob';
@@ -6,52 +5,75 @@ import { glob } from 'glob';
 const runCommand = (command, description, autoFix = false) => {
   console.log(`🔄 ${description}...`);
   try {
-    const output = execSync(command, { 
-      encoding: 'utf8', 
+    const output = execSync(command, {
+      encoding: 'utf8',
       stdio: 'pipe',
       timeout: 180000, // Increased timeout for comprehensive scanning
-      cwd: process.cwd()
+      cwd: process.cwd(),
     });
     console.log(`✅ ${description} completed`);
     return { success: true, output: output.slice(0, 1000), fixed: autoFix };
   } catch (error) {
     if (autoFix || error.status === 1) {
       console.log(`⚠️ ${description} found issues but applied available fixes`);
-      return { success: true, output: error.stdout?.slice(0, 1000) || '', fixed: true, warnings: error.stderr?.slice(0, 500) };
+      return {
+        success: true,
+        output: error.stdout?.slice(0, 1000) || '',
+        fixed: true,
+        warnings: error.stderr?.slice(0, 500),
+      };
     }
     console.log(`❌ ${description} failed: ${error.message.split('\n')[0]}`);
-    return { success: false, error: error.message.split('\n')[0], output: error.stdout?.slice(0, 1000) || '' };
+    return {
+      success: false,
+      error: error.message.split('\n')[0],
+      output: error.stdout?.slice(0, 1000) || '',
+    };
   }
 };
 
 const scanEntireCodebase = () => {
   try {
     console.log('🔍 COMPREHENSIVE CODEBASE ANALYSIS...');
-    
+
     // Get ALL files in the entire project
-    const allFiles = execSync('find . -type f -not -path "./node_modules/*" -not -path "./.git/*" -not -path "./dist/*" -not -path "./build/*"', { encoding: 'utf8' }).trim().split('\n').filter(Boolean);
-    
+    const allFiles = execSync(
+      'find . -type f -not -path "./node_modules/*" -not -path "./.git/*" -not -path "./dist/*" -not -path "./build/*"',
+      { encoding: 'utf8' }
+    )
+      .trim()
+      .split('\n')
+      .filter(Boolean);
+
     const stats = {
       totalFiles: allFiles.length,
       byExtension: {},
       byDirectory: {},
       codeFiles: 0,
       configFiles: 0,
-      documentFiles: 0
+      documentFiles: 0,
     };
 
     // Analyze all files
     allFiles.forEach(file => {
       const ext = file.split('.').pop() || 'no-extension';
       const dir = file.split('/')[1] || 'root';
-      
+
       stats.byExtension[ext] = (stats.byExtension[ext] || 0) + 1;
       stats.byDirectory[dir] = (stats.byDirectory[dir] || 0) + 1;
-      
+
       // Categorize files
-      if (['.js', '.jsx', '.ts', '.tsx', '.py', '.css', '.html'].includes('.' + ext)) {
+      if (
+        ['.js', '.jsx', '.ts', '.tsx', '.py', '.css', '.html'].includes(
+          '.' + ext
+        )
+      ) {
         stats.codeFiles++;
-      } else if (['.json', '.config', '.yml', '.yaml', '.toml', '.ini'].includes('.' + ext)) {
+      } else if (
+        ['.json', '.config', '.yml', '.yaml', '.toml', '.ini'].includes(
+          '.' + ext
+        )
+      ) {
         stats.configFiles++;
       } else if (['.md', '.txt', '.doc', '.pdf'].includes('.' + ext)) {
         stats.documentFiles++;
@@ -63,7 +85,7 @@ const scanEntireCodebase = () => {
     console.log(`   Code Files: ${stats.codeFiles}`);
     console.log(`   Config Files: ${stats.configFiles}`);
     console.log(`   Documents: ${stats.documentFiles}`);
-    
+
     return stats;
   } catch (error) {
     console.log('⚠️ Could not complete comprehensive codebase analysis');
@@ -74,32 +96,45 @@ const scanEntireCodebase = () => {
 const detectAllProblems = () => {
   try {
     console.log('🔍 DEEP PROBLEM DETECTION ACROSS ALL FILES...');
-    
+
     const problems = {
       react: [],
       javascript: [],
       python: [],
       config: [],
       documentation: [],
-      general: []
+      general: [],
     };
 
     // Check ALL JavaScript/React files
-    const jsFiles = execSync('find . -name "*.js" -o -name "*.jsx" -o -name "*.ts" -o -name "*.tsx" | grep -v node_modules | grep -v dist', { encoding: 'utf8' }).trim().split('\n').filter(Boolean);
-    
+    const jsFiles = execSync(
+      'find . -name "*.js" -o -name "*.jsx" -o -name "*.ts" -o -name "*.tsx" | grep -v node_modules | grep -v dist',
+      { encoding: 'utf8' }
+    )
+      .trim()
+      .split('\n')
+      .filter(Boolean);
+
     jsFiles.forEach(file => {
       try {
         const content = readFileSync(file, 'utf8');
-        
+
         // React-specific issues
-        if (content.includes('useEffect') && content.includes('dispatch') && /useEffect\([^}]*\}.*\[.*state.*\]/s.test(content)) {
+        if (
+          content.includes('useEffect') &&
+          content.includes('dispatch') &&
+          /useEffect\([^}]*\}.*\[.*state.*\]/s.test(content)
+        ) {
           problems.react.push(`Potential infinite loop in ${file}`);
         }
-        
-        if (content.includes('console.log') || content.includes('console.error')) {
+
+        if (
+          content.includes('console.log') ||
+          content.includes('console.error')
+        ) {
           problems.javascript.push(`Console statements in ${file}`);
         }
-        
+
         if (content.includes('import') && content.includes('from')) {
           const imports = content.match(/import.*from.*/g) || [];
           const uniqueImports = new Set(imports);
@@ -107,14 +142,17 @@ const detectAllProblems = () => {
             problems.javascript.push(`Duplicate imports in ${file}`);
           }
         }
-        
+
         // Unused variables
         if (/const\s+\w+.*=.*/.test(content) && !/export/.test(content)) {
           const vars = content.match(/const\s+(\w+)/g) || [];
           vars.forEach(varDecl => {
             const varName = varDecl.replace('const ', '');
-            if (content.split(varName).length === 2) { // Only appears once (declaration)
-              problems.javascript.push(`Potentially unused variable ${varName} in ${file}`);
+            if (content.split(varName).length === 2) {
+              // Only appears once (declaration)
+              problems.javascript.push(
+                `Potentially unused variable ${varName} in ${file}`
+              );
             }
           });
         }
@@ -124,21 +162,28 @@ const detectAllProblems = () => {
     });
 
     // Check ALL Python files
-    const pyFiles = execSync('find . -name "*.py" | grep -v __pycache__', { encoding: 'utf8' }).trim().split('\n').filter(Boolean);
-    
+    const pyFiles = execSync('find . -name "*.py" | grep -v __pycache__', {
+      encoding: 'utf8',
+    })
+      .trim()
+      .split('\n')
+      .filter(Boolean);
+
     pyFiles.forEach(file => {
       try {
         const content = readFileSync(file, 'utf8');
-        
+
         if (content.includes('print(') && !file.includes('test')) {
           problems.python.push(`Print statements in ${file}`);
         }
-        
+
         if (/import\s+\w+/.test(content)) {
           const imports = content.match(/^import\s+.*/gm) || [];
           const fromImports = content.match(/^from\s+.*/gm) || [];
           if (imports.length + fromImports.length > 10) {
-            problems.python.push(`Many imports in ${file} - consider refactoring`);
+            problems.python.push(
+              `Many imports in ${file} - consider refactoring`
+            );
           }
         }
       } catch (err) {
@@ -147,12 +192,18 @@ const detectAllProblems = () => {
     });
 
     // Check ALL config files
-    const configFiles = execSync('find . -name "*.json" -o -name "*.config.*" -o -name "*.yml" -o -name "*.yaml" | grep -v node_modules', { encoding: 'utf8' }).trim().split('\n').filter(Boolean);
-    
+    const configFiles = execSync(
+      'find . -name "*.json" -o -name "*.config.*" -o -name "*.yml" -o -name "*.yaml" | grep -v node_modules',
+      { encoding: 'utf8' }
+    )
+      .trim()
+      .split('\n')
+      .filter(Boolean);
+
     configFiles.forEach(file => {
       try {
         const content = readFileSync(file, 'utf8');
-        
+
         if (file.endsWith('.json')) {
           try {
             JSON.parse(content);
@@ -160,7 +211,7 @@ const detectAllProblems = () => {
             problems.config.push(`Invalid JSON in ${file}: ${e.message}`);
           }
         }
-        
+
         if (content.includes('localhost') && !file.includes('example')) {
           problems.config.push(`Hardcoded localhost in ${file}`);
         }
@@ -170,16 +221,22 @@ const detectAllProblems = () => {
     });
 
     // Check ALL documentation files
-    const docFiles = execSync('find . -name "*.md" -o -name "*.txt" | grep -v node_modules', { encoding: 'utf8' }).trim().split('\n').filter(Boolean);
-    
+    const docFiles = execSync(
+      'find . -name "*.md" -o -name "*.txt" | grep -v node_modules',
+      { encoding: 'utf8' }
+    )
+      .trim()
+      .split('\n')
+      .filter(Boolean);
+
     docFiles.forEach(file => {
       try {
         const content = readFileSync(file, 'utf8');
-        
+
         if (content.length < 50 && !file.includes('gitkeep')) {
           problems.documentation.push(`Very short documentation in ${file}`);
         }
-        
+
         if (content.includes('TODO') || content.includes('FIXME')) {
           problems.documentation.push(`TODO/FIXME items in ${file}`);
         }
@@ -189,18 +246,26 @@ const detectAllProblems = () => {
     });
 
     // General file issues
-    execSync('find . -name "*.orig" -o -name "*.bak" -o -name "*~" | grep -v node_modules', { encoding: 'utf8' }).trim().split('\n').filter(Boolean).forEach(file => {
-      if (file.trim()) {
-        problems.general.push(`Backup/temporary file: ${file}`);
-      }
-    });
+    execSync(
+      'find . -name "*.orig" -o -name "*.bak" -o -name "*~" | grep -v node_modules',
+      { encoding: 'utf8' }
+    )
+      .trim()
+      .split('\n')
+      .filter(Boolean)
+      .forEach(file => {
+        if (file.trim()) {
+          problems.general.push(`Backup/temporary file: ${file}`);
+        }
+      });
 
     console.log(`🚨 PROBLEMS DETECTED:`);
     Object.entries(problems).forEach(([category, issues]) => {
       if (issues.length > 0) {
         console.log(`   ${category.toUpperCase()}: ${issues.length} issues`);
         issues.slice(0, 3).forEach(issue => console.log(`     - ${issue}`));
-        if (issues.length > 3) console.log(`     - ... and ${issues.length - 3} more`);
+        if (issues.length > 3)
+          console.log(`     - ... and ${issues.length - 3} more`);
       }
     });
 
@@ -212,10 +277,18 @@ const detectAllProblems = () => {
 };
 
 const runComprehensiveQualityChecks = async () => {
-  console.log('🚀 STARTING COMPREHENSIVE QUALITY CHECKS ON ENTIRE CODEBASE...\n');
+  console.log(
+    '🚀 STARTING COMPREHENSIVE QUALITY CHECKS ON ENTIRE CODEBASE...\n'
+  );
 
   // Ensure all directories exist
-  ['docs', 'reports', 'reports/coverage', 'reports/security', 'reports/analysis'].forEach(dir => {
+  [
+    'docs',
+    'reports',
+    'reports/coverage',
+    'reports/security',
+    'reports/analysis',
+  ].forEach(dir => {
     if (!existsSync(dir)) {
       mkdirSync(dir, { recursive: true });
     }
@@ -226,7 +299,7 @@ const runComprehensiveQualityChecks = async () => {
     codebaseStats: {},
     problems: {},
     tools: {},
-    summary: { passed: 0, failed: 0, total: 0, fixed: 0 }
+    summary: { passed: 0, failed: 0, total: 0, fixed: 0 },
   };
 
   // Run comprehensive codebase analysis first
@@ -236,94 +309,109 @@ const runComprehensiveQualityChecks = async () => {
   const comprehensiveChecks = [
     {
       name: 'Full Codebase Scan',
-      command: 'find . -type f -not -path "./node_modules/*" -not -path "./.git/*" | head -20',
-      description: 'Complete codebase file inventory'
+      command:
+        'find . -type f -not -path "./node_modules/*" -not -path "./.git/*" | head -20',
+      description: 'Complete codebase file inventory',
     },
     {
       name: 'React Issues - All Files',
-      command: 'find . -name "*.jsx" -o -name "*.tsx" | xargs grep -l "useEffect.*dispatch" | head -10 || echo "No React useEffect issues found"',
-      description: 'React useEffect dependency analysis across ALL files'
+      command:
+        'find . -name "*.jsx" -o -name "*.tsx" | xargs grep -l "useEffect.*dispatch" | head -10 || echo "No React useEffect issues found"',
+      description: 'React useEffect dependency analysis across ALL files',
     },
     {
-      name: 'JavaScript Errors - All Files', 
-      command: 'find . -name "*.js" -o -name "*.jsx" -o -name "*.ts" -o -name "*.tsx" | grep -v node_modules | xargs grep -l "console\\." | head -10 || echo "No console statements found"',
-      description: 'JavaScript console statement detection in ALL files'
+      name: 'JavaScript Errors - All Files',
+      command:
+        'find . -name "*.js" -o -name "*.jsx" -o -name "*.ts" -o -name "*.tsx" | grep -v node_modules | xargs grep -l "console\\." | head -10 || echo "No console statements found"',
+      description: 'JavaScript console statement detection in ALL files',
     },
     {
       name: 'Python Issues - All Files',
-      command: 'find . -name "*.py" | xargs grep -l "print(" | head -10 || echo "No Python print statements found"',
-      description: 'Python code analysis across ALL files'
+      command:
+        'find . -name "*.py" | xargs grep -l "print(" | head -10 || echo "No Python print statements found"',
+      description: 'Python code analysis across ALL files',
     },
     {
       name: 'ESLint - All Directories',
-      command: 'npx eslint . --ext .js,.jsx,.ts,.tsx --fix --max-warnings=100 --ignore-path .gitignore',
+      command:
+        'npx eslint . --ext .js,.jsx,.ts,.tsx --fix --max-warnings=100 --ignore-path .gitignore',
       description: 'Code linting across ALL directories with auto-fix',
-      autoFix: true
+      autoFix: true,
     },
     {
       name: 'Prettier - All Files',
-      command: 'npx prettier --write "**/*.{js,jsx,ts,tsx,json,md,css,html,py,yml,yaml}" --ignore-path .gitignore',
+      command:
+        'npx prettier --write "**/*.{js,jsx,ts,tsx,json,md,css,html,py,yml,yaml}" --ignore-path .gitignore',
       description: 'Code formatting across ALL file types with auto-fix',
-      autoFix: true
+      autoFix: true,
     },
     {
       name: 'TypeScript - All Projects',
       command: 'npx tsc --noEmit --skipLibCheck --project .',
-      description: 'TypeScript type checking across ALL projects'
+      description: 'TypeScript type checking across ALL projects',
     },
     {
       name: 'Security Scan - All Files',
-      command: 'npm audit --audit-level=low --fix && find . -name "*.js" -o -name "*.jsx" | xargs grep -l "eval\\|innerHTML\\|dangerouslySetInnerHTML" | head -5 || echo "No security issues found"',
+      command:
+        'npm audit --audit-level=low --fix && find . -name "*.js" -o -name "*.jsx" | xargs grep -l "eval\\|innerHTML\\|dangerouslySetInnerHTML" | head -5 || echo "No security issues found"',
       description: 'Security vulnerability scan across ALL files',
-      autoFix: true
+      autoFix: true,
     },
     {
       name: 'Dead Code - All Modules',
-      command: 'npx ts-prune --error --project . || echo "Dead code analysis completed"',
-      description: 'Dead code detection across ALL modules'
+      command:
+        'npx ts-prune --error --project . || echo "Dead code analysis completed"',
+      description: 'Dead code detection across ALL modules',
     },
     {
       name: 'Circular Dependencies - All Directories',
-      command: 'npx madge --circular . --extensions js,jsx,ts,tsx,py --exclude node_modules',
-      description: 'Circular dependency detection across ALL directories'
+      command:
+        'npx madge --circular . --extensions js,jsx,ts,tsx,py --exclude node_modules',
+      description: 'Circular dependency detection across ALL directories',
     },
     {
       name: 'Code Duplication - Entire Codebase',
-      command: 'npx jscpd . --threshold 5 --min-tokens 30 --min-lines 5 --max-lines 500 --reporters console,json --output reports/analysis --ignore "**/node_modules/**,**/dist/**,**/build/**,**/.git/**"',
+      command:
+        'npx jscpd . --threshold 5 --min-tokens 30 --min-lines 5 --max-lines 500 --reporters console,json --output reports/analysis --ignore "**/node_modules/**,**/dist/**,**/build/**,**/.git/**"',
       description: 'Code duplication analysis across ENTIRE codebase',
-      autoFix: true
+      autoFix: true,
     },
     {
       name: 'Dependencies - All Package Files',
-      command: 'npm audit --audit-level=moderate --fix && find . -name "package.json" -not -path "./node_modules/*" | head -5',
+      command:
+        'npm audit --audit-level=moderate --fix && find . -name "package.json" -not -path "./node_modules/*" | head -5',
       description: 'Dependency analysis across ALL package files',
-      autoFix: true
+      autoFix: true,
     },
     {
       name: 'File Permissions - All Files',
-      command: 'find . -type f -executable -not -path "./node_modules/*" -not -path "./.git/*" | head -10 || echo "No executable files found"',
-      description: 'File permission analysis across ALL files'
+      command:
+        'find . -type f -executable -not -path "./node_modules/*" -not -path "./.git/*" | head -10 || echo "No executable files found"',
+      description: 'File permission analysis across ALL files',
     },
     {
       name: 'Large Files - All Directories',
-      command: 'find . -type f -size +1M -not -path "./node_modules/*" -not -path "./.git/*" | head -10 || echo "No large files found"',
-      description: 'Large file detection across ALL directories'
+      command:
+        'find . -type f -size +1M -not -path "./node_modules/*" -not -path "./.git/*" | head -10 || echo "No large files found"',
+      description: 'Large file detection across ALL directories',
     },
     {
       name: 'Git Issues - All Tracked Files',
-      command: 'git status --porcelain | head -10 && git log --oneline -5 || echo "Git analysis completed"',
-      description: 'Git repository analysis for ALL tracked files'
+      command:
+        'git status --porcelain | head -10 && git log --oneline -5 || echo "Git analysis completed"',
+      description: 'Git repository analysis for ALL tracked files',
     },
     {
       name: 'Config Validation - All Config Files',
-      command: 'find . -name "*.json" -not -path "./node_modules/*" | xargs -I {} sh -c "echo Checking {} && cat {} | jq . > /dev/null" || echo "Config validation completed"',
-      description: 'Configuration file validation across ALL config files'
-    }
+      command:
+        'find . -name "*.json" -not -path "./node_modules/*" | xargs -I {} sh -c "echo Checking {} && cat {} | jq . > /dev/null" || echo "Config validation completed"',
+      description: 'Configuration file validation across ALL config files',
+    },
   ];
 
   for (const check of comprehensiveChecks) {
     const result = runCommand(check.command, check.description, check.autoFix);
-    
+
     // Enhanced duplicate code fixing for entire codebase
     if (check.name === 'Code Duplication - Entire Codebase' && result.success) {
       const duplicateFixResult = await fixEntireCodebaseDuplicates();
@@ -332,10 +420,10 @@ const runComprehensiveQualityChecks = async () => {
         result.output += `\nFixed ${duplicateFixResult.fixed} duplicate code instances across entire codebase`;
       }
     }
-    
+
     results.tools[check.name] = result;
     results.summary.total++;
-    
+
     if (result.success) {
       results.summary.passed++;
       if (result.fixed) {
@@ -352,25 +440,43 @@ const runComprehensiveQualityChecks = async () => {
 Generated: ${results.timestamp}
 
 ## CODEBASE OVERVIEW
-${results.codebaseStats ? `
+${
+  results.codebaseStats
+    ? `
 - **Total Files Scanned**: ${results.codebaseStats.totalFiles}
 - **Code Files**: ${results.codebaseStats.codeFiles}
 - **Config Files**: ${results.codebaseStats.configFiles}
 - **Documentation Files**: ${results.codebaseStats.documentFiles}
 
 ### Files by Extension
-${Object.entries(results.codebaseStats.byExtension).slice(0, 10).map(([ext, count]) => `- **.${ext}**: ${count} files`).join('\n')}
+${Object.entries(results.codebaseStats.byExtension)
+  .slice(0, 10)
+  .map(([ext, count]) => `- **.${ext}**: ${count} files`)
+  .join('\n')}
 
 ### Files by Directory
-${Object.entries(results.codebaseStats.byDirectory).slice(0, 10).map(([dir, count]) => `- **${dir}**: ${count} files`).join('\n')}
-` : '- Codebase analysis unavailable'}
+${Object.entries(results.codebaseStats.byDirectory)
+  .slice(0, 10)
+  .map(([dir, count]) => `- **${dir}**: ${count} files`)
+  .join('\n')}
+`
+    : '- Codebase analysis unavailable'
+}
 
 ## PROBLEMS DETECTED
-${Object.entries(results.problems || {}).map(([category, issues]) => 
-  issues.length > 0 ? `### ${category.toUpperCase()} (${issues.length} issues)
-${issues.slice(0, 5).map(issue => `- ${issue}`).join('\n')}
-${issues.length > 5 ? `- ... and ${issues.length - 5} more issues` : ''}` : ''
-).filter(Boolean).join('\n\n')}
+${Object.entries(results.problems || {})
+  .map(([category, issues]) =>
+    issues.length > 0
+      ? `### ${category.toUpperCase()} (${issues.length} issues)
+${issues
+  .slice(0, 5)
+  .map(issue => `- ${issue}`)
+  .join('\n')}
+${issues.length > 5 ? `- ... and ${issues.length - 5} more issues` : ''}`
+      : ''
+  )
+  .filter(Boolean)
+  .join('\n\n')}
 
 ## QUALITY CHECK RESULTS
 
@@ -383,32 +489,44 @@ ${issues.length > 5 ? `- ... and ${issues.length - 5} more issues` : ''}` : ''
 
 ### Detailed Results
 
-${Object.entries(results.tools).map(([tool, result]) => {
-  const status = result.success ? '✅' : '❌';
-  const fixedText = result.fixed ? ' (Auto-Fixed)' : '';
-  const warningText = result.warnings ? `\n⚠️ Warnings: ${result.warnings}` : '';
-  return `#### ${tool} ${status}${fixedText}
+${Object.entries(results.tools)
+  .map(([tool, result]) => {
+    const status = result.success ? '✅' : '❌';
+    const fixedText = result.fixed ? ' (Auto-Fixed)' : '';
+    const warningText = result.warnings
+      ? `\n⚠️ Warnings: ${result.warnings}`
+      : '';
+    return `#### ${tool} ${status}${fixedText}
 \`\`\`
 ${result.output || 'No output'}
 \`\`\`${warningText}
 ${result.error ? `❌ Error: ${result.error}` : ''}`;
-}).join('\n\n')}
+  })
+  .join('\n\n')}
 
 ## RECOMMENDATIONS
 
-${results.summary.failed > 0 ? `
+${
+  results.summary.failed > 0
+    ? `
 ### Critical Issues (${results.summary.failed} checks failed)
 - Review all failed checks and fix issues manually
 - Focus on security and functionality issues first
 - Run comprehensive checks again after fixes
-` : '### Excellent! All quality checks passed! 🎉'}
+`
+    : '### Excellent! All quality checks passed! 🎉'
+}
 
-${results.summary.fixed > 0 ? `
+${
+  results.summary.fixed > 0
+    ? `
 ### Auto-Fixed Issues (${results.summary.fixed} fixes applied)
 - ${results.summary.fixed} issues were automatically fixed across the entire codebase
 - Review all auto-fixed changes before committing
 - Test functionality after auto-fixes
-` : ''}
+`
+    : ''
+}
 
 ### Next Steps
 1. Review and commit any auto-fixed changes
@@ -427,13 +545,20 @@ ${results.summary.fixed > 0 ? `
 *Comprehensive analysis of entire codebase completed*`;
 
   writeFileSync('docs/COMPREHENSIVE_QUALITY_REPORT.md', report);
-  writeFileSync('reports/comprehensive-quality-results.json', JSON.stringify(results, null, 2));
+  writeFileSync(
+    'reports/comprehensive-quality-results.json',
+    JSON.stringify(results, null, 2)
+  );
 
   console.log(`\n📊 COMPREHENSIVE QUALITY ANALYSIS COMPLETE`);
-  console.log(`   Files Scanned: ${results.codebaseStats?.totalFiles || 'Unknown'}`);
-  console.log(`   Checks: ${results.summary.passed}/${results.summary.total} passed`);
+  console.log(
+    `   Files Scanned: ${results.codebaseStats?.totalFiles || 'Unknown'}`
+  );
+  console.log(
+    `   Checks: ${results.summary.passed}/${results.summary.total} passed`
+  );
   console.log(`   Auto-Fixed: ${results.summary.fixed} issues`);
-  
+
   if (results.summary.failed > 0) {
     console.log(`⚠️ ${results.summary.failed} checks need manual attention`);
   }
@@ -443,27 +568,41 @@ ${results.summary.fixed > 0 ? `
 
 const fixEntireCodebaseDuplicates = async () => {
   let fixedCount = 0;
-  
+
   try {
     console.log('🔧 FIXING DUPLICATES ACROSS ENTIRE CODEBASE...');
-    
+
     // Get ALL files (not just src)
-    const allFiles = execSync('find . -name "*.js" -o -name "*.jsx" -o -name "*.ts" -o -name "*.tsx" -o -name "*.py" | grep -v node_modules | grep -v dist | grep -v build', { encoding: 'utf8' }).trim().split('\n').filter(Boolean);
-    
+    const allFiles = execSync(
+      'find . -name "*.js" -o -name "*.jsx" -o -name "*.ts" -o -name "*.tsx" -o -name "*.py" | grep -v node_modules | grep -v dist | grep -v build',
+      { encoding: 'utf8' }
+    )
+      .trim()
+      .split('\n')
+      .filter(Boolean);
+
     // Check for duplicates across ALL files
     allFiles.forEach(file => {
       try {
         const content = readFileSync(file, 'utf8');
         const lines = content.split('\n');
-        
+
         // Fix duplicate imports across all files
-        if (file.endsWith('.js') || file.endsWith('.jsx') || file.endsWith('.ts') || file.endsWith('.tsx')) {
+        if (
+          file.endsWith('.js') ||
+          file.endsWith('.jsx') ||
+          file.endsWith('.ts') ||
+          file.endsWith('.tsx')
+        ) {
           const imports = new Set();
           let hasFixedImports = false;
-          
+
           const cleanedLines = lines.filter(line => {
             const trimmedLine = line.trim();
-            if (trimmedLine.startsWith('import ') && trimmedLine.includes('from')) {
+            if (
+              trimmedLine.startsWith('import ') &&
+              trimmedLine.includes('from')
+            ) {
               const normalizedImport = trimmedLine.replace(/\s+/g, ' ');
               if (imports.has(normalizedImport)) {
                 hasFixedImports = true;
@@ -473,22 +612,25 @@ const fixEntireCodebaseDuplicates = async () => {
             }
             return true;
           });
-          
+
           if (hasFixedImports) {
             writeFileSync(file, cleanedLines.join('\n'));
             fixedCount++;
             console.log(`   Fixed duplicate imports in ${file}`);
           }
         }
-        
+
         // Fix Python duplicate imports
         if (file.endsWith('.py')) {
           const imports = new Set();
           let hasFixedImports = false;
-          
+
           const cleanedLines = lines.filter(line => {
             const trimmedLine = line.trim();
-            if (trimmedLine.startsWith('import ') || trimmedLine.startsWith('from ')) {
+            if (
+              trimmedLine.startsWith('import ') ||
+              trimmedLine.startsWith('from ')
+            ) {
               if (imports.has(trimmedLine)) {
                 hasFixedImports = true;
                 return false; // Remove duplicate
@@ -497,7 +639,7 @@ const fixEntireCodebaseDuplicates = async () => {
             }
             return true;
           });
-          
+
           if (hasFixedImports) {
             writeFileSync(file, cleanedLines.join('\n'));
             fixedCount++;
@@ -508,14 +650,16 @@ const fixEntireCodebaseDuplicates = async () => {
         // Skip files that can't be processed
       }
     });
-    
+
     // Create comprehensive utility files for the entire codebase
     await createComprehensiveUtilities();
-    
   } catch (error) {
-    console.log('⚠️ Comprehensive duplicate fixing encountered issues:', error.message);
+    console.log(
+      '⚠️ Comprehensive duplicate fixing encountered issues:',
+      error.message
+    );
   }
-  
+
   return { fixed: fixedCount };
 };
 
