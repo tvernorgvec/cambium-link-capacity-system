@@ -113,6 +113,7 @@ export function AppProvider({ children }) {
             type: 'SET_SCHEDULED_TASKS',
             payload: mockScheduledTasks,
           });
+          dispatch({ type: 'SET_LOADING', payload: false });
         }
       } catch (error) {
         if (isMounted) {
@@ -121,12 +122,15 @@ export function AppProvider({ children }) {
       }
     };
 
-    loadInitialData();
+    // Only load data if we don't already have it
+    if (state.data.linkCapacity.length === 0 && !state.loading) {
+      loadInitialData();
+    }
 
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, []); // Empty dependency array - run only once on mount
 
   const value = {
     ...state,

@@ -127,6 +127,72 @@ const autoFixIssues = async () => {
         }).join('\n');
       }
       
+      // Check for dispatch calls without proper SET_LOADING handling
+      if (content.includes('dispatch') && content.includes('SET_LOADING') && content.includes('useEffect')) {
+        const lines = fixedContent.split('\n');
+        let inUseEffect = false;
+        let needsLoadingFix = false;
+        
+        for (let i = 0; i < lines.length; i++) {
+          const line = lines[i];
+          if (line.includes('useEffect')) {
+            inUseEffect = true;
+          }
+          if (inUseEffect && line.includes('dispatch') && line.includes('SET_LOADING')) {
+            // Check if there are multiple SET_LOADING calls without proper sequencing
+            const nextLines = lines.slice(i + 1, i + 20);
+            const hasAnotherDispatch = nextLines.some(nextLine => 
+              nextLine.includes('dispatch') && !nextLine.includes('SET_LOADING')
+            );
+            if (hasAnotherDispatch) {
+              needsLoadingFix = true;
+              break;
+            }
+          }
+          if (line.includes('}, [') && inUseEffect) {
+            inUseEffect = false;
+          }
+        }
+        
+        if (needsLoadingFix) {
+          // Add condition to prevent multiple data loading
+          if (content.includes('dispatch({ type: \'SET_LOADING\', payload: true });') && 
+              !content.includes('if (state.data.linkCapacity.length === 0')) {
+            fixedContent = fixedContent.replace(
+              /loadInitialData\(\);/g,
+              `// Only load data if we don't already have it
+    if (state.data.linkCapacity.length === 0 && !state.loading) {
+      loadInitialData();
+    }`
+            );
+            modified = true;
+            loopFixed++;
+          }
+        }
+      }
+      
+      // Check for missing SET_LOADING false calls
+      if (content.includes('SET_LOADING', true) && 
+          content.includes('dispatch') && 
+          !content.includes('SET_LOADING\', payload: false')) {
+        const lines = fixedContent.split('\n');
+        for (let i = 0; i < lines.length; i++) {
+          if (lines[i].includes('dispatch({ type: \'SET_LINK_CAPACITY\'') ||
+              lines[i].includes('dispatch({ type: \'SET_HISTORY\'') ||
+              lines[i].includes('dispatch({ type: \'SET_SCHEDULED_TASKS\'')) {
+            // Add SET_LOADING false after the last dispatch
+            if (i + 1 < lines.length && 
+                !lines.slice(i, i + 5).some(line => line.includes('SET_LOADING\', payload: false'))) {
+              lines.splice(i + 1, 0, '          dispatch({ type: \'SET_LOADING\', payload: false });');
+              modified = true;
+              loopFixed++;
+              break;
+            }
+          }
+        }
+        fixedContent = lines.join('\n');
+      }
+      
       if (modified) {
         writeFileSync(file, fixedContent);
       }

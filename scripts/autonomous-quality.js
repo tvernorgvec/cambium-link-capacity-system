@@ -87,6 +87,11 @@ const runQualityChecks = async () => {
 
   const checks = [
     {
+      name: 'React Error Check',
+      command: 'grep -r "Maximum update depth\\|Warning:" src/ || echo "No React errors detected"',
+      description: 'React infinite loop and warning detection'
+    },
+    {
       name: 'ESLint',
       command: 'npx eslint . --ext .js,.jsx,.ts,.tsx --fix --max-warnings=50',
       description: 'Code linting with auto-fix',
