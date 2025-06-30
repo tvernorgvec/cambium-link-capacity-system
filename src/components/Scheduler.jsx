@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { Play, Pause, Settings, Plus, Trash2 } from "lucide-react";
-import Card from "./Card";
-import Button from "./Button";
-import LoadingSpinner from "./LoadingSpinner";
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { Play, Pause, Settings, Plus, Trash2 } from 'lucide-react';
+import Card from './Card';
+import Button from './Button';
+import LoadingSpinner from './LoadingSpinner';
 
 const Scheduler = () => {
   const [accessPoints, setAccessPoints] = useState([]);
-  const [selectedAP, setSelectedAP] = useState("");
-  const [testType, setTestType] = useState("individual");
+  const [selectedAP, setSelectedAP] = useState('');
+  const [testType, setTestType] = useState('individual');
   const [scheduledTests, setScheduledTests] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isRunning, setIsRunning] = useState(false);
@@ -24,35 +24,35 @@ const Scheduler = () => {
       setAccessPoints([
         {
           id: 1,
-          name: "WestHill-AP1",
-          mac: "00:04:56:AA:BB:CC",
-          model: "450v",
-          ip: "192.168.1.100",
+          name: 'WestHill-AP1',
+          mac: '00:04:56:AA:BB:CC',
+          model: '450v',
+          ip: '192.168.1.100',
           online: true,
           smCount: 12,
         },
         {
           id: 2,
-          name: "EastTower-AP2",
-          mac: "00:04:56:DD:EE:FF",
-          model: "450m",
-          ip: "192.168.1.101",
+          name: 'EastTower-AP2',
+          mac: '00:04:56:DD:EE:FF',
+          model: '450m',
+          ip: '192.168.1.101',
           online: true,
           smCount: 8,
         },
         {
           id: 3,
-          name: "SouthSite-AP3",
-          mac: "00:04:56:11:22:33",
-          model: "450v",
-          ip: "192.168.1.102",
+          name: 'SouthSite-AP3',
+          mac: '00:04:56:11:22:33',
+          model: '450v',
+          ip: '192.168.1.102',
           online: false,
           smCount: 0,
         },
       ]);
       setLoading(false);
     } catch (error) {
-      console.error("Error fetching access points:", error);
+      console.error('Error fetching access points:', error);
       setLoading(false);
     }
   };
@@ -63,30 +63,30 @@ const Scheduler = () => {
       setScheduledTests([
         {
           id: 1,
-          apName: "WestHill-AP1",
-          apMac: "00:04:56:AA:BB:CC",
-          testType: "individual",
-          status: "queued",
-          scheduledAt: "2024-01-15T14:00:00Z",
+          apName: 'WestHill-AP1',
+          apMac: '00:04:56:AA:BB:CC',
+          testType: 'individual',
+          status: 'queued',
+          scheduledAt: '2024-01-15T14:00:00Z',
         },
         {
           id: 2,
-          apName: "EastTower-AP2",
-          apMac: "00:04:56:DD:EE:FF",
-          testType: "flood",
-          status: "running",
-          scheduledAt: "2024-01-15T13:30:00Z",
+          apName: 'EastTower-AP2',
+          apMac: '00:04:56:DD:EE:FF',
+          testType: 'flood',
+          status: 'running',
+          scheduledAt: '2024-01-15T13:30:00Z',
         },
       ]);
     } catch (error) {
-      console.error("Error fetching scheduled tests:", error);
+      console.error('Error fetching scheduled tests:', error);
     }
   };
 
   const handleScheduleTest = async () => {
     if (!selectedAP) return;
 
-    const ap = accessPoints.find((ap) => ap.mac === selectedAP);
+    const ap = accessPoints.find(ap => ap.mac === selectedAP);
     if (!ap) return;
 
     const newTest = {
@@ -94,32 +94,32 @@ const Scheduler = () => {
       apName: ap.name,
       apMac: ap.mac,
       testType,
-      status: "queued",
+      status: 'queued',
       scheduledAt: new Date().toISOString(),
     };
 
-    setScheduledTests((prev) => [...prev, newTest]);
-    setSelectedAP("");
+    setScheduledTests(prev => [...prev, newTest]);
+    setSelectedAP('');
   };
 
-  const handleDeleteTest = (testId) => {
-    setScheduledTests((prev) => prev.filter((test) => test.id !== testId));
+  const handleDeleteTest = testId => {
+    setScheduledTests(prev => prev.filter(test => test.id !== testId));
   };
 
-  const handleRunTest = async (testId) => {
+  const handleRunTest = async testId => {
     setIsRunning(true);
-    setScheduledTests((prev) =>
-      prev.map((test) =>
-        test.id === testId ? { ...test, status: "running" } : test,
-      ),
+    setScheduledTests(prev =>
+      prev.map(test =>
+        test.id === testId ? { ...test, status: 'running' } : test
+      )
     );
 
     // Simulate test execution
     setTimeout(() => {
-      setScheduledTests((prev) =>
-        prev.map((test) =>
-          test.id === testId ? { ...test, status: "success" } : test,
-        ),
+      setScheduledTests(prev =>
+        prev.map(test =>
+          test.id === testId ? { ...test, status: 'success' } : test
+        )
       );
       setIsRunning(false);
     }, 5000);
@@ -151,13 +151,13 @@ const Scheduler = () => {
               </label>
               <select
                 value={selectedAP}
-                onChange={(e) => setSelectedAP(e.target.value)}
+                onChange={e => setSelectedAP(e.target.value)}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="">Select Access Point</option>
                 {accessPoints
-                  .filter((ap) => ap.online)
-                  .map((ap) => (
+                  .filter(ap => ap.online)
+                  .map(ap => (
                     <option key={ap.mac} value={ap.mac}>
                       {ap.name} ({ap.model}) - {ap.smCount} SMs
                     </option>
@@ -170,7 +170,7 @@ const Scheduler = () => {
               </label>
               <select
                 value={testType}
-                onChange={(e) => setTestType(e.target.value)}
+                onChange={e => setTestType(e.target.value)}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="individual">Individual SM</option>
@@ -216,7 +216,7 @@ const Scheduler = () => {
             </div>
           ) : (
             <div className="space-y-3">
-              {scheduledTests.map((test) => (
+              {scheduledTests.map(test => (
                 <div
                   key={test.id}
                   className="flex items-center justify-between p-4 bg-gray-50 rounded-lg"
@@ -232,26 +232,26 @@ const Scheduler = () => {
                       <div>
                         <span
                           className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                            test.testType === "flood"
-                              ? "bg-purple-100 text-purple-800"
-                              : "bg-blue-100 text-blue-800"
+                            test.testType === 'flood'
+                              ? 'bg-purple-100 text-purple-800'
+                              : 'bg-blue-100 text-blue-800'
                           }`}
                         >
-                          {test.testType === "flood"
-                            ? "Flood Mode"
-                            : "Individual"}
+                          {test.testType === 'flood'
+                            ? 'Flood Mode'
+                            : 'Individual'}
                         </span>
                       </div>
                       <div>
                         <span
                           className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                            test.status === "running"
-                              ? "bg-yellow-100 text-yellow-800"
-                              : test.status === "success"
-                                ? "bg-green-100 text-green-800"
-                                : test.status === "failed"
-                                  ? "bg-red-100 text-red-800"
-                                  : "bg-gray-100 text-gray-800"
+                            test.status === 'running'
+                              ? 'bg-yellow-100 text-yellow-800'
+                              : test.status === 'success'
+                                ? 'bg-green-100 text-green-800'
+                                : test.status === 'failed'
+                                  ? 'bg-red-100 text-red-800'
+                                  : 'bg-gray-100 text-gray-800'
                           }`}
                         >
                           {test.status.charAt(0).toUpperCase() +
@@ -264,7 +264,7 @@ const Scheduler = () => {
                     </p>
                   </div>
                   <div className="flex items-center space-x-2">
-                    {test.status === "queued" && (
+                    {test.status === 'queued' && (
                       <Button
                         size="sm"
                         onClick={() => handleRunTest(test.id)}
@@ -273,7 +273,7 @@ const Scheduler = () => {
                         <Play className="w-4 h-4" />
                       </Button>
                     )}
-                    {test.status === "running" && (
+                    {test.status === 'running' && (
                       <Button size="sm" variant="outline" disabled>
                         <Pause className="w-4 h-4" />
                       </Button>
@@ -282,7 +282,7 @@ const Scheduler = () => {
                       size="sm"
                       variant="outline"
                       onClick={() => handleDeleteTest(test.id)}
-                      disabled={test.status === "running"}
+                      disabled={test.status === 'running'}
                     >
                       <Trash2 className="w-4 h-4" />
                     </Button>

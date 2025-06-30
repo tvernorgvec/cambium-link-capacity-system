@@ -1,17 +1,17 @@
-import React from "react";
+import React from 'react';
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Navigate,
-} from "react-router-dom";
-import { AppProvider } from "./context/AppContext";
-import ErrorBoundary from "./components/ErrorBoundary";
-import Layout from "./components/Layout";
-import Dashboard from "./components/Dashboard";
-import Scheduler from "./components/Scheduler";
-import History from "./components/History";
-import Settings from "./components/Settings";
+} from 'react-router-dom';
+import { AppProvider } from './context/AppContext';
+import ErrorBoundary from './components/ErrorBoundary';
+import Layout from './components/Layout';
+import Dashboard from './components/Dashboard';
+import Scheduler from './components/Scheduler';
+import History from './components/History';
+import Settings from './components/Settings';
 
 const App = () => {
   return (

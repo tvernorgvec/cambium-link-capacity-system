@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { Search, Download, Trash2, Eye } from "lucide-react";
-import Card from "./Card";
-import Button from "./Button";
-import StatusBadge from "./StatusBadge";
-import LoadingSpinner from "./LoadingSpinner";
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { Search, Download, Trash2, Eye } from 'lucide-react';
+import Card from './Card';
+import Button from './Button';
+import StatusBadge from './StatusBadge';
+import LoadingSpinner from './LoadingSpinner';
 
 const History = () => {
   const [testHistory, setTestHistory] = useState([]);
   const [filteredHistory, setFilteredHistory] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [statusFilter, setStatusFilter] = useState("all");
-  const [dateFilter, setDateFilter] = useState("all");
+  const [searchTerm, setSearchTerm] = useState('');
+  const [statusFilter, setStatusFilter] = useState('all');
+  const [dateFilter, setDateFilter] = useState('all');
 
   useEffect(() => {
     fetchTestHistory();
@@ -28,48 +28,48 @@ const History = () => {
       const mockHistory = [
         {
           id: 1,
-          apName: "WestHill-AP1",
-          apMac: "00:04:56:AA:BB:CC",
-          smMac: "00:04:56:11:22:33",
-          testType: "individual",
-          status: "success",
+          apName: 'WestHill-AP1',
+          apMac: '00:04:56:AA:BB:CC',
+          smMac: '00:04:56:11:22:33',
+          testType: 'individual',
+          status: 'success',
           uplinkMbps: 63.4,
           downlinkMbps: 128.2,
           snrDl: 26.1,
           snrUl: 24.8,
-          startTime: "2024-01-15T10:30:00Z",
-          endTime: "2024-01-15T10:32:15Z",
+          startTime: '2024-01-15T10:30:00Z',
+          endTime: '2024-01-15T10:32:15Z',
           duration: 135,
         },
         {
           id: 2,
-          apName: "EastTower-AP2",
-          apMac: "00:04:56:DD:EE:FF",
-          smMac: "00:04:56:44:55:66",
-          testType: "flood",
-          status: "failed",
+          apName: 'EastTower-AP2',
+          apMac: '00:04:56:DD:EE:FF',
+          smMac: '00:04:56:44:55:66',
+          testType: 'flood',
+          status: 'failed',
           uplinkMbps: null,
           downlinkMbps: null,
           snrDl: null,
           snrUl: null,
-          startTime: "2024-01-15T09:15:00Z",
-          endTime: "2024-01-15T09:16:30Z",
+          startTime: '2024-01-15T09:15:00Z',
+          endTime: '2024-01-15T09:16:30Z',
           duration: 90,
-          errorMessage: "SNMP timeout",
+          errorMessage: 'SNMP timeout',
         },
         {
           id: 3,
-          apName: "SouthSite-AP3",
-          apMac: "00:04:56:11:22:33",
-          smMac: "00:04:56:77:88:99",
-          testType: "individual",
-          status: "success",
+          apName: 'SouthSite-AP3',
+          apMac: '00:04:56:11:22:33',
+          smMac: '00:04:56:77:88:99',
+          testType: 'individual',
+          status: 'success',
           uplinkMbps: 45.2,
           downlinkMbps: 89.7,
           snrDl: 22.3,
           snrUl: 21.1,
-          startTime: "2024-01-14T16:45:00Z",
-          endTime: "2024-01-14T16:47:20Z",
+          startTime: '2024-01-14T16:45:00Z',
+          endTime: '2024-01-14T16:47:20Z',
           duration: 140,
         },
       ];
@@ -77,7 +77,7 @@ const History = () => {
       setTestHistory(mockHistory);
       setLoading(false);
     } catch (error) {
-      console.error("Error fetching test history:", error);
+      console.error('Error fetching test history:', error);
       setLoading(false);
     }
   };
@@ -88,40 +88,40 @@ const History = () => {
     // Search filter
     if (searchTerm) {
       filtered = filtered.filter(
-        (test) =>
+        test =>
           test.apName.toLowerCase().includes(searchTerm.toLowerCase()) ||
           test.apMac.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          test.smMac.toLowerCase().includes(searchTerm.toLowerCase()),
+          test.smMac.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
 
     // Status filter
-    if (statusFilter !== "all") {
-      filtered = filtered.filter((test) => test.status === statusFilter);
+    if (statusFilter !== 'all') {
+      filtered = filtered.filter(test => test.status === statusFilter);
     }
 
     // Date filter
-    if (dateFilter !== "all") {
+    if (dateFilter !== 'all') {
       const now = new Date();
       const filterDate = new Date();
 
       switch (dateFilter) {
-        case "today":
+        case 'today':
           filterDate.setHours(0, 0, 0, 0);
           break;
-        case "week":
+        case 'week':
           filterDate.setDate(now.getDate() - 7);
           break;
-        case "month":
+        case 'month':
           filterDate.setMonth(now.getMonth() - 1);
           break;
         default:
           break;
       }
 
-      if (dateFilter !== "all") {
+      if (dateFilter !== 'all') {
         filtered = filtered.filter(
-          (test) => new Date(test.startTime) >= filterDate,
+          test => new Date(test.startTime) >= filterDate
         );
       }
     }
@@ -132,40 +132,40 @@ const History = () => {
   const handleExport = () => {
     const csvContent = [
       [
-        "AP Name",
-        "AP MAC",
-        "SM MAC",
-        "Test Type",
-        "Status",
-        "Uplink (Mbps)",
-        "Downlink (Mbps)",
-        "SNR DL",
-        "SNR UL",
-        "Start Time",
-        "Duration (s)",
-      ].join(","),
-      ...filteredHistory.map((test) =>
+        'AP Name',
+        'AP MAC',
+        'SM MAC',
+        'Test Type',
+        'Status',
+        'Uplink (Mbps)',
+        'Downlink (Mbps)',
+        'SNR DL',
+        'SNR UL',
+        'Start Time',
+        'Duration (s)',
+      ].join(','),
+      ...filteredHistory.map(test =>
         [
           test.apName,
           test.apMac,
           test.smMac,
           test.testType,
           test.status,
-          test.uplinkMbps || "N/A",
-          test.downlinkMbps || "N/A",
-          test.snrDl || "N/A",
-          test.snrUl || "N/A",
+          test.uplinkMbps || 'N/A',
+          test.downlinkMbps || 'N/A',
+          test.snrDl || 'N/A',
+          test.snrUl || 'N/A',
           test.startTime,
           test.duration,
-        ].join(","),
+        ].join(',')
       ),
-    ].join("\n");
+    ].join('\n');
 
-    const blob = new Blob([csvContent], { type: "text/csv" });
+    const blob = new Blob([csvContent], { type: 'text/csv' });
     const url = window.URL.createObjectURL(blob);
-    const a = document.createElement("a");
+    const a = document.createElement('a');
     a.href = url;
-    a.download = `link-test-history-${new Date().toISOString().split("T")[0]}.csv`;
+    a.download = `link-test-history-${new Date().toISOString().split('T')[0]}.csv`;
     a.click();
     window.URL.revokeObjectURL(url);
   };
@@ -196,7 +196,7 @@ const History = () => {
                 <input
                   type="text"
                   value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
+                  onChange={e => setSearchTerm(e.target.value)}
                   placeholder="Search AP name, MAC..."
                   className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
@@ -208,7 +208,7 @@ const History = () => {
               </label>
               <select
                 value={statusFilter}
-                onChange={(e) => setStatusFilter(e.target.value)}
+                onChange={e => setStatusFilter(e.target.value)}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="all">All Status</option>
@@ -223,7 +223,7 @@ const History = () => {
               </label>
               <select
                 value={dateFilter}
-                onChange={(e) => setDateFilter(e.target.value)}
+                onChange={e => setDateFilter(e.target.value)}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="all">All Time</option>
@@ -295,7 +295,7 @@ const History = () => {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                  {filteredHistory.map((test) => (
+                  {filteredHistory.map(test => (
                     <tr key={test.id} className="hover:bg-gray-50">
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div>
@@ -313,12 +313,12 @@ const History = () => {
                       <td className="px-6 py-4 whitespace-nowrap">
                         <span
                           className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                            test.testType === "flood"
-                              ? "bg-purple-100 text-purple-800"
-                              : "bg-blue-100 text-blue-800"
+                            test.testType === 'flood'
+                              ? 'bg-purple-100 text-purple-800'
+                              : 'bg-blue-100 text-blue-800'
                           }`}
                         >
-                          {test.testType === "flood" ? "Flood" : "Individual"}
+                          {test.testType === 'flood' ? 'Flood' : 'Individual'}
                         </span>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">

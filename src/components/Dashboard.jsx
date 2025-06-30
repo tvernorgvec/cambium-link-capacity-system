@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { motion } from "framer-motion";
+import React, { useEffect } from 'react';
+import { motion } from 'framer-motion';
 import {
   Activity,
   TrendingUp,
@@ -7,11 +7,11 @@ import {
   Wifi,
   Clock,
   BarChart3,
-} from "lucide-react";
-import Card from "./Card";
-import StatusBadge from "./StatusBadge";
-import LoadingSpinner from "./LoadingSpinner";
-import { useApp } from "../context/AppContext";
+} from 'lucide-react';
+import Card from './Card';
+import StatusBadge from './StatusBadge';
+import LoadingSpinner from './LoadingSpinner';
+import { useApp } from '../context/AppContext';
 
 const Dashboard = () => {
   const { state, actions } = useApp();

@@ -1,4 +1,3 @@
-
 // Link-related types
 export const LinkStatus = {
   ACTIVE: 'active',
@@ -108,46 +107,46 @@ export const createUser = ({
 });
 
 // Validation helpers
-export const validateLink = (link) => {
+export const validateLink = link => {
   const errors = {};
-  
+
   if (!link.name?.trim()) {
     errors.name = 'Link name is required';
   }
-  
+
   if (!link.sourceLocation?.trim()) {
     errors.sourceLocation = 'Source location is required';
   }
-  
+
   if (!link.destinationLocation?.trim()) {
     errors.destinationLocation = 'Destination location is required';
   }
-  
+
   if (!link.bandwidth || link.bandwidth <= 0) {
     errors.bandwidth = 'Bandwidth must be greater than 0';
   }
-  
+
   return {
     isValid: Object.keys(errors).length === 0,
     errors,
   };
 };
 
-export const validateTest = (test) => {
+export const validateTest = test => {
   const errors = {};
-  
+
   if (!test.linkId) {
     errors.linkId = 'Link ID is required';
   }
-  
+
   if (!Object.values(TestType).includes(test.type)) {
     errors.type = 'Invalid test type';
   }
-  
+
   if (test.scheduledAt && new Date(test.scheduledAt) < new Date()) {
     errors.scheduledAt = 'Scheduled time must be in the future';
   }
-  
+
   return {
     isValid: Object.keys(errors).length === 0,
     errors,

@@ -1,6 +1,6 @@
-var __defProp = Object.defineProperty;
-var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
+const __defProp = Object.defineProperty;
+const __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+const __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
 (function polyfill() {
   const relList = document.createElement("link").relList;
   if (relList && relList.supports && relList.supports("modulepreload")) {
@@ -38,7 +38,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     fetch(link.href, fetchOpts);
   }
 })();
-var commonjsGlobal = typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};
+const commonjsGlobal = typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};
 function getDefaultExportFromCjs(x) {
   return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, "default") ? x["default"] : x;
 }
@@ -50,7 +50,7 @@ function getDefaultExportFromNamespaceIfNotNamed(n) {
 }
 function getAugmentedNamespace(n) {
   if (n.__esModule) return n;
-  var f = n.default;
+  const f = n.default;
   if (typeof f == "function") {
     var a = function a2() {
       if (this instanceof a2) {
@@ -62,7 +62,7 @@ function getAugmentedNamespace(n) {
   } else a = {};
   Object.defineProperty(a, "__esModule", { value: true });
   Object.keys(n).forEach(function(k) {
-    var d = Object.getOwnPropertyDescriptor(n, k);
+    const d = Object.getOwnPropertyDescriptor(n, k);
     Object.defineProperty(a, k, d.get ? d : {
       enumerable: true,
       get: function() {
@@ -72,22 +72,22 @@ function getAugmentedNamespace(n) {
   });
   return a;
 }
-var jsxRuntime$2 = { exports: {} };
-var reactJsxRuntime_production_min = {};
-var react$1 = { exports: {} };
-var react_production_min = {};
-var hasRequiredReact_production_min;
+const jsxRuntime$2 = { exports: {} };
+const reactJsxRuntime_production_min = {};
+const react$1 = { exports: {} };
+const react_production_min = {};
+let hasRequiredReact_production_min;
 function requireReact_production_min() {
   if (hasRequiredReact_production_min) return react_production_min;
   hasRequiredReact_production_min = 1;
   "use strict";
-  var l = Symbol.for("react.element"), n = Symbol.for("react.portal"), p = Symbol.for("react.fragment"), q = Symbol.for("react.strict_mode"), r = Symbol.for("react.profiler"), t = Symbol.for("react.provider"), u = Symbol.for("react.context"), v = Symbol.for("react.forward_ref"), w = Symbol.for("react.suspense"), x = Symbol.for("react.memo"), y = Symbol.for("react.lazy"), z = Symbol.iterator;
+  const l = Symbol.for("react.element"), n = Symbol.for("react.portal"), p = Symbol.for("react.fragment"), q = Symbol.for("react.strict_mode"), r = Symbol.for("react.profiler"), t = Symbol.for("react.provider"), u = Symbol.for("react.context"), v = Symbol.for("react.forward_ref"), w = Symbol.for("react.suspense"), x = Symbol.for("react.memo"), y = Symbol.for("react.lazy"), z = Symbol.iterator;
   function A(a) {
     if (null === a || "object" !== typeof a) return null;
     a = z && a[z] || a["@@iterator"];
     return "function" === typeof a ? a : null;
   }
-  var B = { isMounted: function() {
+  const B = { isMounted: function() {
     return false;
   }, enqueueForceUpdate: function() {
   }, enqueueReplaceState: function() {
@@ -116,15 +116,15 @@ function requireReact_production_min() {
     this.refs = D;
     this.updater = e || B;
   }
-  var H = G.prototype = new F();
+  const H = G.prototype = new F();
   H.constructor = G;
   C(H, E.prototype);
   H.isPureReactComponent = true;
-  var I = Array.isArray, J = Object.prototype.hasOwnProperty, K = { current: null }, L = { key: true, ref: true, __self: true, __source: true };
+  const I = Array.isArray, J = Object.prototype.hasOwnProperty, K = { current: null }, L = { key: true, ref: true, __self: true, __source: true };
   function M(a, b, e) {
-    var d, c = {}, k = null, h = null;
+    let d, c = {}, k = null, h = null;
     if (null != b) for (d in void 0 !== b.ref && (h = b.ref), void 0 !== b.key && (k = "" + b.key), b) J.call(b, d) && !L.hasOwnProperty(d) && (c[d] = b[d]);
-    var g = arguments.length - 2;
+    let g = arguments.length - 2;
     if (1 === g) c.children = e;
     else if (1 < g) {
       for (var f = Array(g), m2 = 0; m2 < g; m2++) f[m2] = arguments[m2 + 2];
@@ -140,19 +140,19 @@ function requireReact_production_min() {
     return "object" === typeof a && null !== a && a.$$typeof === l;
   }
   function escape(a) {
-    var b = { "=": "=0", ":": "=2" };
+    const b = { "=": "=0", ":": "=2" };
     return "$" + a.replace(/[=:]/g, function(a2) {
       return b[a2];
     });
   }
-  var P = /\/+/g;
+  const P = /\/+/g;
   function Q(a, b) {
     return "object" === typeof a && null !== a && null != a.key ? escape("" + a.key) : b.toString(36);
   }
   function R(a, b, e, d, c) {
-    var k = typeof a;
+    let k = typeof a;
     if ("undefined" === k || "boolean" === k) a = null;
-    var h = false;
+    let h = false;
     if (null === a) h = true;
     else switch (k) {
       case "string":
@@ -182,7 +182,7 @@ function requireReact_production_min() {
   }
   function S(a, b, e) {
     if (null == a) return a;
-    var d = [], c = 0;
+    let d = [], c = 0;
     R(a, d, "", "", function(a2) {
       return b.call(e, a2, c++);
     });
@@ -190,7 +190,7 @@ function requireReact_production_min() {
   }
   function T(a) {
     if (-1 === a._status) {
-      var b = a._result;
+      let b = a._result;
       b = b();
       b.then(function(b2) {
         if (0 === a._status || -1 === a._status) a._status = 1, a._result = b2;
@@ -202,7 +202,7 @@ function requireReact_production_min() {
     if (1 === a._status) return a._result.default;
     throw a._result;
   }
-  var U = { current: null }, V = { transition: null }, W = { ReactCurrentDispatcher: U, ReactCurrentBatchConfig: V, ReactCurrentOwner: K };
+  const U = { current: null }, V = { transition: null }, W = { ReactCurrentDispatcher: U, ReactCurrentBatchConfig: V, ReactCurrentOwner: K };
   function X2() {
     throw Error("act(...) is not supported in production builds of React.");
   }
@@ -211,7 +211,7 @@ function requireReact_production_min() {
       b.apply(this, arguments);
     }, e);
   }, count: function(a) {
-    var b = 0;
+    let b = 0;
     S(a, function() {
       b++;
     });
@@ -234,7 +234,7 @@ function requireReact_production_min() {
   react_production_min.act = X2;
   react_production_min.cloneElement = function(a, b, e) {
     if (null === a || void 0 === a) throw Error("React.cloneElement(...): The argument must be a React element, but you passed " + a + ".");
-    var d = C({}, a.props), c = a.key, k = a.ref, h = a._owner;
+    let d = C({}, a.props), c = a.key, k = a.ref, h = a._owner;
     if (null != b) {
       void 0 !== b.ref && (k = b.ref, h = K.current);
       void 0 !== b.key && (c = "" + b.key);
@@ -245,7 +245,7 @@ function requireReact_production_min() {
     if (1 === f) d.children = e;
     else if (1 < f) {
       g = Array(f);
-      for (var m2 = 0; m2 < f; m2++) g[m2] = arguments[m2 + 2];
+      for (let m2 = 0; m2 < f; m2++) g[m2] = arguments[m2 + 2];
       d.children = g;
     }
     return { $$typeof: l, type: a.type, key: c, ref: k, props: d, _owner: h };
@@ -257,7 +257,7 @@ function requireReact_production_min() {
   };
   react_production_min.createElement = M;
   react_production_min.createFactory = function(a) {
-    var b = M.bind(null, a);
+    const b = M.bind(null, a);
     b.type = a;
     return b;
   };
@@ -275,7 +275,7 @@ function requireReact_production_min() {
     return { $$typeof: x, type: a, compare: void 0 === b ? null : b };
   };
   react_production_min.startTransition = function(a) {
-    var b = V.transition;
+    const b = V.transition;
     V.transition = {};
     try {
       a();
@@ -331,8 +331,8 @@ function requireReact_production_min() {
   react_production_min.version = "18.3.1";
   return react_production_min;
 }
-var react = react$1.exports;
-var hasRequiredReact;
+const react = react$1.exports;
+let hasRequiredReact;
 function requireReact() {
   if (hasRequiredReact) return react$1.exports;
   hasRequiredReact = 1;
@@ -344,14 +344,14 @@ function requireReact() {
   }
   return react$1.exports;
 }
-var hasRequiredReactJsxRuntime_production_min;
+let hasRequiredReactJsxRuntime_production_min;
 function requireReactJsxRuntime_production_min() {
   if (hasRequiredReactJsxRuntime_production_min) return reactJsxRuntime_production_min;
   hasRequiredReactJsxRuntime_production_min = 1;
   "use strict";
-  var f = requireReact(), k = Symbol.for("react.element"), l = Symbol.for("react.fragment"), m2 = Object.prototype.hasOwnProperty, n = f.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner, p = { key: true, ref: true, __self: true, __source: true };
+  const f = requireReact(), k = Symbol.for("react.element"), l = Symbol.for("react.fragment"), m2 = Object.prototype.hasOwnProperty, n = f.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner, p = { key: true, ref: true, __self: true, __source: true };
   function q(c, a, g) {
-    var b, d = {}, e = null, h = null;
+    let b, d = {}, e = null, h = null;
     void 0 !== g && (e = "" + g);
     void 0 !== a.key && (e = "" + a.key);
     void 0 !== a.ref && (h = a.ref);
@@ -364,8 +364,8 @@ function requireReactJsxRuntime_production_min() {
   reactJsxRuntime_production_min.jsxs = q;
   return reactJsxRuntime_production_min;
 }
-var jsxRuntime$1 = jsxRuntime$2.exports;
-var hasRequiredJsxRuntime;
+const jsxRuntime$1 = jsxRuntime$2.exports;
+let hasRequiredJsxRuntime;
 function requireJsxRuntime() {
   if (hasRequiredJsxRuntime) return jsxRuntime$2.exports;
   hasRequiredJsxRuntime = 1;
@@ -377,26 +377,26 @@ function requireJsxRuntime() {
   }
   return jsxRuntime$2.exports;
 }
-var jsxRuntimeExports = requireJsxRuntime();
+const jsxRuntimeExports = requireJsxRuntime();
 const jsxRuntime = /* @__PURE__ */ getDefaultExportFromCjs(jsxRuntimeExports);
-var reactExports = requireReact();
+const reactExports = requireReact();
 const index$3 = /* @__PURE__ */ getDefaultExportFromCjs(reactExports);
-var client$1 = {};
-var reactDom$1 = { exports: {} };
-var reactDom_production_min = {};
-var scheduler$1 = { exports: {} };
-var scheduler_production_min = {};
-var hasRequiredScheduler_production_min;
+const client$1 = {};
+const reactDom$1 = { exports: {} };
+const reactDom_production_min = {};
+const scheduler$1 = { exports: {} };
+const scheduler_production_min = {};
+let hasRequiredScheduler_production_min;
 function requireScheduler_production_min() {
   if (hasRequiredScheduler_production_min) return scheduler_production_min;
   hasRequiredScheduler_production_min = 1;
   (function(exports) {
     "use strict";
     function f(a, b) {
-      var c = a.length;
+      let c = a.length;
       a.push(b);
       a: for (; 0 < c; ) {
-        var d = c - 1 >>> 1, e = a[d];
+        const d = c - 1 >>> 1, e = a[d];
         if (0 < g(e, b)) a[d] = b, a[c] = e, c = d;
         else break a;
       }
@@ -406,11 +406,11 @@ function requireScheduler_production_min() {
     }
     function k(a) {
       if (0 === a.length) return null;
-      var b = a[0], c = a.pop();
+      const b = a[0], c = a.pop();
       if (c !== b) {
         a[0] = c;
-        a: for (var d = 0, e = a.length, w = e >>> 1; d < w; ) {
-          var m2 = 2 * (d + 1) - 1, C = a[m2], n = m2 + 1, x = a[n];
+        a: for (let d = 0, e = a.length, w = e >>> 1; d < w; ) {
+          const m2 = 2 * (d + 1) - 1, C = a[m2], n = m2 + 1, x = a[n];
           if (0 > g(C, c)) n < e && 0 > g(x, C) ? (a[d] = x, a[n] = c, d = n) : (a[d] = C, a[m2] = c, d = m2);
           else if (n < e && 0 > g(x, c)) a[d] = x, a[n] = c, d = n;
           else break a;
@@ -419,24 +419,24 @@ function requireScheduler_production_min() {
       return b;
     }
     function g(a, b) {
-      var c = a.sortIndex - b.sortIndex;
+      const c = a.sortIndex - b.sortIndex;
       return 0 !== c ? c : a.id - b.id;
     }
     if ("object" === typeof performance && "function" === typeof performance.now) {
-      var l = performance;
+      const l = performance;
       exports.unstable_now = function() {
         return l.now();
       };
     } else {
-      var p = Date, q = p.now();
+      const p = Date, q = p.now();
       exports.unstable_now = function() {
         return p.now() - q;
       };
     }
-    var r = [], t = [], u = 1, v = null, y = 3, z = false, A = false, B = false, D = "function" === typeof setTimeout ? setTimeout : null, E = "function" === typeof clearTimeout ? clearTimeout : null, F = "undefined" !== typeof setImmediate ? setImmediate : null;
+    let r = [], t = [], u = 1, v = null, y = 3, z = false, A = false, B = false, D = "function" === typeof setTimeout ? setTimeout : null, E = "function" === typeof clearTimeout ? clearTimeout : null, F = "undefined" !== typeof setImmediate ? setImmediate : null;
     "undefined" !== typeof navigator && void 0 !== navigator.scheduling && void 0 !== navigator.scheduling.isInputPending && navigator.scheduling.isInputPending.bind(navigator.scheduling);
     function G(a) {
-      for (var b = h(t); null !== b; ) {
+      for (let b = h(t); null !== b; ) {
         if (null === b.callback) k(t);
         else if (b.startTime <= a) k(t), b.sortIndex = b.expirationTime, f(r, b);
         else break;
@@ -448,7 +448,7 @@ function requireScheduler_production_min() {
       G(a);
       if (!A) if (null !== h(r)) A = true, I(J);
       else {
-        var b = h(t);
+        const b = h(t);
         null !== b && K(H, b.startTime - a);
       }
     }
@@ -456,15 +456,15 @@ function requireScheduler_production_min() {
       A = false;
       B && (B = false, E(L), L = -1);
       z = true;
-      var c = y;
+      const c = y;
       try {
         G(b);
         for (v = h(r); null !== v && (!(v.expirationTime > b) || a && !M()); ) {
-          var d = v.callback;
+          const d = v.callback;
           if ("function" === typeof d) {
             v.callback = null;
             y = v.priorityLevel;
-            var e = d(v.expirationTime <= b);
+            const e = d(v.expirationTime <= b);
             b = exports.unstable_now();
             "function" === typeof e ? v.callback = e : v === h(r) && k(r);
             G(b);
@@ -473,7 +473,7 @@ function requireScheduler_production_min() {
         }
         if (null !== v) var w = true;
         else {
-          var m2 = h(t);
+          const m2 = h(t);
           null !== m2 && K(H, m2.startTime - b);
           w = false;
         }
@@ -488,9 +488,9 @@ function requireScheduler_production_min() {
     }
     function R() {
       if (null !== O) {
-        var a = exports.unstable_now();
+        const a = exports.unstable_now();
         Q = a;
-        var b = true;
+        let b = true;
         try {
           b = O(true, a);
         } finally {
@@ -498,12 +498,12 @@ function requireScheduler_production_min() {
         }
       } else N = false;
     }
-    var S;
+    let S;
     if ("function" === typeof F) S = function() {
       F(R);
     };
     else if ("undefined" !== typeof MessageChannel) {
-      var T = new MessageChannel(), U = T.port2;
+      const T = new MessageChannel(), U = T.port2;
       T.port1.onmessage = R;
       S = function() {
         U.postMessage(null);
@@ -551,7 +551,7 @@ function requireScheduler_production_min() {
         default:
           b = y;
       }
-      var c = y;
+      const c = y;
       y = b;
       try {
         return a();
@@ -574,7 +574,7 @@ function requireScheduler_production_min() {
         default:
           a = 3;
       }
-      var c = y;
+      const c = y;
       y = a;
       try {
         return b();
@@ -583,7 +583,7 @@ function requireScheduler_production_min() {
       }
     };
     exports.unstable_scheduleCallback = function(a, b, c) {
-      var d = exports.unstable_now();
+      const d = exports.unstable_now();
       "object" === typeof c && null !== c ? (c = c.delay, c = "number" === typeof c && 0 < c ? d + c : d) : c = d;
       switch (a) {
         case 1:
@@ -608,9 +608,9 @@ function requireScheduler_production_min() {
     };
     exports.unstable_shouldYield = M;
     exports.unstable_wrapCallback = function(a) {
-      var b = y;
+      const b = y;
       return function() {
-        var c = y;
+        const c = y;
         y = b;
         try {
           return a.apply(this, arguments);
@@ -622,8 +622,8 @@ function requireScheduler_production_min() {
   })(scheduler_production_min);
   return scheduler_production_min;
 }
-var scheduler = scheduler$1.exports;
-var hasRequiredScheduler;
+const scheduler = scheduler$1.exports;
+let hasRequiredScheduler;
 function requireScheduler() {
   if (hasRequiredScheduler) return scheduler$1.exports;
   hasRequiredScheduler = 1;
@@ -635,17 +635,17 @@ function requireScheduler() {
   }
   return scheduler$1.exports;
 }
-var hasRequiredReactDom_production_min;
+let hasRequiredReactDom_production_min;
 function requireReactDom_production_min() {
   if (hasRequiredReactDom_production_min) return reactDom_production_min;
   hasRequiredReactDom_production_min = 1;
   "use strict";
-  var aa = requireReact(), ca = requireScheduler();
+  const aa = requireReact(), ca = requireScheduler();
   function p(a) {
     for (var b = "https://reactjs.org/docs/error-decoder.html?invariant=" + a, c = 1; c < arguments.length; c++) b += "&args[]=" + encodeURIComponent(arguments[c]);
     return "Minified React error #" + a + "; visit " + b + " for the full message or use the non-minified dev environment for full errors and additional helpful warnings.";
   }
-  var da = /* @__PURE__ */ new Set(), ea = {};
+  const da = /* @__PURE__ */ new Set(), ea = {};
   function fa(a, b) {
     ha(a, b);
     ha(a + "Capture", b);
@@ -654,7 +654,7 @@ function requireReactDom_production_min() {
     ea[a] = b;
     for (a = 0; a < b.length; a++) da.add(b[a]);
   }
-  var ia = !("undefined" === typeof window || "undefined" === typeof window.document || "undefined" === typeof window.document.createElement), ja = Object.prototype.hasOwnProperty, ka = /^[:A-Z_a-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD][:A-Z_a-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD\-.0-9\u00B7\u0300-\u036F\u203F-\u2040]*$/, la = {}, ma = {};
+  const ia = !("undefined" === typeof window || "undefined" === typeof window.document || "undefined" === typeof window.document.createElement), ja = Object.prototype.hasOwnProperty, ka = /^[:A-Z_a-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD][:A-Z_a-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD\-.0-9\u00B7\u0300-\u036F\u203F-\u2040]*$/, la = {}, ma = {};
   function oa(a) {
     if (ja.call(ma, a)) return true;
     if (ja.call(la, a)) return false;
@@ -702,12 +702,12 @@ function requireReactDom_production_min() {
     this.sanitizeURL = f;
     this.removeEmptyString = g;
   }
-  var z = {};
+  const z = {};
   "children dangerouslySetInnerHTML defaultValue defaultChecked innerHTML suppressContentEditableWarning suppressHydrationWarning style".split(" ").forEach(function(a) {
     z[a] = new v(a, 0, false, a, null, false, false);
   });
   [["acceptCharset", "accept-charset"], ["className", "class"], ["htmlFor", "for"], ["httpEquiv", "http-equiv"]].forEach(function(a) {
-    var b = a[0];
+    const b = a[0];
     z[b] = new v(b, 1, false, a[1], null, false, false);
   });
   ["contentEditable", "draggable", "spellCheck", "value"].forEach(function(a) {
@@ -731,23 +731,23 @@ function requireReactDom_production_min() {
   ["rowSpan", "start"].forEach(function(a) {
     z[a] = new v(a, 5, false, a.toLowerCase(), null, false, false);
   });
-  var ra = /[\-:]([a-z])/g;
+  const ra = /[\-:]([a-z])/g;
   function sa(a) {
     return a[1].toUpperCase();
   }
   "accent-height alignment-baseline arabic-form baseline-shift cap-height clip-path clip-rule color-interpolation color-interpolation-filters color-profile color-rendering dominant-baseline enable-background fill-opacity fill-rule flood-color flood-opacity font-family font-size font-size-adjust font-stretch font-style font-variant font-weight glyph-name glyph-orientation-horizontal glyph-orientation-vertical horiz-adv-x horiz-origin-x image-rendering letter-spacing lighting-color marker-end marker-mid marker-start overline-position overline-thickness paint-order panose-1 pointer-events rendering-intent shape-rendering stop-color stop-opacity strikethrough-position strikethrough-thickness stroke-dasharray stroke-dashoffset stroke-linecap stroke-linejoin stroke-miterlimit stroke-opacity stroke-width text-anchor text-decoration text-rendering underline-position underline-thickness unicode-bidi unicode-range units-per-em v-alphabetic v-hanging v-ideographic v-mathematical vector-effect vert-adv-y vert-origin-x vert-origin-y word-spacing writing-mode xmlns:xlink x-height".split(" ").forEach(function(a) {
-    var b = a.replace(
+    const b = a.replace(
       ra,
       sa
     );
     z[b] = new v(b, 1, false, a, null, false, false);
   });
   "xlink:actuate xlink:arcrole xlink:role xlink:show xlink:title xlink:type".split(" ").forEach(function(a) {
-    var b = a.replace(ra, sa);
+    const b = a.replace(ra, sa);
     z[b] = new v(b, 1, false, a, "http://www.w3.org/1999/xlink", false, false);
   });
   ["xml:base", "xml:lang", "xml:space"].forEach(function(a) {
-    var b = a.replace(ra, sa);
+    const b = a.replace(ra, sa);
     z[b] = new v(b, 1, false, a, "http://www.w3.org/XML/1998/namespace", false, false);
   });
   ["tabIndex", "crossOrigin"].forEach(function(a) {
@@ -758,37 +758,37 @@ function requireReactDom_production_min() {
     z[a] = new v(a, 1, false, a.toLowerCase(), null, true, true);
   });
   function ta(a, b, c, d) {
-    var e = z.hasOwnProperty(b) ? z[b] : null;
+    let e = z.hasOwnProperty(b) ? z[b] : null;
     if (null !== e ? 0 !== e.type : d || !(2 < b.length) || "o" !== b[0] && "O" !== b[0] || "n" !== b[1] && "N" !== b[1]) qa(b, c, e, d) && (c = null), d || null === e ? oa(b) && (null === c ? a.removeAttribute(b) : a.setAttribute(b, "" + c)) : e.mustUseProperty ? a[e.propertyName] = null === c ? 3 === e.type ? false : "" : c : (b = e.attributeName, d = e.attributeNamespace, null === c ? a.removeAttribute(b) : (e = e.type, c = 3 === e || 4 === e && true === c ? "" : "" + c, d ? a.setAttributeNS(d, b, c) : a.setAttribute(b, c)));
   }
-  var ua = aa.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED, va = Symbol.for("react.element"), wa = Symbol.for("react.portal"), ya = Symbol.for("react.fragment"), za = Symbol.for("react.strict_mode"), Aa = Symbol.for("react.profiler"), Ba = Symbol.for("react.provider"), Ca = Symbol.for("react.context"), Da = Symbol.for("react.forward_ref"), Ea = Symbol.for("react.suspense"), Fa = Symbol.for("react.suspense_list"), Ga = Symbol.for("react.memo"), Ha = Symbol.for("react.lazy");
+  const ua = aa.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED, va = Symbol.for("react.element"), wa = Symbol.for("react.portal"), ya = Symbol.for("react.fragment"), za = Symbol.for("react.strict_mode"), Aa = Symbol.for("react.profiler"), Ba = Symbol.for("react.provider"), Ca = Symbol.for("react.context"), Da = Symbol.for("react.forward_ref"), Ea = Symbol.for("react.suspense"), Fa = Symbol.for("react.suspense_list"), Ga = Symbol.for("react.memo"), Ha = Symbol.for("react.lazy");
   Symbol.for("react.scope");
   Symbol.for("react.debug_trace_mode");
-  var Ia = Symbol.for("react.offscreen");
+  const Ia = Symbol.for("react.offscreen");
   Symbol.for("react.legacy_hidden");
   Symbol.for("react.cache");
   Symbol.for("react.tracing_marker");
-  var Ja = Symbol.iterator;
+  const Ja = Symbol.iterator;
   function Ka(a) {
     if (null === a || "object" !== typeof a) return null;
     a = Ja && a[Ja] || a["@@iterator"];
     return "function" === typeof a ? a : null;
   }
-  var A = Object.assign, La;
+  let A = Object.assign, La;
   function Ma(a) {
     if (void 0 === La) try {
       throw Error();
     } catch (c) {
-      var b = c.stack.trim().match(/\n( *(at )?)/);
+      const b = c.stack.trim().match(/\n( *(at )?)/);
       La = b && b[1] || "";
     }
     return "\n" + La + a;
   }
-  var Na = false;
+  let Na = false;
   function Oa(a, b) {
     if (!a || Na) return "";
     Na = true;
-    var c = Error.prepareStackTrace;
+    const c = Error.prepareStackTrace;
     Error.prepareStackTrace = void 0;
     try {
       if (b) if (b = function() {
@@ -825,7 +825,7 @@ function requireReactDom_production_min() {
           if (1 !== g || 1 !== h) {
             do
               if (g--, h--, 0 > h || e[g] !== f[h]) {
-                var k = "\n" + e[g].replace(" at new ", " at ");
+                let k = "\n" + e[g].replace(" at new ", " at ");
                 a.displayName && k.includes("<anonymous>") && (k = k.replace("<anonymous>", a.displayName));
                 return k;
               }
@@ -902,7 +902,7 @@ function requireReactDom_production_min() {
     return null;
   }
   function Ra(a) {
-    var b = a.type;
+    const b = a.type;
     switch (a.tag) {
       case 24:
         return "Cache";
@@ -965,13 +965,13 @@ function requireReactDom_production_min() {
     }
   }
   function Ta(a) {
-    var b = a.type;
+    const b = a.type;
     return (a = a.nodeName) && "input" === a.toLowerCase() && ("checkbox" === b || "radio" === b);
   }
   function Ua(a) {
-    var b = Ta(a) ? "checked" : "value", c = Object.getOwnPropertyDescriptor(a.constructor.prototype, b), d = "" + a[b];
+    let b = Ta(a) ? "checked" : "value", c = Object.getOwnPropertyDescriptor(a.constructor.prototype, b), d = "" + a[b];
     if (!a.hasOwnProperty(b) && "undefined" !== typeof c && "function" === typeof c.get && "function" === typeof c.set) {
-      var e = c.get, f = c.set;
+      const e = c.get, f = c.set;
       Object.defineProperty(a, b, { configurable: true, get: function() {
         return e.call(this);
       }, set: function(a2) {
@@ -994,10 +994,10 @@ function requireReactDom_production_min() {
   }
   function Wa(a) {
     if (!a) return false;
-    var b = a._valueTracker;
+    const b = a._valueTracker;
     if (!b) return true;
-    var c = b.getValue();
-    var d = "";
+    const c = b.getValue();
+    let d = "";
     a && (d = Ta(a) ? a.checked ? "true" : "false" : a.value);
     a = d;
     return a !== c ? (b.setValue(a), true) : false;
@@ -1012,11 +1012,11 @@ function requireReactDom_production_min() {
     }
   }
   function Ya(a, b) {
-    var c = b.checked;
+    const c = b.checked;
     return A({}, b, { defaultChecked: void 0, defaultValue: void 0, value: void 0, checked: null != c ? c : a._wrapperState.initialChecked });
   }
   function Za(a, b) {
-    var c = null == b.defaultValue ? "" : b.defaultValue, d = null != b.checked ? b.checked : b.defaultChecked;
+    let c = null == b.defaultValue ? "" : b.defaultValue, d = null != b.checked ? b.checked : b.defaultChecked;
     c = Sa(null != b.value ? b.value : c);
     a._wrapperState = { initialChecked: d, initialValue: c, controlled: "checkbox" === b.type || "radio" === b.type ? null != b.checked : null != b.value };
   }
@@ -1026,7 +1026,7 @@ function requireReactDom_production_min() {
   }
   function bb(a, b) {
     ab(a, b);
-    var c = Sa(b.value), d = b.type;
+    const c = Sa(b.value), d = b.type;
     if (null != c) if ("number" === d) {
       if (0 === c && "" === a.value || a.value != c) a.value = "" + c;
     } else a.value !== "" + c && (a.value = "" + c);
@@ -1039,7 +1039,7 @@ function requireReactDom_production_min() {
   }
   function db(a, b, c) {
     if (b.hasOwnProperty("value") || b.hasOwnProperty("defaultValue")) {
-      var d = b.type;
+      const d = b.type;
       if (!("submit" !== d && "reset" !== d || void 0 !== b.value && null !== b.value)) return;
       b = "" + a._wrapperState.initialValue;
       c || b === a.value || (a.value = b);
@@ -1053,7 +1053,7 @@ function requireReactDom_production_min() {
   function cb(a, b, c) {
     if ("number" !== b || Xa(a.ownerDocument) !== a) null == c ? a.defaultValue = "" + a._wrapperState.initialValue : a.defaultValue !== "" + c && (a.defaultValue = "" + c);
   }
-  var eb = Array.isArray;
+  const eb = Array.isArray;
   function fb(a, b, c, d) {
     a = a.options;
     if (b) {
@@ -1079,7 +1079,7 @@ function requireReactDom_production_min() {
     return A({}, b, { value: void 0, defaultValue: void 0, children: "" + a._wrapperState.initialValue });
   }
   function hb(a, b) {
-    var c = b.value;
+    let c = b.value;
     if (null == c) {
       c = b.children;
       b = b.defaultValue;
@@ -1097,12 +1097,12 @@ function requireReactDom_production_min() {
     a._wrapperState = { initialValue: Sa(c) };
   }
   function ib(a, b) {
-    var c = Sa(b.value), d = Sa(b.defaultValue);
+    let c = Sa(b.value), d = Sa(b.defaultValue);
     null != c && (c = "" + c, c !== a.value && (a.value = c), null == b.defaultValue && a.defaultValue !== c && (a.defaultValue = c));
     null != d && (a.defaultValue = "" + d);
   }
   function jb(a) {
-    var b = a.textContent;
+    const b = a.textContent;
     b === a._wrapperState.initialValue && "" !== b && null !== b && (a.value = b);
   }
   function kb(a) {
@@ -1118,7 +1118,7 @@ function requireReactDom_production_min() {
   function lb(a, b) {
     return null == a || "http://www.w3.org/1999/xhtml" === a ? kb(b) : "http://www.w3.org/2000/svg" === a && "foreignObject" === b ? "http://www.w3.org/1999/xhtml" : a;
   }
-  var mb, nb = function(a) {
+  let mb, nb = function(a) {
     return "undefined" !== typeof MSApp && MSApp.execUnsafeLocalFunction ? function(b, c, d, e) {
       MSApp.execUnsafeLocalFunction(function() {
         return a(b, c, d, e);
@@ -1135,7 +1135,7 @@ function requireReactDom_production_min() {
   });
   function ob(a, b) {
     if (b) {
-      var c = a.firstChild;
+      const c = a.firstChild;
       if (c && c === a.lastChild && 3 === c.nodeType) {
         c.nodeValue = b;
         return;
@@ -1143,7 +1143,7 @@ function requireReactDom_production_min() {
     }
     a.textContent = b;
   }
-  var pb = {
+  const pb = {
     animationIterationCount: true,
     aspectRatio: true,
     borderImageOutset: true,
@@ -1199,13 +1199,13 @@ function requireReactDom_production_min() {
   }
   function sb(a, b) {
     a = a.style;
-    for (var c in b) if (b.hasOwnProperty(c)) {
-      var d = 0 === c.indexOf("--"), e = rb(c, b[c], d);
+    for (let c in b) if (b.hasOwnProperty(c)) {
+      const d = 0 === c.indexOf("--"), e = rb(c, b[c], d);
       "float" === c && (c = "cssFloat");
       d ? a.setProperty(c, e) : a[c] = e;
     }
   }
-  var tb = A({ menuitem: true }, { area: true, base: true, br: true, col: true, embed: true, hr: true, img: true, input: true, keygen: true, link: true, meta: true, param: true, source: true, track: true, wbr: true });
+  const tb = A({ menuitem: true }, { area: true, base: true, br: true, col: true, embed: true, hr: true, img: true, input: true, keygen: true, link: true, meta: true, param: true, source: true, track: true, wbr: true });
   function ub(a, b) {
     if (b) {
       if (tb[a] && (null != b.children || null != b.dangerouslySetInnerHTML)) throw Error(p(137, a));
@@ -1232,17 +1232,17 @@ function requireReactDom_production_min() {
         return true;
     }
   }
-  var wb = null;
+  let wb = null;
   function xb(a) {
     a = a.target || a.srcElement || window;
     a.correspondingUseElement && (a = a.correspondingUseElement);
     return 3 === a.nodeType ? a.parentNode : a;
   }
-  var yb = null, zb = null, Ab = null;
+  let yb = null, zb = null, Ab = null;
   function Bb(a) {
     if (a = Cb(a)) {
       if ("function" !== typeof yb) throw Error(p(280));
-      var b = a.stateNode;
+      let b = a.stateNode;
       b && (b = Db(b), yb(a.stateNode, a.type, b));
     }
   }
@@ -1251,7 +1251,7 @@ function requireReactDom_production_min() {
   }
   function Fb() {
     if (zb) {
-      var a = zb, b = Ab;
+      let a = zb, b = Ab;
       Ab = zb = null;
       Bb(a);
       if (b) for (a = 0; a < b.length; a++) Bb(b[a]);
@@ -1262,7 +1262,7 @@ function requireReactDom_production_min() {
   }
   function Hb() {
   }
-  var Ib = false;
+  let Ib = false;
   function Jb(a, b, c) {
     if (Ib) return a(b, c);
     Ib = true;
@@ -1273,9 +1273,9 @@ function requireReactDom_production_min() {
     }
   }
   function Kb(a, b) {
-    var c = a.stateNode;
+    let c = a.stateNode;
     if (null === c) return null;
-    var d = Db(c);
+    let d = Db(c);
     if (null === d) return null;
     c = d[b];
     a: switch (b) {
@@ -1300,9 +1300,9 @@ function requireReactDom_production_min() {
     if (c && "function" !== typeof c) throw Error(p(231, b, typeof c));
     return c;
   }
-  var Lb = false;
+  let Lb = false;
   if (ia) try {
-    var Mb = {};
+    const Mb = {};
     Object.defineProperty(Mb, "passive", { get: function() {
       Lb = true;
     } });
@@ -1312,14 +1312,14 @@ function requireReactDom_production_min() {
     Lb = false;
   }
   function Nb(a, b, c, d, e, f, g, h, k) {
-    var l = Array.prototype.slice.call(arguments, 3);
+    const l = Array.prototype.slice.call(arguments, 3);
     try {
       b.apply(c, l);
     } catch (m2) {
       this.onError(m2);
     }
   }
-  var Ob = false, Pb = null, Qb = false, Rb = null, Sb = { onError: function(a) {
+  let Ob = false, Pb = null, Qb = false, Rb = null, Sb = { onError: function(a) {
     Ob = true;
     Pb = a;
   } };
@@ -1340,7 +1340,7 @@ function requireReactDom_production_min() {
     }
   }
   function Vb(a) {
-    var b = a, c = a;
+    let b = a, c = a;
     if (a.alternate) for (; b.return; ) b = b.return;
     else {
       a = b;
@@ -1352,7 +1352,7 @@ function requireReactDom_production_min() {
   }
   function Wb(a) {
     if (13 === a.tag) {
-      var b = a.memoizedState;
+      let b = a.memoizedState;
       null === b && (a = a.alternate, null !== a && (b = a.memoizedState));
       if (null !== b) return b.dehydrated;
     }
@@ -1362,16 +1362,16 @@ function requireReactDom_production_min() {
     if (Vb(a) !== a) throw Error(p(188));
   }
   function Yb(a) {
-    var b = a.alternate;
+    let b = a.alternate;
     if (!b) {
       b = Vb(a);
       if (null === b) throw Error(p(188));
       return b !== a ? null : a;
     }
     for (var c = a, d = b; ; ) {
-      var e = c.return;
+      const e = c.return;
       if (null === e) break;
-      var f = e.alternate;
+      let f = e.alternate;
       if (null === f) {
         d = e.return;
         if (null !== d) {
@@ -1436,25 +1436,25 @@ function requireReactDom_production_min() {
   function $b(a) {
     if (5 === a.tag || 6 === a.tag) return a;
     for (a = a.child; null !== a; ) {
-      var b = $b(a);
+      const b = $b(a);
       if (null !== b) return b;
       a = a.sibling;
     }
     return null;
   }
-  var ac = ca.unstable_scheduleCallback, bc = ca.unstable_cancelCallback, cc = ca.unstable_shouldYield, dc = ca.unstable_requestPaint, B = ca.unstable_now, ec = ca.unstable_getCurrentPriorityLevel, fc = ca.unstable_ImmediatePriority, gc = ca.unstable_UserBlockingPriority, hc = ca.unstable_NormalPriority, ic = ca.unstable_LowPriority, jc = ca.unstable_IdlePriority, kc = null, lc = null;
+  let ac = ca.unstable_scheduleCallback, bc = ca.unstable_cancelCallback, cc = ca.unstable_shouldYield, dc = ca.unstable_requestPaint, B = ca.unstable_now, ec = ca.unstable_getCurrentPriorityLevel, fc = ca.unstable_ImmediatePriority, gc = ca.unstable_UserBlockingPriority, hc = ca.unstable_NormalPriority, ic = ca.unstable_LowPriority, jc = ca.unstable_IdlePriority, kc = null, lc = null;
   function mc(a) {
     if (lc && "function" === typeof lc.onCommitFiberRoot) try {
       lc.onCommitFiberRoot(kc, a, void 0, 128 === (a.current.flags & 128));
     } catch (b) {
     }
   }
-  var oc = Math.clz32 ? Math.clz32 : nc, pc = Math.log, qc = Math.LN2;
+  const oc = Math.clz32 ? Math.clz32 : nc, pc = Math.log, qc = Math.LN2;
   function nc(a) {
     a >>>= 0;
     return 0 === a ? 32 : 31 - (pc(a) / qc | 0) | 0;
   }
-  var rc = 64, sc = 4194304;
+  let rc = 64, sc = 4194304;
   function tc(a) {
     switch (a & -a) {
       case 1:
@@ -1505,11 +1505,11 @@ function requireReactDom_production_min() {
     }
   }
   function uc(a, b) {
-    var c = a.pendingLanes;
+    let c = a.pendingLanes;
     if (0 === c) return 0;
-    var d = 0, e = a.suspendedLanes, f = a.pingedLanes, g = c & 268435455;
+    let d = 0, e = a.suspendedLanes, f = a.pingedLanes, g = c & 268435455;
     if (0 !== g) {
-      var h = g & ~e;
+      const h = g & ~e;
       0 !== h ? d = tc(h) : (f &= g, 0 !== f && (d = tc(f)));
     } else g = c & ~e, 0 !== g ? d = tc(g) : 0 !== f && (d = tc(f));
     if (0 === d) return 0;
@@ -1561,8 +1561,8 @@ function requireReactDom_production_min() {
     }
   }
   function wc(a, b) {
-    for (var c = a.suspendedLanes, d = a.pingedLanes, e = a.expirationTimes, f = a.pendingLanes; 0 < f; ) {
-      var g = 31 - oc(f), h = 1 << g, k = e[g];
+    for (let c = a.suspendedLanes, d = a.pingedLanes, e = a.expirationTimes, f = a.pendingLanes; 0 < f; ) {
+      const g = 31 - oc(f), h = 1 << g, k = e[g];
       if (-1 === k) {
         if (0 === (h & c) || 0 !== (h & d)) e[g] = vc(h, b);
       } else k <= b && (a.expiredLanes |= h);
@@ -1574,7 +1574,7 @@ function requireReactDom_production_min() {
     return 0 !== a ? a : a & 1073741824 ? 1073741824 : 0;
   }
   function yc() {
-    var a = rc;
+    const a = rc;
     rc <<= 1;
     0 === (rc & 4194240) && (rc = 64);
     return a;
@@ -1591,7 +1591,7 @@ function requireReactDom_production_min() {
     a[b] = c;
   }
   function Bc(a, b) {
-    var c = a.pendingLanes & ~b;
+    let c = a.pendingLanes & ~b;
     a.pendingLanes = b;
     a.suspendedLanes = 0;
     a.pingedLanes = 0;
@@ -1599,9 +1599,9 @@ function requireReactDom_production_min() {
     a.mutableReadLanes &= b;
     a.entangledLanes &= b;
     b = a.entanglements;
-    var d = a.eventTimes;
+    const d = a.eventTimes;
     for (a = a.expirationTimes; 0 < c; ) {
-      var e = 31 - oc(c), f = 1 << e;
+      const e = 31 - oc(c), f = 1 << e;
       b[e] = 0;
       d[e] = -1;
       a[e] = -1;
@@ -1609,19 +1609,19 @@ function requireReactDom_production_min() {
     }
   }
   function Cc(a, b) {
-    var c = a.entangledLanes |= b;
+    let c = a.entangledLanes |= b;
     for (a = a.entanglements; c; ) {
-      var d = 31 - oc(c), e = 1 << d;
+      const d = 31 - oc(c), e = 1 << d;
       e & b | a[d] & b && (a[d] |= b);
       c &= ~e;
     }
   }
-  var C = 0;
+  let C = 0;
   function Dc(a) {
     a &= -a;
     return 1 < a ? 4 < a ? 0 !== (a & 268435455) ? 16 : 536870912 : 4 : 1;
   }
-  var Ec, Fc, Gc, Hc, Ic, Jc = false, Kc = [], Lc = null, Mc = null, Nc = null, Oc = /* @__PURE__ */ new Map(), Pc = /* @__PURE__ */ new Map(), Qc = [], Rc = "mousedown mouseup touchcancel touchend touchstart auxclick dblclick pointercancel pointerdown pointerup dragend dragstart drop compositionend compositionstart keydown keypress keyup input textInput copy cut paste click change contextmenu reset submit".split(" ");
+  let Ec, Fc, Gc, Hc, Ic, Jc = false, Kc = [], Lc = null, Mc = null, Nc = null, Oc = /* @__PURE__ */ new Map(), Pc = /* @__PURE__ */ new Map(), Qc = [], Rc = "mousedown mouseup touchcancel touchend touchstart auxclick dblclick pointercancel pointerdown pointerup dragend dragstart drop compositionend compositionstart keydown keypress keyup input textInput copy cut paste click change contextmenu reset submit".split(" ");
   function Sc(a, b) {
     switch (a) {
       case "focusin":
@@ -1670,9 +1670,9 @@ function requireReactDom_production_min() {
     return false;
   }
   function Vc(a) {
-    var b = Wc(a.target);
+    let b = Wc(a.target);
     if (null !== b) {
-      var c = Vb(b);
+      const c = Vb(b);
       if (null !== c) {
         if (b = c.tag, 13 === b) {
           if (b = Wb(c), null !== b) {
@@ -1692,11 +1692,11 @@ function requireReactDom_production_min() {
   }
   function Xc(a) {
     if (null !== a.blockedOn) return false;
-    for (var b = a.targetContainers; 0 < b.length; ) {
-      var c = Yc(a.domEventName, a.eventSystemFlags, b[0], a.nativeEvent);
+    for (let b = a.targetContainers; 0 < b.length; ) {
+      let c = Yc(a.domEventName, a.eventSystemFlags, b[0], a.nativeEvent);
       if (null === c) {
         c = a.nativeEvent;
-        var d = new c.constructor(c.type, c);
+        const d = new c.constructor(c.type, c);
         wb = d;
         c.target.dispatchEvent(d);
         wb = null;
@@ -1738,9 +1738,9 @@ function requireReactDom_production_min() {
     for (c = 0; c < Qc.length; c++) d = Qc[c], d.blockedOn === a && (d.blockedOn = null);
     for (; 0 < Qc.length && (c = Qc[0], null === c.blockedOn); ) Vc(c), null === c.blockedOn && Qc.shift();
   }
-  var cd = ua.ReactCurrentBatchConfig, dd = true;
+  let cd = ua.ReactCurrentBatchConfig, dd = true;
   function ed(a, b, c, d) {
-    var e = C, f = cd.transition;
+    const e = C, f = cd.transition;
     cd.transition = null;
     try {
       C = 1, fd(a, b, c, d);
@@ -1749,7 +1749,7 @@ function requireReactDom_production_min() {
     }
   }
   function gd(a, b, c, d) {
-    var e = C, f = cd.transition;
+    const e = C, f = cd.transition;
     cd.transition = null;
     try {
       C = 4, fd(a, b, c, d);
@@ -1759,12 +1759,12 @@ function requireReactDom_production_min() {
   }
   function fd(a, b, c, d) {
     if (dd) {
-      var e = Yc(a, b, c, d);
+      let e = Yc(a, b, c, d);
       if (null === e) hd(a, b, d, id2, c), Sc(a, d);
       else if (Uc(e, a, b, c, d)) d.stopPropagation();
       else if (Sc(a, d), b & 4 && -1 < Rc.indexOf(a)) {
         for (; null !== e; ) {
-          var f = Cb(e);
+          let f = Cb(e);
           null !== f && Ec(f);
           f = Yc(a, b, c, d);
           null === f && hd(a, b, d, id2, c);
@@ -1884,17 +1884,17 @@ function requireReactDom_production_min() {
         return 16;
     }
   }
-  var kd = null, ld = null, md = null;
+  let kd = null, ld = null, md = null;
   function nd() {
     if (md) return md;
-    var a, b = ld, c = b.length, d, e = "value" in kd ? kd.value : kd.textContent, f = e.length;
+    let a, b = ld, c = b.length, d, e = "value" in kd ? kd.value : kd.textContent, f = e.length;
     for (a = 0; a < c && b[a] === e[a]; a++) ;
-    var g = c - a;
+    const g = c - a;
     for (d = 1; d <= g && b[c - d] === e[f - d]; d++) ;
     return md = e.slice(a, 1 < d ? 1 - d : void 0);
   }
   function od(a) {
-    var b = a.keyCode;
+    const b = a.keyCode;
     "charCode" in a ? (a = a.charCode, 0 === a && 13 === b && (a = 13)) : a = b;
     10 === a && (a = 13);
     return 32 <= a || 13 === a ? a : 0;
@@ -1913,23 +1913,23 @@ function requireReactDom_production_min() {
       this.nativeEvent = f;
       this.target = g;
       this.currentTarget = null;
-      for (var c in a) a.hasOwnProperty(c) && (b2 = a[c], this[c] = b2 ? b2(f) : f[c]);
+      for (const c in a) a.hasOwnProperty(c) && (b2 = a[c], this[c] = b2 ? b2(f) : f[c]);
       this.isDefaultPrevented = (null != f.defaultPrevented ? f.defaultPrevented : false === f.returnValue) ? pd : qd;
       this.isPropagationStopped = qd;
       return this;
     }
     A(b.prototype, { preventDefault: function() {
       this.defaultPrevented = true;
-      var a2 = this.nativeEvent;
+      const a2 = this.nativeEvent;
       a2 && (a2.preventDefault ? a2.preventDefault() : "unknown" !== typeof a2.returnValue && (a2.returnValue = false), this.isDefaultPrevented = pd);
     }, stopPropagation: function() {
-      var a2 = this.nativeEvent;
+      const a2 = this.nativeEvent;
       a2 && (a2.stopPropagation ? a2.stopPropagation() : "unknown" !== typeof a2.cancelBubble && (a2.cancelBubble = true), this.isPropagationStopped = pd);
     }, persist: function() {
     }, isPersistent: pd });
     return b;
   }
-  var sd = { eventPhase: 0, bubbles: 0, cancelable: 0, timeStamp: function(a) {
+  let sd = { eventPhase: 0, bubbles: 0, cancelable: 0, timeStamp: function(a) {
     return a.timeStamp || Date.now();
   }, defaultPrevented: 0, isTrusted: 0 }, td = rd(sd), ud = A({}, sd, { view: 0, detail: 0 }), vd = rd(ud), wd, xd, yd, Ad = A({}, ud, { screenX: 0, screenY: 0, clientX: 0, clientY: 0, pageX: 0, pageY: 0, ctrlKey: 0, shiftKey: 0, altKey: 0, metaKey: 0, getModifierState: zd, button: 0, buttons: 0, relatedTarget: function(a) {
     return void 0 === a.relatedTarget ? a.fromElement === a.srcElement ? a.toElement : a.fromElement : a.relatedTarget;
@@ -1993,15 +1993,15 @@ function requireReactDom_production_min() {
     224: "Meta"
   }, Od = { Alt: "altKey", Control: "ctrlKey", Meta: "metaKey", Shift: "shiftKey" };
   function Pd(a) {
-    var b = this.nativeEvent;
+    const b = this.nativeEvent;
     return b.getModifierState ? b.getModifierState(a) : (a = Od[a]) ? !!b[a] : false;
   }
   function zd() {
     return Pd;
   }
-  var Qd = A({}, ud, { key: function(a) {
+  let Qd = A({}, ud, { key: function(a) {
     if (a.key) {
-      var b = Md[a.key] || a.key;
+      const b = Md[a.key] || a.key;
       if ("Unidentified" !== b) return b;
     }
     return "keypress" === a.type ? (a = od(a), 13 === a ? "Enter" : String.fromCharCode(a)) : "keydown" === a.type || "keyup" === a.type ? Nd[a.keyCode] || "Unidentified" : "";
@@ -2022,7 +2022,7 @@ function requireReactDom_production_min() {
     deltaMode: 0
   }), Zd = rd(Yd), $d = [9, 13, 27, 32], ae = ia && "CompositionEvent" in window, be = null;
   ia && "documentMode" in document && (be = document.documentMode);
-  var ce = ia && "TextEvent" in window && !be, de = ia && (!ae || be && 8 < be && 11 >= be), ee = String.fromCharCode(32), fe = false;
+  let ce = ia && "TextEvent" in window && !be, de = ia && (!ae || be && 8 < be && 11 >= be), ee = String.fromCharCode(32), fe = false;
   function ge(a, b) {
     switch (a) {
       case "keyup":
@@ -2041,7 +2041,7 @@ function requireReactDom_production_min() {
     a = a.detail;
     return "object" === typeof a && "data" in a ? a.data : null;
   }
-  var ie = false;
+  let ie = false;
   function je(a, b) {
     switch (a) {
       case "compositionend":
@@ -2073,9 +2073,9 @@ function requireReactDom_production_min() {
         return null;
     }
   }
-  var le = { color: true, date: true, datetime: true, "datetime-local": true, email: true, month: true, number: true, password: true, range: true, search: true, tel: true, text: true, time: true, url: true, week: true };
+  const le = { color: true, date: true, datetime: true, "datetime-local": true, email: true, month: true, number: true, password: true, range: true, search: true, tel: true, text: true, time: true, url: true, week: true };
   function me(a) {
-    var b = a && a.nodeName && a.nodeName.toLowerCase();
+    const b = a && a.nodeName && a.nodeName.toLowerCase();
     return "input" === b ? !!le[a.type] : "textarea" === b ? true : false;
   }
   function ne(a, b, c, d) {
@@ -2083,24 +2083,24 @@ function requireReactDom_production_min() {
     b = oe(b, "onChange");
     0 < b.length && (c = new td("onChange", "change", null, c, d), a.push({ event: c, listeners: b }));
   }
-  var pe = null, qe = null;
+  let pe = null, qe = null;
   function re(a) {
     se(a, 0);
   }
   function te(a) {
-    var b = ue(a);
+    const b = ue(a);
     if (Wa(b)) return a;
   }
   function ve(a, b) {
     if ("change" === a) return b;
   }
-  var we = false;
+  let we = false;
   if (ia) {
-    var xe;
+    let xe;
     if (ia) {
-      var ye = "oninput" in document;
+      let ye = "oninput" in document;
       if (!ye) {
-        var ze = document.createElement("div");
+        const ze = document.createElement("div");
         ze.setAttribute("oninput", "return;");
         ye = "function" === typeof ze.oninput;
       }
@@ -2113,7 +2113,7 @@ function requireReactDom_production_min() {
   }
   function Be(a) {
     if ("value" === a.propertyName && te(qe)) {
-      var b = [];
+      const b = [];
       ne(b, qe, a, xb(a));
       Jb(re, b);
     }
@@ -2133,14 +2133,14 @@ function requireReactDom_production_min() {
   function Ge(a, b) {
     return a === b && (0 !== a || 1 / a === 1 / b) || a !== a && b !== b;
   }
-  var He = "function" === typeof Object.is ? Object.is : Ge;
+  const He = "function" === typeof Object.is ? Object.is : Ge;
   function Ie(a, b) {
     if (He(a, b)) return true;
     if ("object" !== typeof a || null === a || "object" !== typeof b || null === b) return false;
-    var c = Object.keys(a), d = Object.keys(b);
+    let c = Object.keys(a), d = Object.keys(b);
     if (c.length !== d.length) return false;
     for (d = 0; d < c.length; d++) {
-      var e = c[d];
+      const e = c[d];
       if (!ja.call(b, e) || !He(a[e], b[e])) return false;
     }
     return true;
@@ -2150,7 +2150,7 @@ function requireReactDom_production_min() {
     return a;
   }
   function Ke(a, b) {
-    var c = Je(a);
+    let c = Je(a);
     a = 0;
     for (var d; c; ) {
       if (3 === c.nodeType) {
@@ -2188,21 +2188,21 @@ function requireReactDom_production_min() {
     return b;
   }
   function Ne(a) {
-    var b = a && a.nodeName && a.nodeName.toLowerCase();
+    const b = a && a.nodeName && a.nodeName.toLowerCase();
     return b && ("input" === b && ("text" === a.type || "search" === a.type || "tel" === a.type || "url" === a.type || "password" === a.type) || "textarea" === b || "true" === a.contentEditable);
   }
   function Oe(a) {
-    var b = Me(), c = a.focusedElem, d = a.selectionRange;
+    let b = Me(), c = a.focusedElem, d = a.selectionRange;
     if (b !== c && c && c.ownerDocument && Le(c.ownerDocument.documentElement, c)) {
       if (null !== d && Ne(c)) {
         if (b = d.start, a = d.end, void 0 === a && (a = b), "selectionStart" in c) c.selectionStart = b, c.selectionEnd = Math.min(a, c.value.length);
         else if (a = (b = c.ownerDocument || document) && b.defaultView || window, a.getSelection) {
           a = a.getSelection();
-          var e = c.textContent.length, f = Math.min(d.start, e);
+          let e = c.textContent.length, f = Math.min(d.start, e);
           d = void 0 === d.end ? f : Math.min(d.end, e);
           !a.extend && f > d && (e = d, d = f, f = e);
           e = Ke(c, f);
-          var g = Ke(
+          const g = Ke(
             c,
             d
           );
@@ -2215,34 +2215,34 @@ function requireReactDom_production_min() {
       for (c = 0; c < b.length; c++) a = b[c], a.element.scrollLeft = a.left, a.element.scrollTop = a.top;
     }
   }
-  var Pe = ia && "documentMode" in document && 11 >= document.documentMode, Qe = null, Re = null, Se = null, Te = false;
+  let Pe = ia && "documentMode" in document && 11 >= document.documentMode, Qe = null, Re = null, Se = null, Te = false;
   function Ue(a, b, c) {
-    var d = c.window === c ? c.document : 9 === c.nodeType ? c : c.ownerDocument;
+    let d = c.window === c ? c.document : 9 === c.nodeType ? c : c.ownerDocument;
     Te || null == Qe || Qe !== Xa(d) || (d = Qe, "selectionStart" in d && Ne(d) ? d = { start: d.selectionStart, end: d.selectionEnd } : (d = (d.ownerDocument && d.ownerDocument.defaultView || window).getSelection(), d = { anchorNode: d.anchorNode, anchorOffset: d.anchorOffset, focusNode: d.focusNode, focusOffset: d.focusOffset }), Se && Ie(Se, d) || (Se = d, d = oe(Re, "onSelect"), 0 < d.length && (b = new td("onSelect", "select", null, b, c), a.push({ event: b, listeners: d }), b.target = Qe)));
   }
   function Ve(a, b) {
-    var c = {};
+    const c = {};
     c[a.toLowerCase()] = b.toLowerCase();
     c["Webkit" + a] = "webkit" + b;
     c["Moz" + a] = "moz" + b;
     return c;
   }
-  var We = { animationend: Ve("Animation", "AnimationEnd"), animationiteration: Ve("Animation", "AnimationIteration"), animationstart: Ve("Animation", "AnimationStart"), transitionend: Ve("Transition", "TransitionEnd") }, Xe = {}, Ye = {};
+  let We = { animationend: Ve("Animation", "AnimationEnd"), animationiteration: Ve("Animation", "AnimationIteration"), animationstart: Ve("Animation", "AnimationStart"), transitionend: Ve("Transition", "TransitionEnd") }, Xe = {}, Ye = {};
   ia && (Ye = document.createElement("div").style, "AnimationEvent" in window || (delete We.animationend.animation, delete We.animationiteration.animation, delete We.animationstart.animation), "TransitionEvent" in window || delete We.transitionend.transition);
   function Ze(a) {
     if (Xe[a]) return Xe[a];
     if (!We[a]) return a;
-    var b = We[a], c;
+    let b = We[a], c;
     for (c in b) if (b.hasOwnProperty(c) && c in Ye) return Xe[a] = b[c];
     return a;
   }
-  var $e = Ze("animationend"), af = Ze("animationiteration"), bf = Ze("animationstart"), cf = Ze("transitionend"), df = /* @__PURE__ */ new Map(), ef = "abort auxClick cancel canPlay canPlayThrough click close contextMenu copy cut drag dragEnd dragEnter dragExit dragLeave dragOver dragStart drop durationChange emptied encrypted ended error gotPointerCapture input invalid keyDown keyPress keyUp load loadedData loadedMetadata loadStart lostPointerCapture mouseDown mouseMove mouseOut mouseOver mouseUp paste pause play playing pointerCancel pointerDown pointerMove pointerOut pointerOver pointerUp progress rateChange reset resize seeked seeking stalled submit suspend timeUpdate touchCancel touchEnd touchStart volumeChange scroll toggle touchMove waiting wheel".split(" ");
+  const $e = Ze("animationend"), af = Ze("animationiteration"), bf = Ze("animationstart"), cf = Ze("transitionend"), df = /* @__PURE__ */ new Map(), ef = "abort auxClick cancel canPlay canPlayThrough click close contextMenu copy cut drag dragEnd dragEnter dragExit dragLeave dragOver dragStart drop durationChange emptied encrypted ended error gotPointerCapture input invalid keyDown keyPress keyUp load loadedData loadedMetadata loadStart lostPointerCapture mouseDown mouseMove mouseOut mouseOver mouseUp paste pause play playing pointerCancel pointerDown pointerMove pointerOut pointerOver pointerUp progress rateChange reset resize seeked seeking stalled submit suspend timeUpdate touchCancel touchEnd touchStart volumeChange scroll toggle touchMove waiting wheel".split(" ");
   function ff(a, b) {
     df.set(a, b);
     fa(b, [a]);
   }
-  for (var gf = 0; gf < ef.length; gf++) {
-    var hf = ef[gf], jf = hf.toLowerCase(), kf = hf[0].toUpperCase() + hf.slice(1);
+  for (let gf = 0; gf < ef.length; gf++) {
+    const hf = ef[gf], jf = hf.toLowerCase(), kf = hf[0].toUpperCase() + hf.slice(1);
     ff(jf, "on" + kf);
   }
   ff($e, "onAnimationEnd");
@@ -2262,20 +2262,20 @@ function requireReactDom_production_min() {
   fa("onCompositionEnd", "compositionend focusout keydown keypress keyup mousedown".split(" "));
   fa("onCompositionStart", "compositionstart focusout keydown keypress keyup mousedown".split(" "));
   fa("onCompositionUpdate", "compositionupdate focusout keydown keypress keyup mousedown".split(" "));
-  var lf = "abort canplay canplaythrough durationchange emptied encrypted ended error loadeddata loadedmetadata loadstart pause play playing progress ratechange resize seeked seeking stalled suspend timeupdate volumechange waiting".split(" "), mf = new Set("cancel close invalid load scroll toggle".split(" ").concat(lf));
+  const lf = "abort canplay canplaythrough durationchange emptied encrypted ended error loadeddata loadedmetadata loadstart pause play playing progress ratechange resize seeked seeking stalled suspend timeupdate volumechange waiting".split(" "), mf = new Set("cancel close invalid load scroll toggle".split(" ").concat(lf));
   function nf(a, b, c) {
-    var d = a.type || "unknown-event";
+    const d = a.type || "unknown-event";
     a.currentTarget = c;
     Ub(d, b, void 0, a);
     a.currentTarget = null;
   }
   function se(a, b) {
     b = 0 !== (b & 4);
-    for (var c = 0; c < a.length; c++) {
-      var d = a[c], e = d.event;
+    for (let c = 0; c < a.length; c++) {
+      let d = a[c], e = d.event;
       d = d.listeners;
       a: {
-        var f = void 0;
+        let f = void 0;
         if (b) for (var g = d.length - 1; 0 <= g; g--) {
           var h = d[g], k = h.instance, l = h.currentTarget;
           h = h.listener;
@@ -2297,24 +2297,24 @@ function requireReactDom_production_min() {
     if (Qb) throw a = Rb, Qb = false, Rb = null, a;
   }
   function D(a, b) {
-    var c = b[of];
+    let c = b[of];
     void 0 === c && (c = b[of] = /* @__PURE__ */ new Set());
-    var d = a + "__bubble";
+    const d = a + "__bubble";
     c.has(d) || (pf(b, a, 2, false), c.add(d));
   }
   function qf(a, b, c) {
-    var d = 0;
+    let d = 0;
     b && (d |= 4);
     pf(c, a, d, b);
   }
-  var rf = "_reactListening" + Math.random().toString(36).slice(2);
+  const rf = "_reactListening" + Math.random().toString(36).slice(2);
   function sf(a) {
     if (!a[rf]) {
       a[rf] = true;
       da.forEach(function(b2) {
         "selectionchange" !== b2 && (mf.has(b2) || qf(b2, false, a), qf(b2, true, a));
       });
-      var b = 9 === a.nodeType ? a : a.ownerDocument;
+      const b = 9 === a.nodeType ? a : a.ownerDocument;
       null === b || b[rf] || (b[rf] = true, qf("selectionchange", false, b));
     }
   }
@@ -2335,12 +2335,12 @@ function requireReactDom_production_min() {
     d ? void 0 !== e ? a.addEventListener(b, c, { capture: true, passive: e }) : a.addEventListener(b, c, true) : void 0 !== e ? a.addEventListener(b, c, { passive: e }) : a.addEventListener(b, c, false);
   }
   function hd(a, b, c, d, e) {
-    var f = d;
+    let f = d;
     if (0 === (b & 1) && 0 === (b & 2) && null !== d) a: for (; ; ) {
       if (null === d) return;
-      var g = d.tag;
+      let g = d.tag;
       if (3 === g || 4 === g) {
-        var h = d.stateNode.containerInfo;
+        let h = d.stateNode.containerInfo;
         if (h === e || 8 === h.nodeType && h.parentNode === e) break;
         if (4 === g) for (g = d.return; null !== g; ) {
           var k = g.tag;
@@ -2363,7 +2363,7 @@ function requireReactDom_production_min() {
       d = d.return;
     }
     Jb(function() {
-      var d2 = f, e2 = xb(c), g2 = [];
+      let d2 = f, e2 = xb(c), g2 = [];
       a: {
         var h2 = df.get(a);
         if (void 0 !== h2) {
@@ -2542,7 +2542,7 @@ function requireReactDom_production_min() {
           case "keyup":
             Ue(g2, c, e2);
         }
-        var $a;
+        let $a;
         if (ae) b: {
           switch (a) {
             case "compositionstart":
@@ -2569,7 +2569,7 @@ function requireReactDom_production_min() {
   }
   function oe(a, b) {
     for (var c = b + "Capture", d = []; null !== a; ) {
-      var e = a, f = e.stateNode;
+      let e = a, f = e.stateNode;
       5 === e.tag && null !== f && (e = f, f = Kb(a, c), null != f && d.unshift(tf(a, f, e)), f = Kb(a, b), null != f && d.push(tf(a, f, e)));
       a = a.return;
     }
@@ -2584,14 +2584,14 @@ function requireReactDom_production_min() {
   }
   function wf(a, b, c, d, e) {
     for (var f = b._reactName, g = []; null !== c && c !== d; ) {
-      var h = c, k = h.alternate, l = h.stateNode;
+      let h = c, k = h.alternate, l = h.stateNode;
       if (null !== k && k === d) break;
       5 === h.tag && null !== l && (h = l, e ? (k = Kb(c, f), null != k && g.unshift(tf(c, k, h))) : e || (k = Kb(c, f), null != k && g.push(tf(c, k, h))));
       c = c.return;
     }
     0 !== g.length && a.push({ event: b, listeners: g });
   }
-  var xf = /\r\n?/g, yf = /\u0000|\uFFFD/g;
+  const xf = /\r\n?/g, yf = /\u0000|\uFFFD/g;
   function zf(a) {
     return ("string" === typeof a ? a : "" + a).replace(xf, "\n").replace(yf, "");
   }
@@ -2601,11 +2601,11 @@ function requireReactDom_production_min() {
   }
   function Bf() {
   }
-  var Cf = null, Df = null;
+  let Cf = null, Df = null;
   function Ef(a, b) {
     return "textarea" === a || "noscript" === a || "string" === typeof b.children || "number" === typeof b.children || "object" === typeof b.dangerouslySetInnerHTML && null !== b.dangerouslySetInnerHTML && null != b.dangerouslySetInnerHTML.__html;
   }
-  var Ff = "function" === typeof setTimeout ? setTimeout : void 0, Gf = "function" === typeof clearTimeout ? clearTimeout : void 0, Hf = "function" === typeof Promise ? Promise : void 0, Jf = "function" === typeof queueMicrotask ? queueMicrotask : "undefined" !== typeof Hf ? function(a) {
+  const Ff = "function" === typeof setTimeout ? setTimeout : void 0, Gf = "function" === typeof clearTimeout ? clearTimeout : void 0, Hf = "function" === typeof Promise ? Promise : void 0, Jf = "function" === typeof queueMicrotask ? queueMicrotask : "undefined" !== typeof Hf ? function(a) {
     return Hf.resolve(null).then(a).catch(If);
   } : Ff;
   function If(a) {
@@ -2614,9 +2614,9 @@ function requireReactDom_production_min() {
     });
   }
   function Kf(a, b) {
-    var c = b, d = 0;
+    let c = b, d = 0;
     do {
-      var e = c.nextSibling;
+      const e = c.nextSibling;
       a.removeChild(c);
       if (e && 8 === e.nodeType) if (c = e.data, "/$" === c) {
         if (0 === d) {
@@ -2632,7 +2632,7 @@ function requireReactDom_production_min() {
   }
   function Lf(a) {
     for (; null != a; a = a.nextSibling) {
-      var b = a.nodeType;
+      let b = a.nodeType;
       if (1 === b || 3 === b) break;
       if (8 === b) {
         b = a.data;
@@ -2644,9 +2644,9 @@ function requireReactDom_production_min() {
   }
   function Mf(a) {
     a = a.previousSibling;
-    for (var b = 0; a; ) {
+    for (let b = 0; a; ) {
       if (8 === a.nodeType) {
-        var c = a.data;
+        const c = a.data;
         if ("$" === c || "$!" === c || "$?" === c) {
           if (0 === b) return a;
           b--;
@@ -2658,9 +2658,9 @@ function requireReactDom_production_min() {
   }
   var Nf = Math.random().toString(36).slice(2), Of = "__reactFiber$" + Nf, Pf = "__reactProps$" + Nf, uf = "__reactContainer$" + Nf, of = "__reactEvents$" + Nf, Qf = "__reactListeners$" + Nf, Rf = "__reactHandles$" + Nf;
   function Wc(a) {
-    var b = a[Of];
+    let b = a[Of];
     if (b) return b;
-    for (var c = a.parentNode; c; ) {
+    for (let c = a.parentNode; c; ) {
       if (b = c[uf] || c[Of]) {
         c = b.alternate;
         if (null !== b.child || null !== c && null !== c.child) for (a = Mf(a); null !== a; ) {
@@ -2685,7 +2685,7 @@ function requireReactDom_production_min() {
   function Db(a) {
     return a[Pf] || null;
   }
-  var Sf = [], Tf = -1;
+  let Sf = [], Tf = -1;
   function Uf(a) {
     return { current: a };
   }
@@ -2697,13 +2697,13 @@ function requireReactDom_production_min() {
     Sf[Tf] = a.current;
     a.current = b;
   }
-  var Vf = {}, H = Uf(Vf), Wf = Uf(false), Xf = Vf;
+  let Vf = {}, H = Uf(Vf), Wf = Uf(false), Xf = Vf;
   function Yf(a, b) {
-    var c = a.type.contextTypes;
+    const c = a.type.contextTypes;
     if (!c) return Vf;
-    var d = a.stateNode;
+    const d = a.stateNode;
     if (d && d.__reactInternalMemoizedUnmaskedChildContext === b) return d.__reactInternalMemoizedMaskedChildContext;
-    var e = {}, f;
+    let e = {}, f;
     for (f in c) e[f] = b[f];
     d && (a = a.stateNode, a.__reactInternalMemoizedUnmaskedChildContext = b, a.__reactInternalMemoizedMaskedChildContext = e);
     return e;
@@ -2722,11 +2722,11 @@ function requireReactDom_production_min() {
     G(Wf, c);
   }
   function bg(a, b, c) {
-    var d = a.stateNode;
+    let d = a.stateNode;
     b = b.childContextTypes;
     if ("function" !== typeof d.getChildContext) return c;
     d = d.getChildContext();
-    for (var e in d) if (!(e in b)) throw Error(p(108, Ra(a) || "Unknown", e));
+    for (const e in d) if (!(e in b)) throw Error(p(108, Ra(a) || "Unknown", e));
     return A({}, c, d);
   }
   function cg(a) {
@@ -2737,12 +2737,12 @@ function requireReactDom_production_min() {
     return true;
   }
   function dg(a, b, c) {
-    var d = a.stateNode;
+    const d = a.stateNode;
     if (!d) throw Error(p(169));
     c ? (a = bg(a, b, Xf), d.__reactInternalMemoizedMergedChildContext = a, E(Wf), E(H), G(H, a)) : E(Wf);
     G(Wf, c);
   }
-  var eg = null, fg = false, gg = false;
+  let eg = null, fg = false, gg = false;
   function hg(a) {
     null === eg ? eg = [a] : eg.push(a);
   }
@@ -2753,11 +2753,11 @@ function requireReactDom_production_min() {
   function jg() {
     if (!gg && null !== eg) {
       gg = true;
-      var a = 0, b = C;
+      let a = 0, b = C;
       try {
-        var c = eg;
+        const c = eg;
         for (C = 1; a < c.length; a++) {
-          var d = c[a];
+          let d = c[a];
           do
             d = d(true);
           while (null !== d);
@@ -2772,7 +2772,7 @@ function requireReactDom_production_min() {
     }
     return null;
   }
-  var kg = [], lg = 0, mg = null, ng = 0, og = [], pg = 0, qg = null, rg = 1, sg = "";
+  let kg = [], lg = 0, mg = null, ng = 0, og = [], pg = 0, qg = null, rg = 1, sg = "";
   function tg(a, b) {
     kg[lg++] = ng;
     kg[lg++] = mg;
@@ -2784,14 +2784,14 @@ function requireReactDom_production_min() {
     og[pg++] = sg;
     og[pg++] = qg;
     qg = a;
-    var d = rg;
+    let d = rg;
     a = sg;
-    var e = 32 - oc(d) - 1;
+    let e = 32 - oc(d) - 1;
     d &= ~(1 << e);
     c += 1;
-    var f = 32 - oc(b) + e;
+    let f = 32 - oc(b) + e;
     if (30 < f) {
-      var g = e - e % 5;
+      const g = e - e % 5;
       f = (d & (1 << g) - 1).toString(32);
       d >>= g;
       e -= g;
@@ -2806,9 +2806,9 @@ function requireReactDom_production_min() {
     for (; a === mg; ) mg = kg[--lg], kg[lg] = null, ng = kg[--lg], kg[lg] = null;
     for (; a === qg; ) qg = og[--pg], og[pg] = null, sg = og[--pg], og[pg] = null, rg = og[--pg], og[pg] = null;
   }
-  var xg = null, yg = null, I = false, zg = null;
+  let xg = null, yg = null, I = false, zg = null;
   function Ag(a, b) {
-    var c = Bg(5, null, null, 0);
+    const c = Bg(5, null, null, 0);
     c.elementType = "DELETED";
     c.stateNode = b;
     c.return = a;
@@ -2834,13 +2834,13 @@ function requireReactDom_production_min() {
   }
   function Eg(a) {
     if (I) {
-      var b = yg;
+      let b = yg;
       if (b) {
-        var c = b;
+        const c = b;
         if (!Cg(a, b)) {
           if (Dg(a)) throw Error(p(418));
           b = Lf(c.nextSibling);
-          var d = xg;
+          const d = xg;
           b && Cg(a, b) ? Ag(d, c) : (a.flags = a.flags & -4097 | 2, I = false, xg = a);
         }
       } else {
@@ -2858,7 +2858,7 @@ function requireReactDom_production_min() {
   function Gg(a) {
     if (a !== xg) return false;
     if (!I) return Fg(a), I = true, false;
-    var b;
+    let b;
     (b = 3 !== a.tag) && !(b = 5 !== a.tag) && (b = a.type, b = "head" !== b && "body" !== b && !Ef(a.type, a.memoizedProps));
     if (b && (b = yg)) {
       if (Dg(a)) throw Hg(), Error(p(418));
@@ -2873,7 +2873,7 @@ function requireReactDom_production_min() {
         a = a.nextSibling;
         for (b = 0; a; ) {
           if (8 === a.nodeType) {
-            var c = a.data;
+            const c = a.data;
             if ("/$" === c) {
               if (0 === b) {
                 yg = Lf(a.nextSibling);
@@ -2890,7 +2890,7 @@ function requireReactDom_production_min() {
     return true;
   }
   function Hg() {
-    for (var a = yg; a; ) a = Lf(a.nextSibling);
+    for (let a = yg; a; ) a = Lf(a.nextSibling);
   }
   function Ig() {
     yg = xg = null;
@@ -2899,7 +2899,7 @@ function requireReactDom_production_min() {
   function Jg(a) {
     null === zg ? zg = [a] : zg.push(a);
   }
-  var Kg = ua.ReactCurrentBatchConfig;
+  const Kg = ua.ReactCurrentBatchConfig;
   function Lg(a, b, c) {
     a = c.ref;
     if (null !== a && "function" !== typeof a && "object" !== typeof a) {
@@ -2910,10 +2910,10 @@ function requireReactDom_production_min() {
           var d = c.stateNode;
         }
         if (!d) throw Error(p(147, a));
-        var e = d, f = "" + a;
+        const e = d, f = "" + a;
         if (null !== b && null !== b.ref && "function" === typeof b.ref && b.ref._stringRef === f) return b.ref;
         b = function(a2) {
-          var b2 = e.refs;
+          const b2 = e.refs;
           null === a2 ? delete b2[f] : b2[f] = a2;
         };
         b._stringRef = f;
@@ -2929,13 +2929,13 @@ function requireReactDom_production_min() {
     throw Error(p(31, "[object Object]" === a ? "object with keys {" + Object.keys(b).join(", ") + "}" : a));
   }
   function Ng(a) {
-    var b = a._init;
+    const b = a._init;
     return b(a._payload);
   }
   function Og(a) {
     function b(b2, c2) {
       if (a) {
-        var d2 = b2.deletions;
+        const d2 = b2.deletions;
         null === d2 ? (b2.deletions = [c2], b2.flags |= 16) : d2.push(c2);
       }
     }
@@ -2973,7 +2973,7 @@ function requireReactDom_production_min() {
       return b2;
     }
     function k(a2, b2, c2, d2) {
-      var f2 = c2.type;
+      const f2 = c2.type;
       if (f2 === ya) return m2(a2, b2, c2.props.children, d2, c2.key);
       if (null !== b2 && (b2.elementType === f2 || "object" === typeof f2 && null !== f2 && f2.$$typeof === Ha && Ng(f2) === b2.type)) return d2 = e(b2, c2.props), d2.ref = Lg(a2, b2, c2), d2.return = a2, d2;
       d2 = Rg(c2.type, c2.key, c2.props, null, a2.mode, d2);
@@ -3011,7 +3011,7 @@ function requireReactDom_production_min() {
       return null;
     }
     function r(a2, b2, c2, d2) {
-      var e2 = null !== b2 ? b2.key : null;
+      let e2 = null !== b2 ? b2.key : null;
       if ("string" === typeof c2 && "" !== c2 || "number" === typeof c2) return null !== e2 ? null : h(a2, b2, "" + c2, d2);
       if ("object" === typeof c2 && null !== c2) {
         switch (c2.$$typeof) {
@@ -3052,7 +3052,7 @@ function requireReactDom_production_min() {
     function n(e2, g2, h2, k2) {
       for (var l2 = null, m3 = null, u = g2, w = g2 = 0, x = null; null !== u && w < h2.length; w++) {
         u.index > w ? (x = u, u = null) : x = u.sibling;
-        var n2 = r(e2, u, h2[w], k2);
+        const n2 = r(e2, u, h2[w], k2);
         if (null === n2) {
           null === u && (u = x);
           break;
@@ -3077,13 +3077,13 @@ function requireReactDom_production_min() {
       return l2;
     }
     function t(e2, g2, h2, k2) {
-      var l2 = Ka(h2);
+      let l2 = Ka(h2);
       if ("function" !== typeof l2) throw Error(p(150));
       h2 = l2.call(h2);
       if (null == h2) throw Error(p(151));
       for (var u = l2 = null, m3 = g2, w = g2 = 0, x = null, n2 = h2.next(); null !== m3 && !n2.done; w++, n2 = h2.next()) {
         m3.index > w ? (x = m3, m3 = null) : x = m3.sibling;
-        var t2 = r(e2, m3, n2.value, k2);
+        const t2 = r(e2, m3, n2.value, k2);
         if (null === t2) {
           null === m3 && (m3 = x);
           break;
@@ -3175,18 +3175,18 @@ function requireReactDom_production_min() {
     }
     return J;
   }
-  var Ug = Og(true), Vg = Og(false), Wg = Uf(null), Xg = null, Yg = null, Zg = null;
+  let Ug = Og(true), Vg = Og(false), Wg = Uf(null), Xg = null, Yg = null, Zg = null;
   function $g() {
     Zg = Yg = Xg = null;
   }
   function ah(a) {
-    var b = Wg.current;
+    const b = Wg.current;
     E(Wg);
     a._currentValue = b;
   }
   function bh(a, b, c) {
     for (; null !== a; ) {
-      var d = a.alternate;
+      const d = a.alternate;
       (a.childLanes & b) !== b ? (a.childLanes |= b, null !== d && (d.childLanes |= b)) : null !== d && (d.childLanes & b) !== b && (d.childLanes |= b);
       if (a === c) break;
       a = a.return;
@@ -3199,7 +3199,7 @@ function requireReactDom_production_min() {
     null !== a && null !== a.firstContext && (0 !== (a.lanes & b) && (dh = true), a.firstContext = null);
   }
   function eh(a) {
-    var b = a._currentValue;
+    const b = a._currentValue;
     if (Zg !== a) if (a = { context: a, memoizedValue: b, next: null }, null === Yg) {
       if (null === Xg) throw Error(p(308));
       Yg = a;
@@ -3207,25 +3207,25 @@ function requireReactDom_production_min() {
     } else Yg = Yg.next = a;
     return b;
   }
-  var fh = null;
+  let fh = null;
   function gh(a) {
     null === fh ? fh = [a] : fh.push(a);
   }
   function hh(a, b, c, d) {
-    var e = b.interleaved;
+    const e = b.interleaved;
     null === e ? (c.next = c, gh(b)) : (c.next = e.next, e.next = c);
     b.interleaved = c;
     return ih(a, d);
   }
   function ih(a, b) {
     a.lanes |= b;
-    var c = a.alternate;
+    let c = a.alternate;
     null !== c && (c.lanes |= b);
     c = a;
     for (a = a.return; null !== a; ) a.childLanes |= b, c = a.alternate, null !== c && (c.childLanes |= b), c = a, a = a.return;
     return 3 === c.tag ? c.stateNode : null;
   }
-  var jh = false;
+  let jh = false;
   function kh(a) {
     a.updateQueue = { baseState: a.memoizedState, firstBaseUpdate: null, lastBaseUpdate: null, shared: { pending: null, interleaved: null, lanes: 0 }, effects: null };
   }
@@ -3237,7 +3237,7 @@ function requireReactDom_production_min() {
     return { eventTime: a, lane: b, tag: 0, payload: null, callback: null, next: null };
   }
   function nh(a, b, c) {
-    var d = a.updateQueue;
+    let d = a.updateQueue;
     if (null === d) return null;
     d = d.shared;
     if (0 !== (K & 2)) {
@@ -3254,7 +3254,7 @@ function requireReactDom_production_min() {
   function oh(a, b, c) {
     b = b.updateQueue;
     if (null !== b && (b = b.shared, 0 !== (c & 4194240))) {
-      var d = b.lanes;
+      let d = b.lanes;
       d &= a.pendingLanes;
       c |= d;
       b.lanes = c;
@@ -3262,13 +3262,13 @@ function requireReactDom_production_min() {
     }
   }
   function ph(a, b) {
-    var c = a.updateQueue, d = a.alternate;
+    let c = a.updateQueue, d = a.alternate;
     if (null !== d && (d = d.updateQueue, c === d)) {
-      var e = null, f = null;
+      let e = null, f = null;
       c = c.firstBaseUpdate;
       if (null !== c) {
         do {
-          var g = { eventTime: c.eventTime, lane: c.lane, tag: c.tag, payload: c.payload, callback: c.callback, next: null };
+          const g = { eventTime: c.eventTime, lane: c.lane, tag: c.tag, payload: c.payload, callback: c.callback, next: null };
           null === f ? e = f = g : f = f.next = g;
           c = c.next;
         } while (null !== c);
@@ -3283,9 +3283,9 @@ function requireReactDom_production_min() {
     c.lastBaseUpdate = b;
   }
   function qh(a, b, c, d) {
-    var e = a.updateQueue;
+    let e = a.updateQueue;
     jh = false;
-    var f = e.firstBaseUpdate, g = e.lastBaseUpdate, h = e.shared.pending;
+    let f = e.firstBaseUpdate, g = e.lastBaseUpdate, h = e.shared.pending;
     if (null !== h) {
       e.shared.pending = null;
       var k = h, l = k.next;
@@ -3296,12 +3296,12 @@ function requireReactDom_production_min() {
       null !== m2 && (m2 = m2.updateQueue, h = m2.lastBaseUpdate, h !== g && (null === h ? m2.firstBaseUpdate = l : h.next = l, m2.lastBaseUpdate = k));
     }
     if (null !== f) {
-      var q = e.baseState;
+      let q = e.baseState;
       g = 0;
       m2 = l = k = null;
       h = f;
       do {
-        var r = h.lane, y = h.eventTime;
+        let r = h.lane, y = h.eventTime;
         if ((d & r) === r) {
           null !== m2 && (m2 = m2.next = {
             eventTime: y,
@@ -3312,7 +3312,7 @@ function requireReactDom_production_min() {
             next: null
           });
           a: {
-            var n = a, t = h;
+            let n = a, t = h;
             r = b;
             y = c;
             switch (t.tag) {
@@ -3362,7 +3362,7 @@ function requireReactDom_production_min() {
     a = b.effects;
     b.effects = null;
     if (null !== a) for (b = 0; b < a.length; b++) {
-      var d = a[b], e = d.callback;
+      let d = a[b], e = d.callback;
       if (null !== e) {
         d.callback = null;
         d = c;
@@ -3371,7 +3371,7 @@ function requireReactDom_production_min() {
       }
     }
   }
-  var th = {}, uh = Uf(th), vh2 = Uf(th), wh = Uf(th);
+  const th = {}, uh = Uf(th), vh2 = Uf(th), wh = Uf(th);
   function xh(a) {
     if (a === th) throw Error(p(174));
     return a;
@@ -3399,18 +3399,18 @@ function requireReactDom_production_min() {
   }
   function Ah(a) {
     xh(wh.current);
-    var b = xh(uh.current);
-    var c = lb(b, a.type);
+    const b = xh(uh.current);
+    const c = lb(b, a.type);
     b !== c && (G(vh2, a), G(uh, c));
   }
   function Bh(a) {
     vh2.current === a && (E(uh), E(vh2));
   }
-  var L = Uf(0);
+  const L = Uf(0);
   function Ch(a) {
-    for (var b = a; null !== b; ) {
+    for (let b = a; null !== b; ) {
       if (13 === b.tag) {
-        var c = b.memoizedState;
+        let c = b.memoizedState;
         if (null !== c && (c = c.dehydrated, null === c || "$?" === c.data || "$!" === c.data)) return b;
       } else if (19 === b.tag && void 0 !== b.memoizedProps.revealOrder) {
         if (0 !== (b.flags & 128)) return b;
@@ -3429,18 +3429,18 @@ function requireReactDom_production_min() {
     }
     return null;
   }
-  var Dh = [];
+  const Dh = [];
   function Eh() {
-    for (var a = 0; a < Dh.length; a++) Dh[a]._workInProgressVersionPrimary = null;
+    for (let a = 0; a < Dh.length; a++) Dh[a]._workInProgressVersionPrimary = null;
     Dh.length = 0;
   }
-  var Fh = ua.ReactCurrentDispatcher, Gh = ua.ReactCurrentBatchConfig, Hh = 0, M = null, N = null, O = null, Ih = false, Jh = false, Kh = 0, Lh = 0;
+  let Fh = ua.ReactCurrentDispatcher, Gh = ua.ReactCurrentBatchConfig, Hh = 0, M = null, N = null, O = null, Ih = false, Jh = false, Kh = 0, Lh = 0;
   function P() {
     throw Error(p(321));
   }
   function Mh(a, b) {
     if (null === b) return false;
-    for (var c = 0; c < b.length && c < a.length; c++) if (!He(a[c], b[c])) return false;
+    for (let c = 0; c < b.length && c < a.length; c++) if (!He(a[c], b[c])) return false;
     return true;
   }
   function Nh(a, b, c, d, e, f) {
@@ -3473,12 +3473,12 @@ function requireReactDom_production_min() {
     return a;
   }
   function Sh() {
-    var a = 0 !== Kh;
+    const a = 0 !== Kh;
     Kh = 0;
     return a;
   }
   function Th() {
-    var a = { memoizedState: null, baseState: null, baseQueue: null, queue: null, next: null };
+    const a = { memoizedState: null, baseState: null, baseQueue: null, queue: null, next: null };
     null === O ? M.memoizedState = O = a : O = O.next = a;
     return O;
   }
@@ -3487,7 +3487,7 @@ function requireReactDom_production_min() {
       var a = M.alternate;
       a = null !== a ? a.memoizedState : null;
     } else a = N.next;
-    var b = null === O ? M.memoizedState : O.next;
+    const b = null === O ? M.memoizedState : O.next;
     if (null !== b) O = b, N = a;
     else {
       if (null === a) throw Error(p(310));
@@ -3501,10 +3501,10 @@ function requireReactDom_production_min() {
     return "function" === typeof b ? b(a) : b;
   }
   function Wh(a) {
-    var b = Uh(), c = b.queue;
+    const b = Uh(), c = b.queue;
     if (null === c) throw Error(p(311));
     c.lastRenderedReducer = a;
-    var d = N, e = d.baseQueue, f = c.pending;
+    let d = N, e = d.baseQueue, f = c.pending;
     if (null !== f) {
       if (null !== e) {
         var g = e.next;
@@ -3517,12 +3517,12 @@ function requireReactDom_production_min() {
     if (null !== e) {
       f = e.next;
       d = d.baseState;
-      var h = g = null, k = null, l = f;
+      let h = g = null, k = null, l = f;
       do {
-        var m2 = l.lane;
+        const m2 = l.lane;
         if ((Hh & m2) === m2) null !== k && (k = k.next = { lane: 0, action: l.action, hasEagerState: l.hasEagerState, eagerState: l.eagerState, next: null }), d = l.hasEagerState ? l.eagerState : a(d, l.action);
         else {
-          var q = {
+          const q = {
             lane: m2,
             action: l.action,
             hasEagerState: l.hasEagerState,
@@ -3552,13 +3552,13 @@ function requireReactDom_production_min() {
     return [b.memoizedState, c.dispatch];
   }
   function Xh(a) {
-    var b = Uh(), c = b.queue;
+    const b = Uh(), c = b.queue;
     if (null === c) throw Error(p(311));
     c.lastRenderedReducer = a;
-    var d = c.dispatch, e = c.pending, f = b.memoizedState;
+    let d = c.dispatch, e = c.pending, f = b.memoizedState;
     if (null !== e) {
       c.pending = null;
-      var g = e = e.next;
+      let g = e = e.next;
       do
         f = a(f, g.action), g = g.next;
       while (g !== e);
@@ -3572,7 +3572,7 @@ function requireReactDom_production_min() {
   function Yh() {
   }
   function Zh(a, b) {
-    var c = M, d = Uh(), e = b(), f = !He(d.memoizedState, e);
+    let c = M, d = Uh(), e = b(), f = !He(d.memoizedState, e);
     f && (d.memoizedState = e, dh = true);
     d = d.queue;
     $h(ai.bind(null, c, d, a), [a]);
@@ -3601,21 +3601,21 @@ function requireReactDom_production_min() {
     });
   }
   function ei(a) {
-    var b = a.getSnapshot;
+    const b = a.getSnapshot;
     a = a.value;
     try {
-      var c = b();
+      const c = b();
       return !He(a, c);
     } catch (d) {
       return true;
     }
   }
   function fi(a) {
-    var b = ih(a, 1);
+    const b = ih(a, 1);
     null !== b && gi(b, a, 1, -1);
   }
   function hi(a) {
-    var b = Th();
+    const b = Th();
     "function" === typeof a && (a = a());
     b.memoizedState = b.baseState = a;
     a = { pending: null, interleaved: null, lanes: 0, dispatch: null, lastRenderedReducer: Vh, lastRenderedState: a };
@@ -3633,16 +3633,16 @@ function requireReactDom_production_min() {
     return Uh().memoizedState;
   }
   function ki(a, b, c, d) {
-    var e = Th();
+    const e = Th();
     M.flags |= a;
     e.memoizedState = bi(1 | b, c, void 0, void 0 === d ? null : d);
   }
   function li(a, b, c, d) {
-    var e = Uh();
+    const e = Uh();
     d = void 0 === d ? null : d;
-    var f = void 0;
+    let f = void 0;
     if (null !== N) {
-      var g = N.memoizedState;
+      const g = N.memoizedState;
       f = g.destroy;
       if (null !== d && Mh(d, g.deps)) {
         e.memoizedState = bi(b, c, f, d);
@@ -3679,17 +3679,17 @@ function requireReactDom_production_min() {
   function ri() {
   }
   function si(a, b) {
-    var c = Uh();
+    const c = Uh();
     b = void 0 === b ? null : b;
-    var d = c.memoizedState;
+    const d = c.memoizedState;
     if (null !== d && null !== b && Mh(b, d[1])) return d[0];
     c.memoizedState = [a, b];
     return a;
   }
   function ti(a, b) {
-    var c = Uh();
+    const c = Uh();
     b = void 0 === b ? null : b;
-    var d = c.memoizedState;
+    const d = c.memoizedState;
     if (null !== d && null !== b && Mh(b, d[1])) return d[0];
     a = a();
     c.memoizedState = [a, b];
@@ -3701,10 +3701,10 @@ function requireReactDom_production_min() {
     return b;
   }
   function vi(a, b) {
-    var c = C;
+    const c = C;
     C = 0 !== c && 4 > c ? c : 4;
     a(true);
-    var d = Gh.transition;
+    const d = Gh.transition;
     Gh.transition = {};
     try {
       a(false), b();
@@ -3716,26 +3716,26 @@ function requireReactDom_production_min() {
     return Uh().memoizedState;
   }
   function xi(a, b, c) {
-    var d = yi(a);
+    const d = yi(a);
     c = { lane: d, action: c, hasEagerState: false, eagerState: null, next: null };
     if (zi(a)) Ai(b, c);
     else if (c = hh(a, b, c, d), null !== c) {
-      var e = R();
+      const e = R();
       gi(c, a, d, e);
       Bi(c, b, d);
     }
   }
   function ii(a, b, c) {
-    var d = yi(a), e = { lane: d, action: c, hasEagerState: false, eagerState: null, next: null };
+    let d = yi(a), e = { lane: d, action: c, hasEagerState: false, eagerState: null, next: null };
     if (zi(a)) Ai(b, e);
     else {
-      var f = a.alternate;
+      let f = a.alternate;
       if (0 === a.lanes && (null === f || 0 === f.lanes) && (f = b.lastRenderedReducer, null !== f)) try {
-        var g = b.lastRenderedState, h = f(g, c);
+        const g = b.lastRenderedState, h = f(g, c);
         e.hasEagerState = true;
         e.eagerState = h;
         if (He(h, g)) {
-          var k = b.interleaved;
+          const k = b.interleaved;
           null === k ? (e.next = e, gh(b)) : (e.next = k.next, k.next = e);
           b.interleaved = e;
           return;
@@ -3748,18 +3748,18 @@ function requireReactDom_production_min() {
     }
   }
   function zi(a) {
-    var b = a.alternate;
+    const b = a.alternate;
     return a === M || null !== b && b === M;
   }
   function Ai(a, b) {
     Jh = Ih = true;
-    var c = a.pending;
+    const c = a.pending;
     null === c ? b.next = b : (b.next = c.next, c.next = b);
     a.pending = b;
   }
   function Bi(a, b, c) {
     if (0 !== (c & 4194240)) {
-      var d = b.lanes;
+      let d = b.lanes;
       d &= a.pendingLanes;
       c |= d;
       b.lanes = c;
@@ -3782,13 +3782,13 @@ function requireReactDom_production_min() {
   }, useInsertionEffect: function(a, b) {
     return ki(4, 2, a, b);
   }, useMemo: function(a, b) {
-    var c = Th();
+    const c = Th();
     b = void 0 === b ? null : b;
     a = a();
     c.memoizedState = [a, b];
     return a;
   }, useReducer: function(a, b, c) {
-    var d = Th();
+    const d = Th();
     b = void 0 !== c ? c(b) : b;
     d.memoizedState = d.baseState = b;
     a = { pending: null, interleaved: null, lanes: 0, dispatch: null, lastRenderedReducer: a, lastRenderedState: b };
@@ -3796,19 +3796,19 @@ function requireReactDom_production_min() {
     a = a.dispatch = xi.bind(null, M, a);
     return [d.memoizedState, a];
   }, useRef: function(a) {
-    var b = Th();
+    const b = Th();
     a = { current: a };
     return b.memoizedState = a;
   }, useState: hi, useDebugValue: ri, useDeferredValue: function(a) {
     return Th().memoizedState = a;
   }, useTransition: function() {
-    var a = hi(false), b = a[0];
+    let a = hi(false), b = a[0];
     a = vi.bind(null, a[1]);
     Th().memoizedState = a;
     return [b, a];
   }, useMutableSource: function() {
   }, useSyncExternalStore: function(a, b, c) {
-    var d = M, e = Th();
+    const d = M, e = Th();
     if (I) {
       if (void 0 === c) throw Error(p(407));
       c = c();
@@ -3818,7 +3818,7 @@ function requireReactDom_production_min() {
       0 !== (Hh & 30) || di(d, b, c);
     }
     e.memoizedState = c;
-    var f = { value: c, getSnapshot: b };
+    const f = { value: c, getSnapshot: b };
     e.queue = f;
     mi(ai.bind(
       null,
@@ -3830,10 +3830,10 @@ function requireReactDom_production_min() {
     bi(9, ci.bind(null, d, f, c, b), void 0, null);
     return c;
   }, useId: function() {
-    var a = Th(), b = Q.identifierPrefix;
+    let a = Th(), b = Q.identifierPrefix;
     if (I) {
       var c = sg;
-      var d = rg;
+      const d = rg;
       c = (d & ~(1 << 32 - oc(d) - 1)).toString(32) + c;
       b = ":" + b + "R" + c;
       c = Kh++;
@@ -3857,11 +3857,11 @@ function requireReactDom_production_min() {
     },
     useDebugValue: ri,
     useDeferredValue: function(a) {
-      var b = Uh();
+      const b = Uh();
       return ui(b, N.memoizedState, a);
     },
     useTransition: function() {
-      var a = Wh(Vh)[0], b = Uh().memoizedState;
+      const a = Wh(Vh)[0], b = Uh().memoizedState;
       return [a, b];
     },
     useMutableSource: Yh,
@@ -3871,17 +3871,17 @@ function requireReactDom_production_min() {
   }, Qh = { readContext: eh, useCallback: si, useContext: eh, useEffect: $h, useImperativeHandle: qi, useInsertionEffect: ni, useLayoutEffect: oi, useMemo: ti, useReducer: Xh, useRef: ji, useState: function() {
     return Xh(Vh);
   }, useDebugValue: ri, useDeferredValue: function(a) {
-    var b = Uh();
+    const b = Uh();
     return null === N ? b.memoizedState = a : ui(b, N.memoizedState, a);
   }, useTransition: function() {
-    var a = Xh(Vh)[0], b = Uh().memoizedState;
+    const a = Xh(Vh)[0], b = Uh().memoizedState;
     return [a, b];
   }, useMutableSource: Yh, useSyncExternalStore: Zh, useId: wi, unstable_isNewReconciler: false };
   function Ci(a, b) {
     if (a && a.defaultProps) {
       b = A({}, b);
       a = a.defaultProps;
-      for (var c in a) void 0 === b[c] && (b[c] = a[c]);
+      for (const c in a) void 0 === b[c] && (b[c] = a[c]);
       return b;
     }
     return b;
@@ -3893,18 +3893,18 @@ function requireReactDom_production_min() {
     a.memoizedState = c;
     0 === a.lanes && (a.updateQueue.baseState = c);
   }
-  var Ei = { isMounted: function(a) {
+  const Ei = { isMounted: function(a) {
     return (a = a._reactInternals) ? Vb(a) === a : false;
   }, enqueueSetState: function(a, b, c) {
     a = a._reactInternals;
-    var d = R(), e = yi(a), f = mh(d, e);
+    const d = R(), e = yi(a), f = mh(d, e);
     f.payload = b;
     void 0 !== c && null !== c && (f.callback = c);
     b = nh(a, f, e);
     null !== b && (gi(b, a, e, d), oh(b, a, e));
   }, enqueueReplaceState: function(a, b, c) {
     a = a._reactInternals;
-    var d = R(), e = yi(a), f = mh(d, e);
+    const d = R(), e = yi(a), f = mh(d, e);
     f.tag = 1;
     f.payload = b;
     void 0 !== c && null !== c && (f.callback = c);
@@ -3912,7 +3912,7 @@ function requireReactDom_production_min() {
     null !== b && (gi(b, a, e, d), oh(b, a, e));
   }, enqueueForceUpdate: function(a, b) {
     a = a._reactInternals;
-    var c = R(), d = yi(a), e = mh(c, d);
+    const c = R(), d = yi(a), e = mh(c, d);
     e.tag = 2;
     void 0 !== b && null !== b && (e.callback = b);
     b = nh(a, e, d);
@@ -3923,8 +3923,8 @@ function requireReactDom_production_min() {
     return "function" === typeof a.shouldComponentUpdate ? a.shouldComponentUpdate(d, f, g) : b.prototype && b.prototype.isPureReactComponent ? !Ie(c, d) || !Ie(e, f) : true;
   }
   function Gi(a, b, c) {
-    var d = false, e = Vf;
-    var f = b.contextType;
+    let d = false, e = Vf;
+    let f = b.contextType;
     "object" === typeof f && null !== f ? f = eh(f) : (e = Zf(b) ? Xf : H.current, d = b.contextTypes, f = (d = null !== d && void 0 !== d) ? Yf(a, e) : Vf);
     b = new b(c, f);
     a.memoizedState = null !== b.state && void 0 !== b.state ? b.state : null;
@@ -3941,12 +3941,12 @@ function requireReactDom_production_min() {
     b.state !== a && Ei.enqueueReplaceState(b, b.state, null);
   }
   function Ii(a, b, c, d) {
-    var e = a.stateNode;
+    const e = a.stateNode;
     e.props = c;
     e.state = a.memoizedState;
     e.refs = {};
     kh(a);
-    var f = b.contextType;
+    let f = b.contextType;
     "object" === typeof f && null !== f ? e.context = eh(f) : (f = Zf(b) ? Xf : H.current, e.context = Yf(a, f));
     e.state = a.memoizedState;
     f = b.getDerivedStateFromProps;
@@ -3956,7 +3956,7 @@ function requireReactDom_production_min() {
   }
   function Ji(a, b) {
     try {
-      var c = "", d = b;
+      let c = "", d = b;
       do
         c += Pa(d), d = d.return;
       while (d);
@@ -3978,12 +3978,12 @@ function requireReactDom_production_min() {
       });
     }
   }
-  var Mi = "function" === typeof WeakMap ? WeakMap : Map;
+  const Mi = "function" === typeof WeakMap ? WeakMap : Map;
   function Ni(a, b, c) {
     c = mh(-1, c);
     c.tag = 3;
     c.payload = { element: null };
-    var d = b.value;
+    const d = b.value;
     c.callback = function() {
       Oi || (Oi = true, Pi2 = d);
       Li(a, b);
@@ -3993,9 +3993,9 @@ function requireReactDom_production_min() {
   function Qi(a, b, c) {
     c = mh(-1, c);
     c.tag = 3;
-    var d = a.type.getDerivedStateFromError;
+    const d = a.type.getDerivedStateFromError;
     if ("function" === typeof d) {
-      var e = b.value;
+      const e = b.value;
       c.payload = function() {
         return d(e);
       };
@@ -4003,17 +4003,17 @@ function requireReactDom_production_min() {
         Li(a, b);
       };
     }
-    var f = a.stateNode;
+    const f = a.stateNode;
     null !== f && "function" === typeof f.componentDidCatch && (c.callback = function() {
       Li(a, b);
       "function" !== typeof d && (null === Ri ? Ri = /* @__PURE__ */ new Set([this]) : Ri.add(this));
-      var c2 = b.stack;
+      const c2 = b.stack;
       this.componentDidCatch(b.value, { componentStack: null !== c2 ? c2 : "" });
     });
     return c;
   }
   function Si(a, b, c) {
-    var d = a.pingCache;
+    let d = a.pingCache;
     if (null === d) {
       d = a.pingCache = new Mi();
       var e = /* @__PURE__ */ new Set();
@@ -4042,7 +4042,7 @@ function requireReactDom_production_min() {
   }
   function Yi(a, b, c, d, e) {
     c = c.render;
-    var f = b.ref;
+    const f = b.ref;
     ch(b, e);
     d = Nh(a, b, c, d, f, e);
     c = Sh();
@@ -4063,7 +4063,7 @@ function requireReactDom_production_min() {
     }
     f = a.child;
     if (0 === (a.lanes & e)) {
-      var g = f.memoizedProps;
+      const g = f.memoizedProps;
       c = c.compare;
       c = null !== c ? c : Ie;
       if (c(g, d) && a.ref === b.ref) return Zi(a, b, e);
@@ -4076,14 +4076,14 @@ function requireReactDom_production_min() {
   }
   function bj(a, b, c, d, e) {
     if (null !== a) {
-      var f = a.memoizedProps;
+      const f = a.memoizedProps;
       if (Ie(f, d) && a.ref === b.ref) if (dh = false, b.pendingProps = d = f, 0 !== (a.lanes & e)) 0 !== (a.flags & 131072) && (dh = true);
       else return b.lanes = a.lanes, Zi(a, b, e);
     }
     return cj(a, b, c, d, e);
   }
   function dj(a, b, c) {
-    var d = b.pendingProps, e = d.children, f = null !== a ? a.memoizedState : null;
+    let d = b.pendingProps, e = d.children, f = null !== a ? a.memoizedState : null;
     if ("hidden" === d.mode) if (0 === (b.mode & 1)) b.memoizedState = { baseLanes: 0, cachePool: null, transitions: null }, G(ej, fj), fj |= c;
     else {
       if (0 === (c & 1073741824)) return a = null !== f ? f.baseLanes | c : c, b.lanes = b.childLanes = 1073741824, b.memoizedState = { baseLanes: a, cachePool: null, transitions: null }, b.updateQueue = null, G(ej, fj), fj |= a, null;
@@ -4097,11 +4097,11 @@ function requireReactDom_production_min() {
     return b.child;
   }
   function gj(a, b) {
-    var c = b.ref;
+    const c = b.ref;
     if (null === a && null !== c || null !== a && a.ref !== c) b.flags |= 512, b.flags |= 2097152;
   }
   function cj(a, b, c, d, e) {
-    var f = Zf(c) ? Xf : H.current;
+    let f = Zf(c) ? Xf : H.current;
     f = Yf(b, f);
     ch(b, e);
     c = Nh(a, b, c, d, f, e);
@@ -4142,24 +4142,24 @@ function requireReactDom_production_min() {
       r = g.context;
       k = c.contextType;
       "object" === typeof k && null !== k ? k = eh(k) : (k = Zf(c) ? Xf : H.current, k = Yf(b, k));
-      var y = c.getDerivedStateFromProps;
+      const y = c.getDerivedStateFromProps;
       (m2 = "function" === typeof y || "function" === typeof g.getSnapshotBeforeUpdate) || "function" !== typeof g.UNSAFE_componentWillReceiveProps && "function" !== typeof g.componentWillReceiveProps || (h !== q || r !== k) && Hi(b, g, d, k);
       jh = false;
       r = b.memoizedState;
       g.state = r;
       qh(b, d, g, e);
-      var n = b.memoizedState;
+      let n = b.memoizedState;
       h !== q || r !== n || Wf.current || jh ? ("function" === typeof y && (Di(b, c, y, d), n = b.memoizedState), (l = jh || Fi(b, c, l, d, r, n, k) || false) ? (m2 || "function" !== typeof g.UNSAFE_componentWillUpdate && "function" !== typeof g.componentWillUpdate || ("function" === typeof g.componentWillUpdate && g.componentWillUpdate(d, n, k), "function" === typeof g.UNSAFE_componentWillUpdate && g.UNSAFE_componentWillUpdate(d, n, k)), "function" === typeof g.componentDidUpdate && (b.flags |= 4), "function" === typeof g.getSnapshotBeforeUpdate && (b.flags |= 1024)) : ("function" !== typeof g.componentDidUpdate || h === a.memoizedProps && r === a.memoizedState || (b.flags |= 4), "function" !== typeof g.getSnapshotBeforeUpdate || h === a.memoizedProps && r === a.memoizedState || (b.flags |= 1024), b.memoizedProps = d, b.memoizedState = n), g.props = d, g.state = n, g.context = k, d = l) : ("function" !== typeof g.componentDidUpdate || h === a.memoizedProps && r === a.memoizedState || (b.flags |= 4), "function" !== typeof g.getSnapshotBeforeUpdate || h === a.memoizedProps && r === a.memoizedState || (b.flags |= 1024), d = false);
     }
     return jj(a, b, c, d, f, e);
   }
   function jj(a, b, c, d, e, f) {
     gj(a, b);
-    var g = 0 !== (b.flags & 128);
+    const g = 0 !== (b.flags & 128);
     if (!d && !g) return e && dg(b, c, false), Zi(a, b, f);
     d = b.stateNode;
     Wi.current = b;
-    var h = g && "function" !== typeof c.getDerivedStateFromError ? null : d.render();
+    const h = g && "function" !== typeof c.getDerivedStateFromError ? null : d.render();
     b.flags |= 1;
     null !== a && g ? (b.child = Ug(b, a.child, null, f), b.child = Ug(b, null, h, f)) : Xi(a, b, h, f);
     b.memoizedState = d.state;
@@ -4167,7 +4167,7 @@ function requireReactDom_production_min() {
     return b.child;
   }
   function kj(a) {
-    var b = a.stateNode;
+    const b = a.stateNode;
     b.pendingContext ? ag(a, b.pendingContext, b.pendingContext !== b.context) : b.context && ag(a, b.context, false);
     yh(a, b.containerInfo);
   }
@@ -4178,12 +4178,12 @@ function requireReactDom_production_min() {
     Xi(a, b, c, d);
     return b.child;
   }
-  var mj = { dehydrated: null, treeContext: null, retryLane: 0 };
+  const mj = { dehydrated: null, treeContext: null, retryLane: 0 };
   function nj(a) {
     return { baseLanes: a, cachePool: null, transitions: null };
   }
   function oj(a, b, c) {
-    var d = b.pendingProps, e = L.current, f = false, g = 0 !== (b.flags & 128), h;
+    let d = b.pendingProps, e = L.current, f = false, g = 0 !== (b.flags & 128), h;
     (h = g) || (h = null !== a && null === a.memoizedState ? false : 0 !== (e & 2));
     if (h) f = true, b.flags &= -129;
     else if (null === a || null !== a.memoizedState) e |= 1;
@@ -4203,7 +4203,7 @@ function requireReactDom_production_min() {
       g = b.mode;
       e = a.child;
       h = e.sibling;
-      var k = { mode: "hidden", children: d.children };
+      const k = { mode: "hidden", children: d.children };
       0 === (g & 1) && b.child !== e ? (d = b.child, d.childLanes = 0, d.pendingProps = k, b.deletions = null) : (d = Pg(e, k), d.subtreeFlags = e.subtreeFlags & 14680064);
       null !== h ? f = Pg(h, f) : (f = Tg(f, g, c, null), f.flags |= 2);
       f.return = b;
@@ -4330,16 +4330,16 @@ function requireReactDom_production_min() {
   }
   function vj(a, b, c) {
     a.lanes |= b;
-    var d = a.alternate;
+    const d = a.alternate;
     null !== d && (d.lanes |= b);
     bh(a.return, b, c);
   }
   function wj(a, b, c, d, e) {
-    var f = a.memoizedState;
+    const f = a.memoizedState;
     null === f ? a.memoizedState = { isBackwards: b, rendering: null, renderingStartTime: 0, last: d, tail: c, tailMode: e } : (f.isBackwards = b, f.rendering = null, f.renderingStartTime = 0, f.last = d, f.tail = c, f.tailMode = e);
   }
   function xj(a, b, c) {
-    var d = b.pendingProps, e = d.revealOrder, f = d.tail;
+    let d = b.pendingProps, e = d.revealOrder, f = d.tail;
     Xi(a, b, d.children, c);
     d = L.current;
     if (0 !== (d & 2)) d = d & 1 | 2, b.flags |= 128;
@@ -4461,9 +4461,9 @@ function requireReactDom_production_min() {
     }
     return Zi(a, b, c);
   }
-  var zj, Aj, Bj, Cj;
+  let zj, Aj, Bj, Cj;
   zj = function(a, b) {
-    for (var c = b.child; null !== c; ) {
+    for (let c = b.child; null !== c; ) {
       if (5 === c.tag || 6 === c.tag) a.appendChild(c.stateNode);
       else if (4 !== c.tag && null !== c.child) {
         c.child.return = c;
@@ -4482,11 +4482,11 @@ function requireReactDom_production_min() {
   Aj = function() {
   };
   Bj = function(a, b, c, d) {
-    var e = a.memoizedProps;
+    let e = a.memoizedProps;
     if (e !== d) {
       a = b.stateNode;
       xh(uh.current);
-      var f = null;
+      let f = null;
       switch (c) {
         case "input":
           e = Ya(a, e);
@@ -4507,14 +4507,14 @@ function requireReactDom_production_min() {
           "function" !== typeof e.onClick && "function" === typeof d.onClick && (a.onclick = Bf);
       }
       ub(c, d);
-      var g;
+      let g;
       c = null;
       for (l in e) if (!d.hasOwnProperty(l) && e.hasOwnProperty(l) && null != e[l]) if ("style" === l) {
         var h = e[l];
         for (g in h) h.hasOwnProperty(g) && (c || (c = {}), c[g] = "");
       } else "dangerouslySetInnerHTML" !== l && "children" !== l && "suppressContentEditableWarning" !== l && "suppressHydrationWarning" !== l && "autoFocus" !== l && (ea.hasOwnProperty(l) ? f || (f = []) : (f = f || []).push(l, null));
       for (l in d) {
-        var k = d[l];
+        let k = d[l];
         h = null != e ? e[l] : void 0;
         if (d.hasOwnProperty(l) && k !== h && (null != k || null != h)) if ("style" === l) if (h) {
           for (g in h) !h.hasOwnProperty(g) || k && k.hasOwnProperty(g) || (c || (c = {}), c[g] = "");
@@ -4547,7 +4547,7 @@ function requireReactDom_production_min() {
     }
   }
   function S(a) {
-    var b = null !== a.alternate && a.alternate.child === a.child, c = 0, d = 0;
+    let b = null !== a.alternate && a.alternate.child === a.child, c = 0, d = 0;
     if (b) for (var e = a.child; null !== e; ) c |= e.lanes | e.childLanes, d |= e.subtreeFlags & 14680064, d |= e.flags & 14680064, e.return = a, e = e.sibling;
     else for (e = a.child; null !== e; ) c |= e.lanes | e.childLanes, d |= e.subtreeFlags, d |= e.flags, e.return = a, e = e.sibling;
     a.subtreeFlags |= d;
@@ -4555,7 +4555,7 @@ function requireReactDom_production_min() {
     return b;
   }
   function Ej(a, b, c) {
-    var d = b.pendingProps;
+    let d = b.pendingProps;
     wg(b);
     switch (b.tag) {
       case 2:
@@ -4738,7 +4738,7 @@ function requireReactDom_production_min() {
               ub(c, e);
               h = e;
               for (f in h) if (h.hasOwnProperty(f)) {
-                var k = h[f];
+                let k = h[f];
                 "style" === f ? sb(a, k) : "dangerouslySetInnerHTML" === f ? (k = k ? k.__html : void 0, null != k && nb(a, k)) : "children" === f ? "string" === typeof k ? ("textarea" !== c || "" !== k) && ob(a, k) : "number" === typeof k && ob(a, "" + k) : "suppressContentEditableWarning" !== f && "suppressHydrationWarning" !== f && "autoFocus" !== f && (ea.hasOwnProperty(f) ? null != k && "onScroll" === f && D("scroll", a) : null != k && ta(a, f, k, g));
               }
               switch (c) {
@@ -4917,9 +4917,9 @@ function requireReactDom_production_min() {
         return null;
     }
   }
-  var Jj = false, U = false, Kj = "function" === typeof WeakSet ? WeakSet : Set, V = null;
+  let Jj = false, U = false, Kj = "function" === typeof WeakSet ? WeakSet : Set, V = null;
   function Lj(a, b) {
-    var c = a.ref;
+    const c = a.ref;
     if (null !== c) if ("function" === typeof c) try {
       c(null);
     } catch (d) {
@@ -4934,7 +4934,7 @@ function requireReactDom_production_min() {
       W(a, b, d);
     }
   }
-  var Nj = false;
+  let Nj = false;
   function Oj(a, b) {
     Cf = dd;
     a = Me();
@@ -4942,10 +4942,10 @@ function requireReactDom_production_min() {
       if ("selectionStart" in a) var c = { start: a.selectionStart, end: a.selectionEnd };
       else a: {
         c = (c = a.ownerDocument) && c.defaultView || window;
-        var d = c.getSelection && c.getSelection();
+        let d = c.getSelection && c.getSelection();
         if (d && 0 !== d.rangeCount) {
           c = d.anchorNode;
-          var e = d.anchorOffset, f = d.focusNode;
+          const e = d.anchorOffset, f = d.focusNode;
           d = d.focusOffset;
           try {
             c.nodeType, f.nodeType;
@@ -4953,7 +4953,7 @@ function requireReactDom_production_min() {
             c = null;
             break a;
           }
-          var g = 0, h = -1, k = -1, l = 0, m2 = 0, q = a, r = null;
+          let g = 0, h = -1, k = -1, l = 0, m2 = 0, q = a, r = null;
           b: for (; ; ) {
             for (var y; ; ) {
               q !== c || 0 !== e && 3 !== q.nodeType || (h = g + e);
@@ -4992,7 +4992,7 @@ function requireReactDom_production_min() {
             break;
           case 1:
             if (null !== n) {
-              var t = n.memoizedProps, J = n.memoizedState, x = b.stateNode, w = x.getSnapshotBeforeUpdate(b.elementType === b.type ? t : Ci(b.type, t), J);
+              const t = n.memoizedProps, J = n.memoizedState, x = b.stateNode, w = x.getSnapshotBeforeUpdate(b.elementType === b.type ? t : Ci(b.type, t), J);
               x.__reactInternalSnapshotBeforeUpdate = w;
             }
             break;
@@ -5024,13 +5024,13 @@ function requireReactDom_production_min() {
     return n;
   }
   function Pj(a, b, c) {
-    var d = b.updateQueue;
+    let d = b.updateQueue;
     d = null !== d ? d.lastEffect : null;
     if (null !== d) {
-      var e = d = d.next;
+      let e = d = d.next;
       do {
         if ((e.tag & a) === a) {
-          var f = e.destroy;
+          const f = e.destroy;
           e.destroy = void 0;
           void 0 !== f && Mj(b, c, f);
         }
@@ -5042,10 +5042,10 @@ function requireReactDom_production_min() {
     b = b.updateQueue;
     b = null !== b ? b.lastEffect : null;
     if (null !== b) {
-      var c = b = b.next;
+      let c = b = b.next;
       do {
         if ((c.tag & a) === a) {
-          var d = c.create;
+          const d = c.create;
           c.destroy = d();
         }
         c = c.next;
@@ -5053,9 +5053,9 @@ function requireReactDom_production_min() {
     }
   }
   function Rj(a) {
-    var b = a.ref;
+    const b = a.ref;
     if (null !== b) {
-      var c = a.stateNode;
+      const c = a.stateNode;
       switch (a.tag) {
         case 5:
           a = c;
@@ -5067,7 +5067,7 @@ function requireReactDom_production_min() {
     }
   }
   function Sj(a) {
-    var b = a.alternate;
+    let b = a.alternate;
     null !== b && (a.alternate = null, Sj(b));
     a.child = null;
     a.deletions = null;
@@ -5101,16 +5101,16 @@ function requireReactDom_production_min() {
     }
   }
   function Vj(a, b, c) {
-    var d = a.tag;
+    const d = a.tag;
     if (5 === d || 6 === d) a = a.stateNode, b ? 8 === c.nodeType ? c.parentNode.insertBefore(a, b) : c.insertBefore(a, b) : (8 === c.nodeType ? (b = c.parentNode, b.insertBefore(a, c)) : (b = c, b.appendChild(a)), c = c._reactRootContainer, null !== c && void 0 !== c || null !== b.onclick || (b.onclick = Bf));
     else if (4 !== d && (a = a.child, null !== a)) for (Vj(a, b, c), a = a.sibling; null !== a; ) Vj(a, b, c), a = a.sibling;
   }
   function Wj(a, b, c) {
-    var d = a.tag;
+    const d = a.tag;
     if (5 === d || 6 === d) a = a.stateNode, b ? c.insertBefore(a, b) : c.appendChild(a);
     else if (4 !== d && (a = a.child, null !== a)) for (Wj(a, b, c), a = a.sibling; null !== a; ) Wj(a, b, c), a = a.sibling;
   }
-  var X2 = null, Xj = false;
+  let X2 = null, Xj = false;
   function Yj(a, b, c) {
     for (c = c.child; null !== c; ) Zj(a, b, c), c = c.sibling;
   }
@@ -5149,7 +5149,7 @@ function requireReactDom_production_min() {
         if (!U && (d = c.updateQueue, null !== d && (d = d.lastEffect, null !== d))) {
           e = d = d.next;
           do {
-            var f = e, g = f.destroy;
+            let f = e, g = f.destroy;
             f = f.tag;
             void 0 !== g && (0 !== (f & 2) ? Mj(c, b, g) : 0 !== (f & 4) && Mj(c, b, g));
             e = e.next;
@@ -5176,23 +5176,23 @@ function requireReactDom_production_min() {
     }
   }
   function ak(a) {
-    var b = a.updateQueue;
+    const b = a.updateQueue;
     if (null !== b) {
       a.updateQueue = null;
-      var c = a.stateNode;
+      let c = a.stateNode;
       null === c && (c = a.stateNode = new Kj());
       b.forEach(function(b2) {
-        var d = bk.bind(null, a, b2);
+        const d = bk.bind(null, a, b2);
         c.has(b2) || (c.add(b2), b2.then(d, d));
       });
     }
   }
   function ck(a, b) {
-    var c = b.deletions;
-    if (null !== c) for (var d = 0; d < c.length; d++) {
-      var e = c[d];
+    const c = b.deletions;
+    if (null !== c) for (let d = 0; d < c.length; d++) {
+      const e = c[d];
       try {
-        var f = a, g = b, h = g;
+        let f = a, g = b, h = g;
         a: for (; null !== h; ) {
           switch (h.tag) {
             case 5:
@@ -5214,7 +5214,7 @@ function requireReactDom_production_min() {
         Zj(f, g, e);
         X2 = null;
         Xj = false;
-        var k = e.alternate;
+        const k = e.alternate;
         null !== k && (k.return = null);
         e.return = null;
       } catch (l) {
@@ -5224,7 +5224,7 @@ function requireReactDom_production_min() {
     if (b.subtreeFlags & 12854) for (b = b.child; null !== b; ) dk(b, a), b = b.sibling;
   }
   function dk(a, b) {
-    var c = a.alternate, d = a.flags;
+    let c = a.alternate, d = a.flags;
     switch (a.tag) {
       case 0:
       case 11:
@@ -5422,11 +5422,11 @@ function requireReactDom_production_min() {
     }
   }
   function ek(a) {
-    var b = a.flags;
+    const b = a.flags;
     if (b & 2) {
       try {
         a: {
-          for (var c = a.return; null !== c; ) {
+          for (let c = a.return; null !== c; ) {
             if (Tj(c)) {
               var d = c;
               break a;
@@ -5462,14 +5462,14 @@ function requireReactDom_production_min() {
     ik(a, b, c);
   }
   function ik(a, b, c) {
-    for (var d = 0 !== (a.mode & 1); null !== V; ) {
-      var e = V, f = e.child;
+    for (let d = 0 !== (a.mode & 1); null !== V; ) {
+      let e = V, f = e.child;
       if (22 === e.tag && d) {
-        var g = null !== e.memoizedState || Jj;
+        let g = null !== e.memoizedState || Jj;
         if (!g) {
-          var h = e.alternate, k = null !== h && null !== h.memoizedState || U;
+          let h = e.alternate, k = null !== h && null !== h.memoizedState || U;
           h = Jj;
-          var l = U;
+          const l = U;
           Jj = g;
           if ((U = k) && !l) for (V = e; null !== V; ) g = V, k = g.child, 22 === g.tag && null !== g.memoizedState ? jk(e) : null !== k ? (k.return = g, V = k) : jk(e);
           for (; null !== f; ) V = f, ik(f, b, c), f = f.sibling;
@@ -5483,7 +5483,7 @@ function requireReactDom_production_min() {
   }
   function kk(a) {
     for (; null !== V; ) {
-      var b = V;
+      const b = V;
       if (0 !== (b.flags & 8772)) {
         var c = b.alternate;
         try {
@@ -5497,7 +5497,7 @@ function requireReactDom_production_min() {
               var d = b.stateNode;
               if (b.flags & 4 && !U) if (null === c) d.componentDidMount();
               else {
-                var e = b.elementType === b.type ? c.memoizedProps : Ci(b.type, c.memoizedProps);
+                const e = b.elementType === b.type ? c.memoizedProps : Ci(b.type, c.memoizedProps);
                 d.componentDidUpdate(e, c.memoizedState, d.__reactInternalSnapshotBeforeUpdate);
               }
               var f = b.updateQueue;
@@ -5521,7 +5521,7 @@ function requireReactDom_production_min() {
               var h = b.stateNode;
               if (null === c && b.flags & 4) {
                 c = h;
-                var k = b.memoizedProps;
+                const k = b.memoizedProps;
                 switch (b.type) {
                   case "button":
                   case "input":
@@ -5542,11 +5542,11 @@ function requireReactDom_production_min() {
               break;
             case 13:
               if (null === b.memoizedState) {
-                var l = b.alternate;
+                const l = b.alternate;
                 if (null !== l) {
-                  var m2 = l.memoizedState;
+                  const m2 = l.memoizedState;
                   if (null !== m2) {
-                    var q = m2.dehydrated;
+                    const q = m2.dehydrated;
                     null !== q && bd(q);
                   }
                 }
@@ -5582,12 +5582,12 @@ function requireReactDom_production_min() {
   }
   function gk(a) {
     for (; null !== V; ) {
-      var b = V;
+      const b = V;
       if (b === a) {
         V = null;
         break;
       }
-      var c = b.sibling;
+      const c = b.sibling;
       if (null !== c) {
         c.return = b.return;
         V = c;
@@ -5598,7 +5598,7 @@ function requireReactDom_production_min() {
   }
   function jk(a) {
     for (; null !== V; ) {
-      var b = V;
+      const b = V;
       try {
         switch (b.tag) {
           case 0:
@@ -5614,7 +5614,7 @@ function requireReactDom_production_min() {
           case 1:
             var d = b.stateNode;
             if ("function" === typeof d.componentDidMount) {
-              var e = b.return;
+              const e = b.return;
               try {
                 d.componentDidMount();
               } catch (k) {
@@ -5643,7 +5643,7 @@ function requireReactDom_production_min() {
         V = null;
         break;
       }
-      var h = b.sibling;
+      const h = b.sibling;
       if (null !== h) {
         h.return = b.return;
         V = h;
@@ -5672,9 +5672,9 @@ function requireReactDom_production_min() {
     if (0 === (K & 2) || a !== Q) a === Q && (0 === (K & 2) && (qk |= c), 4 === T && Ck(a, Z)), Dk(a, d), 1 === c && 0 === K && 0 === (b.mode & 1) && (Gj = B() + 500, fg && jg());
   }
   function Dk(a, b) {
-    var c = a.callbackNode;
+    let c = a.callbackNode;
     wc(a, b);
-    var d = uc(a, a === Q ? Z : 0);
+    const d = uc(a, a === Q ? Z : 0);
     if (0 === d) null !== c && bc(c), a.callbackNode = null, a.callbackPriority = 0;
     else if (b = d & -d, a.callbackPriority !== b) {
       null != c && bc(c);
@@ -5708,9 +5708,9 @@ function requireReactDom_production_min() {
     Ak = -1;
     Bk = 0;
     if (0 !== (K & 6)) throw Error(p(327));
-    var c = a.callbackNode;
+    let c = a.callbackNode;
     if (Hk() && a.callbackNode !== c) return null;
-    var d = uc(a, a === Q ? Z : 0);
+    let d = uc(a, a === Q ? Z : 0);
     if (0 === d) return null;
     if (0 !== (d & 30) || 0 !== (d & a.expiredLanes) || b) b = Ik(a, d);
     else {
@@ -5768,7 +5768,7 @@ function requireReactDom_production_min() {
             if ((d & 4194240) === d) break;
             b = a.eventTimes;
             for (e = -1; 0 < d; ) {
-              var g = 31 - oc(d);
+              let g = 31 - oc(d);
               f = 1 << g;
               g = b[g];
               g > e && (e = g);
@@ -5795,7 +5795,7 @@ function requireReactDom_production_min() {
     return a.callbackNode === c ? Gk.bind(null, a) : null;
   }
   function Nk(a, b) {
-    var c = sk;
+    const c = sk;
     a.current.memoizedState.isDehydrated && (Kk(a, b).flags |= 256);
     a = Ik(a, b);
     2 !== a && (b = tk, tk = c, null !== b && Fj(b));
@@ -5805,11 +5805,11 @@ function requireReactDom_production_min() {
     null === tk ? tk = a : tk.push.apply(tk, a);
   }
   function Ok(a) {
-    for (var b = a; ; ) {
+    for (let b = a; ; ) {
       if (b.flags & 16384) {
         var c = b.updateQueue;
-        if (null !== c && (c = c.stores, null !== c)) for (var d = 0; d < c.length; d++) {
-          var e = c[d], f = e.getSnapshot;
+        if (null !== c && (c = c.stores, null !== c)) for (let d = 0; d < c.length; d++) {
+          let e = c[d], f = e.getSnapshot;
           e = e.value;
           try {
             if (!He(f(), e)) return false;
@@ -5838,7 +5838,7 @@ function requireReactDom_production_min() {
     a.suspendedLanes |= b;
     a.pingedLanes &= ~b;
     for (a = a.expirationTimes; 0 < b; ) {
-      var c = 31 - oc(b), d = 1 << c;
+      const c = 31 - oc(b), d = 1 << c;
       a[c] = -1;
       b &= ~d;
     }
@@ -5846,11 +5846,11 @@ function requireReactDom_production_min() {
   function Ek(a) {
     if (0 !== (K & 6)) throw Error(p(327));
     Hk();
-    var b = uc(a, 0);
+    let b = uc(a, 0);
     if (0 === (b & 1)) return Dk(a, B()), null;
-    var c = Ik(a, b);
+    let c = Ik(a, b);
     if (0 !== a.tag && 2 === c) {
-      var d = xc(a);
+      const d = xc(a);
       0 !== d && (b = d, c = Nk(a, d));
     }
     if (1 === c) throw c = pk, Kk(a, 0), Ck(a, b), Dk(a, B()), c;
@@ -5862,7 +5862,7 @@ function requireReactDom_production_min() {
     return null;
   }
   function Qk(a, b) {
-    var c = K;
+    const c = K;
     K |= 1;
     try {
       return a(b);
@@ -5872,9 +5872,9 @@ function requireReactDom_production_min() {
   }
   function Rk(a) {
     null !== wk && 0 === wk.tag && 0 === (K & 6) && Hk();
-    var b = K;
+    const b = K;
     K |= 1;
-    var c = ok.transition, d = C;
+    const c = ok.transition, d = C;
     try {
       if (ok.transition = null, C = 1, a) return a();
     } finally {
@@ -5888,7 +5888,7 @@ function requireReactDom_production_min() {
   function Kk(a, b) {
     a.finishedWork = null;
     a.finishedLanes = 0;
-    var c = a.timeoutHandle;
+    let c = a.timeoutHandle;
     -1 !== c && (a.timeoutHandle = -1, Gf(c));
     if (null !== Y) for (c = Y.return; null !== c; ) {
       var d = c;
@@ -5935,9 +5935,9 @@ function requireReactDom_production_min() {
     if (null !== fh) {
       for (b = 0; b < fh.length; b++) if (c = fh[b], d = c.interleaved, null !== d) {
         c.interleaved = null;
-        var e = d.next, f = c.pending;
+        const e = d.next, f = c.pending;
         if (null !== f) {
-          var g = f.next;
+          const g = f.next;
           f.next = e;
           d.next = g;
         }
@@ -5949,13 +5949,13 @@ function requireReactDom_production_min() {
   }
   function Mk(a, b) {
     do {
-      var c = Y;
+      let c = Y;
       try {
         $g();
         Fh.current = Rh;
         if (Ih) {
-          for (var d = M.memoizedState; null !== d; ) {
-            var e = d.queue;
+          for (let d = M.memoizedState; null !== d; ) {
+            const e = d.queue;
             null !== e && (e.pending = null);
             d = d.next;
           }
@@ -5973,25 +5973,25 @@ function requireReactDom_production_min() {
           break;
         }
         a: {
-          var f = a, g = c.return, h = c, k = b;
+          let f = a, g = c.return, h = c, k = b;
           b = Z;
           h.flags |= 32768;
           if (null !== k && "object" === typeof k && "function" === typeof k.then) {
-            var l = k, m2 = h, q = m2.tag;
+            const l = k, m2 = h, q = m2.tag;
             if (0 === (m2.mode & 1) && (0 === q || 11 === q || 15 === q)) {
-              var r = m2.alternate;
+              const r = m2.alternate;
               r ? (m2.updateQueue = r.updateQueue, m2.memoizedState = r.memoizedState, m2.lanes = r.lanes) : (m2.updateQueue = null, m2.memoizedState = null);
             }
-            var y = Ui(g);
+            const y = Ui(g);
             if (null !== y) {
               y.flags &= -257;
               Vi(y, g, h, f, b);
               y.mode & 1 && Si(f, l, b);
               b = y;
               k = l;
-              var n = b.updateQueue;
+              const n = b.updateQueue;
               if (null === n) {
-                var t = /* @__PURE__ */ new Set();
+                const t = /* @__PURE__ */ new Set();
                 t.add(k);
                 b.updateQueue = t;
               } else n.add(k);
@@ -6005,7 +6005,7 @@ function requireReactDom_production_min() {
               k = Error(p(426));
             }
           } else if (I && h.mode & 1) {
-            var J = Ui(g);
+            const J = Ui(g);
             if (null !== J) {
               0 === (J.flags & 65536) && (J.flags |= 256);
               Vi(J, g, h, f, b);
@@ -6033,7 +6033,7 @@ function requireReactDom_production_min() {
                   f.flags |= 65536;
                   b &= -b;
                   f.lanes |= b;
-                  var F = Qi(f, h, b);
+                  const F = Qi(f, h, b);
                   ph(f, F);
                   break a;
                 }
@@ -6051,7 +6051,7 @@ function requireReactDom_production_min() {
     } while (1);
   }
   function Jk() {
-    var a = mk.current;
+    const a = mk.current;
     mk.current = Rh;
     return null === a ? Rh : a;
   }
@@ -6060,9 +6060,9 @@ function requireReactDom_production_min() {
     null === Q || 0 === (rh & 268435455) && 0 === (qk & 268435455) || Ck(Q, Z);
   }
   function Ik(a, b) {
-    var c = K;
+    const c = K;
     K |= 2;
-    var d = Jk();
+    const d = Jk();
     if (Q !== a || Z !== b) uk = null, Kk(a, b);
     do
       try {
@@ -6087,15 +6087,15 @@ function requireReactDom_production_min() {
     for (; null !== Y && !cc(); ) Uk(Y);
   }
   function Uk(a) {
-    var b = Vk(a.alternate, a, fj);
+    const b = Vk(a.alternate, a, fj);
     a.memoizedProps = a.pendingProps;
     null === b ? Sk(a) : Y = b;
     nk.current = null;
   }
   function Sk(a) {
-    var b = a;
+    let b = a;
     do {
-      var c = b.alternate;
+      let c = b.alternate;
       a = b.return;
       if (0 === (b.flags & 32768)) {
         if (c = Ej(c, b, fj), null !== c) {
@@ -6126,7 +6126,7 @@ function requireReactDom_production_min() {
     0 === T && (T = 5);
   }
   function Pk(a, b, c) {
-    var d = C, e = ok.transition;
+    const d = C, e = ok.transition;
     try {
       ok.transition = null, C = 1, Wk(a, b, c, d);
     } finally {
@@ -6140,14 +6140,14 @@ function requireReactDom_production_min() {
     while (null !== wk);
     if (0 !== (K & 6)) throw Error(p(327));
     c = a.finishedWork;
-    var e = a.finishedLanes;
+    let e = a.finishedLanes;
     if (null === c) return null;
     a.finishedWork = null;
     a.finishedLanes = 0;
     if (c === a.current) throw Error(p(177));
     a.callbackNode = null;
     a.callbackPriority = 0;
-    var f = c.lanes | c.childLanes;
+    let f = c.lanes | c.childLanes;
     Bc(a, f);
     a === Q && (Y = Q = null, Z = 0);
     0 === (c.subtreeFlags & 2064) && 0 === (c.flags & 2064) || vk || (vk = true, Fk(hc, function() {
@@ -6158,9 +6158,9 @@ function requireReactDom_production_min() {
     if (0 !== (c.subtreeFlags & 15990) || f) {
       f = ok.transition;
       ok.transition = null;
-      var g = C;
+      const g = C;
       C = 1;
-      var h = K;
+      const h = K;
       K |= 4;
       nk.current = null;
       Oj(a, c);
@@ -6190,7 +6190,7 @@ function requireReactDom_production_min() {
   }
   function Hk() {
     if (null !== wk) {
-      var a = Dc(xk), b = ok.transition, c = C;
+      let a = Dc(xk), b = ok.transition, c = C;
       try {
         ok.transition = null;
         C = 16 > a ? 16 : a;
@@ -6200,28 +6200,28 @@ function requireReactDom_production_min() {
           wk = null;
           xk = 0;
           if (0 !== (K & 6)) throw Error(p(331));
-          var e = K;
+          const e = K;
           K |= 4;
           for (V = a.current; null !== V; ) {
             var f = V, g = f.child;
             if (0 !== (V.flags & 16)) {
               var h = f.deletions;
               if (null !== h) {
-                for (var k = 0; k < h.length; k++) {
-                  var l = h[k];
+                for (let k = 0; k < h.length; k++) {
+                  const l = h[k];
                   for (V = l; null !== V; ) {
-                    var m2 = V;
+                    let m2 = V;
                     switch (m2.tag) {
                       case 0:
                       case 11:
                       case 15:
                         Pj(8, m2, f);
                     }
-                    var q = m2.child;
+                    const q = m2.child;
                     if (null !== q) q.return = m2, V = q;
                     else for (; null !== V; ) {
                       m2 = V;
-                      var r = m2.sibling, y = m2.return;
+                      const r = m2.sibling, y = m2.return;
                       Sj(m2);
                       if (m2 === l) {
                         V = null;
@@ -6236,13 +6236,13 @@ function requireReactDom_production_min() {
                     }
                   }
                 }
-                var n = f.alternate;
+                const n = f.alternate;
                 if (null !== n) {
-                  var t = n.child;
+                  let t = n.child;
                   if (null !== t) {
                     n.child = null;
                     do {
-                      var J = t.sibling;
+                      const J = t.sibling;
                       t.sibling = null;
                       t = J;
                     } while (null !== t);
@@ -6260,7 +6260,7 @@ function requireReactDom_production_min() {
                 case 15:
                   Pj(9, f, f.return);
               }
-              var x = f.sibling;
+              const x = f.sibling;
               if (null !== x) {
                 x.return = f.return;
                 V = x;
@@ -6269,10 +6269,10 @@ function requireReactDom_production_min() {
               V = f.return;
             }
           }
-          var w = a.current;
+          const w = a.current;
           for (V = w; null !== V; ) {
             g = V;
-            var u = g.child;
+            const u = g.child;
             if (0 !== (g.subtreeFlags & 2064) && null !== u) u.return = g, V = u;
             else b: for (g = w; null !== V; ) {
               h = V;
@@ -6290,7 +6290,7 @@ function requireReactDom_production_min() {
                 V = null;
                 break b;
               }
-              var F = h.sibling;
+              const F = h.sibling;
               if (null !== F) {
                 F.return = h.return;
                 V = F;
@@ -6328,7 +6328,7 @@ function requireReactDom_production_min() {
         Xk(b, a, c);
         break;
       } else if (1 === b.tag) {
-        var d = b.stateNode;
+        const d = b.stateNode;
         if ("function" === typeof b.type.getDerivedStateFromError || "function" === typeof d.componentDidCatch && (null === Ri || !Ri.has(d))) {
           a = Ji(c, a);
           a = Qi(b, a, 1);
@@ -6342,7 +6342,7 @@ function requireReactDom_production_min() {
     }
   }
   function Ti(a, b, c) {
-    var d = a.pingCache;
+    const d = a.pingCache;
     null !== d && d.delete(b);
     b = R();
     a.pingedLanes |= a.suspendedLanes & c;
@@ -6351,17 +6351,17 @@ function requireReactDom_production_min() {
   }
   function Yk(a, b) {
     0 === b && (0 === (a.mode & 1) ? b = 1 : (b = sc, sc <<= 1, 0 === (sc & 130023424) && (sc = 4194304)));
-    var c = R();
+    const c = R();
     a = ih(a, b);
     null !== a && (Ac(a, b, c), Dk(a, c));
   }
   function uj(a) {
-    var b = a.memoizedState, c = 0;
+    let b = a.memoizedState, c = 0;
     null !== b && (c = b.retryLane);
     Yk(a, c);
   }
   function bk(a, b) {
-    var c = 0;
+    let c = 0;
     switch (a.tag) {
       case 13:
         var d = a.stateNode;
@@ -6377,7 +6377,7 @@ function requireReactDom_production_min() {
     null !== d && d.delete(b);
     Yk(a, c);
   }
-  var Vk;
+  let Vk;
   Vk = function(a, b, c) {
     if (null !== a) if (a.memoizedProps !== b.pendingProps || Wf.current) dh = true;
     else {
@@ -6494,18 +6494,18 @@ function requireReactDom_production_min() {
               break a;
             }
           } else for (f = b.child, null !== f && (f.return = b); null !== f; ) {
-            var h = f.dependencies;
+            let h = f.dependencies;
             if (null !== h) {
               g = f.child;
-              for (var k = h.firstContext; null !== k; ) {
+              for (let k = h.firstContext; null !== k; ) {
                 if (k.context === d) {
                   if (1 === f.tag) {
                     k = mh(-1, c & -c);
                     k.tag = 2;
-                    var l = f.updateQueue;
+                    let l = f.updateQueue;
                     if (null !== l) {
                       l = l.shared;
-                      var m2 = l.pending;
+                      const m2 = l.pending;
                       null === m2 ? k.next = k : (k.next = m2.next, m2.next = k);
                       l.pending = k;
                     }
@@ -6602,7 +6602,7 @@ function requireReactDom_production_min() {
     return 2;
   }
   function Pg(a, b) {
-    var c = a.alternate;
+    let c = a.alternate;
     null === c ? (c = Bg(a.tag, b, a.key, a.mode), c.elementType = a.elementType, c.type = a.type, c.stateNode = a.stateNode, c.alternate = a, a.alternate = c) : (c.pendingProps = b, c.type = a.type, c.flags = 0, c.subtreeFlags = 0, c.deletions = null);
     c.flags = a.flags & 14680064;
     c.childLanes = a.childLanes;
@@ -6619,7 +6619,7 @@ function requireReactDom_production_min() {
     return c;
   }
   function Rg(a, b, c, d, e, f) {
-    var g = 2;
+    let g = 2;
     d = a;
     if ("function" === typeof a) aj(a) && (g = 1);
     else if ("string" === typeof a) g = 5;
@@ -6714,7 +6714,7 @@ function requireReactDom_production_min() {
     return a;
   }
   function cl(a, b, c) {
-    var d = 3 < arguments.length && void 0 !== arguments[3] ? arguments[3] : null;
+    const d = 3 < arguments.length && void 0 !== arguments[3] ? arguments[3] : null;
     return { $$typeof: wa, key: null == d ? null : "" + d, children: a, containerInfo: b, implementation: c };
   }
   function dl(a) {
@@ -6739,7 +6739,7 @@ function requireReactDom_production_min() {
       throw Error(p(171));
     }
     if (1 === a.tag) {
-      var c = a.type;
+      const c = a.type;
       if (Zf(c)) return bg(a, c, b);
     }
     return b;
@@ -6759,7 +6759,7 @@ function requireReactDom_production_min() {
     return a;
   }
   function fl(a, b, c, d) {
-    var e = b.current, f = R(), g = yi(e);
+    const e = b.current, f = R(), g = yi(e);
     c = dl(c);
     null === b.context ? b.context = c : b.pendingContext = c;
     b = mh(f, g);
@@ -6783,7 +6783,7 @@ function requireReactDom_production_min() {
   function hl(a, b) {
     a = a.memoizedState;
     if (null !== a && null !== a.dehydrated) {
-      var c = a.retryLane;
+      const c = a.retryLane;
       a.retryLane = 0 !== c && c < b ? c : b;
     }
   }
@@ -6794,22 +6794,22 @@ function requireReactDom_production_min() {
   function jl() {
     return null;
   }
-  var kl = "function" === typeof reportError ? reportError : function(a) {
+  const kl = "function" === typeof reportError ? reportError : function(a) {
     console.error(a);
   };
   function ll(a) {
     this._internalRoot = a;
   }
   ml.prototype.render = ll.prototype.render = function(a) {
-    var b = this._internalRoot;
+    const b = this._internalRoot;
     if (null === b) throw Error(p(409));
     fl(a, b, null, null);
   };
   ml.prototype.unmount = ll.prototype.unmount = function() {
-    var a = this._internalRoot;
+    const a = this._internalRoot;
     if (null !== a) {
       this._internalRoot = null;
-      var b = a.containerInfo;
+      const b = a.containerInfo;
       Rk(function() {
         fl(null, a, null, null);
       });
@@ -6821,7 +6821,7 @@ function requireReactDom_production_min() {
   }
   ml.prototype.unstable_scheduleHydration = function(a) {
     if (a) {
-      var b = Hc();
+      const b = Hc();
       a = { blockedOn: null, target: a, priority: b };
       for (var c = 0; c < Qc.length && 0 !== b && b < Qc[c].priority; c++) ;
       Qc.splice(c, 0, a);
@@ -6839,9 +6839,9 @@ function requireReactDom_production_min() {
   function ql(a, b, c, d, e) {
     if (e) {
       if ("function" === typeof d) {
-        var f = d;
+        const f = d;
         d = function() {
-          var a2 = gl(g);
+          const a2 = gl(g);
           f.call(a2);
         };
       }
@@ -6854,9 +6854,9 @@ function requireReactDom_production_min() {
     }
     for (; e = a.lastChild; ) a.removeChild(e);
     if ("function" === typeof d) {
-      var h = d;
+      const h = d;
       d = function() {
-        var a2 = gl(k);
+        const a2 = gl(k);
         h.call(a2);
       };
     }
@@ -6870,13 +6870,13 @@ function requireReactDom_production_min() {
     return k;
   }
   function rl(a, b, c, d, e) {
-    var f = c._reactRootContainer;
+    const f = c._reactRootContainer;
     if (f) {
       var g = f;
       if ("function" === typeof e) {
-        var h = e;
+        const h = e;
         e = function() {
-          var a2 = gl(g);
+          const a2 = gl(g);
           h.call(a2);
         };
       }
@@ -6889,15 +6889,15 @@ function requireReactDom_production_min() {
       case 3:
         var b = a.stateNode;
         if (b.current.memoizedState.isDehydrated) {
-          var c = tc(b.pendingLanes);
+          const c = tc(b.pendingLanes);
           0 !== c && (Cc(b, c | 1), Dk(b, B()), 0 === (K & 6) && (Gj = B() + 500, jg()));
         }
         break;
       case 13:
         Rk(function() {
-          var b2 = ih(a, 1);
+          const b2 = ih(a, 1);
           if (null !== b2) {
-            var c2 = R();
+            const c2 = R();
             gi(b2, a, 1, c2);
           }
         }), il(a, 1);
@@ -6905,9 +6905,9 @@ function requireReactDom_production_min() {
   };
   Fc = function(a) {
     if (13 === a.tag) {
-      var b = ih(a, 134217728);
+      const b = ih(a, 134217728);
       if (null !== b) {
-        var c = R();
+        const c = R();
         gi(b, a, 134217728, c);
       }
       il(a, 134217728);
@@ -6915,9 +6915,9 @@ function requireReactDom_production_min() {
   };
   Gc = function(a) {
     if (13 === a.tag) {
-      var b = yi(a), c = ih(a, b);
+      const b = yi(a), c = ih(a, b);
       if (null !== c) {
-        var d = R();
+        const d = R();
         gi(c, a, b, d);
       }
       il(a, b);
@@ -6927,7 +6927,7 @@ function requireReactDom_production_min() {
     return C;
   };
   Ic = function(a, b) {
-    var c = C;
+    const c = C;
     try {
       return C = a, b();
     } finally {
@@ -6943,9 +6943,9 @@ function requireReactDom_production_min() {
           for (c = a; c.parentNode; ) c = c.parentNode;
           c = c.querySelectorAll("input[name=" + JSON.stringify("" + b) + '][type="radio"]');
           for (b = 0; b < c.length; b++) {
-            var d = c[b];
+            const d = c[b];
             if (d !== a && d.form === a.form) {
-              var e = Db(d);
+              const e = Db(d);
               if (!e) throw Error(p(90));
               Wa(d);
               bb(d, e);
@@ -6962,13 +6962,13 @@ function requireReactDom_production_min() {
   };
   Gb = Qk;
   Hb = Rk;
-  var sl = { usingClientEntryPoint: false, Events: [Cb, ue, Db, Eb, Fb, Qk] }, tl = { findFiberByHostInstance: Wc, bundleType: 0, version: "18.3.1", rendererPackageName: "react-dom" };
-  var ul = { bundleType: tl.bundleType, version: tl.version, rendererPackageName: tl.rendererPackageName, rendererConfig: tl.rendererConfig, overrideHookState: null, overrideHookStateDeletePath: null, overrideHookStateRenamePath: null, overrideProps: null, overridePropsDeletePath: null, overridePropsRenamePath: null, setErrorHandler: null, setSuspenseHandler: null, scheduleUpdate: null, currentDispatcherRef: ua.ReactCurrentDispatcher, findHostInstanceByFiber: function(a) {
+  const sl = { usingClientEntryPoint: false, Events: [Cb, ue, Db, Eb, Fb, Qk] }, tl = { findFiberByHostInstance: Wc, bundleType: 0, version: "18.3.1", rendererPackageName: "react-dom" };
+  const ul = { bundleType: tl.bundleType, version: tl.version, rendererPackageName: tl.rendererPackageName, rendererConfig: tl.rendererConfig, overrideHookState: null, overrideHookStateDeletePath: null, overrideHookStateRenamePath: null, overrideProps: null, overridePropsDeletePath: null, overridePropsRenamePath: null, setErrorHandler: null, setSuspenseHandler: null, scheduleUpdate: null, currentDispatcherRef: ua.ReactCurrentDispatcher, findHostInstanceByFiber: function(a) {
     a = Zb(a);
     return null === a ? null : a.stateNode;
   }, findFiberByHostInstance: tl.findFiberByHostInstance || jl, findHostInstancesForRefresh: null, scheduleRefresh: null, scheduleRoot: null, setRefreshHandler: null, getCurrentFiber: null, reconcilerVersion: "18.3.1-next-f1338f8080-20240426" };
   if ("undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__) {
-    var vl = __REACT_DEVTOOLS_GLOBAL_HOOK__;
+    const vl = __REACT_DEVTOOLS_GLOBAL_HOOK__;
     if (!vl.isDisabled && vl.supportsFiber) try {
       kc = vl.inject(ul), lc = vl;
     } catch (a) {
@@ -6976,13 +6976,13 @@ function requireReactDom_production_min() {
   }
   reactDom_production_min.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = sl;
   reactDom_production_min.createPortal = function(a, b) {
-    var c = 2 < arguments.length && void 0 !== arguments[2] ? arguments[2] : null;
+    const c = 2 < arguments.length && void 0 !== arguments[2] ? arguments[2] : null;
     if (!nl(b)) throw Error(p(200));
     return cl(a, b, null, c);
   };
   reactDom_production_min.createRoot = function(a, b) {
     if (!nl(a)) throw Error(p(299));
-    var c = false, d = "", e = kl;
+    let c = false, d = "", e = kl;
     null !== b && void 0 !== b && (true === b.unstable_strictMode && (c = true), void 0 !== b.identifierPrefix && (d = b.identifierPrefix), void 0 !== b.onRecoverableError && (e = b.onRecoverableError));
     b = bl(a, 1, false, null, null, c, false, d, e);
     a[uf] = b.current;
@@ -6992,7 +6992,7 @@ function requireReactDom_production_min() {
   reactDom_production_min.findDOMNode = function(a) {
     if (null == a) return null;
     if (1 === a.nodeType) return a;
-    var b = a._reactInternals;
+    const b = a._reactInternals;
     if (void 0 === b) {
       if ("function" === typeof a.render) throw Error(p(188));
       a = Object.keys(a).join(",");
@@ -7011,7 +7011,7 @@ function requireReactDom_production_min() {
   };
   reactDom_production_min.hydrateRoot = function(a, b, c) {
     if (!nl(a)) throw Error(p(405));
-    var d = null != c && c.hydratedSources || null, e = false, f = "", g = kl;
+    let d = null != c && c.hydratedSources || null, e = false, f = "", g = kl;
     null !== c && void 0 !== c && (true === c.unstable_strictMode && (e = true), void 0 !== c.identifierPrefix && (f = c.identifierPrefix), void 0 !== c.onRecoverableError && (g = c.onRecoverableError));
     b = el(b, null, a, 1, null != c ? c : null, e, false, f, g);
     a[uf] = b.current;
@@ -7044,8 +7044,8 @@ function requireReactDom_production_min() {
   reactDom_production_min.version = "18.3.1-next-f1338f8080-20240426";
   return reactDom_production_min;
 }
-var reactDom = reactDom$1.exports;
-var hasRequiredReactDom;
+const reactDom = reactDom$1.exports;
+let hasRequiredReactDom;
 function requireReactDom() {
   if (hasRequiredReactDom) return reactDom$1.exports;
   hasRequiredReactDom = 1;
@@ -7071,17 +7071,17 @@ function requireReactDom() {
   }
   return reactDom$1.exports;
 }
-var hasRequiredClient;
+let hasRequiredClient;
 function requireClient() {
   if (hasRequiredClient) return client$1;
   hasRequiredClient = 1;
   "use strict";
-  var m2 = requireReactDom();
+  const m2 = requireReactDom();
   if (true) {
     client$1.createRoot = m2.createRoot;
     client$1.hydrateRoot = m2.hydrateRoot;
   } else {
-    var i = m2.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+    const i = m2.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
     index_001_exports.createRoot = function(c, o) {
       i.usingClientEntryPoint = true;
       try {
@@ -7101,27 +7101,27 @@ function requireClient() {
   }
   return client$1;
 }
-var clientExports = requireClient();
+const clientExports = requireClient();
 const client = /* @__PURE__ */ getDefaultExportFromCjs(clientExports);
-var HOLE = -1;
-var NAN = -2;
-var NEGATIVE_INFINITY = -3;
-var NEGATIVE_ZERO = -4;
-var NULL = -5;
-var POSITIVE_INFINITY = -6;
-var UNDEFINED = -7;
-var TYPE_BIGINT = "B";
-var TYPE_DATE = "D";
-var TYPE_ERROR = "E";
-var TYPE_MAP = "M";
-var TYPE_NULL_OBJECT = "N";
-var TYPE_PROMISE = "P";
-var TYPE_REGEXP = "R";
-var TYPE_SET = "S";
-var TYPE_SYMBOL = "Y";
-var TYPE_URL = "U";
-var TYPE_PREVIOUS_RESOLVED = "Z";
-var Deferred$1 = class Deferred {
+const HOLE = -1;
+const NAN = -2;
+const NEGATIVE_INFINITY = -3;
+const NEGATIVE_ZERO = -4;
+const NULL = -5;
+const POSITIVE_INFINITY = -6;
+const UNDEFINED = -7;
+const TYPE_BIGINT = "B";
+const TYPE_DATE = "D";
+const TYPE_ERROR = "E";
+const TYPE_MAP = "M";
+const TYPE_NULL_OBJECT = "N";
+const TYPE_PROMISE = "P";
+const TYPE_REGEXP = "R";
+const TYPE_SET = "S";
+const TYPE_SYMBOL = "Y";
+const TYPE_URL = "U";
+const TYPE_PREVIOUS_RESOLVED = "Z";
+const Deferred$1 = class Deferred {
   constructor() {
     __publicField(this, "promise");
     __publicField(this, "resolve");
@@ -7317,12 +7317,12 @@ function stringify(input, index2) {
     }
   }
 }
-var objectProtoNames = Object.getOwnPropertyNames(Object.prototype).sort().join("\0");
+const objectProtoNames = Object.getOwnPropertyNames(Object.prototype).sort().join("\0");
 function isPlainObject$1(thing) {
   const proto = Object.getPrototypeOf(thing);
   return proto === Object.prototype || proto === null || Object.getOwnPropertyNames(proto).sort().join("\0") === objectProtoNames;
 }
-var globalObj = typeof window !== "undefined" ? window : typeof globalThis !== "undefined" ? globalThis : void 0;
+const globalObj = typeof window !== "undefined" ? window : typeof globalThis !== "undefined" ? globalThis : void 0;
 function unflatten(parsed) {
   const { hydrated, values } = this;
   if (typeof parsed === "number")
@@ -7347,7 +7347,7 @@ function hydrate(index2) {
       }
     ]
   ];
-  let postRun = [];
+  const postRun = [];
   while (stack.length > 0) {
     const [index22, set] = stack.pop();
     switch (index22) {
@@ -7468,7 +7468,7 @@ function hydrate(index2) {
             continue;
           case TYPE_ERROR:
             const [, message, errorType] = value;
-            let error = errorType && globalObj && globalObj[errorType] ? new globalObj[errorType](message) : new Error(message);
+            const error = errorType && globalObj && globalObj[errorType] ? new globalObj[errorType](message) : new Error(message);
             hydrated[index22] = error;
             set(error);
             continue;
@@ -7765,8 +7765,8 @@ function raceSignal(promise, signal) {
   });
   return Promise.race([abort, promise]);
 }
-var dist = {};
-var hasRequiredDist;
+const dist = {};
+let hasRequiredDist;
 function requireDist() {
   if (hasRequiredDist) return dist;
   hasRequiredDist = 1;
@@ -7806,8 +7806,8 @@ function requireDist() {
       const keyEndIdx = endIndex(str, eqIdx, keyStartIdx);
       const key = str.slice(keyStartIdx, keyEndIdx);
       if (obj[key] === void 0) {
-        let valStartIdx = startIndex(str, eqIdx + 1, endIdx);
-        let valEndIdx = endIndex(str, endIdx, valStartIdx);
+        const valStartIdx = startIndex(str, eqIdx + 1, endIdx);
+        const valEndIdx = endIndex(str, endIdx, valStartIdx);
         const value = dec(str.slice(valStartIdx, valEndIdx));
         obj[key] = value;
       }
@@ -7925,16 +7925,16 @@ function requireDist() {
   }
   return dist;
 }
-var distExports = requireDist();
+const distExports = requireDist();
 const index$2 = /* @__PURE__ */ getDefaultExportFromCjs(distExports);
-var setCookie$2 = { exports: {} };
-var setCookie$1 = setCookie$2.exports;
-var hasRequiredSetCookie;
+const setCookie$2 = { exports: {} };
+const setCookie$1 = setCookie$2.exports;
+let hasRequiredSetCookie;
 function requireSetCookie() {
   if (hasRequiredSetCookie) return setCookie$2.exports;
   hasRequiredSetCookie = 1;
   "use strict";
-  var defaultParseOptions = {
+  const defaultParseOptions = {
     decodeValues: true,
     map: false,
     silent: false
@@ -7943,11 +7943,11 @@ function requireSetCookie() {
     return typeof str === "string" && !!str.trim();
   }
   function parseString(setCookieValue, options) {
-    var parts = setCookieValue.split(";").filter(isNonEmptyString);
-    var nameValuePairStr = parts.shift();
-    var parsed = parseNameValuePair(nameValuePairStr);
-    var name = parsed.name;
-    var value = parsed.value;
+    const parts = setCookieValue.split(";").filter(isNonEmptyString);
+    const nameValuePairStr = parts.shift();
+    const parsed = parseNameValuePair(nameValuePairStr);
+    const name = parsed.name;
+    let value = parsed.value;
     options = options ? Object.assign({}, defaultParseOptions, options) : defaultParseOptions;
     try {
       value = options.decodeValues ? decodeURIComponent(value) : value;
@@ -7957,14 +7957,14 @@ function requireSetCookie() {
         e
       );
     }
-    var cookie = {
+    const cookie = {
       name,
       value
     };
     parts.forEach(function(part) {
-      var sides = part.split("=");
-      var key = sides.shift().trimLeft().toLowerCase();
-      var value2 = sides.join("=");
+      const sides = part.split("=");
+      const key = sides.shift().trimLeft().toLowerCase();
+      const value2 = sides.join("=");
       if (key === "expires") {
         cookie.expires = new Date(value2);
       } else if (key === "max-age") {
@@ -7984,9 +7984,9 @@ function requireSetCookie() {
     return cookie;
   }
   function parseNameValuePair(nameValuePairStr) {
-    var name = "";
-    var value = "";
-    var nameValueArr = nameValuePairStr.split("=");
+    let name = "";
+    let value = "";
+    const nameValueArr = nameValuePairStr.split("=");
     if (nameValueArr.length > 1) {
       name = nameValueArr.shift();
       value = nameValueArr.join("=");
@@ -8010,7 +8010,7 @@ function requireSetCookie() {
       } else if (input.headers["set-cookie"]) {
         input = input.headers["set-cookie"];
       } else {
-        var sch = input.headers[Object.keys(input.headers).find(function(key) {
+        const sch = input.headers[Object.keys(input.headers).find(function(key) {
           return key.toLowerCase() === "set-cookie";
         })];
         if (!sch && input.headers.cookie && !options.silent) {
@@ -8029,9 +8029,9 @@ function requireSetCookie() {
         return parseString(str, options);
       });
     } else {
-      var cookies2 = {};
+      const cookies2 = {};
       return input.filter(isNonEmptyString).reduce(function(cookies3, str) {
-        var cookie = parseString(str, options);
+        const cookie = parseString(str, options);
         cookies3[cookie.name] = cookie;
         return cookies3;
       }, cookies2);
@@ -8044,13 +8044,13 @@ function requireSetCookie() {
     if (typeof cookiesString !== "string") {
       return [];
     }
-    var cookiesStrings = [];
-    var pos = 0;
-    var start;
-    var ch;
-    var lastComma;
-    var nextStart;
-    var cookiesSeparatorFound;
+    const cookiesStrings = [];
+    let pos = 0;
+    let start;
+    let ch;
+    let lastComma;
+    let nextStart;
+    let cookiesSeparatorFound;
     function skipWhitespace() {
       while (pos < cookiesString.length && /\s/.test(cookiesString.charAt(pos))) {
         pos += 1;
@@ -8098,7 +8098,7 @@ function requireSetCookie() {
   setCookie$2.exports.splitCookiesString = splitCookiesString;
   return setCookie$2.exports;
 }
-var setCookieExports = /* @__PURE__ */ requireSetCookie();
+const setCookieExports = /* @__PURE__ */ requireSetCookie();
 const setCookie = /* @__PURE__ */ getDefaultExportFromCjs(setCookieExports);
 var Action = /* @__PURE__ */ ((Action2) => {
   Action2["Pop"] = "POP";
@@ -8106,9 +8106,9 @@ var Action = /* @__PURE__ */ ((Action2) => {
   Action2["Replace"] = "REPLACE";
   return Action2;
 })(Action || {});
-var PopStateEventType = "popstate";
+const PopStateEventType = "popstate";
 function createMemoryHistory(options = {}) {
-  let { initialEntries = ["/"], initialIndex, v5Compat = false } = options;
+  const { initialEntries = ["/"], initialIndex, v5Compat = false } = options;
   let entries;
   entries = initialEntries.map(
     (entry, index22) => createMemoryLocation(
@@ -8129,7 +8129,7 @@ function createMemoryHistory(options = {}) {
     return entries[index2];
   }
   function createMemoryLocation(to, state2 = null, key) {
-    let location = createLocation(
+    const location = createLocation(
       entries ? getCurrentLocation().pathname : "/",
       to,
       state2,
@@ -8146,7 +8146,7 @@ function createMemoryHistory(options = {}) {
   function createHref2(to) {
     return typeof to === "string" ? to : createPath(to);
   }
-  let history = {
+  const history = {
     get index() {
       return index2;
     },
@@ -8161,7 +8161,7 @@ function createMemoryHistory(options = {}) {
       return new URL(createHref2(to), "http://localhost");
     },
     encodeLocation(to) {
-      let path = typeof to === "string" ? parsePath(to) : to;
+      const path = typeof to === "string" ? parsePath(to) : to;
       return {
         pathname: path.pathname || "",
         search: path.search || "",
@@ -8170,7 +8170,7 @@ function createMemoryHistory(options = {}) {
     },
     push(to, state2) {
       action = "PUSH";
-      let nextLocation = createMemoryLocation(to, state2);
+      const nextLocation = createMemoryLocation(to, state2);
       index2 += 1;
       entries.splice(index2, entries.length, nextLocation);
       if (v5Compat && listener) {
@@ -8179,7 +8179,7 @@ function createMemoryHistory(options = {}) {
     },
     replace(to, state2) {
       action = "REPLACE";
-      let nextLocation = createMemoryLocation(to, state2);
+      const nextLocation = createMemoryLocation(to, state2);
       entries[index2] = nextLocation;
       if (v5Compat && listener) {
         listener({ action, location: nextLocation, delta: 0 });
@@ -8187,8 +8187,8 @@ function createMemoryHistory(options = {}) {
     },
     go(delta) {
       action = "POP";
-      let nextIndex = clampIndex(index2 + delta);
-      let nextLocation = entries[nextIndex];
+      const nextIndex = clampIndex(index2 + delta);
+      const nextLocation = entries[nextIndex];
       index2 = nextIndex;
       if (listener) {
         listener({ action, location: nextLocation, delta });
@@ -8205,7 +8205,7 @@ function createMemoryHistory(options = {}) {
 }
 function createBrowserHistory(options = {}) {
   function createBrowserLocation(window2, globalHistory) {
-    let { pathname, search, hash } = window2.location;
+    const { pathname, search, hash } = window2.location;
     return createLocation(
       "",
       { pathname, search, hash },
@@ -8243,11 +8243,11 @@ function createHashHistory(options = {}) {
     );
   }
   function createHashHref(window2, to) {
-    let base = window2.document.querySelector("base");
+    const base = window2.document.querySelector("base");
     let href = "";
     if (base && base.getAttribute("href")) {
-      let url = window2.location.href;
-      let hashIndex = url.indexOf("#");
+      const url = window2.location.href;
+      const hashIndex = url.indexOf("#");
       href = hashIndex === -1 ? url : url.slice(0, hashIndex);
     }
     return href + "#" + (typeof to === "string" ? to : createPath(to));
@@ -8292,7 +8292,7 @@ function getHistoryState(location, index2) {
   };
 }
 function createLocation(current, to, state2 = null, key) {
-  let location = {
+  const location = {
     pathname: typeof current === "string" ? current : current.pathname,
     search: "",
     hash: "",
@@ -8318,14 +8318,14 @@ function createPath({
   return pathname;
 }
 function parsePath(path) {
-  let parsedPath = {};
+  const parsedPath = {};
   if (path) {
-    let hashIndex = path.indexOf("#");
+    const hashIndex = path.indexOf("#");
     if (hashIndex >= 0) {
       parsedPath.hash = path.substring(hashIndex);
       path = path.substring(0, hashIndex);
     }
-    let searchIndex = path.indexOf("?");
+    const searchIndex = path.indexOf("?");
     if (searchIndex >= 0) {
       parsedPath.search = path.substring(searchIndex);
       path = path.substring(0, searchIndex);
@@ -8337,8 +8337,8 @@ function parsePath(path) {
   return parsedPath;
 }
 function getUrlBasedHistory(getLocation, createHref2, validateLocation, options = {}) {
-  let { window: window2 = document.defaultView, v5Compat = false } = options;
-  let globalHistory = window2.history;
+  const { window: window2 = document.defaultView, v5Compat = false } = options;
+  const globalHistory = window2.history;
   let action = "POP";
   let listener = null;
   let index2 = getIndex();
@@ -8347,13 +8347,13 @@ function getUrlBasedHistory(getLocation, createHref2, validateLocation, options 
     globalHistory.replaceState({ ...globalHistory.state, idx: index2 }, "");
   }
   function getIndex() {
-    let state2 = globalHistory.state || { idx: null };
+    const state2 = globalHistory.state || { idx: null };
     return state2.idx;
   }
   function handlePop() {
     action = "POP";
-    let nextIndex = getIndex();
-    let delta = nextIndex == null ? null : nextIndex - index2;
+    const nextIndex = getIndex();
+    const delta = nextIndex == null ? null : nextIndex - index2;
     index2 = nextIndex;
     if (listener) {
       listener({ action, location: history.location, delta });
@@ -8361,11 +8361,11 @@ function getUrlBasedHistory(getLocation, createHref2, validateLocation, options 
   }
   function push(to, state2) {
     action = "PUSH";
-    let location = createLocation(history.location, to, state2);
+    const location = createLocation(history.location, to, state2);
     if (validateLocation) validateLocation(location, to);
     index2 = getIndex() + 1;
-    let historyState = getHistoryState(location, index2);
-    let url = history.createHref(location);
+    const historyState = getHistoryState(location, index2);
+    const url = history.createHref(location);
     try {
       globalHistory.pushState(historyState, "", url);
     } catch (error) {
@@ -8380,18 +8380,18 @@ function getUrlBasedHistory(getLocation, createHref2, validateLocation, options 
   }
   function replace2(to, state2) {
     action = "REPLACE";
-    let location = createLocation(history.location, to, state2);
+    const location = createLocation(history.location, to, state2);
     if (validateLocation) validateLocation(location, to);
     index2 = getIndex();
-    let historyState = getHistoryState(location, index2);
-    let url = history.createHref(location);
+    const historyState = getHistoryState(location, index2);
+    const url = history.createHref(location);
     globalHistory.replaceState(historyState, "", url);
     if (v5Compat && listener) {
       listener({ action, location: history.location, delta: 0 });
     }
   }
   function createURL(to) {
-    let base = window2.location.origin !== "null" ? window2.location.origin : window2.location.href;
+    const base = window2.location.origin !== "null" ? window2.location.origin : window2.location.href;
     let href = typeof to === "string" ? to : createPath(to);
     href = href.replace(/ $/, "%20");
     invariant$1(
@@ -8400,7 +8400,7 @@ function getUrlBasedHistory(getLocation, createHref2, validateLocation, options 
     );
     return new URL(href, base);
   }
-  let history = {
+  const history = {
     get action() {
       return action;
     },
@@ -8423,7 +8423,7 @@ function getUrlBasedHistory(getLocation, createHref2, validateLocation, options 
     },
     createURL,
     encodeLocation(to) {
-      let url = createURL(to);
+      const url = createURL(to);
       return {
         pathname: url.pathname,
         search: url.search,
@@ -8438,7 +8438,7 @@ function getUrlBasedHistory(getLocation, createHref2, validateLocation, options 
   };
   return history;
 }
-var immutableRouteKeys = /* @__PURE__ */ new Set([
+const immutableRouteKeys = /* @__PURE__ */ new Set([
   "lazy",
   "caseSensitive",
   "path",
@@ -8451,8 +8451,8 @@ function isIndexRoute(route) {
 }
 function convertRoutesToDataRoutes(routes, mapRouteProperties2, parentPath = [], manifest = {}) {
   return routes.map((route, index2) => {
-    let treePath = [...parentPath, String(index2)];
-    let id2 = typeof route.id === "string" ? route.id : treePath.join("-");
+    const treePath = [...parentPath, String(index2)];
+    const id2 = typeof route.id === "string" ? route.id : treePath.join("-");
     invariant$1(
       route.index !== true || !route.children,
       `Cannot specify children on an index route`
@@ -8462,7 +8462,7 @@ function convertRoutesToDataRoutes(routes, mapRouteProperties2, parentPath = [],
       `Found a route id collision on id "${id2}".  Route id's must be globally unique within Data Router usages`
     );
     if (isIndexRoute(route)) {
-      let indexRoute = {
+      const indexRoute = {
         ...route,
         ...mapRouteProperties2(route),
         id: id2
@@ -8470,7 +8470,7 @@ function convertRoutesToDataRoutes(routes, mapRouteProperties2, parentPath = [],
       manifest[id2] = indexRoute;
       return indexRoute;
     } else {
-      let pathOrLayoutRoute = {
+      const pathOrLayoutRoute = {
         ...route,
         ...mapRouteProperties2(route),
         id: id2,
@@ -8493,16 +8493,16 @@ function matchRoutes(routes, locationArg, basename = "/") {
   return matchRoutesImpl(routes, locationArg, basename, false);
 }
 function matchRoutesImpl(routes, locationArg, basename, allowPartial) {
-  let location = typeof locationArg === "string" ? parsePath(locationArg) : locationArg;
-  let pathname = stripBasename(location.pathname || "/", basename);
+  const location = typeof locationArg === "string" ? parsePath(locationArg) : locationArg;
+  const pathname = stripBasename(location.pathname || "/", basename);
   if (pathname == null) {
     return null;
   }
-  let branches = flattenRoutes(routes);
+  const branches = flattenRoutes(routes);
   rankRouteBranches(branches);
   let matches = null;
   for (let i = 0; matches == null && i < branches.length; ++i) {
-    let decoded = decodePath(pathname);
+    const decoded = decodePath(pathname);
     matches = matchRouteBranch(
       branches[i],
       decoded,
@@ -8512,7 +8512,7 @@ function matchRoutesImpl(routes, locationArg, basename, allowPartial) {
   return matches;
 }
 function convertRouteMatchToUiMatch(match, loaderData) {
-  let { route, pathname, params } = match;
+  const { route, pathname, params } = match;
   return {
     id: route.id,
     pathname,
@@ -8522,8 +8522,8 @@ function convertRouteMatchToUiMatch(match, loaderData) {
   };
 }
 function flattenRoutes(routes, branches = [], parentsMeta = [], parentPath = "") {
-  let flattenRoute = (route, index2, relativePath) => {
-    let meta = {
+  const flattenRoute = (route, index2, relativePath) => {
+    const meta = {
       relativePath: relativePath === void 0 ? route.path || "" : relativePath,
       caseSensitive: route.caseSensitive === true,
       childrenIndex: index2,
@@ -8536,8 +8536,8 @@ function flattenRoutes(routes, branches = [], parentsMeta = [], parentPath = "")
       );
       meta.relativePath = meta.relativePath.slice(parentPath.length);
     }
-    let path = joinPaths([parentPath, meta.relativePath]);
-    let routesMeta = parentsMeta.concat(meta);
+    const path = joinPaths([parentPath, meta.relativePath]);
+    const routesMeta = parentsMeta.concat(meta);
     if (route.children && route.children.length > 0) {
       invariant$1(
         // Our types know better, but runtime JS may not!
@@ -8557,11 +8557,11 @@ function flattenRoutes(routes, branches = [], parentsMeta = [], parentPath = "")
     });
   };
   routes.forEach((route, index2) => {
-    var _a;
+    let _a;
     if (route.path === "" || !((_a = route.path) == null ? void 0 : _a.includes("?"))) {
       flattenRoute(route, index2);
     } else {
-      for (let exploded of explodeOptionalSegments(route.path)) {
+      for (const exploded of explodeOptionalSegments(route.path)) {
         flattenRoute(route, index2, exploded);
       }
     }
@@ -8569,16 +8569,16 @@ function flattenRoutes(routes, branches = [], parentsMeta = [], parentPath = "")
   return branches;
 }
 function explodeOptionalSegments(path) {
-  let segments = path.split("/");
+  const segments = path.split("/");
   if (segments.length === 0) return [];
-  let [first, ...rest] = segments;
-  let isOptional = first.endsWith("?");
-  let required = first.replace(/\?$/, "");
+  const [first, ...rest] = segments;
+  const isOptional = first.endsWith("?");
+  const required = first.replace(/\?$/, "");
   if (rest.length === 0) {
     return isOptional ? [required, ""] : [required];
   }
-  let restExploded = explodeOptionalSegments(rest.join("/"));
-  let result = [];
+  const restExploded = explodeOptionalSegments(rest.join("/"));
+  const result = [];
   result.push(
     ...restExploded.map(
       (subpath) => subpath === "" ? required : [required, subpath].join("/")
@@ -8599,15 +8599,15 @@ function rankRouteBranches(branches) {
     )
   );
 }
-var paramRe = /^:[\w-]+$/;
-var dynamicSegmentValue = 3;
-var indexRouteValue = 2;
-var emptySegmentValue = 1;
-var staticSegmentValue = 10;
-var splatPenalty = -2;
-var isSplat = (s) => s === "*";
+const paramRe = /^:[\w-]+$/;
+const dynamicSegmentValue = 3;
+const indexRouteValue = 2;
+const emptySegmentValue = 1;
+const staticSegmentValue = 10;
+const splatPenalty = -2;
+const isSplat = (s) => s === "*";
 function computeScore(path, index2) {
-  let segments = path.split("/");
+  const segments = path.split("/");
   let initialScore = segments.length;
   if (segments.some(isSplat)) {
     initialScore += splatPenalty;
@@ -8621,7 +8621,7 @@ function computeScore(path, index2) {
   );
 }
 function compareIndexes(a, b) {
-  let siblings = a.length === b.length && a.slice(0, -1).every((n, i) => n === b[i]);
+  const siblings = a.length === b.length && a.slice(0, -1).every((n, i) => n === b[i]);
   return siblings ? (
     // If two routes are siblings, we should try to match the earlier sibling
     // first. This allows people to have fine-grained control over the matching
@@ -8635,19 +8635,19 @@ function compareIndexes(a, b) {
   );
 }
 function matchRouteBranch(branch, pathname, allowPartial = false) {
-  let { routesMeta } = branch;
-  let matchedParams = {};
+  const { routesMeta } = branch;
+  const matchedParams = {};
   let matchedPathname = "/";
-  let matches = [];
+  const matches = [];
   for (let i = 0; i < routesMeta.length; ++i) {
-    let meta = routesMeta[i];
-    let end = i === routesMeta.length - 1;
-    let remainingPathname = matchedPathname === "/" ? pathname : pathname.slice(matchedPathname.length) || "/";
+    const meta = routesMeta[i];
+    const end = i === routesMeta.length - 1;
+    const remainingPathname = matchedPathname === "/" ? pathname : pathname.slice(matchedPathname.length) || "/";
     let match = matchPath(
       { path: meta.relativePath, caseSensitive: meta.caseSensitive, end },
       remainingPathname
     );
-    let route = meta.route;
+    const route = meta.route;
     if (!match && end && allowPartial && !routesMeta[routesMeta.length - 1].route.index) {
       match = matchPath(
         {
@@ -8697,7 +8697,7 @@ function generatePath(originalPath, params = {}) {
     const keyMatch = segment.match(/^:([\w-]+)(\??)$/);
     if (keyMatch) {
       const [, key, optional] = keyMatch;
-      let param = params[key];
+      const param = params[key];
       invariant$1(optional === "?" || param != null, `Missing ":${key}" param`);
       return stringify2(param);
     }
@@ -8709,20 +8709,20 @@ function matchPath(pattern, pathname) {
   if (typeof pattern === "string") {
     pattern = { path: pattern, caseSensitive: false, end: true };
   }
-  let [matcher, compiledParams] = compilePath(
+  const [matcher, compiledParams] = compilePath(
     pattern.path,
     pattern.caseSensitive,
     pattern.end
   );
-  let match = pathname.match(matcher);
+  const match = pathname.match(matcher);
   if (!match) return null;
-  let matchedPathname = match[0];
+  const matchedPathname = match[0];
   let pathnameBase = matchedPathname.replace(/(.)\/+$/, "$1");
-  let captureGroups = match.slice(1);
-  let params = compiledParams.reduce(
+  const captureGroups = match.slice(1);
+  const params = compiledParams.reduce(
     (memo2, { paramName, isOptional }, index2) => {
       if (paramName === "*") {
-        let splatValue = captureGroups[index2] || "";
+        const splatValue = captureGroups[index2] || "";
         pathnameBase = matchedPathname.slice(0, matchedPathname.length - splatValue.length).replace(/(.)\/+$/, "$1");
       }
       const value = captureGroups[index2];
@@ -8747,7 +8747,7 @@ function compilePath(path, caseSensitive = false, end = true) {
     path === "*" || !path.endsWith("*") || path.endsWith("/*"),
     `Route path "${path}" will be treated as if it were "${path.replace(/\*$/, "/*")}" because the \`*\` character must always follow a \`/\` in the pattern. To get rid of this warning, please change the route path to "${path.replace(/\*$/, "/*")}".`
   );
-  let params = [];
+  const params = [];
   let regexpSource = "^" + path.replace(/\/*\*?$/, "").replace(/^\/*/, "/").replace(/[\\.*+^${}|()[\]]/g, "\\$&").replace(
     /\/:([\w-]+)(\?)?/g,
     (_, paramName, isOptional) => {
@@ -8764,7 +8764,7 @@ function compilePath(path, caseSensitive = false, end = true) {
     regexpSource += "(?:(?=\\/|$))";
   } else {
   }
-  let matcher = new RegExp(regexpSource, caseSensitive ? void 0 : "i");
+  const matcher = new RegExp(regexpSource, caseSensitive ? void 0 : "i");
   return [matcher, params];
 }
 function decodePath(value) {
@@ -8783,20 +8783,20 @@ function stripBasename(pathname, basename) {
   if (!pathname.toLowerCase().startsWith(basename.toLowerCase())) {
     return null;
   }
-  let startIndex = basename.endsWith("/") ? basename.length - 1 : basename.length;
-  let nextChar = pathname.charAt(startIndex);
+  const startIndex = basename.endsWith("/") ? basename.length - 1 : basename.length;
+  const nextChar = pathname.charAt(startIndex);
   if (nextChar && nextChar !== "/") {
     return null;
   }
   return pathname.slice(startIndex) || "/";
 }
 function resolvePath(to, fromPathname = "/") {
-  let {
+  const {
     pathname: toPathname,
     search = "",
     hash = ""
   } = typeof to === "string" ? parsePath(to) : to;
-  let pathname = toPathname ? toPathname.startsWith("/") ? toPathname : resolvePathname(toPathname, fromPathname) : fromPathname;
+  const pathname = toPathname ? toPathname.startsWith("/") ? toPathname : resolvePathname(toPathname, fromPathname) : fromPathname;
   return {
     pathname,
     search: normalizeSearch(search),
@@ -8804,8 +8804,8 @@ function resolvePath(to, fromPathname = "/") {
   };
 }
 function resolvePathname(relativePath, fromPathname) {
-  let segments = fromPathname.replace(/\/+$/, "").split("/");
-  let relativeSegments = relativePath.split("/");
+  const segments = fromPathname.replace(/\/+$/, "").split("/");
+  const relativeSegments = relativePath.split("/");
   relativeSegments.forEach((segment) => {
     if (segment === "..") {
       if (segments.length > 1) segments.pop();
@@ -8826,7 +8826,7 @@ function getPathContributingMatches(matches) {
   );
 }
 function getResolveToMatches(matches) {
-  let pathMatches = getPathContributingMatches(matches);
+  const pathMatches = getPathContributingMatches(matches);
   return pathMatches.map(
     (match, idx) => idx === pathMatches.length - 1 ? match.pathname : match.pathnameBase
   );
@@ -8850,15 +8850,15 @@ function resolveTo(toArg, routePathnames, locationPathname, isPathRelative = fal
       getInvalidPathError("#", "search", "hash", to)
     );
   }
-  let isEmptyPath = toArg === "" || to.pathname === "";
-  let toPathname = isEmptyPath ? "/" : to.pathname;
+  const isEmptyPath = toArg === "" || to.pathname === "";
+  const toPathname = isEmptyPath ? "/" : to.pathname;
   let from;
   if (toPathname == null) {
     from = locationPathname;
   } else {
     let routePathnameIndex = routePathnames.length - 1;
     if (!isPathRelative && toPathname.startsWith("..")) {
-      let toSegments = toPathname.split("/");
+      const toSegments = toPathname.split("/");
       while (toSegments[0] === "..") {
         toSegments.shift();
         routePathnameIndex -= 1;
@@ -8867,9 +8867,9 @@ function resolveTo(toArg, routePathnames, locationPathname, isPathRelative = fal
     }
     from = routePathnameIndex >= 0 ? routePathnames[routePathnameIndex] : "/";
   }
-  let path = resolvePath(to, from);
-  let hasExplicitTrailingSlash = toPathname && toPathname !== "/" && toPathname.endsWith("/");
-  let hasCurrentTrailingSlash = (isEmptyPath || toPathname === ".") && locationPathname.endsWith("/");
+  const path = resolvePath(to, from);
+  const hasExplicitTrailingSlash = toPathname && toPathname !== "/" && toPathname.endsWith("/");
+  const hasCurrentTrailingSlash = (isEmptyPath || toPathname === ".") && locationPathname.endsWith("/");
   if (!path.pathname.endsWith("/") && (hasExplicitTrailingSlash || hasCurrentTrailingSlash)) {
     path.pathname += "/";
   }
@@ -8879,7 +8879,7 @@ var joinPaths = (paths) => paths.join("/").replace(/\/\/+/g, "/");
 var normalizePathname = (pathname) => pathname.replace(/\/+$/, "").replace(/^\/*/, "/");
 var normalizeSearch = (search) => !search || search === "?" ? "" : search.startsWith("?") ? search : "?" + search;
 var normalizeHash = (hash) => !hash || hash === "#" ? "" : hash.startsWith("#") ? hash : "#" + hash;
-var DataWithResponseInit = class {
+const DataWithResponseInit = class {
   constructor(data2, init) {
     this.type = "DataWithResponseInit";
     this.data = data2;
@@ -8892,31 +8892,31 @@ function data(data2, init) {
     typeof init === "number" ? { status: init } : init
   );
 }
-var redirect = (url, init = 302) => {
+const redirect = (url, init = 302) => {
   let responseInit = init;
   if (typeof responseInit === "number") {
     responseInit = { status: responseInit };
   } else if (typeof responseInit.status === "undefined") {
     responseInit.status = 302;
   }
-  let headers = new Headers(responseInit.headers);
+  const headers = new Headers(responseInit.headers);
   headers.set("Location", url);
   return new Response(null, {
     ...responseInit,
     headers
   });
 };
-var redirectDocument = (url, init) => {
-  let response = redirect(url, init);
+const redirectDocument = (url, init) => {
+  const response = redirect(url, init);
   response.headers.set("X-Remix-Reload-Document", "true");
   return response;
 };
-var replace = (url, init) => {
-  let response = redirect(url, init);
+const replace = (url, init) => {
+  const response = redirect(url, init);
   response.headers.set("X-Remix-Replace", "true");
   return response;
 };
-var ErrorResponseImpl = class {
+const ErrorResponseImpl = class {
   constructor(status, statusText, data2, internal = false) {
     this.status = status;
     this.statusText = statusText || "";
@@ -8932,23 +8932,23 @@ var ErrorResponseImpl = class {
 function isRouteErrorResponse(error) {
   return error != null && typeof error.status === "number" && typeof error.statusText === "string" && typeof error.internal === "boolean" && "data" in error;
 }
-var validMutationMethodsArr = [
+const validMutationMethodsArr = [
   "POST",
   "PUT",
   "PATCH",
   "DELETE"
 ];
-var validMutationMethods = new Set(
+const validMutationMethods = new Set(
   validMutationMethodsArr
 );
-var validRequestMethodsArr = [
+const validRequestMethodsArr = [
   "GET",
   ...validMutationMethodsArr
 ];
-var validRequestMethods = new Set(validRequestMethodsArr);
-var redirectStatusCodes = /* @__PURE__ */ new Set([301, 302, 303, 307, 308]);
-var redirectPreserveMethodStatusCodes = /* @__PURE__ */ new Set([307, 308]);
-var IDLE_NAVIGATION = {
+const validRequestMethods = new Set(validRequestMethodsArr);
+const redirectStatusCodes = /* @__PURE__ */ new Set([301, 302, 303, 307, 308]);
+const redirectPreserveMethodStatusCodes = /* @__PURE__ */ new Set([307, 308]);
+const IDLE_NAVIGATION = {
   state: "idle",
   location: void 0,
   formMethod: void 0,
@@ -8958,7 +8958,7 @@ var IDLE_NAVIGATION = {
   json: void 0,
   text: void 0
 };
-var IDLE_FETCHER = {
+const IDLE_FETCHER = {
   state: "idle",
   data: void 0,
   formMethod: void 0,
@@ -8968,18 +8968,18 @@ var IDLE_FETCHER = {
   json: void 0,
   text: void 0
 };
-var IDLE_BLOCKER = {
+const IDLE_BLOCKER = {
   state: "unblocked",
   proceed: void 0,
   reset: void 0,
   location: void 0
 };
-var ABSOLUTE_URL_REGEX = /^(?:[a-z][a-z0-9+.-]*:|\/\/)/i;
-var defaultMapRouteProperties = (route) => ({
+const ABSOLUTE_URL_REGEX = /^(?:[a-z][a-z0-9+.-]*:|\/\/)/i;
+const defaultMapRouteProperties = (route) => ({
   hasErrorBoundary: Boolean(route.hasErrorBoundary)
 });
-var TRANSITIONS_STORAGE_KEY = "remix-router-transitions";
-var ResetLoaderDataSymbol = Symbol("ResetLoaderData");
+const TRANSITIONS_STORAGE_KEY = "remix-router-transitions";
+const ResetLoaderDataSymbol = Symbol("ResetLoaderData");
 function createRouter(init) {
   const routerWindow = init.window ? init.window : typeof window !== "undefined" ? window : void 0;
   const isBrowser2 = typeof routerWindow !== "undefined" && typeof routerWindow.document !== "undefined" && typeof routerWindow.document.createElement !== "undefined";
@@ -8987,7 +8987,7 @@ function createRouter(init) {
     init.routes.length > 0,
     "You must provide a non-empty routes array to createRouter"
   );
-  let mapRouteProperties2 = init.mapRouteProperties || defaultMapRouteProperties;
+  const mapRouteProperties2 = init.mapRouteProperties || defaultMapRouteProperties;
   let manifest = {};
   let dataRoutes = convertRoutesToDataRoutes(
     init.routes,
@@ -8996,14 +8996,14 @@ function createRouter(init) {
     manifest
   );
   let inFlightDataRoutes;
-  let basename = init.basename || "/";
-  let dataStrategyImpl = init.dataStrategy || defaultDataStrategy;
-  let patchRoutesOnNavigationImpl = init.patchRoutesOnNavigation;
-  let future = {
+  const basename = init.basename || "/";
+  const dataStrategyImpl = init.dataStrategy || defaultDataStrategy;
+  const patchRoutesOnNavigationImpl = init.patchRoutesOnNavigation;
+  const future = {
     ...init.future
   };
   let unlistenHistory = null;
-  let subscribers = /* @__PURE__ */ new Set();
+  const subscribers = /* @__PURE__ */ new Set();
   let savedScrollPositions2 = null;
   let getScrollRestorationKey2 = null;
   let getScrollPosition = null;
@@ -9011,15 +9011,15 @@ function createRouter(init) {
   let initialMatches = matchRoutes(dataRoutes, init.history.location, basename);
   let initialErrors = null;
   if (initialMatches == null && !patchRoutesOnNavigationImpl) {
-    let error = getInternalRouterError(404, {
+    const error = getInternalRouterError(404, {
       pathname: init.history.location.pathname
     });
-    let { matches, route } = getShortCircuitMatches(dataRoutes);
+    const { matches, route } = getShortCircuitMatches(dataRoutes);
     initialMatches = matches;
     initialErrors = { [route.id]: error };
   }
   if (initialMatches && !init.hydrationData) {
-    let fogOfWar = checkFogOfWar(
+    const fogOfWar = checkFogOfWar(
       initialMatches,
       dataRoutes,
       init.history.location.pathname
@@ -9032,7 +9032,7 @@ function createRouter(init) {
   if (!initialMatches) {
     initialized = false;
     initialMatches = [];
-    let fogOfWar = checkFogOfWar(
+    const fogOfWar = checkFogOfWar(
       null,
       dataRoutes,
       init.history.location.pathname
@@ -9045,10 +9045,10 @@ function createRouter(init) {
   } else if (!initialMatches.some((m2) => m2.route.loader)) {
     initialized = true;
   } else {
-    let loaderData = init.hydrationData ? init.hydrationData.loaderData : null;
-    let errors = init.hydrationData ? init.hydrationData.errors : null;
+    const loaderData = init.hydrationData ? init.hydrationData.loaderData : null;
+    const errors = init.hydrationData ? init.hydrationData.errors : null;
     if (errors) {
-      let idx = initialMatches.findIndex(
+      const idx = initialMatches.findIndex(
         (m2) => errors[m2.route.id] !== void 0
       );
       initialized = initialMatches.slice(0, idx + 1).every((m2) => !shouldLoadRouteOnHydration(m2.route, loaderData, errors));
@@ -9079,20 +9079,20 @@ function createRouter(init) {
   let pendingPreventScrollReset = false;
   let pendingNavigationController;
   let pendingViewTransitionEnabled = false;
-  let appliedViewTransitions = /* @__PURE__ */ new Map();
+  const appliedViewTransitions = /* @__PURE__ */ new Map();
   let removePageHideEventListener = null;
   let isUninterruptedRevalidation = false;
   let isRevalidationRequired = false;
-  let cancelledFetcherLoads = /* @__PURE__ */ new Set();
-  let fetchControllers = /* @__PURE__ */ new Map();
+  const cancelledFetcherLoads = /* @__PURE__ */ new Set();
+  const fetchControllers = /* @__PURE__ */ new Map();
   let incrementingLoadId = 0;
   let pendingNavigationLoadId = -1;
-  let fetchReloadIds = /* @__PURE__ */ new Map();
-  let fetchRedirectIds = /* @__PURE__ */ new Set();
-  let fetchLoadMatches = /* @__PURE__ */ new Map();
-  let activeFetchers = /* @__PURE__ */ new Map();
-  let fetchersQueuedForDeletion = /* @__PURE__ */ new Set();
-  let blockerFunctions = /* @__PURE__ */ new Map();
+  const fetchReloadIds = /* @__PURE__ */ new Map();
+  const fetchRedirectIds = /* @__PURE__ */ new Set();
+  const fetchLoadMatches = /* @__PURE__ */ new Map();
+  const activeFetchers = /* @__PURE__ */ new Map();
+  const fetchersQueuedForDeletion = /* @__PURE__ */ new Set();
+  const blockerFunctions = /* @__PURE__ */ new Map();
   let unblockBlockerHistoryUpdate = void 0;
   let pendingRevalidationDfd = null;
   function initialize() {
@@ -9107,13 +9107,13 @@ function createRouter(init) {
           blockerFunctions.size === 0 || delta != null,
           "You are trying to use a blocker on a POP navigation to a location that was not created by @remix-run/router. This will fail silently in production. This can happen if you are navigating outside the router via `window.history.pushState`/`window.location.hash` instead of using router navigation APIs.  This can also happen if you are using createHashRouter and the user manually changes the URL."
         );
-        let blockerKey = shouldBlockNavigation({
+        const blockerKey = shouldBlockNavigation({
           currentLocation: state2.location,
           nextLocation: location,
           historyAction
         });
         if (blockerKey && delta != null) {
-          let nextHistoryUpdatePromise = new Promise((resolve) => {
+          const nextHistoryUpdatePromise = new Promise((resolve) => {
             unblockBlockerHistoryUpdate = resolve;
           });
           init.history.go(delta * -1);
@@ -9130,7 +9130,7 @@ function createRouter(init) {
               nextHistoryUpdatePromise.then(() => init.history.go(delta));
             },
             reset() {
-              let blockers = new Map(state2.blockers);
+              const blockers = new Map(state2.blockers);
               blockers.set(blockerKey, IDLE_BLOCKER);
               updateState({ blockers });
             }
@@ -9142,7 +9142,7 @@ function createRouter(init) {
     );
     if (isBrowser2) {
       restoreAppliedTransitions(routerWindow, appliedViewTransitions);
-      let _saveAppliedTransitions = () => persistAppliedTransitions(routerWindow, appliedViewTransitions);
+      const _saveAppliedTransitions = () => persistAppliedTransitions(routerWindow, appliedViewTransitions);
       routerWindow.addEventListener("pagehide", _saveAppliedTransitions);
       removePageHideEventListener = () => routerWindow.removeEventListener("pagehide", _saveAppliedTransitions);
     }
@@ -9174,8 +9174,8 @@ function createRouter(init) {
       ...state2,
       ...newState
     };
-    let unmountedFetchers = [];
-    let mountedFetchers = [];
+    const unmountedFetchers = [];
+    const mountedFetchers = [];
     state2.fetchers.forEach((fetcher, key) => {
       if (fetcher.state === "idle") {
         if (fetchersQueuedForDeletion.has(key)) {
@@ -9196,8 +9196,8 @@ function createRouter(init) {
     mountedFetchers.forEach((key) => state2.fetchers.delete(key));
   }
   function completeNavigation(location, newState, { flushSync } = {}) {
-    var _a, _b;
-    let isActionReload = state2.actionData != null && state2.navigation.formMethod != null && isMutationMethod(state2.navigation.formMethod) && state2.navigation.state === "loading" && ((_a = location.state) == null ? void 0 : _a._isRedirect) !== true;
+    let _a, _b;
+    const isActionReload = state2.actionData != null && state2.navigation.formMethod != null && isMutationMethod(state2.navigation.formMethod) && state2.navigation.state === "loading" && ((_a = location.state) == null ? void 0 : _a._isRedirect) !== true;
     let actionData;
     if (newState.actionData) {
       if (Object.keys(newState.actionData).length > 0) {
@@ -9210,7 +9210,7 @@ function createRouter(init) {
     } else {
       actionData = null;
     }
-    let loaderData = newState.loaderData ? mergeLoaderData(
+    const loaderData = newState.loaderData ? mergeLoaderData(
       state2.loaderData,
       newState.loaderData,
       newState.matches || [],
@@ -9221,7 +9221,7 @@ function createRouter(init) {
       blockers = new Map(blockers);
       blockers.forEach((_, k) => blockers.set(k, IDLE_BLOCKER));
     }
-    let preventScrollReset = pendingPreventScrollReset === true || state2.navigation.formMethod != null && isMutationMethod(state2.navigation.formMethod) && ((_b = location.state) == null ? void 0 : _b._isRedirect) !== true;
+    const preventScrollReset = pendingPreventScrollReset === true || state2.navigation.formMethod != null && isMutationMethod(state2.navigation.formMethod) && ((_b = location.state) == null ? void 0 : _b._isRedirect) !== true;
     if (inFlightDataRoutes) {
       dataRoutes = inFlightDataRoutes;
       inFlightDataRoutes = void 0;
@@ -9235,7 +9235,7 @@ function createRouter(init) {
     }
     let viewTransitionOpts;
     if (pendingAction === "POP") {
-      let priorPaths = appliedViewTransitions.get(state2.location.pathname);
+      const priorPaths = appliedViewTransitions.get(state2.location.pathname);
       if (priorPaths && priorPaths.has(location.pathname)) {
         viewTransitionOpts = {
           currentLocation: state2.location,
@@ -9296,7 +9296,7 @@ function createRouter(init) {
       init.history.go(to);
       return;
     }
-    let normalizedPath = normalizeTo(
+    const normalizedPath = normalizeTo(
       state2.location,
       state2.matches,
       basename,
@@ -9304,18 +9304,18 @@ function createRouter(init) {
       opts == null ? void 0 : opts.fromRouteId,
       opts == null ? void 0 : opts.relative
     );
-    let { path, submission, error } = normalizeNavigateOptions(
+    const { path, submission, error } = normalizeNavigateOptions(
       false,
       normalizedPath,
       opts
     );
-    let currentLocation = state2.location;
+    const currentLocation = state2.location;
     let nextLocation = createLocation(state2.location, path, opts && opts.state);
     nextLocation = {
       ...nextLocation,
       ...init.history.encodeLocation(nextLocation)
     };
-    let userReplace = opts && opts.replace != null ? opts.replace : void 0;
+    const userReplace = opts && opts.replace != null ? opts.replace : void 0;
     let historyAction = "PUSH";
     if (userReplace === true) {
       historyAction = "REPLACE";
@@ -9323,9 +9323,9 @@ function createRouter(init) {
     } else if (submission != null && isMutationMethod(submission.formMethod) && submission.formAction === state2.location.pathname + state2.location.search) {
       historyAction = "REPLACE";
     }
-    let preventScrollReset = opts && "preventScrollReset" in opts ? opts.preventScrollReset === true : void 0;
-    let flushSync = (opts && opts.flushSync) === true;
-    let blockerKey = shouldBlockNavigation({
+    const preventScrollReset = opts && "preventScrollReset" in opts ? opts.preventScrollReset === true : void 0;
+    const flushSync = (opts && opts.flushSync) === true;
+    const blockerKey = shouldBlockNavigation({
       currentLocation,
       nextLocation,
       historyAction
@@ -9344,7 +9344,7 @@ function createRouter(init) {
           navigate(to, opts);
         },
         reset() {
-          let blockers = new Map(state2.blockers);
+          const blockers = new Map(state2.blockers);
           blockers.set(blockerKey, IDLE_BLOCKER);
           updateState({ blockers });
         }
@@ -9368,7 +9368,7 @@ function createRouter(init) {
     }
     interruptActiveLoads();
     updateState({ revalidation: "loading" });
-    let promise = pendingRevalidationDfd.promise;
+    const promise = pendingRevalidationDfd.promise;
     if (state2.navigation.state === "submitting") {
       return promise;
     }
@@ -9397,16 +9397,16 @@ function createRouter(init) {
     saveScrollPosition(state2.location, state2.matches);
     pendingPreventScrollReset = (opts && opts.preventScrollReset) === true;
     pendingViewTransitionEnabled = (opts && opts.enableViewTransition) === true;
-    let routesToUse = inFlightDataRoutes || dataRoutes;
+    const routesToUse = inFlightDataRoutes || dataRoutes;
     let loadingNavigation = opts && opts.overrideNavigation;
     let matches = matchRoutes(routesToUse, location, basename);
     let flushSync = (opts && opts.flushSync) === true;
-    let fogOfWar = checkFogOfWar(matches, routesToUse, location.pathname);
+    const fogOfWar = checkFogOfWar(matches, routesToUse, location.pathname);
     if (fogOfWar.active && fogOfWar.matches) {
       matches = fogOfWar.matches;
     }
     if (!matches) {
-      let { error, notFoundMatches, route } = handleNavigational404(
+      const { error, notFoundMatches, route } = handleNavigational404(
         location.pathname
       );
       completeNavigation(
@@ -9440,7 +9440,7 @@ function createRouter(init) {
         { type: "error", error: opts.pendingError }
       ];
     } else if (opts && opts.submission && isMutationMethod(opts.submission.formMethod)) {
-      let actionResult = await handleAction(
+      const actionResult = await handleAction(
         request,
         location,
         opts.submission,
@@ -9452,7 +9452,7 @@ function createRouter(init) {
         return;
       }
       if (actionResult.pendingActionResult) {
-        let [routeId, result] = actionResult.pendingActionResult;
+        const [routeId, result] = actionResult.pendingActionResult;
         if (isErrorResult(result) && isRouteErrorResponse(result.error) && result.error.status === 404) {
           pendingNavigationController = null;
           completeNavigation(location, {
@@ -9476,7 +9476,7 @@ function createRouter(init) {
         request.signal
       );
     }
-    let {
+    const {
       shortCircuited,
       matches: updatedMatches,
       loaderData,
@@ -9507,10 +9507,10 @@ function createRouter(init) {
   }
   async function handleAction(request, location, submission, matches, isFogOfWar, opts = {}) {
     interruptActiveLoads();
-    let navigation = getSubmittingNavigation(location, submission);
+    const navigation = getSubmittingNavigation(location, submission);
     updateState({ navigation }, { flushSync: opts.flushSync === true });
     if (isFogOfWar) {
-      let discoverResult = await discoverRoutes(
+      const discoverResult = await discoverRoutes(
         matches,
         location.pathname,
         request.signal
@@ -9518,7 +9518,7 @@ function createRouter(init) {
       if (discoverResult.type === "aborted") {
         return { shortCircuited: true };
       } else if (discoverResult.type === "error") {
-        let boundaryId = findNearestBoundary(discoverResult.partialMatches).route.id;
+        const boundaryId = findNearestBoundary(discoverResult.partialMatches).route.id;
         return {
           matches: discoverResult.partialMatches,
           pendingActionResult: [
@@ -9530,7 +9530,7 @@ function createRouter(init) {
           ]
         };
       } else if (!discoverResult.matches) {
-        let { notFoundMatches, error, route } = handleNavigational404(
+        const { notFoundMatches, error, route } = handleNavigational404(
           location.pathname
         );
         return {
@@ -9548,7 +9548,7 @@ function createRouter(init) {
       }
     }
     let result;
-    let actionMatch = getTargetMatch(matches, location);
+    const actionMatch = getTargetMatch(matches, location);
     if (!actionMatch.route.action && !actionMatch.route.lazy) {
       result = {
         type: "error",
@@ -9559,7 +9559,7 @@ function createRouter(init) {
         })
       };
     } else {
-      let results = await callDataStrategy(
+      const results = await callDataStrategy(
         "action",
         state2,
         request,
@@ -9577,7 +9577,7 @@ function createRouter(init) {
       if (opts && opts.replace != null) {
         replace2 = opts.replace;
       } else {
-        let location2 = normalizeRedirectLocation(
+        const location2 = normalizeRedirectLocation(
           result.response.headers.get("Location"),
           new URL(request.url),
           basename
@@ -9591,7 +9591,7 @@ function createRouter(init) {
       return { shortCircuited: true };
     }
     if (isErrorResult(result)) {
-      let boundaryMatch = findNearestBoundary(matches, actionMatch.route.id);
+      const boundaryMatch = findNearestBoundary(matches, actionMatch.route.id);
       if ((opts && opts.replace) !== true) {
         pendingAction = "PUSH";
       }
@@ -9606,12 +9606,12 @@ function createRouter(init) {
     };
   }
   async function handleLoaders(request, location, matches, isFogOfWar, overrideNavigation, submission, fetcherSubmission, replace2, initialHydration, flushSync, pendingActionResult) {
-    let loadingNavigation = overrideNavigation || getLoadingNavigation(location, submission);
-    let activeSubmission = submission || fetcherSubmission || getSubmissionFromNavigation(loadingNavigation);
-    let shouldUpdateNavigationState = !isUninterruptedRevalidation && !initialHydration;
+    const loadingNavigation = overrideNavigation || getLoadingNavigation(location, submission);
+    const activeSubmission = submission || fetcherSubmission || getSubmissionFromNavigation(loadingNavigation);
+    const shouldUpdateNavigationState = !isUninterruptedRevalidation && !initialHydration;
     if (isFogOfWar) {
       if (shouldUpdateNavigationState) {
-        let actionData = getUpdatedActionData(pendingActionResult);
+        const actionData = getUpdatedActionData(pendingActionResult);
         updateState(
           {
             navigation: loadingNavigation,
@@ -9622,7 +9622,7 @@ function createRouter(init) {
           }
         );
       }
-      let discoverResult = await discoverRoutes(
+      const discoverResult = await discoverRoutes(
         matches,
         location.pathname,
         request.signal
@@ -9630,7 +9630,7 @@ function createRouter(init) {
       if (discoverResult.type === "aborted") {
         return { shortCircuited: true };
       } else if (discoverResult.type === "error") {
-        let boundaryId = findNearestBoundary(discoverResult.partialMatches).route.id;
+        const boundaryId = findNearestBoundary(discoverResult.partialMatches).route.id;
         return {
           matches: discoverResult.partialMatches,
           loaderData: {},
@@ -9639,7 +9639,7 @@ function createRouter(init) {
           }
         };
       } else if (!discoverResult.matches) {
-        let { error, notFoundMatches, route } = handleNavigational404(
+        const { error, notFoundMatches, route } = handleNavigational404(
           location.pathname
         );
         return {
@@ -9653,8 +9653,8 @@ function createRouter(init) {
         matches = discoverResult.matches;
       }
     }
-    let routesToUse = inFlightDataRoutes || dataRoutes;
-    let [matchesToLoad, revalidatingFetchers] = getMatchesToLoad(
+    const routesToUse = inFlightDataRoutes || dataRoutes;
+    const [matchesToLoad, revalidatingFetchers] = getMatchesToLoad(
       init.history,
       state2,
       matches,
@@ -9672,7 +9672,7 @@ function createRouter(init) {
     );
     pendingNavigationLoadId = ++incrementingLoadId;
     if (matchesToLoad.length === 0 && revalidatingFetchers.length === 0) {
-      let updatedFetchers2 = markFetchRedirectsDone();
+      const updatedFetchers2 = markFetchRedirectsDone();
       completeNavigation(
         location,
         {
@@ -9688,10 +9688,10 @@ function createRouter(init) {
       return { shortCircuited: true };
     }
     if (shouldUpdateNavigationState) {
-      let updates = {};
+      const updates = {};
       if (!isFogOfWar) {
         updates.navigation = loadingNavigation;
-        let actionData = getUpdatedActionData(pendingActionResult);
+        const actionData = getUpdatedActionData(pendingActionResult);
         if (actionData !== void 0) {
           updates.actionData = actionData;
         }
@@ -9707,14 +9707,14 @@ function createRouter(init) {
         fetchControllers.set(rf.key, rf.controller);
       }
     });
-    let abortPendingFetchRevalidations = () => revalidatingFetchers.forEach((f) => abortFetcher(f.key));
+    const abortPendingFetchRevalidations = () => revalidatingFetchers.forEach((f) => abortFetcher(f.key));
     if (pendingNavigationController) {
       pendingNavigationController.signal.addEventListener(
         "abort",
         abortPendingFetchRevalidations
       );
     }
-    let { loaderResults, fetcherResults } = await callLoadersAndMaybeResolveData(
+    const { loaderResults, fetcherResults } = await callLoadersAndMaybeResolveData(
       state2,
       matches,
       matchesToLoad,
@@ -9757,9 +9757,9 @@ function createRouter(init) {
     if (initialHydration && state2.errors) {
       errors = { ...state2.errors, ...errors };
     }
-    let updatedFetchers = markFetchRedirectsDone();
-    let didAbortFetchLoads = abortStaleFetchLoads(pendingNavigationLoadId);
-    let shouldUpdateFetchers = updatedFetchers || didAbortFetchLoads || revalidatingFetchers.length > 0;
+    const updatedFetchers = markFetchRedirectsDone();
+    const didAbortFetchLoads = abortStaleFetchLoads(pendingNavigationLoadId);
+    const shouldUpdateFetchers = updatedFetchers || didAbortFetchLoads || revalidatingFetchers.length > 0;
     return {
       matches,
       loaderData,
@@ -9782,8 +9782,8 @@ function createRouter(init) {
   }
   function getUpdatedRevalidatingFetchers(revalidatingFetchers) {
     revalidatingFetchers.forEach((rf) => {
-      let fetcher = state2.fetchers.get(rf.key);
-      let revalidatingFetcher = getLoadingFetcher(
+      const fetcher = state2.fetchers.get(rf.key);
+      const revalidatingFetcher = getLoadingFetcher(
         void 0,
         fetcher ? fetcher.data : void 0
       );
@@ -9793,9 +9793,9 @@ function createRouter(init) {
   }
   async function fetch2(key, routeId, href, opts) {
     abortFetcher(key);
-    let flushSync = (opts && opts.flushSync) === true;
-    let routesToUse = inFlightDataRoutes || dataRoutes;
-    let normalizedPath = normalizeTo(
+    const flushSync = (opts && opts.flushSync) === true;
+    const routesToUse = inFlightDataRoutes || dataRoutes;
+    const normalizedPath = normalizeTo(
       state2.location,
       state2.matches,
       basename,
@@ -9804,7 +9804,7 @@ function createRouter(init) {
       opts == null ? void 0 : opts.relative
     );
     let matches = matchRoutes(routesToUse, normalizedPath, basename);
-    let fogOfWar = checkFogOfWar(matches, routesToUse, normalizedPath);
+    const fogOfWar = checkFogOfWar(matches, routesToUse, normalizedPath);
     if (fogOfWar.active && fogOfWar.matches) {
       matches = fogOfWar.matches;
     }
@@ -9817,7 +9817,7 @@ function createRouter(init) {
       );
       return;
     }
-    let { path, submission, error } = normalizeNavigateOptions(
+    const { path, submission, error } = normalizeNavigateOptions(
       true,
       normalizedPath,
       opts
@@ -9826,8 +9826,8 @@ function createRouter(init) {
       setFetcherError(key, routeId, error, { flushSync });
       return;
     }
-    let match = getTargetMatch(matches, path);
-    let preventScrollReset = (opts && opts.preventScrollReset) === true;
+    const match = getTargetMatch(matches, path);
+    const preventScrollReset = (opts && opts.preventScrollReset) === true;
     if (submission && isMutationMethod(submission.formMethod)) {
       await handleFetcherAction(
         key,
@@ -9860,7 +9860,7 @@ function createRouter(init) {
     fetchLoadMatches.delete(key);
     function detectAndHandle405Error(m2) {
       if (!m2.route.action && !m2.route.lazy) {
-        let error = getInternalRouterError(405, {
+        const error = getInternalRouterError(405, {
           method: submission.formMethod,
           pathname: path,
           routeId
@@ -9873,19 +9873,19 @@ function createRouter(init) {
     if (!isFogOfWar && detectAndHandle405Error(match)) {
       return;
     }
-    let existingFetcher = state2.fetchers.get(key);
+    const existingFetcher = state2.fetchers.get(key);
     updateFetcherState(key, getSubmittingFetcher(submission, existingFetcher), {
       flushSync
     });
-    let abortController = new AbortController();
-    let fetchRequest = createClientSideRequest(
+    const abortController = new AbortController();
+    const fetchRequest = createClientSideRequest(
       init.history,
       path,
       abortController.signal,
       submission
     );
     if (isFogOfWar) {
-      let discoverResult = await discoverRoutes(
+      const discoverResult = await discoverRoutes(
         requestMatches,
         path,
         fetchRequest.signal
@@ -9912,8 +9912,8 @@ function createRouter(init) {
       }
     }
     fetchControllers.set(key, abortController);
-    let originatingLoadId = incrementingLoadId;
-    let actionResults = await callDataStrategy(
+    const originatingLoadId = incrementingLoadId;
+    const actionResults = await callDataStrategy(
       "action",
       state2,
       fetchRequest,
@@ -9921,7 +9921,7 @@ function createRouter(init) {
       requestMatches,
       key
     );
-    let actionResult = actionResults[match.route.id];
+    const actionResult = actionResults[match.route.id];
     if (fetchRequest.signal.aborted) {
       if (fetchControllers.get(key) === abortController) {
         fetchControllers.delete(key);
@@ -9953,20 +9953,20 @@ function createRouter(init) {
         return;
       }
     }
-    let nextLocation = state2.navigation.location || state2.location;
-    let revalidationRequest = createClientSideRequest(
+    const nextLocation = state2.navigation.location || state2.location;
+    const revalidationRequest = createClientSideRequest(
       init.history,
       nextLocation,
       abortController.signal
     );
-    let routesToUse = inFlightDataRoutes || dataRoutes;
-    let matches = state2.navigation.state !== "idle" ? matchRoutes(routesToUse, state2.navigation.location, basename) : state2.matches;
+    const routesToUse = inFlightDataRoutes || dataRoutes;
+    const matches = state2.navigation.state !== "idle" ? matchRoutes(routesToUse, state2.navigation.location, basename) : state2.matches;
     invariant$1(matches, "Didn't find any matches after fetcher action");
-    let loadId = ++incrementingLoadId;
+    const loadId = ++incrementingLoadId;
     fetchReloadIds.set(key, loadId);
-    let loadFetcher = getLoadingFetcher(submission, actionResult.data);
+    const loadFetcher = getLoadingFetcher(submission, actionResult.data);
     state2.fetchers.set(key, loadFetcher);
-    let [matchesToLoad, revalidatingFetchers] = getMatchesToLoad(
+    const [matchesToLoad, revalidatingFetchers] = getMatchesToLoad(
       init.history,
       state2,
       matches,
@@ -9983,9 +9983,9 @@ function createRouter(init) {
       [match.route.id, actionResult]
     );
     revalidatingFetchers.filter((rf) => rf.key !== key).forEach((rf) => {
-      let staleKey = rf.key;
-      let existingFetcher2 = state2.fetchers.get(staleKey);
-      let revalidatingFetcher = getLoadingFetcher(
+      const staleKey = rf.key;
+      const existingFetcher2 = state2.fetchers.get(staleKey);
+      const revalidatingFetcher = getLoadingFetcher(
         void 0,
         existingFetcher2 ? existingFetcher2.data : void 0
       );
@@ -9996,12 +9996,12 @@ function createRouter(init) {
       }
     });
     updateState({ fetchers: new Map(state2.fetchers) });
-    let abortPendingFetchRevalidations = () => revalidatingFetchers.forEach((rf) => abortFetcher(rf.key));
+    const abortPendingFetchRevalidations = () => revalidatingFetchers.forEach((rf) => abortFetcher(rf.key));
     abortController.signal.addEventListener(
       "abort",
       abortPendingFetchRevalidations
     );
-    let { loaderResults, fetcherResults } = await callLoadersAndMaybeResolveData(
+    const { loaderResults, fetcherResults } = await callLoadersAndMaybeResolveData(
       state2,
       matches,
       matchesToLoad,
@@ -10037,7 +10037,7 @@ function createRouter(init) {
         { preventScrollReset }
       );
     }
-    let { loaderData, errors } = processLoaderData(
+    const { loaderData, errors } = processLoaderData(
       state2,
       matches,
       loaderResults,
@@ -10046,7 +10046,7 @@ function createRouter(init) {
       fetcherResults
     );
     if (state2.fetchers.has(key)) {
-      let doneFetcher = getDoneFetcher(actionResult.data);
+      const doneFetcher = getDoneFetcher(actionResult.data);
       state2.fetchers.set(key, doneFetcher);
     }
     abortStaleFetchLoads(loadId);
@@ -10074,7 +10074,7 @@ function createRouter(init) {
     }
   }
   async function handleFetcherLoader(key, routeId, path, match, matches, isFogOfWar, flushSync, preventScrollReset, submission) {
-    let existingFetcher = state2.fetchers.get(key);
+    const existingFetcher = state2.fetchers.get(key);
     updateFetcherState(
       key,
       getLoadingFetcher(
@@ -10083,14 +10083,14 @@ function createRouter(init) {
       ),
       { flushSync }
     );
-    let abortController = new AbortController();
-    let fetchRequest = createClientSideRequest(
+    const abortController = new AbortController();
+    const fetchRequest = createClientSideRequest(
       init.history,
       path,
       abortController.signal
     );
     if (isFogOfWar) {
-      let discoverResult = await discoverRoutes(
+      const discoverResult = await discoverRoutes(
         matches,
         path,
         fetchRequest.signal
@@ -10114,8 +10114,8 @@ function createRouter(init) {
       }
     }
     fetchControllers.set(key, abortController);
-    let originatingLoadId = incrementingLoadId;
-    let results = await callDataStrategy(
+    const originatingLoadId = incrementingLoadId;
+    const results = await callDataStrategy(
       "loader",
       state2,
       fetchRequest,
@@ -10123,7 +10123,7 @@ function createRouter(init) {
       matches,
       key
     );
-    let result = results[match.route.id];
+    const result = results[match.route.id];
     if (fetchControllers.get(key) === abortController) {
       fetchControllers.delete(key);
     }
@@ -10168,7 +10168,7 @@ function createRouter(init) {
       new URL(request.url),
       basename
     );
-    let redirectLocation = createLocation(state2.location, location, {
+    const redirectLocation = createLocation(state2.location, location, {
       _isRedirect: true
     });
     if (isBrowser2) {
@@ -10191,12 +10191,12 @@ function createRouter(init) {
       }
     }
     pendingNavigationController = null;
-    let redirectNavigationType = replace2 === true || redirect2.response.headers.has("X-Remix-Replace") ? "REPLACE" : "PUSH";
-    let { formMethod, formAction, formEncType } = state2.navigation;
+    const redirectNavigationType = replace2 === true || redirect2.response.headers.has("X-Remix-Replace") ? "REPLACE" : "PUSH";
+    const { formMethod, formAction, formEncType } = state2.navigation;
     if (!submission && !fetcherSubmission && formMethod && formAction && formEncType) {
       submission = getSubmissionFromNavigation(state2.navigation);
     }
-    let activeSubmission = submission || fetcherSubmission;
+    const activeSubmission = submission || fetcherSubmission;
     if (redirectPreserveMethodStatusCodes.has(redirect2.response.status) && activeSubmission && isMutationMethod(activeSubmission.formMethod)) {
       await startNavigation(redirectNavigationType, redirectLocation, {
         submission: {
@@ -10208,7 +10208,7 @@ function createRouter(init) {
         enableViewTransition: isNavigation ? pendingViewTransitionEnabled : void 0
       });
     } else {
-      let overrideNavigation = getLoadingNavigation(
+      const overrideNavigation = getLoadingNavigation(
         redirectLocation,
         submission
       );
@@ -10224,7 +10224,7 @@ function createRouter(init) {
   }
   async function callDataStrategy(type, state22, request, matchesToLoad, matches, fetcherKey) {
     let results;
-    let dataResults = {};
+    const dataResults = {};
     try {
       results = await callDataStrategyImpl(
         dataStrategyImpl,
@@ -10246,9 +10246,9 @@ function createRouter(init) {
       });
       return dataResults;
     }
-    for (let [routeId, result] of Object.entries(results)) {
+    for (const [routeId, result] of Object.entries(results)) {
       if (isRedirectDataStrategyResult(result)) {
-        let response = result.result;
+        const response = result.result;
         dataResults[routeId] = {
           type: "redirect",
           response: normalizeRelativeRoutingRedirectResponse(
@@ -10268,7 +10268,7 @@ function createRouter(init) {
     return dataResults;
   }
   async function callLoadersAndMaybeResolveData(state22, matches, matchesToLoad, fetchersToLoad, request) {
-    let loaderResultsPromise = callDataStrategy(
+    const loaderResultsPromise = callDataStrategy(
       "loader",
       state22,
       request,
@@ -10276,10 +10276,10 @@ function createRouter(init) {
       matches,
       null
     );
-    let fetcherResultsPromise = Promise.all(
+    const fetcherResultsPromise = Promise.all(
       fetchersToLoad.map(async (f) => {
         if (f.matches && f.match && f.controller) {
-          let results = await callDataStrategy(
+          const results = await callDataStrategy(
             "loader",
             state22,
             createClientSideRequest(init.history, f.path, f.controller.signal),
@@ -10287,7 +10287,7 @@ function createRouter(init) {
             f.matches,
             f.key
           );
-          let result = results[f.match.route.id];
+          const result = results[f.match.route.id];
           return { [f.key]: result };
         } else {
           return Promise.resolve({
@@ -10301,8 +10301,8 @@ function createRouter(init) {
         }
       })
     );
-    let loaderResults = await loaderResultsPromise;
-    let fetcherResults = (await fetcherResultsPromise).reduce(
+    const loaderResults = await loaderResultsPromise;
+    const fetcherResults = (await fetcherResultsPromise).reduce(
       (acc, r) => Object.assign(acc, r),
       {}
     );
@@ -10328,7 +10328,7 @@ function createRouter(init) {
     );
   }
   function setFetcherError(key, routeId, error, opts = {}) {
-    let boundaryMatch = findNearestBoundary(state2.matches, routeId);
+    const boundaryMatch = findNearestBoundary(state2.matches, routeId);
     deleteFetcher(key);
     updateState(
       {
@@ -10348,7 +10348,7 @@ function createRouter(init) {
     return state2.fetchers.get(key) || IDLE_FETCHER;
   }
   function deleteFetcher(key) {
-    let fetcher = state2.fetchers.get(key);
+    const fetcher = state2.fetchers.get(key);
     if (fetchControllers.has(key) && !(fetcher && fetcher.state === "loading" && fetchReloadIds.has(key))) {
       abortFetcher(key);
     }
@@ -10360,7 +10360,7 @@ function createRouter(init) {
     state2.fetchers.delete(key);
   }
   function queueFetcherForDeletion(key) {
-    let count = (activeFetchers.get(key) || 0) - 1;
+    const count = (activeFetchers.get(key) || 0) - 1;
     if (count <= 0) {
       activeFetchers.delete(key);
       fetchersQueuedForDeletion.add(key);
@@ -10370,24 +10370,24 @@ function createRouter(init) {
     updateState({ fetchers: new Map(state2.fetchers) });
   }
   function abortFetcher(key) {
-    let controller = fetchControllers.get(key);
+    const controller = fetchControllers.get(key);
     if (controller) {
       controller.abort();
       fetchControllers.delete(key);
     }
   }
   function markFetchersDone(keys2) {
-    for (let key of keys2) {
-      let fetcher = getFetcher(key);
-      let doneFetcher = getDoneFetcher(fetcher.data);
+    for (const key of keys2) {
+      const fetcher = getFetcher(key);
+      const doneFetcher = getDoneFetcher(fetcher.data);
       state2.fetchers.set(key, doneFetcher);
     }
   }
   function markFetchRedirectsDone() {
-    let doneKeys = [];
+    const doneKeys = [];
     let updatedFetchers = false;
-    for (let key of fetchRedirectIds) {
-      let fetcher = state2.fetchers.get(key);
+    for (const key of fetchRedirectIds) {
+      const fetcher = state2.fetchers.get(key);
       invariant$1(fetcher, `Expected fetcher: ${key}`);
       if (fetcher.state === "loading") {
         fetchRedirectIds.delete(key);
@@ -10399,10 +10399,10 @@ function createRouter(init) {
     return updatedFetchers;
   }
   function abortStaleFetchLoads(landedId) {
-    let yeetedKeys = [];
-    for (let [key, id2] of fetchReloadIds) {
+    const yeetedKeys = [];
+    for (const [key, id2] of fetchReloadIds) {
       if (id2 < landedId) {
-        let fetcher = state2.fetchers.get(key);
+        const fetcher = state2.fetchers.get(key);
         invariant$1(fetcher, `Expected fetcher: ${key}`);
         if (fetcher.state === "loading") {
           abortFetcher(key);
@@ -10415,7 +10415,7 @@ function createRouter(init) {
     return yeetedKeys.length > 0;
   }
   function getBlocker(key, fn) {
-    let blocker = state2.blockers.get(key) || IDLE_BLOCKER;
+    const blocker = state2.blockers.get(key) || IDLE_BLOCKER;
     if (blockerFunctions.get(key) !== fn) {
       blockerFunctions.set(key, fn);
     }
@@ -10426,12 +10426,12 @@ function createRouter(init) {
     blockerFunctions.delete(key);
   }
   function updateBlocker(key, newBlocker) {
-    let blocker = state2.blockers.get(key) || IDLE_BLOCKER;
+    const blocker = state2.blockers.get(key) || IDLE_BLOCKER;
     invariant$1(
       blocker.state === "unblocked" && newBlocker.state === "blocked" || blocker.state === "blocked" && newBlocker.state === "blocked" || blocker.state === "blocked" && newBlocker.state === "proceeding" || blocker.state === "blocked" && newBlocker.state === "unblocked" || blocker.state === "proceeding" && newBlocker.state === "unblocked",
       `Invalid blocker state transition: ${blocker.state} -> ${newBlocker.state}`
     );
-    let blockers = new Map(state2.blockers);
+    const blockers = new Map(state2.blockers);
     blockers.set(key, newBlocker);
     updateState({ blockers });
   }
@@ -10446,9 +10446,9 @@ function createRouter(init) {
     if (blockerFunctions.size > 1) {
       warning$1(false, "A router only supports one blocker at a time");
     }
-    let entries = Array.from(blockerFunctions.entries());
-    let [blockerKey, blockerFunction] = entries[entries.length - 1];
-    let blocker = state2.blockers.get(blockerKey);
+    const entries = Array.from(blockerFunctions.entries());
+    const [blockerKey, blockerFunction] = entries[entries.length - 1];
+    const blocker = state2.blockers.get(blockerKey);
     if (blocker && blocker.state === "proceeding") {
       return;
     }
@@ -10457,9 +10457,9 @@ function createRouter(init) {
     }
   }
   function handleNavigational404(pathname) {
-    let error = getInternalRouterError(404, { pathname });
-    let routesToUse = inFlightDataRoutes || dataRoutes;
-    let { matches, route } = getShortCircuitMatches(routesToUse);
+    const error = getInternalRouterError(404, { pathname });
+    const routesToUse = inFlightDataRoutes || dataRoutes;
+    const { matches, route } = getShortCircuitMatches(routesToUse);
     return { notFoundMatches: matches, route, error };
   }
   function enableScrollRestoration(positions, getPosition, getKey) {
@@ -10468,7 +10468,7 @@ function createRouter(init) {
     getScrollRestorationKey2 = getKey || null;
     if (!initialScrollRestored && state2.navigation === IDLE_NAVIGATION) {
       initialScrollRestored = true;
-      let y = getSavedScrollPosition(state2.location, state2.matches);
+      const y = getSavedScrollPosition(state2.location, state2.matches);
       if (y != null) {
         updateState({ restoreScrollPosition: y });
       }
@@ -10481,7 +10481,7 @@ function createRouter(init) {
   }
   function getScrollKey(location, matches) {
     if (getScrollRestorationKey2) {
-      let key = getScrollRestorationKey2(
+      const key = getScrollRestorationKey2(
         location,
         matches.map((m2) => convertRouteMatchToUiMatch(m2, state2.loaderData))
       );
@@ -10491,14 +10491,14 @@ function createRouter(init) {
   }
   function saveScrollPosition(location, matches) {
     if (savedScrollPositions2 && getScrollPosition) {
-      let key = getScrollKey(location, matches);
+      const key = getScrollKey(location, matches);
       savedScrollPositions2[key] = getScrollPosition();
     }
   }
   function getSavedScrollPosition(location, matches) {
     if (savedScrollPositions2) {
-      let key = getScrollKey(location, matches);
-      let y = savedScrollPositions2[key];
+      const key = getScrollKey(location, matches);
+      const y = savedScrollPositions2[key];
       if (typeof y === "number") {
         return y;
       }
@@ -10508,7 +10508,7 @@ function createRouter(init) {
   function checkFogOfWar(matches, routesToUse, pathname) {
     if (patchRoutesOnNavigationImpl) {
       if (!matches) {
-        let fogMatches = matchRoutesImpl(
+        const fogMatches = matchRoutesImpl(
           routesToUse,
           pathname,
           basename,
@@ -10517,7 +10517,7 @@ function createRouter(init) {
         return { active: true, matches: fogMatches || [] };
       } else {
         if (Object.keys(matches[0].params).length > 0) {
-          let partialMatches = matchRoutesImpl(
+          const partialMatches = matchRoutesImpl(
             routesToUse,
             pathname,
             basename,
@@ -10535,9 +10535,9 @@ function createRouter(init) {
     }
     let partialMatches = matches;
     while (true) {
-      let isNonHMR = inFlightDataRoutes == null;
-      let routesToUse = inFlightDataRoutes || dataRoutes;
-      let localManifest = manifest;
+      const isNonHMR = inFlightDataRoutes == null;
+      const routesToUse = inFlightDataRoutes || dataRoutes;
+      const localManifest = manifest;
       try {
         await patchRoutesOnNavigationImpl({
           path: pathname,
@@ -10563,11 +10563,11 @@ function createRouter(init) {
       if (signal.aborted) {
         return { type: "aborted" };
       }
-      let newMatches = matchRoutes(routesToUse, pathname, basename);
+      const newMatches = matchRoutes(routesToUse, pathname, basename);
       if (newMatches) {
         return { type: "success", matches: newMatches };
       }
-      let newPartialMatches = matchRoutesImpl(
+      const newPartialMatches = matchRoutesImpl(
         routesToUse,
         pathname,
         basename,
@@ -10591,8 +10591,8 @@ function createRouter(init) {
     );
   }
   function patchRoutes(routeId, children) {
-    let isNonHMR = inFlightDataRoutes == null;
-    let routesToUse = inFlightDataRoutes || dataRoutes;
+    const isNonHMR = inFlightDataRoutes == null;
+    const routesToUse = inFlightDataRoutes || dataRoutes;
     patchRoutesImpl(
       routeId,
       children,
@@ -10649,10 +10649,10 @@ function createStaticHandler(routes, opts) {
     routes.length > 0,
     "You must provide a non-empty routes array to createStaticHandler"
   );
-  let manifest = {};
-  let basename = (opts ? opts.basename : null) || "/";
-  let mapRouteProperties2 = (opts == null ? void 0 : opts.mapRouteProperties) || defaultMapRouteProperties;
-  let dataRoutes = convertRoutesToDataRoutes(
+  const manifest = {};
+  const basename = (opts ? opts.basename : null) || "/";
+  const mapRouteProperties2 = (opts == null ? void 0 : opts.mapRouteProperties) || defaultMapRouteProperties;
+  const dataRoutes = convertRoutesToDataRoutes(
     routes,
     mapRouteProperties2,
     void 0,
@@ -10663,13 +10663,13 @@ function createStaticHandler(routes, opts) {
     skipLoaderErrorBubbling,
     dataStrategy
   } = {}) {
-    let url = new URL(request.url);
-    let method = request.method;
-    let location = createLocation("", createPath(url), null, "default");
-    let matches = matchRoutes(dataRoutes, location, basename);
+    const url = new URL(request.url);
+    const method = request.method;
+    const location = createLocation("", createPath(url), null, "default");
+    const matches = matchRoutes(dataRoutes, location, basename);
     if (!isValidMethod(method) && method !== "HEAD") {
-      let error = getInternalRouterError(405, { method });
-      let { matches: methodNotAllowedMatches, route } = getShortCircuitMatches(dataRoutes);
+      const error = getInternalRouterError(405, { method });
+      const { matches: methodNotAllowedMatches, route } = getShortCircuitMatches(dataRoutes);
       return {
         basename,
         location,
@@ -10684,8 +10684,8 @@ function createStaticHandler(routes, opts) {
         actionHeaders: {}
       };
     } else if (!matches) {
-      let error = getInternalRouterError(404, { pathname: location.pathname });
-      let { matches: notFoundMatches, route } = getShortCircuitMatches(dataRoutes);
+      const error = getInternalRouterError(404, { pathname: location.pathname });
+      const { matches: notFoundMatches, route } = getShortCircuitMatches(dataRoutes);
       return {
         basename,
         location,
@@ -10700,7 +10700,7 @@ function createStaticHandler(routes, opts) {
         actionHeaders: {}
       };
     }
-    let result = await queryImpl(
+    const result = await queryImpl(
       request,
       location,
       matches,
@@ -10719,16 +10719,16 @@ function createStaticHandler(routes, opts) {
     requestContext,
     dataStrategy
   } = {}) {
-    let url = new URL(request.url);
-    let method = request.method;
-    let location = createLocation("", createPath(url), null, "default");
-    let matches = matchRoutes(dataRoutes, location, basename);
+    const url = new URL(request.url);
+    const method = request.method;
+    const location = createLocation("", createPath(url), null, "default");
+    const matches = matchRoutes(dataRoutes, location, basename);
     if (!isValidMethod(method) && method !== "HEAD" && method !== "OPTIONS") {
       throw getInternalRouterError(405, { method });
     } else if (!matches) {
       throw getInternalRouterError(404, { pathname: location.pathname });
     }
-    let match = routeId ? matches.find((m2) => m2.route.id === routeId) : getTargetMatch(matches, location);
+    const match = routeId ? matches.find((m2) => m2.route.id === routeId) : getTargetMatch(matches, location);
     if (routeId && !match) {
       throw getInternalRouterError(403, {
         pathname: location.pathname,
@@ -10737,7 +10737,7 @@ function createStaticHandler(routes, opts) {
     } else if (!match) {
       throw getInternalRouterError(404, { pathname: location.pathname });
     }
-    let result = await queryImpl(
+    const result = await queryImpl(
       request,
       location,
       matches,
@@ -10749,7 +10749,7 @@ function createStaticHandler(routes, opts) {
     if (isResponse$1(result)) {
       return result;
     }
-    let error = result.errors ? Object.values(result.errors)[0] : void 0;
+    const error = result.errors ? Object.values(result.errors)[0] : void 0;
     if (error !== void 0) {
       throw error;
     }
@@ -10768,7 +10768,7 @@ function createStaticHandler(routes, opts) {
     );
     try {
       if (isMutationMethod(request.method)) {
-        let result2 = await submit(
+        const result2 = await submit(
           request,
           matches,
           routeMatch || getTargetMatch(matches, location),
@@ -10779,7 +10779,7 @@ function createStaticHandler(routes, opts) {
         );
         return result2;
       }
-      let result = await loadRouteData(
+      const result = await loadRouteData(
         request,
         matches,
         requestContext,
@@ -10808,7 +10808,7 @@ function createStaticHandler(routes, opts) {
   async function submit(request, matches, actionMatch, requestContext, dataStrategy, skipLoaderErrorBubbling, isRouteRequest) {
     let result;
     if (!actionMatch.route.action && !actionMatch.route.lazy) {
-      let error = getInternalRouterError(405, {
+      const error = getInternalRouterError(405, {
         method: request.method,
         pathname: new URL(request.url).pathname,
         routeId: actionMatch.route.id
@@ -10821,7 +10821,7 @@ function createStaticHandler(routes, opts) {
         error
       };
     } else {
-      let results = await callDataStrategy(
+      const results = await callDataStrategy(
         "action",
         request,
         [actionMatch],
@@ -10859,14 +10859,14 @@ function createStaticHandler(routes, opts) {
         actionHeaders: {}
       };
     }
-    let loaderRequest = new Request(request.url, {
+    const loaderRequest = new Request(request.url, {
       headers: request.headers,
       redirect: request.redirect,
       signal: request.signal
     });
     if (isErrorResult(result)) {
-      let boundaryMatch = skipLoaderErrorBubbling ? actionMatch : findNearestBoundary(matches, actionMatch.route.id);
-      let context2 = await loadRouteData(
+      const boundaryMatch = skipLoaderErrorBubbling ? actionMatch : findNearestBoundary(matches, actionMatch.route.id);
+      const context2 = await loadRouteData(
         loaderRequest,
         matches,
         requestContext,
@@ -10884,7 +10884,7 @@ function createStaticHandler(routes, opts) {
         }
       };
     }
-    let context = await loadRouteData(
+    const context = await loadRouteData(
       loaderRequest,
       matches,
       requestContext,
@@ -10903,7 +10903,7 @@ function createStaticHandler(routes, opts) {
     };
   }
   async function loadRouteData(request, matches, requestContext, dataStrategy, skipLoaderErrorBubbling, routeMatch, pendingActionResult) {
-    let isRouteRequest = routeMatch != null;
+    const isRouteRequest = routeMatch != null;
     if (isRouteRequest && !(routeMatch == null ? void 0 : routeMatch.route.loader) && !(routeMatch == null ? void 0 : routeMatch.route.lazy)) {
       throw getInternalRouterError(400, {
         method: request.method,
@@ -10911,8 +10911,8 @@ function createStaticHandler(routes, opts) {
         routeId: routeMatch == null ? void 0 : routeMatch.route.id
       });
     }
-    let requestMatches = routeMatch ? [routeMatch] : pendingActionResult && isErrorResult(pendingActionResult[1]) ? getLoaderMatchesUntilBoundary(matches, pendingActionResult[0]) : matches;
-    let matchesToLoad = requestMatches.filter(
+    const requestMatches = routeMatch ? [routeMatch] : pendingActionResult && isErrorResult(pendingActionResult[1]) ? getLoaderMatchesUntilBoundary(matches, pendingActionResult[0]) : matches;
+    const matchesToLoad = requestMatches.filter(
       (m2) => m2.route.loader || m2.route.lazy
     );
     if (matchesToLoad.length === 0) {
@@ -10930,7 +10930,7 @@ function createStaticHandler(routes, opts) {
         loaderHeaders: {}
       };
     }
-    let results = await callDataStrategy(
+    const results = await callDataStrategy(
       "loader",
       request,
       matchesToLoad,
@@ -10942,14 +10942,14 @@ function createStaticHandler(routes, opts) {
     if (request.signal.aborted) {
       throwStaticHandlerAbortedError(request, isRouteRequest);
     }
-    let context = processRouteLoaderData(
+    const context = processRouteLoaderData(
       matches,
       results,
       pendingActionResult,
       true,
       skipLoaderErrorBubbling
     );
-    let executedLoaders = new Set(
+    const executedLoaders = new Set(
       matchesToLoad.map((match) => match.route.id)
     );
     matches.forEach((match) => {
@@ -10963,7 +10963,7 @@ function createStaticHandler(routes, opts) {
     };
   }
   async function callDataStrategy(type, request, matchesToLoad, matches, isRouteRequest, requestContext, dataStrategy) {
-    let results = await callDataStrategyImpl(
+    const results = await callDataStrategyImpl(
       dataStrategy || defaultDataStrategy,
       type,
       null,
@@ -10975,15 +10975,15 @@ function createStaticHandler(routes, opts) {
       mapRouteProperties2,
       requestContext
     );
-    let dataResults = {};
+    const dataResults = {};
     await Promise.all(
       matches.map(async (match) => {
         if (!(match.route.id in results)) {
           return;
         }
-        let result = results[match.route.id];
+        const result = results[match.route.id];
         if (isRedirectDataStrategyResult(result)) {
-          let response = result.result;
+          const response = result.result;
           throw normalizeRelativeRoutingRedirectResponse(
             response,
             request,
@@ -11007,7 +11007,7 @@ function createStaticHandler(routes, opts) {
   };
 }
 function getStaticContextFromError(routes, context, error) {
-  let newContext = {
+  const newContext = {
     ...context,
     statusCode: isRouteErrorResponse(error) ? error.status : 500,
     errors: {
@@ -11020,7 +11020,7 @@ function throwStaticHandlerAbortedError(request, isRouteRequest) {
   if (request.signal.reason !== void 0) {
     throw request.signal.reason;
   }
-  let method = isRouteRequest ? "queryRoute" : "query";
+  const method = isRouteRequest ? "queryRoute" : "query";
   throw new Error(
     `${method}() call aborted without an \`AbortSignal.reason\`: ${request.method} ${request.url}`
   );
@@ -11033,7 +11033,7 @@ function normalizeTo(location, matches, basename, to, fromRouteId, relative) {
   let activeRouteMatch;
   if (fromRouteId) {
     contextualMatches = [];
-    for (let match of matches) {
+    for (const match of matches) {
       contextualMatches.push(match);
       if (match.route.id === fromRouteId) {
         activeRouteMatch = match;
@@ -11044,7 +11044,7 @@ function normalizeTo(location, matches, basename, to, fromRouteId, relative) {
     contextualMatches = matches;
     activeRouteMatch = matches[matches.length - 1];
   }
-  let path = resolveTo(
+  const path = resolveTo(
     to ? to : ".",
     getResolveToMatches(contextualMatches),
     stripBasename(location.pathname, basename) || location.pathname,
@@ -11055,15 +11055,15 @@ function normalizeTo(location, matches, basename, to, fromRouteId, relative) {
     path.hash = location.hash;
   }
   if ((to == null || to === "" || to === ".") && activeRouteMatch) {
-    let nakedIndex = hasNakedIndexQuery(path.search);
+    const nakedIndex = hasNakedIndexQuery(path.search);
     if (activeRouteMatch.route.index && !nakedIndex) {
       path.search = path.search ? path.search.replace(/^\?/, "?index&") : "?index";
     } else if (!activeRouteMatch.route.index && nakedIndex) {
-      let params = new URLSearchParams(path.search);
-      let indexValues = params.getAll("index");
+      const params = new URLSearchParams(path.search);
+      const indexValues = params.getAll("index");
       params.delete("index");
       indexValues.filter((v) => v).forEach((v) => params.append("index", v));
-      let qs = params.toString();
+      const qs = params.toString();
       path.search = qs ? `?${qs}` : "";
     }
   }
@@ -11082,19 +11082,19 @@ function normalizeNavigateOptions(isFetcher, path, opts) {
       error: getInternalRouterError(405, { method: opts.formMethod })
     };
   }
-  let getInvalidBodyError = () => ({
+  const getInvalidBodyError = () => ({
     path,
     error: getInternalRouterError(400, { type: "invalid-body" })
   });
-  let rawFormMethod = opts.formMethod || "get";
-  let formMethod = rawFormMethod.toUpperCase();
-  let formAction = stripHashFromPath(path);
+  const rawFormMethod = opts.formMethod || "get";
+  const formMethod = rawFormMethod.toUpperCase();
+  const formAction = stripHashFromPath(path);
   if (opts.body !== void 0) {
     if (opts.formEncType === "text/plain") {
       if (!isMutationMethod(formMethod)) {
         return getInvalidBodyError();
       }
-      let text = typeof opts.body === "string" ? opts.body : opts.body instanceof FormData || opts.body instanceof URLSearchParams ? (
+      const text = typeof opts.body === "string" ? opts.body : opts.body instanceof FormData || opts.body instanceof URLSearchParams ? (
         // https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#plain-text-form-data
         Array.from(opts.body.entries()).reduce(
           (acc, [name, value]) => `${acc}${name}=${value}
@@ -11118,7 +11118,7 @@ function normalizeNavigateOptions(isFetcher, path, opts) {
         return getInvalidBodyError();
       }
       try {
-        let json = typeof opts.body === "string" ? JSON.parse(opts.body) : opts.body;
+        const json = typeof opts.body === "string" ? JSON.parse(opts.body) : opts.body;
         return {
           path,
           submission: {
@@ -11161,7 +11161,7 @@ function normalizeNavigateOptions(isFetcher, path, opts) {
       return getInvalidBodyError();
     }
   }
-  let submission = {
+  const submission = {
     formMethod,
     formAction,
     formEncType: opts && opts.formEncType || "application/x-www-form-urlencoded",
@@ -11172,7 +11172,7 @@ function normalizeNavigateOptions(isFetcher, path, opts) {
   if (isMutationMethod(submission.formMethod)) {
     return { path, submission };
   }
-  let parsedPath = parsePath(path);
+  const parsedPath = parsePath(path);
   if (isFetcher && parsedPath.search && hasNakedIndexQuery(parsedPath.search)) {
     searchParams.append("index", "");
   }
@@ -11180,16 +11180,16 @@ function normalizeNavigateOptions(isFetcher, path, opts) {
   return { path: createPath(parsedPath), submission };
 }
 function getLoaderMatchesUntilBoundary(matches, boundaryId, includeBoundary = false) {
-  let index2 = matches.findIndex((m2) => m2.route.id === boundaryId);
+  const index2 = matches.findIndex((m2) => m2.route.id === boundaryId);
   if (index2 >= 0) {
     return matches.slice(0, includeBoundary ? index2 + 1 : index2);
   }
   return matches;
 }
 function getMatchesToLoad(history, state2, matches, submission, location, initialHydration, isRevalidationRequired, cancelledFetcherLoads, fetchersQueuedForDeletion, fetchLoadMatches, fetchRedirectIds, routesToUse, basename, pendingActionResult) {
-  let actionResult = pendingActionResult ? isErrorResult(pendingActionResult[1]) ? pendingActionResult[1].error : pendingActionResult[1].data : void 0;
-  let currentUrl = history.createURL(state2.location);
-  let nextUrl = history.createURL(location);
+  const actionResult = pendingActionResult ? isErrorResult(pendingActionResult[1]) ? pendingActionResult[1].error : pendingActionResult[1].data : void 0;
+  const currentUrl = history.createURL(state2.location);
+  const nextUrl = history.createURL(location);
   let boundaryMatches = matches;
   if (initialHydration && state2.errors) {
     boundaryMatches = getLoaderMatchesUntilBoundary(
@@ -11203,10 +11203,10 @@ function getMatchesToLoad(history, state2, matches, submission, location, initia
       pendingActionResult[0]
     );
   }
-  let actionStatus = pendingActionResult ? pendingActionResult[1].statusCode : void 0;
-  let shouldSkipRevalidation = actionStatus && actionStatus >= 400;
-  let navigationMatches = boundaryMatches.filter((match, index2) => {
-    let { route } = match;
+  const actionStatus = pendingActionResult ? pendingActionResult[1].statusCode : void 0;
+  const shouldSkipRevalidation = actionStatus && actionStatus >= 400;
+  const navigationMatches = boundaryMatches.filter((match, index2) => {
+    const { route } = match;
     if (route.lazy) {
       return true;
     }
@@ -11219,8 +11219,8 @@ function getMatchesToLoad(history, state2, matches, submission, location, initia
     if (isNewLoader(state2.loaderData, state2.matches[index2], match)) {
       return true;
     }
-    let currentRouteMatch = state2.matches[index2];
-    let nextRouteMatch = match;
+    const currentRouteMatch = state2.matches[index2];
+    const nextRouteMatch = match;
     return shouldRevalidateLoader(match, {
       currentUrl,
       currentParams: currentRouteMatch.params,
@@ -11236,12 +11236,12 @@ function getMatchesToLoad(history, state2, matches, submission, location, initia
       )
     });
   });
-  let revalidatingFetchers = [];
+  const revalidatingFetchers = [];
   fetchLoadMatches.forEach((f, key) => {
     if (initialHydration || !matches.some((m2) => m2.route.id === f.routeId) || fetchersQueuedForDeletion.has(key)) {
       return;
     }
-    let fetcherMatches = matchRoutes(routesToUse, f.path, basename);
+    const fetcherMatches = matchRoutes(routesToUse, f.path, basename);
     if (!fetcherMatches) {
       revalidatingFetchers.push({
         key,
@@ -11253,8 +11253,8 @@ function getMatchesToLoad(history, state2, matches, submission, location, initia
       });
       return;
     }
-    let fetcher = state2.fetchers.get(key);
-    let fetcherMatch = getTargetMatch(fetcherMatches, f.path);
+    const fetcher = state2.fetchers.get(key);
+    const fetcherMatch = getTargetMatch(fetcherMatches, f.path);
     let shouldRevalidate = false;
     if (fetchRedirectIds.has(key)) {
       shouldRevalidate = false;
@@ -11295,8 +11295,8 @@ function shouldLoadRouteOnHydration(route, loaderData, errors) {
   if (!route.loader) {
     return false;
   }
-  let hasData = loaderData != null && loaderData[route.id] !== void 0;
-  let hasError = errors != null && errors[route.id] !== void 0;
+  const hasData = loaderData != null && loaderData[route.id] !== void 0;
+  const hasError = errors != null && errors[route.id] !== void 0;
   if (!hasData && hasError) {
     return false;
   }
@@ -11306,16 +11306,16 @@ function shouldLoadRouteOnHydration(route, loaderData, errors) {
   return !hasData && !hasError;
 }
 function isNewLoader(currentLoaderData, currentMatch, match) {
-  let isNew = (
+  const isNew = (
     // [a] -> [a, b]
     !currentMatch || // [a, b] -> [a, c]
     match.route.id !== currentMatch.route.id
   );
-  let isMissingData = !currentLoaderData.hasOwnProperty(match.route.id);
+  const isMissingData = !currentLoaderData.hasOwnProperty(match.route.id);
   return isNew || isMissingData;
 }
 function isNewRouteInstance(currentMatch, match) {
-  let currentPath = currentMatch.route.path;
+  const currentPath = currentMatch.route.path;
   return (
     // param change for this match, /users/123 -> /users/456
     currentMatch.pathname !== match.pathname || // splat param changed, which is not present in match.path
@@ -11325,7 +11325,7 @@ function isNewRouteInstance(currentMatch, match) {
 }
 function shouldRevalidateLoader(loaderMatch, arg) {
   if (loaderMatch.route.shouldRevalidate) {
-    let routeChoice = loaderMatch.route.shouldRevalidate(arg);
+    const routeChoice = loaderMatch.route.shouldRevalidate(arg);
     if (typeof routeChoice === "boolean") {
       return routeChoice;
     }
@@ -11335,7 +11335,7 @@ function shouldRevalidateLoader(loaderMatch, arg) {
 function patchRoutesImpl(routeId, children, routesToUse, manifest, mapRouteProperties2) {
   let childrenToPatch;
   if (routeId) {
-    let route = manifest[routeId];
+    const route = manifest[routeId];
     invariant$1(
       route,
       `No route found to patch children into: routeId = ${routeId}`
@@ -11347,12 +11347,12 @@ function patchRoutesImpl(routeId, children, routesToUse, manifest, mapRoutePrope
   } else {
     childrenToPatch = routesToUse;
   }
-  let uniqueChildren = children.filter(
+  const uniqueChildren = children.filter(
     (newRoute) => !childrenToPatch.some(
       (existingRoute) => isSameRoute(newRoute, existingRoute)
     )
   );
-  let newRoutes = convertRoutesToDataRoutes(
+  const newRoutes = convertRoutesToDataRoutes(
     uniqueChildren,
     mapRouteProperties2,
     [routeId || "_", "patch", String((childrenToPatch == null ? void 0 : childrenToPatch.length) || "0")],
@@ -11372,7 +11372,7 @@ function isSameRoute(newRoute, existingRoute) {
   }
   return newRoute.children.every(
     (aChild, i) => {
-      var _a;
+      let _a;
       return (_a = existingRoute.children) == null ? void 0 : _a.some((bChild) => isSameRoute(aChild, bChild));
     }
   );
@@ -11381,16 +11381,16 @@ async function loadLazyRouteModule(route, mapRouteProperties2, manifest) {
   if (!route.lazy) {
     return;
   }
-  let lazyRoute = await route.lazy();
+  const lazyRoute = await route.lazy();
   if (!route.lazy) {
     return;
   }
-  let routeToUpdate = manifest[route.id];
+  const routeToUpdate = manifest[route.id];
   invariant$1(routeToUpdate, "No route found in manifest");
-  let routeUpdates = {};
-  for (let lazyRouteProperty in lazyRoute) {
-    let staticRouteValue = routeToUpdate[lazyRouteProperty];
-    let isPropertyStaticallyDefined = staticRouteValue !== void 0 && // This property isn't static since it should always be updated based
+  const routeUpdates = {};
+  for (const lazyRouteProperty in lazyRoute) {
+    const staticRouteValue = routeToUpdate[lazyRouteProperty];
+    const isPropertyStaticallyDefined = staticRouteValue !== void 0 && // This property isn't static since it should always be updated based
     // on the route updates
     lazyRouteProperty !== "hasErrorBoundary";
     warning$1(
@@ -11413,21 +11413,21 @@ async function loadLazyRouteModule(route, mapRouteProperties2, manifest) {
 async function defaultDataStrategy({
   matches
 }) {
-  let matchesToLoad = matches.filter((m2) => m2.shouldLoad);
-  let results = await Promise.all(matchesToLoad.map((m2) => m2.resolve()));
+  const matchesToLoad = matches.filter((m2) => m2.shouldLoad);
+  const results = await Promise.all(matchesToLoad.map((m2) => m2.resolve()));
   return results.reduce(
     (acc, result, i) => Object.assign(acc, { [matchesToLoad[i].route.id]: result }),
     {}
   );
 }
 async function callDataStrategyImpl(dataStrategyImpl, type, state2, request, matchesToLoad, matches, fetcherKey, manifest, mapRouteProperties2, requestContext) {
-  let loadRouteDefinitionsPromises = matches.map(
+  const loadRouteDefinitionsPromises = matches.map(
     (m2) => m2.route.lazy ? loadLazyRouteModule(m2.route, mapRouteProperties2, manifest) : void 0
   );
-  let dsMatches = matches.map((match, i) => {
-    let loadRoutePromise = loadRouteDefinitionsPromises[i];
+  const dsMatches = matches.map((match, i) => {
+    const loadRoutePromise = loadRouteDefinitionsPromises[i];
     let shouldLoad = matchesToLoad.some((m2) => m2.route.id === match.route.id);
-    let resolve = async (handlerOverride) => {
+    const resolve = async (handlerOverride) => {
       if (handlerOverride && request.method === "GET" && (match.route.lazy || match.route.loader)) {
         shouldLoad = true;
       }
@@ -11446,7 +11446,7 @@ async function callDataStrategyImpl(dataStrategyImpl, type, state2, request, mat
       resolve
     };
   });
-  let results = await dataStrategyImpl({
+  const results = await dataStrategyImpl({
     matches: dsMatches,
     request,
     params: matches[0].params,
@@ -11462,12 +11462,12 @@ async function callDataStrategyImpl(dataStrategyImpl, type, state2, request, mat
 async function callLoaderOrAction(type, request, match, loadRoutePromise, handlerOverride, staticContext) {
   let result;
   let onReject;
-  let runHandler = (handler) => {
+  const runHandler = (handler) => {
     let reject;
-    let abortPromise = new Promise((_, r) => reject = r);
+    const abortPromise = new Promise((_, r) => reject = r);
     onReject = () => reject();
     request.signal.addEventListener("abort", onReject);
-    let actualHandler = (ctx) => {
+    const actualHandler = (ctx) => {
       if (typeof handler !== "function") {
         return Promise.reject(
           new Error(
@@ -11484,9 +11484,9 @@ async function callLoaderOrAction(type, request, match, loadRoutePromise, handle
         ...ctx !== void 0 ? [ctx] : []
       );
     };
-    let handlerPromise = (async () => {
+    const handlerPromise = (async () => {
       try {
-        let val = await (handlerOverride ? handlerOverride((ctx) => actualHandler(ctx)) : actualHandler());
+        const val = await (handlerOverride ? handlerOverride((ctx) => actualHandler(ctx)) : actualHandler());
         return { type: "data", result: val };
       } catch (e) {
         return { type: "error", result: e };
@@ -11499,7 +11499,7 @@ async function callLoaderOrAction(type, request, match, loadRoutePromise, handle
     if (loadRoutePromise) {
       if (handler) {
         let handlerError;
-        let [value] = await Promise.all([
+        const [value] = await Promise.all([
           // If the handler throws, don't let it immediately bubble out,
           // since we need to let the lazy() execution finish so we know if this
           // route has a boundary that can handle the error
@@ -11518,8 +11518,8 @@ async function callLoaderOrAction(type, request, match, loadRoutePromise, handle
         if (handler) {
           result = await runHandler(handler);
         } else if (type === "action") {
-          let url = new URL(request.url);
-          let pathname = url.pathname + url.search;
+          const url = new URL(request.url);
+          const pathname = url.pathname + url.search;
           throw getInternalRouterError(405, {
             method: request.method,
             pathname,
@@ -11530,8 +11530,8 @@ async function callLoaderOrAction(type, request, match, loadRoutePromise, handle
         }
       }
     } else if (!handler) {
-      let url = new URL(request.url);
-      let pathname = url.pathname + url.search;
+      const url = new URL(request.url);
+      const pathname = url.pathname + url.search;
       throw getInternalRouterError(404, {
         pathname
       });
@@ -11548,12 +11548,12 @@ async function callLoaderOrAction(type, request, match, loadRoutePromise, handle
   return result;
 }
 async function convertDataStrategyResultToDataResult(dataStrategyResult) {
-  var _a, _b, _c, _d;
+  let _a, _b, _c, _d;
   let { result, type } = dataStrategyResult;
   if (isResponse$1(result)) {
     let data2;
     try {
-      let contentType = result.headers.get("Content-Type");
+      const contentType = result.headers.get("Content-Type");
       if (contentType && /\bapplication\/json\b/.test(contentType)) {
         if (result.body == null) {
           data2 = null;
@@ -11619,7 +11619,7 @@ function normalizeRelativeRoutingRedirectResponse(response, request, routeId, ma
     "Redirects returned/thrown from loaders/actions must have a Location header"
   );
   if (!ABSOLUTE_URL_REGEX.test(location)) {
-    let trimmedMatches = matches.slice(
+    const trimmedMatches = matches.slice(
       0,
       matches.findIndex((m2) => m2.route.id === routeId) + 1
     );
@@ -11635,9 +11635,9 @@ function normalizeRelativeRoutingRedirectResponse(response, request, routeId, ma
 }
 function normalizeRedirectLocation(location, currentUrl, basename) {
   if (ABSOLUTE_URL_REGEX.test(location)) {
-    let normalizedLocation = location;
-    let url = normalizedLocation.startsWith("//") ? new URL(currentUrl.protocol + normalizedLocation) : new URL(normalizedLocation);
-    let isSameBasename = stripBasename(url.pathname, basename) != null;
+    const normalizedLocation = location;
+    const url = normalizedLocation.startsWith("//") ? new URL(currentUrl.protocol + normalizedLocation) : new URL(normalizedLocation);
+    const isSameBasename = stripBasename(url.pathname, basename) != null;
     if (url.origin === currentUrl.origin && isSameBasename) {
       return url.pathname + url.search + url.hash;
     }
@@ -11645,10 +11645,10 @@ function normalizeRedirectLocation(location, currentUrl, basename) {
   return location;
 }
 function createClientSideRequest(history, location, signal, submission) {
-  let url = history.createURL(stripHashFromPath(location)).toString();
-  let init = { signal };
+  const url = history.createURL(stripHashFromPath(location)).toString();
+  const init = { signal };
   if (submission && isMutationMethod(submission.formMethod)) {
-    let { formMethod, formEncType } = submission;
+    const { formMethod, formEncType } = submission;
     init.method = formMethod.toUpperCase();
     if (formEncType === "application/json") {
       init.headers = new Headers({ "Content-Type": formEncType });
@@ -11664,32 +11664,32 @@ function createClientSideRequest(history, location, signal, submission) {
   return new Request(url, init);
 }
 function convertFormDataToSearchParams(formData) {
-  let searchParams = new URLSearchParams();
-  for (let [key, value] of formData.entries()) {
+  const searchParams = new URLSearchParams();
+  for (const [key, value] of formData.entries()) {
     searchParams.append(key, typeof value === "string" ? value : value.name);
   }
   return searchParams;
 }
 function convertSearchParamsToFormData(searchParams) {
-  let formData = new FormData();
-  for (let [key, value] of searchParams.entries()) {
+  const formData = new FormData();
+  for (const [key, value] of searchParams.entries()) {
     formData.append(key, value);
   }
   return formData;
 }
 function processRouteLoaderData(matches, results, pendingActionResult, isStaticHandler = false, skipLoaderErrorBubbling = false) {
-  let loaderData = {};
+  const loaderData = {};
   let errors = null;
   let statusCode;
   let foundError = false;
-  let loaderHeaders = {};
+  const loaderHeaders = {};
   let pendingError = pendingActionResult && isErrorResult(pendingActionResult[1]) ? pendingActionResult[1].error : void 0;
   matches.forEach((match) => {
     if (!(match.route.id in results)) {
       return;
     }
-    let id2 = match.route.id;
-    let result = results[id2];
+    const id2 = match.route.id;
+    const result = results[id2];
     invariant$1(
       !isRedirectResult(result),
       "Cannot handle redirect results in processLoaderData"
@@ -11704,7 +11704,7 @@ function processRouteLoaderData(matches, results, pendingActionResult, isStaticH
       if (skipLoaderErrorBubbling) {
         errors[id2] = error;
       } else {
-        let boundaryMatch = findNearestBoundary(matches, id2);
+        const boundaryMatch = findNearestBoundary(matches, id2);
         if (errors[boundaryMatch.route.id] == null) {
           errors[boundaryMatch.route.id] = error;
         }
@@ -11747,13 +11747,13 @@ function processLoaderData(state2, matches, results, pendingActionResult, revali
     pendingActionResult
   );
   revalidatingFetchers.forEach((rf) => {
-    let { key, match, controller } = rf;
-    let result = fetcherResults[key];
+    const { key, match, controller } = rf;
+    const result = fetcherResults[key];
     invariant$1(result, "Did not find corresponding fetcher result");
     if (controller && controller.signal.aborted) {
       return;
     } else if (isErrorResult(result)) {
-      let boundaryMatch = findNearestBoundary(state2.matches, match == null ? void 0 : match.route.id);
+      const boundaryMatch = findNearestBoundary(state2.matches, match == null ? void 0 : match.route.id);
       if (!(errors && errors[boundaryMatch.route.id])) {
         errors = {
           ...errors,
@@ -11764,19 +11764,19 @@ function processLoaderData(state2, matches, results, pendingActionResult, revali
     } else if (isRedirectResult(result)) {
       invariant$1(false, "Unhandled fetcher revalidation redirect");
     } else {
-      let doneFetcher = getDoneFetcher(result.data);
+      const doneFetcher = getDoneFetcher(result.data);
       state2.fetchers.set(key, doneFetcher);
     }
   });
   return { loaderData, errors };
 }
 function mergeLoaderData(loaderData, newLoaderData, matches, errors) {
-  let mergedLoaderData = Object.entries(newLoaderData).filter(([, v]) => v !== ResetLoaderDataSymbol).reduce((merged, [k, v]) => {
+  const mergedLoaderData = Object.entries(newLoaderData).filter(([, v]) => v !== ResetLoaderDataSymbol).reduce((merged, [k, v]) => {
     merged[k] = v;
     return merged;
   }, {});
-  for (let match of matches) {
-    let id2 = match.route.id;
+  for (const match of matches) {
+    const id2 = match.route.id;
     if (!newLoaderData.hasOwnProperty(id2) && loaderData.hasOwnProperty(id2) && match.route.loader) {
       mergedLoaderData[id2] = loaderData[id2];
     }
@@ -11800,11 +11800,11 @@ function getActionDataForCommit(pendingActionResult) {
   };
 }
 function findNearestBoundary(matches, routeId) {
-  let eligibleMatches = routeId ? matches.slice(0, matches.findIndex((m2) => m2.route.id === routeId) + 1) : [...matches];
+  const eligibleMatches = routeId ? matches.slice(0, matches.findIndex((m2) => m2.route.id === routeId) + 1) : [...matches];
   return eligibleMatches.reverse().find((m2) => m2.route.hasErrorBoundary === true) || matches[0];
 }
 function getShortCircuitMatches(routes) {
-  let route = routes.length === 1 ? routes[0] : routes.find((r) => r.index || !r.path || r.path === "/") || {
+  const route = routes.length === 1 ? routes[0] : routes.find((r) => r.index || !r.path || r.path === "/") || {
     id: `__shim-error-route__`
   };
   return {
@@ -11857,16 +11857,16 @@ function getInternalRouterError(status, {
   );
 }
 function findRedirect(results) {
-  let entries = Object.entries(results);
+  const entries = Object.entries(results);
   for (let i = entries.length - 1; i >= 0; i--) {
-    let [key, result] = entries[i];
+    const [key, result] = entries[i];
     if (isRedirectResult(result)) {
       return { key, result };
     }
   }
 }
 function stripHashFromPath(path) {
-  let parsedPath = typeof path === "string" ? parsePath(path) : path;
+  const parsedPath = typeof path === "string" ? parsePath(path) : path;
   return createPath({ ...parsedPath, hash: "" });
 }
 function isHashChangeOnly(a, b) {
@@ -11916,15 +11916,15 @@ function hasNakedIndexQuery(search) {
   return new URLSearchParams(search).getAll("index").some((v) => v === "");
 }
 function getTargetMatch(matches, location) {
-  let search = typeof location === "string" ? parsePath(location).search : location.search;
+  const search = typeof location === "string" ? parsePath(location).search : location.search;
   if (matches[matches.length - 1].route.index && hasNakedIndexQuery(search || "")) {
     return matches[matches.length - 1];
   }
-  let pathMatches = getPathContributingMatches(matches);
+  const pathMatches = getPathContributingMatches(matches);
   return pathMatches[pathMatches.length - 1];
 }
 function getSubmissionFromNavigation(navigation) {
-  let { formMethod, formAction, formEncType, text, formData, json } = navigation;
+  const { formMethod, formAction, formEncType, text, formData, json } = navigation;
   if (!formMethod || !formAction || !formEncType) {
     return;
   }
@@ -11959,7 +11959,7 @@ function getSubmissionFromNavigation(navigation) {
 }
 function getLoadingNavigation(location, submission) {
   if (submission) {
-    let navigation = {
+    const navigation = {
       state: "loading",
       location,
       formMethod: submission.formMethod,
@@ -11971,7 +11971,7 @@ function getLoadingNavigation(location, submission) {
     };
     return navigation;
   } else {
-    let navigation = {
+    const navigation = {
       state: "loading",
       location,
       formMethod: void 0,
@@ -11985,7 +11985,7 @@ function getLoadingNavigation(location, submission) {
   }
 }
 function getSubmittingNavigation(location, submission) {
-  let navigation = {
+  const navigation = {
     state: "submitting",
     location,
     formMethod: submission.formMethod,
@@ -11999,7 +11999,7 @@ function getSubmittingNavigation(location, submission) {
 }
 function getLoadingFetcher(submission, data2) {
   if (submission) {
-    let fetcher = {
+    const fetcher = {
       state: "loading",
       formMethod: submission.formMethod,
       formAction: submission.formAction,
@@ -12011,7 +12011,7 @@ function getLoadingFetcher(submission, data2) {
     };
     return fetcher;
   } else {
-    let fetcher = {
+    const fetcher = {
       state: "loading",
       formMethod: void 0,
       formAction: void 0,
@@ -12025,7 +12025,7 @@ function getLoadingFetcher(submission, data2) {
   }
 }
 function getSubmittingFetcher(submission, existingFetcher) {
-  let fetcher = {
+  const fetcher = {
     state: "submitting",
     formMethod: submission.formMethod,
     formAction: submission.formAction,
@@ -12038,7 +12038,7 @@ function getSubmittingFetcher(submission, existingFetcher) {
   return fetcher;
 }
 function getDoneFetcher(data2) {
-  let fetcher = {
+  const fetcher = {
     state: "idle",
     formMethod: void 0,
     formAction: void 0,
@@ -12052,12 +12052,12 @@ function getDoneFetcher(data2) {
 }
 function restoreAppliedTransitions(_window, transitions) {
   try {
-    let sessionPositions = _window.sessionStorage.getItem(
+    const sessionPositions = _window.sessionStorage.getItem(
       TRANSITIONS_STORAGE_KEY
     );
     if (sessionPositions) {
-      let json = JSON.parse(sessionPositions);
-      for (let [k, v] of Object.entries(json || {})) {
+      const json = JSON.parse(sessionPositions);
+      for (const [k, v] of Object.entries(json || {})) {
         if (v && Array.isArray(v)) {
           transitions.set(k, new Set(v || []));
         }
@@ -12068,8 +12068,8 @@ function restoreAppliedTransitions(_window, transitions) {
 }
 function persistAppliedTransitions(_window, transitions) {
   if (transitions.size > 0) {
-    let json = {};
-    for (let [k, v] of transitions) {
+    const json = {};
+    for (const [k, v] of transitions) {
       json[k] = [...v];
     }
     try {
@@ -12088,7 +12088,7 @@ function persistAppliedTransitions(_window, transitions) {
 function createDeferred() {
   let resolve;
   let reject;
-  let promise = new Promise((res, rej) => {
+  const promise = new Promise((res, rej) => {
     resolve = async (val) => {
       res(val);
       try {
@@ -12112,37 +12112,37 @@ function createDeferred() {
     reject
   };
 }
-var DataRouterContext = reactExports.createContext(null);
+const DataRouterContext = reactExports.createContext(null);
 DataRouterContext.displayName = "DataRouter";
-var DataRouterStateContext = reactExports.createContext(null);
+const DataRouterStateContext = reactExports.createContext(null);
 DataRouterStateContext.displayName = "DataRouterState";
-var ViewTransitionContext = reactExports.createContext({
+const ViewTransitionContext = reactExports.createContext({
   isTransitioning: false
 });
 ViewTransitionContext.displayName = "ViewTransition";
-var FetchersContext = reactExports.createContext(
+const FetchersContext = reactExports.createContext(
   /* @__PURE__ */ new Map()
 );
 FetchersContext.displayName = "Fetchers";
-var AwaitContext = reactExports.createContext(null);
+const AwaitContext = reactExports.createContext(null);
 AwaitContext.displayName = "Await";
-var NavigationContext = reactExports.createContext(
+const NavigationContext = reactExports.createContext(
   null
 );
 NavigationContext.displayName = "Navigation";
-var LocationContext = reactExports.createContext(
+const LocationContext = reactExports.createContext(
   null
 );
 LocationContext.displayName = "Location";
-var RouteContext = reactExports.createContext({
+const RouteContext = reactExports.createContext({
   outlet: null,
   matches: [],
   isDataRoute: false
 });
 RouteContext.displayName = "Route";
-var RouteErrorContext = reactExports.createContext(null);
+const RouteErrorContext = reactExports.createContext(null);
 RouteErrorContext.displayName = "RouteError";
-var ENABLE_DEV_WARNINGS = true;
+const ENABLE_DEV_WARNINGS = true;
 function useHref(to, { relative } = {}) {
   invariant$1(
     useInRouterContext(),
@@ -12150,8 +12150,8 @@ function useHref(to, { relative } = {}) {
     // router loaded. We can help them understand how to avoid that.
     `useHref() may be used only in the context of a <Router> component.`
   );
-  let { basename, navigator: navigator2 } = reactExports.useContext(NavigationContext);
-  let { hash, pathname, search } = useResolvedPath(to, { relative });
+  const { basename, navigator: navigator2 } = reactExports.useContext(NavigationContext);
+  const { hash, pathname, search } = useResolvedPath(to, { relative });
   let joinedPathname = pathname;
   if (basename !== "/") {
     joinedPathname = pathname === "/" ? basename : joinPaths([basename, pathname]);
@@ -12180,21 +12180,21 @@ function useMatch(pattern) {
     // router loaded. We can help them understand how to avoid that.
     `useMatch() may be used only in the context of a <Router> component.`
   );
-  let { pathname } = useLocation();
+  const { pathname } = useLocation();
   return reactExports.useMemo(
     () => matchPath(pattern, decodePath(pathname)),
     [pathname, pattern]
   );
 }
-var navigateEffectWarning = `You should call navigate() in a React.useEffect(), not when your component is first rendered.`;
+const navigateEffectWarning = `You should call navigate() in a React.useEffect(), not when your component is first rendered.`;
 function useIsomorphicLayoutEffect$1(cb) {
-  let isStatic = reactExports.useContext(NavigationContext).static;
+  const isStatic = reactExports.useContext(NavigationContext).static;
   if (!isStatic) {
     reactExports.useLayoutEffect(cb);
   }
 }
 function useNavigate() {
-  let { isDataRoute } = reactExports.useContext(RouteContext);
+  const { isDataRoute } = reactExports.useContext(RouteContext);
   return isDataRoute ? useNavigateStable() : useNavigateUnstable();
 }
 function useNavigateUnstable() {
@@ -12204,16 +12204,16 @@ function useNavigateUnstable() {
     // router loaded. We can help them understand how to avoid that.
     `useNavigate() may be used only in the context of a <Router> component.`
   );
-  let dataRouterContext = reactExports.useContext(DataRouterContext);
-  let { basename, navigator: navigator2 } = reactExports.useContext(NavigationContext);
-  let { matches } = reactExports.useContext(RouteContext);
-  let { pathname: locationPathname } = useLocation();
-  let routePathnamesJson = JSON.stringify(getResolveToMatches(matches));
-  let activeRef = reactExports.useRef(false);
+  const dataRouterContext = reactExports.useContext(DataRouterContext);
+  const { basename, navigator: navigator2 } = reactExports.useContext(NavigationContext);
+  const { matches } = reactExports.useContext(RouteContext);
+  const { pathname: locationPathname } = useLocation();
+  const routePathnamesJson = JSON.stringify(getResolveToMatches(matches));
+  const activeRef = reactExports.useRef(false);
   useIsomorphicLayoutEffect$1(() => {
     activeRef.current = true;
   });
-  let navigate = reactExports.useCallback(
+  const navigate = reactExports.useCallback(
     (to, options = {}) => {
       warning$1(activeRef.current, navigateEffectWarning);
       if (!activeRef.current) return;
@@ -12221,7 +12221,7 @@ function useNavigateUnstable() {
         navigator2.go(to);
         return;
       }
-      let path = resolveTo(
+      const path = resolveTo(
         to,
         JSON.parse(routePathnamesJson),
         locationPathname,
@@ -12230,7 +12230,7 @@ function useNavigateUnstable() {
       if (dataRouterContext == null && basename !== "/") {
         path.pathname = path.pathname === "/" ? basename : joinPaths([basename, path.pathname]);
       }
-      (!!options.replace ? navigator2.replace : navigator2.push)(
+      (options.replace ? navigator2.replace : navigator2.push)(
         path,
         options.state,
         options
@@ -12246,26 +12246,26 @@ function useNavigateUnstable() {
   );
   return navigate;
 }
-var OutletContext = reactExports.createContext(null);
+const OutletContext = reactExports.createContext(null);
 function useOutletContext() {
   return reactExports.useContext(OutletContext);
 }
 function useOutlet(context) {
-  let outlet = reactExports.useContext(RouteContext).outlet;
+  const outlet = reactExports.useContext(RouteContext).outlet;
   if (outlet) {
     return /* @__PURE__ */ reactExports.createElement(OutletContext.Provider, { value: context }, outlet);
   }
   return outlet;
 }
 function useParams() {
-  let { matches } = reactExports.useContext(RouteContext);
-  let routeMatch = matches[matches.length - 1];
+  const { matches } = reactExports.useContext(RouteContext);
+  const routeMatch = matches[matches.length - 1];
   return routeMatch ? routeMatch.params : {};
 }
 function useResolvedPath(to, { relative } = {}) {
-  let { matches } = reactExports.useContext(RouteContext);
-  let { pathname: locationPathname } = useLocation();
-  let routePathnamesJson = JSON.stringify(getResolveToMatches(matches));
+  const { matches } = reactExports.useContext(RouteContext);
+  const { pathname: locationPathname } = useLocation();
+  const routePathnamesJson = JSON.stringify(getResolveToMatches(matches));
   return reactExports.useMemo(
     () => resolveTo(
       to,
@@ -12280,22 +12280,22 @@ function useRoutes(routes, locationArg) {
   return useRoutesImpl(routes, locationArg);
 }
 function useRoutesImpl(routes, locationArg, dataRouterState, future) {
-  var _a;
+  let _a;
   invariant$1(
     useInRouterContext(),
     // TODO: This error is probably because they somehow have 2 versions of the
     // router loaded. We can help them understand how to avoid that.
     `useRoutes() may be used only in the context of a <Router> component.`
   );
-  let { navigator: navigator2 } = reactExports.useContext(NavigationContext);
-  let { matches: parentMatches } = reactExports.useContext(RouteContext);
-  let routeMatch = parentMatches[parentMatches.length - 1];
-  let parentParams = routeMatch ? routeMatch.params : {};
-  let parentPathname = routeMatch ? routeMatch.pathname : "/";
-  let parentPathnameBase = routeMatch ? routeMatch.pathnameBase : "/";
-  let parentRoute = routeMatch && routeMatch.route;
+  const { navigator: navigator2 } = reactExports.useContext(NavigationContext);
+  const { matches: parentMatches } = reactExports.useContext(RouteContext);
+  const routeMatch = parentMatches[parentMatches.length - 1];
+  const parentParams = routeMatch ? routeMatch.params : {};
+  const parentPathname = routeMatch ? routeMatch.pathname : "/";
+  const parentPathnameBase = routeMatch ? routeMatch.pathnameBase : "/";
+  const parentRoute = routeMatch && routeMatch.route;
   if (ENABLE_DEV_WARNINGS) {
-    let parentPath = parentRoute && parentRoute.path || "";
+    const parentPath = parentRoute && parentRoute.path || "";
     warningOnce(
       parentPathname,
       !parentRoute || parentPath.endsWith("*") || parentPath.endsWith("*?"),
@@ -12304,10 +12304,10 @@ function useRoutesImpl(routes, locationArg, dataRouterState, future) {
 Please change the parent <Route path="${parentPath}"> to <Route path="${parentPath === "/" ? "*" : `${parentPath}/*`}">.`
     );
   }
-  let locationFromContext = useLocation();
+  const locationFromContext = useLocation();
   let location;
   if (locationArg) {
-    let parsedLocationArg = typeof locationArg === "string" ? parsePath(locationArg) : locationArg;
+    const parsedLocationArg = typeof locationArg === "string" ? parsePath(locationArg) : locationArg;
     invariant$1(
       parentPathnameBase === "/" || ((_a = parsedLocationArg.pathname) == null ? void 0 : _a.startsWith(parentPathnameBase)),
       `When overriding the location using \`<Routes location>\` or \`useRoutes(routes, location)\`, the location pathname must begin with the portion of the URL pathname that was matched by all parent routes. The current pathname base is "${parentPathnameBase}" but pathname "${parsedLocationArg.pathname}" was given in the \`location\` prop.`
@@ -12316,14 +12316,14 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
   } else {
     location = locationFromContext;
   }
-  let pathname = location.pathname || "/";
+  const pathname = location.pathname || "/";
   let remainingPathname = pathname;
   if (parentPathnameBase !== "/") {
-    let parentSegments = parentPathnameBase.replace(/^\//, "").split("/");
-    let segments = pathname.replace(/^\//, "").split("/");
+    const parentSegments = parentPathnameBase.replace(/^\//, "").split("/");
+    const segments = pathname.replace(/^\//, "").split("/");
     remainingPathname = "/" + segments.slice(parentSegments.length).join("/");
   }
-  let matches = matchRoutes(routes, { pathname: remainingPathname });
+  const matches = matchRoutes(routes, { pathname: remainingPathname });
   if (ENABLE_DEV_WARNINGS) {
     warning$1(
       parentRoute || matches != null,
@@ -12334,7 +12334,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
       `Matched leaf route at location "${location.pathname}${location.search}${location.hash}" does not have an element or Component. This means it will render an <Outlet /> with a null value by default resulting in an "empty" page.`
     );
   }
-  let renderedMatches = _renderMatches(
+  const renderedMatches = _renderMatches(
     matches && matches.map(
       (match) => Object.assign({}, match, {
         params: Object.assign({}, parentParams, match.params),
@@ -12377,12 +12377,12 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
   return renderedMatches;
 }
 function DefaultErrorComponent() {
-  let error = useRouteError();
-  let message = isRouteErrorResponse(error) ? `${error.status} ${error.statusText}` : error instanceof Error ? error.message : JSON.stringify(error);
-  let stack = error instanceof Error ? error.stack : null;
-  let lightgrey = "rgba(200,200,200, 0.5)";
-  let preStyles = { padding: "0.5rem", backgroundColor: lightgrey };
-  let codeStyles = { padding: "2px 4px", backgroundColor: lightgrey };
+  const error = useRouteError();
+  const message = isRouteErrorResponse(error) ? `${error.status} ${error.statusText}` : error instanceof Error ? error.message : JSON.stringify(error);
+  const stack = error instanceof Error ? error.stack : null;
+  const lightgrey = "rgba(200,200,200, 0.5)";
+  const preStyles = { padding: "0.5rem", backgroundColor: lightgrey };
+  const codeStyles = { padding: "2px 4px", backgroundColor: lightgrey };
   let devInfo = null;
   if (ENABLE_DEV_WARNINGS) {
     console.error(
@@ -12393,8 +12393,8 @@ function DefaultErrorComponent() {
   }
   return /* @__PURE__ */ reactExports.createElement(reactExports.Fragment, null, /* @__PURE__ */ reactExports.createElement("h2", null, "Unexpected Application Error!"), /* @__PURE__ */ reactExports.createElement("h3", { style: { fontStyle: "italic" } }, message), stack ? /* @__PURE__ */ reactExports.createElement("pre", { style: preStyles }, stack) : null, devInfo);
 }
-var defaultErrorElement = /* @__PURE__ */ reactExports.createElement(DefaultErrorComponent, null);
-var RenderErrorBoundary = class extends reactExports.Component {
+const defaultErrorElement = /* @__PURE__ */ reactExports.createElement(DefaultErrorComponent, null);
+const RenderErrorBoundary = class extends reactExports.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12438,7 +12438,7 @@ var RenderErrorBoundary = class extends reactExports.Component {
   }
 };
 function RenderedRoute({ routeContext, match, children }) {
-  let dataRouterContext = reactExports.useContext(DataRouterContext);
+  const dataRouterContext = reactExports.useContext(DataRouterContext);
   if (dataRouterContext && dataRouterContext.static && dataRouterContext.staticContext && (match.route.errorElement || match.route.ErrorBoundary)) {
     dataRouterContext.staticContext._deepestRenderedBoundaryId = match.route.id;
   }
@@ -12458,9 +12458,9 @@ function _renderMatches(matches, parentMatches = [], dataRouterState = null, fut
     }
   }
   let renderedMatches = matches;
-  let errors = dataRouterState == null ? void 0 : dataRouterState.errors;
+  const errors = dataRouterState == null ? void 0 : dataRouterState.errors;
   if (errors != null) {
-    let errorIndex = renderedMatches.findIndex(
+    const errorIndex = renderedMatches.findIndex(
       (m2) => m2.route.id && (errors == null ? void 0 : errors[m2.route.id]) !== void 0
     );
     invariant$1(
@@ -12478,13 +12478,13 @@ function _renderMatches(matches, parentMatches = [], dataRouterState = null, fut
   let fallbackIndex = -1;
   if (dataRouterState) {
     for (let i = 0; i < renderedMatches.length; i++) {
-      let match = renderedMatches[i];
+      const match = renderedMatches[i];
       if (match.route.HydrateFallback || match.route.hydrateFallbackElement) {
         fallbackIndex = i;
       }
       if (match.route.id) {
-        let { loaderData, errors: errors2 } = dataRouterState;
-        let needsToRunLoader = match.route.loader && !loaderData.hasOwnProperty(match.route.id) && (!errors2 || errors2[match.route.id] === void 0);
+        const { loaderData, errors: errors2 } = dataRouterState;
+        const needsToRunLoader = match.route.loader && !loaderData.hasOwnProperty(match.route.id) && (!errors2 || errors2[match.route.id] === void 0);
         if (match.route.lazy || needsToRunLoader) {
           renderFallback = true;
           if (fallbackIndex >= 0) {
@@ -12520,8 +12520,8 @@ function _renderMatches(matches, parentMatches = [], dataRouterState = null, fut
         }
       }
     }
-    let matches2 = parentMatches.concat(renderedMatches.slice(0, index2 + 1));
-    let getChildren = () => {
+    const matches2 = parentMatches.concat(renderedMatches.slice(0, index2 + 1));
+    const getChildren = () => {
       let children;
       if (error) {
         children = errorElement;
@@ -12564,23 +12564,23 @@ function getDataRouterConsoleError(hookName) {
   return `${hookName} must be used within a data router.  See https://reactrouter.com/en/main/routers/picking-a-router.`;
 }
 function useDataRouterContext(hookName) {
-  let ctx = reactExports.useContext(DataRouterContext);
+  const ctx = reactExports.useContext(DataRouterContext);
   invariant$1(ctx, getDataRouterConsoleError(hookName));
   return ctx;
 }
 function useDataRouterState(hookName) {
-  let state2 = reactExports.useContext(DataRouterStateContext);
+  const state2 = reactExports.useContext(DataRouterStateContext);
   invariant$1(state2, getDataRouterConsoleError(hookName));
   return state2;
 }
 function useRouteContext(hookName) {
-  let route = reactExports.useContext(RouteContext);
+  const route = reactExports.useContext(RouteContext);
   invariant$1(route, getDataRouterConsoleError(hookName));
   return route;
 }
 function useCurrentRouteId(hookName) {
-  let route = useRouteContext(hookName);
-  let thisRoute = route.matches[route.matches.length - 1];
+  const route = useRouteContext(hookName);
+  const thisRoute = route.matches[route.matches.length - 1];
   invariant$1(
     thisRoute.route.id,
     `${hookName} can only be used on routes that contain a unique "id"`
@@ -12594,18 +12594,18 @@ function useRouteId() {
   );
 }
 function useNavigation() {
-  let state2 = useDataRouterState(
+  const state2 = useDataRouterState(
     "useNavigation"
     /* UseNavigation */
   );
   return state2.navigation;
 }
 function useRevalidator() {
-  let dataRouterContext = useDataRouterContext(
+  const dataRouterContext = useDataRouterContext(
     "useRevalidator"
     /* UseRevalidator */
   );
-  let state2 = useDataRouterState(
+  const state2 = useDataRouterState(
     "useRevalidator"
     /* UseRevalidator */
   );
@@ -12620,7 +12620,7 @@ function useRevalidator() {
   );
 }
 function useMatches() {
-  let { matches, loaderData } = useDataRouterState(
+  const { matches, loaderData } = useDataRouterState(
     "useMatches"
     /* UseMatches */
   );
@@ -12630,42 +12630,42 @@ function useMatches() {
   );
 }
 function useLoaderData() {
-  let state2 = useDataRouterState(
+  const state2 = useDataRouterState(
     "useLoaderData"
     /* UseLoaderData */
   );
-  let routeId = useCurrentRouteId(
+  const routeId = useCurrentRouteId(
     "useLoaderData"
     /* UseLoaderData */
   );
   return state2.loaderData[routeId];
 }
 function useRouteLoaderData(routeId) {
-  let state2 = useDataRouterState(
+  const state2 = useDataRouterState(
     "useRouteLoaderData"
     /* UseRouteLoaderData */
   );
   return state2.loaderData[routeId];
 }
 function useActionData() {
-  let state2 = useDataRouterState(
+  const state2 = useDataRouterState(
     "useActionData"
     /* UseActionData */
   );
-  let routeId = useCurrentRouteId(
+  const routeId = useCurrentRouteId(
     "useLoaderData"
     /* UseLoaderData */
   );
   return state2.actionData ? state2.actionData[routeId] : void 0;
 }
 function useRouteError() {
-  var _a;
-  let error = reactExports.useContext(RouteErrorContext);
-  let state2 = useDataRouterState(
+  let _a;
+  const error = reactExports.useContext(RouteErrorContext);
+  const state2 = useDataRouterState(
     "useRouteError"
     /* UseRouteError */
   );
-  let routeId = useCurrentRouteId(
+  const routeId = useCurrentRouteId(
     "useRouteError"
     /* UseRouteError */
   );
@@ -12675,25 +12675,25 @@ function useRouteError() {
   return (_a = state2.errors) == null ? void 0 : _a[routeId];
 }
 function useAsyncValue() {
-  let value = reactExports.useContext(AwaitContext);
+  const value = reactExports.useContext(AwaitContext);
   return value == null ? void 0 : value._data;
 }
 function useAsyncError() {
-  let value = reactExports.useContext(AwaitContext);
+  const value = reactExports.useContext(AwaitContext);
   return value == null ? void 0 : value._error;
 }
-var blockerId = 0;
+let blockerId = 0;
 function useBlocker(shouldBlock) {
-  let { router: router2, basename } = useDataRouterContext(
+  const { router: router2, basename } = useDataRouterContext(
     "useBlocker"
     /* UseBlocker */
   );
-  let state2 = useDataRouterState(
+  const state2 = useDataRouterState(
     "useBlocker"
     /* UseBlocker */
   );
-  let [blockerKey, setBlockerKey] = reactExports.useState("");
-  let blockerFunction = reactExports.useCallback(
+  const [blockerKey, setBlockerKey] = reactExports.useState("");
+  const blockerFunction = reactExports.useCallback(
     (arg) => {
       if (typeof shouldBlock !== "function") {
         return !!shouldBlock;
@@ -12701,7 +12701,7 @@ function useBlocker(shouldBlock) {
       if (basename === "/") {
         return shouldBlock(arg);
       }
-      let { currentLocation, nextLocation, historyAction } = arg;
+      const { currentLocation, nextLocation, historyAction } = arg;
       return shouldBlock({
         currentLocation: {
           ...currentLocation,
@@ -12717,7 +12717,7 @@ function useBlocker(shouldBlock) {
     [basename, shouldBlock]
   );
   reactExports.useEffect(() => {
-    let key = String(++blockerId);
+    const key = String(++blockerId);
     setBlockerKey(key);
     return () => router2.deleteBlocker(key);
   }, [router2]);
@@ -12729,19 +12729,19 @@ function useBlocker(shouldBlock) {
   return blockerKey && state2.blockers.has(blockerKey) ? state2.blockers.get(blockerKey) : IDLE_BLOCKER;
 }
 function useNavigateStable() {
-  let { router: router2 } = useDataRouterContext(
+  const { router: router2 } = useDataRouterContext(
     "useNavigate"
     /* UseNavigateStable */
   );
-  let id2 = useCurrentRouteId(
+  const id2 = useCurrentRouteId(
     "useNavigate"
     /* UseNavigateStable */
   );
-  let activeRef = reactExports.useRef(false);
+  const activeRef = reactExports.useRef(false);
   useIsomorphicLayoutEffect$1(() => {
     activeRef.current = true;
   });
-  let navigate = reactExports.useCallback(
+  const navigate = reactExports.useCallback(
     async (to, options = {}) => {
       warning$1(activeRef.current, navigateEffectWarning);
       if (!activeRef.current) return;
@@ -12755,23 +12755,23 @@ function useNavigateStable() {
   );
   return navigate;
 }
-var alreadyWarned = {};
+const alreadyWarned = {};
 function warningOnce(key, cond, message) {
   if (!cond && !alreadyWarned[key]) {
     alreadyWarned[key] = true;
     warning$1(false, message);
   }
 }
-var alreadyWarned2 = {};
+const alreadyWarned2 = {};
 function warnOnce$1(condition, message) {
   if (!condition && !alreadyWarned2[message]) {
     alreadyWarned2[message] = true;
     console.warn(message);
   }
 }
-var ENABLE_DEV_WARNINGS2 = true;
+const ENABLE_DEV_WARNINGS2 = true;
 function mapRouteProperties(route) {
-  let updates = {
+  const updates = {
     // Note: this check also occurs in createRoutesFromChildren so update
     // there if you change this -- please and thank you!
     hasErrorBoundary: route.hasErrorBoundary || route.ErrorBoundary != null || route.errorElement != null
@@ -12835,7 +12835,7 @@ function createMemoryRouter(routes, opts) {
     patchRoutesOnNavigation: opts == null ? void 0 : opts.patchRoutesOnNavigation
   }).initialize();
 }
-var Deferred2 = class {
+const Deferred2 = class {
   constructor() {
     this.status = "pending";
     this.promise = new Promise((resolve, reject) => {
@@ -12858,16 +12858,16 @@ function RouterProvider({
   router: router2,
   flushSync: reactDomFlushSyncImpl
 }) {
-  let [state2, setStateImpl] = reactExports.useState(router2.state);
-  let [pendingState, setPendingState] = reactExports.useState();
-  let [vtContext, setVtContext] = reactExports.useState({
+  const [state2, setStateImpl] = reactExports.useState(router2.state);
+  const [pendingState, setPendingState] = reactExports.useState();
+  const [vtContext, setVtContext] = reactExports.useState({
     isTransitioning: false
   });
-  let [renderDfd, setRenderDfd] = reactExports.useState();
-  let [transition, setTransition] = reactExports.useState();
-  let [interruption, setInterruption] = reactExports.useState();
-  let fetcherData = reactExports.useRef(/* @__PURE__ */ new Map());
-  let setState = reactExports.useCallback(
+  const [renderDfd, setRenderDfd] = reactExports.useState();
+  const [transition, setTransition] = reactExports.useState();
+  const [interruption, setInterruption] = reactExports.useState();
+  const fetcherData = reactExports.useRef(/* @__PURE__ */ new Map());
+  const setState = reactExports.useCallback(
     (newState, { deletedFetchers, flushSync, viewTransitionOpts }) => {
       deletedFetchers.forEach((key) => fetcherData.current.delete(key));
       newState.fetchers.forEach((fetcher, key) => {
@@ -12879,7 +12879,7 @@ function RouterProvider({
         flushSync === false || reactDomFlushSyncImpl != null,
         'You provided the `flushSync` option to a router update, but you are not using the `<RouterProvider>` from `react-router/dom` so `ReactDOM.flushSync()` is unavailable.  Please update your app to `import { RouterProvider } from "react-router/dom"` and ensure you have `react-dom` installed as a dependency to use the `flushSync` option.'
       );
-      let isViewTransitionAvailable = router2.window != null && router2.window.document != null && typeof router2.window.document.startViewTransition === "function";
+      const isViewTransitionAvailable = router2.window != null && router2.window.document != null && typeof router2.window.document.startViewTransition === "function";
       warnOnce$1(
         viewTransitionOpts == null || isViewTransitionAvailable,
         "You provided the `viewTransition` option to a router update, but you do not appear to be running in a DOM environment as `window.startViewTransition` is not available."
@@ -12905,7 +12905,7 @@ function RouterProvider({
             nextLocation: viewTransitionOpts.nextLocation
           });
         });
-        let t = router2.window.document.startViewTransition(() => {
+        const t = router2.window.document.startViewTransition(() => {
           reactDomFlushSyncImpl(() => setStateImpl(newState));
         });
         t.finished.finally(() => {
@@ -12947,9 +12947,9 @@ function RouterProvider({
   }, [vtContext]);
   reactExports.useEffect(() => {
     if (renderDfd && pendingState && router2.window) {
-      let newState = pendingState;
-      let renderPromise = renderDfd.promise;
-      let transition2 = router2.window.document.startViewTransition(async () => {
+      const newState = pendingState;
+      const renderPromise = renderDfd.promise;
+      const transition2 = router2.window.document.startViewTransition(async () => {
         reactExports.startTransition(() => setStateImpl(newState));
         await renderPromise;
       });
@@ -12979,7 +12979,7 @@ function RouterProvider({
       setInterruption(void 0);
     }
   }, [vtContext.isTransitioning, interruption]);
-  let navigator2 = reactExports.useMemo(() => {
+  const navigator2 = reactExports.useMemo(() => {
     return {
       createHref: router2.createHref,
       encodeLocation: router2.encodeLocation,
@@ -12995,8 +12995,8 @@ function RouterProvider({
       })
     };
   }, [router2]);
-  let basename = router2.basename || "/";
-  let dataRouterContext = reactExports.useMemo(
+  const basename = router2.basename || "/";
+  const dataRouterContext = reactExports.useMemo(
     () => ({
       router: router2,
       navigator: navigator2,
@@ -13037,7 +13037,7 @@ function MemoryRouter({
   initialEntries,
   initialIndex
 }) {
-  let historyRef = reactExports.useRef();
+  const historyRef = reactExports.useRef();
   if (historyRef.current == null) {
     historyRef.current = createMemoryHistory({
       initialEntries,
@@ -13045,12 +13045,12 @@ function MemoryRouter({
       v5Compat: true
     });
   }
-  let history = historyRef.current;
-  let [state2, setStateImpl] = reactExports.useState({
+  const history = historyRef.current;
+  const [state2, setStateImpl] = reactExports.useState({
     action: history.action,
     location: history.location
   });
-  let setState = reactExports.useCallback(
+  const setState = reactExports.useCallback(
     (newState) => {
       reactExports.startTransition(() => setStateImpl(newState));
     },
@@ -13080,21 +13080,21 @@ function Navigate({
     // the router loaded. We can help them understand how to avoid that.
     `<Navigate> may be used only in the context of a <Router> component.`
   );
-  let { static: isStatic } = reactExports.useContext(NavigationContext);
+  const { static: isStatic } = reactExports.useContext(NavigationContext);
   warning$1(
     !isStatic,
     `<Navigate> must not be used on the initial render in a <StaticRouter>. This is a no-op, but you should modify your code so the <Navigate> is only ever rendered in response to some user interaction or state change.`
   );
-  let { matches } = reactExports.useContext(RouteContext);
-  let { pathname: locationPathname } = useLocation();
-  let navigate = useNavigate();
-  let path = resolveTo(
+  const { matches } = reactExports.useContext(RouteContext);
+  const { pathname: locationPathname } = useLocation();
+  const navigate = useNavigate();
+  const path = resolveTo(
     to,
     getResolveToMatches(matches),
     locationPathname,
     relative === "path"
   );
-  let jsonPath = JSON.stringify(path);
+  const jsonPath = JSON.stringify(path);
   reactExports.useEffect(() => {
     navigate(JSON.parse(jsonPath), { replace: replace2, state: state2, relative });
   }, [navigate, jsonPath, relative, replace2, state2]);
@@ -13121,8 +13121,8 @@ function Router$1({
     !useInRouterContext(),
     `You cannot render a <Router> inside another <Router>. You should never have more than one in your app.`
   );
-  let basename = basenameProp.replace(/^\/*/, "/");
-  let navigationContext = reactExports.useMemo(
+  const basename = basenameProp.replace(/^\/*/, "/");
+  const navigationContext = reactExports.useMemo(
     () => ({
       basename,
       navigator: navigator2,
@@ -13134,15 +13134,15 @@ function Router$1({
   if (typeof locationProp === "string") {
     locationProp = parsePath(locationProp);
   }
-  let {
+  const {
     pathname = "/",
     search = "",
     hash = "",
     state: state2 = null,
     key = "default"
   } = locationProp;
-  let locationContext = reactExports.useMemo(() => {
-    let trailingPathname = stripBasename(pathname, basename);
+  const locationContext = reactExports.useMemo(() => {
+    const trailingPathname = stripBasename(pathname, basename);
     if (trailingPathname == null) {
       return null;
     }
@@ -13195,7 +13195,7 @@ var AwaitErrorBoundary = class extends reactExports.Component {
     );
   }
   render() {
-    let { children, errorElement, resolve } = this.props;
+    const { children, errorElement, resolve } = this.props;
     let promise = null;
     let status = 0;
     if (!(resolve instanceof Promise)) {
@@ -13205,7 +13205,7 @@ var AwaitErrorBoundary = class extends reactExports.Component {
       Object.defineProperty(promise, "_data", { get: () => resolve });
     } else if (this.state.error) {
       status = 2;
-      let renderError = this.state.error;
+      const renderError = this.state.error;
       promise = Promise.reject().catch(() => {
       });
       Object.defineProperty(promise, "_tracked", { get: () => true });
@@ -13236,17 +13236,17 @@ var AwaitErrorBoundary = class extends reactExports.Component {
 function ResolveAwait({
   children
 }) {
-  let data2 = useAsyncValue();
-  let toRender = typeof children === "function" ? children(data2) : children;
+  const data2 = useAsyncValue();
+  const toRender = typeof children === "function" ? children(data2) : children;
   return /* @__PURE__ */ reactExports.createElement(reactExports.Fragment, null, toRender);
 }
 function createRoutesFromChildren(children, parentPath = []) {
-  let routes = [];
+  const routes = [];
   reactExports.Children.forEach(children, (element, index2) => {
     if (!reactExports.isValidElement(element)) {
       return;
     }
-    let treePath = [...parentPath, index2];
+    const treePath = [...parentPath, index2];
     if (element.type === reactExports.Fragment) {
       routes.push.apply(
         routes,
@@ -13262,7 +13262,7 @@ function createRoutesFromChildren(children, parentPath = []) {
       !element.props.index || !element.props.children,
       "An index route cannot have child routes."
     );
-    let route = {
+    const route = {
       id: element.props.id || treePath.join("-"),
       caseSensitive: element.props.caseSensitive,
       element: element.props.element,
@@ -13290,12 +13290,12 @@ function createRoutesFromChildren(children, parentPath = []) {
   });
   return routes;
 }
-var createRoutesFromElements = createRoutesFromChildren;
+const createRoutesFromElements = createRoutesFromChildren;
 function renderMatches(matches) {
   return _renderMatches(matches);
 }
-var defaultMethod = "get";
-var defaultEncType = "application/x-www-form-urlencoded";
+const defaultMethod = "get";
+const defaultEncType = "application/x-www-form-urlencoded";
 function isHtmlElement(object) {
   return object != null && typeof object.tagName === "string";
 }
@@ -13319,7 +13319,7 @@ function shouldProcessLinkClick(event, target) {
 function createSearchParams(init = "") {
   return new URLSearchParams(
     typeof init === "string" || Array.isArray(init) || init instanceof URLSearchParams ? init : Object.keys(init).reduce((memo2, key) => {
-      let value = init[key];
+      const value = init[key];
       return memo2.concat(
         Array.isArray(value) ? value.map((v) => [key, v]) : [[key, value]]
       );
@@ -13327,7 +13327,7 @@ function createSearchParams(init = "") {
   );
 }
 function getSearchParamsForLocation(locationSearch, defaultSearchParams) {
-  let searchParams = createSearchParams(locationSearch);
+  const searchParams = createSearchParams(locationSearch);
   if (defaultSearchParams) {
     defaultSearchParams.forEach((_, key) => {
       if (!searchParams.has(key)) {
@@ -13339,7 +13339,7 @@ function getSearchParamsForLocation(locationSearch, defaultSearchParams) {
   }
   return searchParams;
 }
-var _formDataSupportsSubmitter = null;
+let _formDataSupportsSubmitter = null;
 function isFormDataSubmitterSupported() {
   if (_formDataSupportsSubmitter === null) {
     try {
@@ -13355,7 +13355,7 @@ function isFormDataSubmitterSupported() {
   }
   return _formDataSupportsSubmitter;
 }
-var supportedFormEncTypes = /* @__PURE__ */ new Set([
+const supportedFormEncTypes = /* @__PURE__ */ new Set([
   "application/x-www-form-urlencoded",
   "multipart/form-data",
   "text/plain"
@@ -13377,27 +13377,27 @@ function getFormSubmissionInfo(target, basename) {
   let formData;
   let body;
   if (isFormElement(target)) {
-    let attr = target.getAttribute("action");
+    const attr = target.getAttribute("action");
     action = attr ? stripBasename(attr, basename) : null;
     method = target.getAttribute("method") || defaultMethod;
     encType = getFormEncType(target.getAttribute("enctype")) || defaultEncType;
     formData = new FormData(target);
   } else if (isButtonElement(target) || isInputElement(target) && (target.type === "submit" || target.type === "image")) {
-    let form = target.form;
+    const form = target.form;
     if (form == null) {
       throw new Error(
         `Cannot submit a <button> or <input type="submit"> without a <form>`
       );
     }
-    let attr = target.getAttribute("formaction") || form.getAttribute("action");
+    const attr = target.getAttribute("formaction") || form.getAttribute("action");
     action = attr ? stripBasename(attr, basename) : null;
     method = target.getAttribute("formmethod") || form.getAttribute("method") || defaultMethod;
     encType = getFormEncType(target.getAttribute("formenctype")) || getFormEncType(form.getAttribute("enctype")) || defaultEncType;
     formData = new FormData(form, target);
     if (!isFormDataSubmitterSupported()) {
-      let { name, type, value } = target;
+      const { name, type, value } = target;
       if (type === "image") {
-        let prefix = name ? `${name}.` : "";
+        const prefix = name ? `${name}.` : "";
         formData.append(`${prefix}x`, "0");
         formData.append(`${prefix}y`, "0");
       } else if (name) {
@@ -13430,7 +13430,7 @@ async function loadRouteModule(route, routeModulesCache) {
     return routeModulesCache[route.id];
   }
   try {
-    let routeModule = await import(
+    const routeModule = await import(
       /* @vite-ignore */
       /* webpackIgnore: true */
       route.module
@@ -13452,21 +13452,21 @@ async function loadRouteModule(route, routeModulesCache) {
   }
 }
 function getKeyedLinksForMatches(matches, routeModules, manifest) {
-  let descriptors2 = matches.map((match) => {
-    var _a;
-    let module = routeModules[match.route.id];
-    let route = manifest.routes[match.route.id];
+  const descriptors2 = matches.map((match) => {
+    let _a;
+    const module = routeModules[match.route.id];
+    const route = manifest.routes[match.route.id];
     return [
       route && route.css ? route.css.map((href) => ({ rel: "stylesheet", href })) : [],
       ((_a = module == null ? void 0 : module.links) == null ? void 0 : _a.call(module)) || []
     ];
   }).flat(2);
-  let preloads = getCurrentPageModulePreloadHrefs(matches, manifest);
+  const preloads = getCurrentPageModulePreloadHrefs(matches, manifest);
   return dedupeLinkDescriptors(descriptors2, preloads);
 }
 async function prefetchStyleLinks(route, routeModule) {
   if (!route.css && !routeModule.links || !isPreloadSupported()) return;
-  let descriptors2 = [];
+  const descriptors2 = [];
   if (route.css) {
     descriptors2.push(...route.css.map((href) => ({ rel: "stylesheet", href })));
   }
@@ -13474,8 +13474,8 @@ async function prefetchStyleLinks(route, routeModule) {
     descriptors2.push(...routeModule.links());
   }
   if (descriptors2.length === 0) return;
-  let styleLinks = [];
-  for (let descriptor of descriptors2) {
+  const styleLinks = [];
+  for (const descriptor of descriptors2) {
     if (!isPageLinkDescriptor(descriptor) && descriptor.rel === "stylesheet") {
       styleLinks.push({
         ...descriptor,
@@ -13484,14 +13484,14 @@ async function prefetchStyleLinks(route, routeModule) {
       });
     }
   }
-  let matchingLinks = styleLinks.filter(
+  const matchingLinks = styleLinks.filter(
     (link) => (!link.media || window.matchMedia(link.media).matches) && !document.querySelector(`link[rel="stylesheet"][href="${link.href}"]`)
   );
   await Promise.all(matchingLinks.map(prefetchStyleLink));
 }
 async function prefetchStyleLink(descriptor) {
   return new Promise((resolve) => {
-    let link = document.createElement("link");
+    const link = document.createElement("link");
     Object.assign(link, descriptor);
     function removeLink() {
       if (document.head.contains(link)) {
@@ -13522,11 +13522,11 @@ function isHtmlLinkDescriptor(object) {
   return typeof object.rel === "string" && typeof object.href === "string";
 }
 async function getKeyedPrefetchLinks(matches, manifest, routeModules) {
-  let links = await Promise.all(
+  const links = await Promise.all(
     matches.map(async (match) => {
-      let route = manifest.routes[match.route.id];
+      const route = manifest.routes[match.route.id];
       if (route) {
-        let mod = await loadRouteModule(route, routeModules);
+        const mod = await loadRouteModule(route, routeModules);
         return mod.links ? mod.links() : [];
       }
       return [];
@@ -13539,12 +13539,12 @@ async function getKeyedPrefetchLinks(matches, manifest, routeModules) {
   );
 }
 function getNewMatchesForLinks(page, nextMatches, currentMatches, manifest, location, mode) {
-  let isNew = (match, index2) => {
+  const isNew = (match, index2) => {
     if (!currentMatches[index2]) return true;
     return match.route.id !== currentMatches[index2].route.id;
   };
-  let matchPathChanged = (match, index2) => {
-    var _a;
+  const matchPathChanged = (match, index2) => {
+    let _a;
     return (
       // param change, /users/123 -> /users/456
       currentMatches[index2].pathname !== match.pathname || // splat param changed, which is not present in match.path
@@ -13559,8 +13559,8 @@ function getNewMatchesForLinks(page, nextMatches, currentMatches, manifest, loca
   }
   if (mode === "data") {
     return nextMatches.filter((match, index2) => {
-      var _a;
-      let manifestRoute = manifest.routes[match.route.id];
+      let _a;
+      const manifestRoute = manifest.routes[match.route.id];
       if (!manifestRoute || !manifestRoute.hasLoader) {
         return false;
       }
@@ -13568,7 +13568,7 @@ function getNewMatchesForLinks(page, nextMatches, currentMatches, manifest, loca
         return true;
       }
       if (match.route.shouldRevalidate) {
-        let routeChoice = match.route.shouldRevalidate({
+        const routeChoice = match.route.shouldRevalidate({
           currentUrl: new URL(
             location.pathname + location.search + location.hash,
             window.origin
@@ -13590,7 +13590,7 @@ function getNewMatchesForLinks(page, nextMatches, currentMatches, manifest, loca
 function getModuleLinkHrefs(matches, manifestPatch) {
   return dedupeHrefs(
     matches.map((match) => {
-      let route = manifestPatch.routes[match.route.id];
+      const route = manifestPatch.routes[match.route.id];
       if (!route) return [];
       let hrefs = [route.module];
       if (route.imports) {
@@ -13603,7 +13603,7 @@ function getModuleLinkHrefs(matches, manifestPatch) {
 function getCurrentPageModulePreloadHrefs(matches, manifest) {
   return dedupeHrefs(
     matches.map((match) => {
-      let route = manifest.routes[match.route.id];
+      const route = manifest.routes[match.route.id];
       if (!route) return [];
       let hrefs = [route.module];
       if (route.imports) {
@@ -13617,22 +13617,22 @@ function dedupeHrefs(hrefs) {
   return [...new Set(hrefs)];
 }
 function sortKeys(obj) {
-  let sorted = {};
-  let keys2 = Object.keys(obj).sort();
-  for (let key of keys2) {
+  const sorted = {};
+  const keys2 = Object.keys(obj).sort();
+  for (const key of keys2) {
     sorted[key] = obj[key];
   }
   return sorted;
 }
 function dedupeLinkDescriptors(descriptors2, preloads) {
-  let set = /* @__PURE__ */ new Set();
-  let preloadsSet = new Set(preloads);
+  const set = /* @__PURE__ */ new Set();
+  const preloadsSet = new Set(preloads);
   return descriptors2.reduce((deduped, descriptor) => {
-    let alreadyModulePreload = preloads && !isPageLinkDescriptor(descriptor) && descriptor.as === "script" && descriptor.href && preloadsSet.has(descriptor.href);
+    const alreadyModulePreload = preloads && !isPageLinkDescriptor(descriptor) && descriptor.as === "script" && descriptor.href && preloadsSet.has(descriptor.href);
     if (alreadyModulePreload) {
       return deduped;
     }
-    let key = JSON.stringify(sortKeys(descriptor));
+    const key = JSON.stringify(sortKeys(descriptor));
     if (!set.has(key)) {
       set.add(key);
       deduped.push({ key, link: descriptor });
@@ -13640,7 +13640,7 @@ function dedupeLinkDescriptors(descriptors2, preloads) {
     return deduped;
   }, []);
 }
-var _isPreloadSupported;
+let _isPreloadSupported;
 function isPreloadSupported() {
   if (_isPreloadSupported !== void 0) {
     return _isPreloadSupported;
@@ -13650,14 +13650,14 @@ function isPreloadSupported() {
   el = null;
   return _isPreloadSupported;
 }
-var ESCAPE_LOOKUP = {
+const ESCAPE_LOOKUP = {
   "&": "\\u0026",
   ">": "\\u003e",
   "<": "\\u003c",
   "\u2028": "\\u2028",
   "\u2029": "\\u2029"
 };
-var ESCAPE_REGEX = /[&><\u2028\u2029]/g;
+const ESCAPE_REGEX = /[&><\u2028\u2029]/g;
 function escapeHtml(html) {
   return html.replace(ESCAPE_REGEX, (match) => ESCAPE_LOOKUP[match]);
 }
@@ -13665,10 +13665,10 @@ function createHtml(html) {
   return { __html: html };
 }
 async function createRequestInit(request) {
-  let init = { signal: request.signal };
+  const init = { signal: request.signal };
   if (request.method !== "GET") {
     init.method = request.method;
-    let contentType = request.headers.get("Content-Type");
+    const contentType = request.headers.get("Content-Type");
     if (contentType && /\bapplication\/json\b/.test(contentType)) {
       init.headers = { "Content-Type": contentType };
       init.body = JSON.stringify(await request.json());
@@ -13683,7 +13683,7 @@ async function createRequestInit(request) {
   }
   return init;
 }
-var SingleFetchRedirectSymbol = Symbol("SingleFetchRedirect");
+const SingleFetchRedirectSymbol = Symbol("SingleFetchRedirect");
 function StreamTransfer({
   context,
   identifier,
@@ -13697,7 +13697,7 @@ function StreamTransfer({
   if (!context.renderMeta.streamCache) {
     context.renderMeta.streamCache = {};
   }
-  let { streamCache } = context.renderMeta;
+  const { streamCache } = context.renderMeta;
   let promise = streamCache[identifier];
   if (!promise) {
     promise = streamCache[identifier] = reader.read().then((result) => {
@@ -13715,8 +13715,8 @@ function StreamTransfer({
   if (promise.result === void 0) {
     throw promise;
   }
-  let { done, value } = promise.result;
-  let scriptTag = value ? /* @__PURE__ */ reactExports.createElement(
+  const { done, value } = promise.result;
+  const scriptTag = value ? /* @__PURE__ */ reactExports.createElement(
     "script",
     {
       nonce,
@@ -13768,14 +13768,14 @@ function getSingleFetchDataStrategy(manifest, routeModules, getRouter) {
   };
 }
 async function singleFetchActionStrategy(request, matches) {
-  let actionMatch = matches.find((m2) => m2.shouldLoad);
+  const actionMatch = matches.find((m2) => m2.shouldLoad);
   invariant2(actionMatch, "No action match found");
   let actionStatus = void 0;
-  let result = await actionMatch.resolve(async (handler) => {
-    let result2 = await handler(async () => {
-      let url = singleFetchUrl(request.url);
-      let init = await createRequestInit(request);
-      let { data: data2, status } = await fetchAndDecode(url, init);
+  const result = await actionMatch.resolve(async (handler) => {
+    const result2 = await handler(async () => {
+      const url = singleFetchUrl(request.url);
+      const init = await createRequestInit(request);
+      const { data: data2, status } = await fetchAndDecode(url, init);
       actionStatus = status;
       return unwrapSingleFetchResult(
         data2,
@@ -13795,20 +13795,20 @@ async function singleFetchActionStrategy(request, matches) {
   };
 }
 async function singleFetchLoaderNavigationStrategy(manifest, routeModules, router2, request, matches) {
-  let routesParams = /* @__PURE__ */ new Set();
+  const routesParams = /* @__PURE__ */ new Set();
   let foundOptOutRoute = false;
-  let routeDfds = matches.map(() => createDeferred2());
-  let routesLoadedPromise = Promise.all(routeDfds.map((d) => d.promise));
-  let singleFetchDfd = createDeferred2();
-  let url = stripIndexParam(singleFetchUrl(request.url));
-  let init = await createRequestInit(request);
-  let results = {};
-  let resolvePromise = Promise.all(
+  const routeDfds = matches.map(() => createDeferred2());
+  const routesLoadedPromise = Promise.all(routeDfds.map((d) => d.promise));
+  const singleFetchDfd = createDeferred2();
+  const url = stripIndexParam(singleFetchUrl(request.url));
+  const init = await createRequestInit(request);
+  const results = {};
+  const resolvePromise = Promise.all(
     matches.map(
       async (m2, i) => m2.resolve(async (handler) => {
-        var _a;
+        let _a;
         routeDfds[i].resolve();
-        let manifestRoute = manifest.routes[m2.route.id];
+        const manifestRoute = manifest.routes[m2.route.id];
         if (!m2.shouldLoad) {
           if (!router2.state.initialized) {
             return;
@@ -13823,7 +13823,7 @@ async function singleFetchLoaderNavigationStrategy(manifest, routeModules, route
             foundOptOutRoute = true;
           }
           try {
-            let result = await fetchSingleLoader(
+            const result = await fetchSingleLoader(
               handler,
               url,
               init,
@@ -13839,8 +13839,8 @@ async function singleFetchLoaderNavigationStrategy(manifest, routeModules, route
           routesParams.add(m2.route.id);
         }
         try {
-          let result = await handler(async () => {
-            let data2 = await singleFetchDfd.promise;
+          const result = await handler(async () => {
+            const data2 = await singleFetchDfd.promise;
             return unwrapSingleFetchResults(data2, m2.route.id);
           });
           results[m2.route.id] = {
@@ -13867,7 +13867,7 @@ async function singleFetchLoaderNavigationStrategy(manifest, routeModules, route
           matches.filter((m2) => routesParams.has(m2.route.id)).map((m2) => m2.route.id).join(",")
         );
       }
-      let data2 = await fetchAndDecode(url, init);
+      const data2 = await fetchAndDecode(url, init);
       singleFetchDfd.resolve(data2.data);
     } catch (e) {
       singleFetchDfd.reject(e);
@@ -13877,39 +13877,39 @@ async function singleFetchLoaderNavigationStrategy(manifest, routeModules, route
   return results;
 }
 async function singleFetchLoaderFetcherStrategy(request, matches) {
-  let fetcherMatch = matches.find((m2) => m2.shouldLoad);
+  const fetcherMatch = matches.find((m2) => m2.shouldLoad);
   invariant2(fetcherMatch, "No fetcher match found");
-  let result = await fetcherMatch.resolve(async (handler) => {
-    let url = stripIndexParam(singleFetchUrl(request.url));
-    let init = await createRequestInit(request);
+  const result = await fetcherMatch.resolve(async (handler) => {
+    const url = stripIndexParam(singleFetchUrl(request.url));
+    const init = await createRequestInit(request);
     return fetchSingleLoader(handler, url, init, fetcherMatch.route.id);
   });
   return { [fetcherMatch.route.id]: result };
 }
 function fetchSingleLoader(handler, url, init, routeId) {
   return handler(async () => {
-    let singleLoaderUrl = new URL(url);
+    const singleLoaderUrl = new URL(url);
     singleLoaderUrl.searchParams.set("_routes", routeId);
-    let { data: data2 } = await fetchAndDecode(singleLoaderUrl, init);
+    const { data: data2 } = await fetchAndDecode(singleLoaderUrl, init);
     return unwrapSingleFetchResults(data2, routeId);
   });
 }
 function stripIndexParam(url) {
-  let indexValues = url.searchParams.getAll("index");
+  const indexValues = url.searchParams.getAll("index");
   url.searchParams.delete("index");
-  let indexValuesToKeep = [];
-  for (let indexValue of indexValues) {
+  const indexValuesToKeep = [];
+  for (const indexValue of indexValues) {
     if (indexValue) {
       indexValuesToKeep.push(indexValue);
     }
   }
-  for (let toKeep of indexValuesToKeep) {
+  for (const toKeep of indexValuesToKeep) {
     url.searchParams.append("index", toKeep);
   }
   return url;
 }
 function singleFetchUrl(reqUrl) {
-  let url = typeof reqUrl === "string" ? new URL(
+  const url = typeof reqUrl === "string" ? new URL(
     reqUrl,
     // This can be called during the SSR flow via PrefetchPageLinksImpl so
     // don't assume window is available
@@ -13923,13 +13923,13 @@ function singleFetchUrl(reqUrl) {
   return url;
 }
 async function fetchAndDecode(url, init) {
-  let res = await fetch(url, init);
+  const res = await fetch(url, init);
   if (res.status === 404 && !res.headers.has("X-Remix-Response")) {
     throw new ErrorResponseImpl(404, "Not Found", true);
   }
   invariant2(res.body, "No response body to decode");
   try {
-    let decoded = await decodeViaTurboStream(res.body, window);
+    const decoded = await decodeViaTurboStream(res.body, window);
     return { status: res.status, data: decoded.value };
   } catch (e) {
     throw new Error("Unable to decode turbo-stream response");
@@ -13940,17 +13940,17 @@ function decodeViaTurboStream(body, global2) {
     plugins: [
       (type, ...rest) => {
         if (type === "SanitizedError") {
-          let [name, message, stack] = rest;
+          const [name, message, stack] = rest;
           let Constructor = Error;
           if (name && name in global2 && typeof global2[name] === "function") {
             Constructor = global2[name];
           }
-          let error = new Constructor(message);
+          const error = new Constructor(message);
           error.stack = stack;
           return { value: error };
         }
         if (type === "ErrorResponse") {
-          let [data2, status, statusText] = rest;
+          const [data2, status, statusText] = rest;
           return {
             value: new ErrorResponseImpl(status, statusText, data2)
           };
@@ -13969,7 +13969,7 @@ function decodeViaTurboStream(body, global2) {
   });
 }
 function unwrapSingleFetchResults(results, routeId) {
-  let redirect2 = results[SingleFetchRedirectSymbol];
+  const redirect2 = results[SingleFetchRedirectSymbol];
   if (redirect2) {
     return unwrapSingleFetchResult(redirect2, routeId);
   }
@@ -13979,7 +13979,7 @@ function unwrapSingleFetchResult(result, routeId) {
   if ("error" in result) {
     throw result.error;
   } else if ("redirect" in result) {
-    let headers = {};
+    const headers = {};
     if (result.revalidate) {
       headers["X-Remix-Revalidate"] = "yes";
     }
@@ -13999,7 +13999,7 @@ function unwrapSingleFetchResult(result, routeId) {
 function createDeferred2() {
   let resolve;
   let reject;
-  let promise = new Promise((res, rej) => {
+  const promise = new Promise((res, rej) => {
     resolve = async (val) => {
       res(val);
       try {
@@ -14023,7 +14023,7 @@ function createDeferred2() {
     reject
   };
 }
-var RemixErrorBoundary = class extends reactExports.Component {
+const RemixErrorBoundary = class extends reactExports.Component {
   constructor(props) {
     super(props);
     this.state = { error: props.error || null, location: props.location };
@@ -14056,7 +14056,7 @@ function RemixRootDefaultErrorBoundary({
   isOutsideRemixApp
 }) {
   console.error(error);
-  let heyDeveloper = /* @__PURE__ */ reactExports.createElement(
+  const heyDeveloper = /* @__PURE__ */ reactExports.createElement(
     "script",
     {
       dangerouslySetInnerHTML: {
@@ -14075,7 +14075,7 @@ function RemixRootDefaultErrorBoundary({
   if (error instanceof Error) {
     errorInstance = error;
   } else {
-    let errorString = error == null ? "Unknown Error" : typeof error === "object" && "toString" in error ? error.toString() : JSON.stringify(error);
+    const errorString = error == null ? "Unknown Error" : typeof error === "object" && "toString" in error ? error.toString() : JSON.stringify(error);
     errorInstance = new Error(errorString);
   }
   return /* @__PURE__ */ reactExports.createElement(
@@ -14106,8 +14106,8 @@ function BoundaryShell({
   isOutsideRemixApp,
   children
 }) {
-  var _a;
-  let { routeModules } = useFrameworkContext();
+  let _a;
+  const { routeModules } = useFrameworkContext();
   if (((_a = routeModules.root) == null ? void 0 : _a.Layout) && !isOutsideRemixApp) {
     return children;
   }
@@ -14137,10 +14137,10 @@ function RemixRootDefaultHydrateFallback() {
   ));
 }
 function groupRoutesByParentId(manifest) {
-  let routes = {};
+  const routes = {};
   Object.values(manifest).forEach((route) => {
     if (route) {
-      let parentId = route.parentId || "";
+      const parentId = route.parentId || "";
       if (!routes[parentId]) {
         routes[parentId] = [];
       }
@@ -14150,9 +14150,9 @@ function groupRoutesByParentId(manifest) {
   return routes;
 }
 function getRouteComponents(route, routeModule, isSpaMode) {
-  let Component4 = getRouteModuleComponent(routeModule);
-  let HydrateFallback = routeModule.HydrateFallback && (!isSpaMode || route.id === "root") ? routeModule.HydrateFallback : route.id === "root" ? RemixRootDefaultHydrateFallback : void 0;
-  let ErrorBoundary = routeModule.ErrorBoundary ? routeModule.ErrorBoundary : route.id === "root" ? () => /* @__PURE__ */ reactExports.createElement(RemixRootDefaultErrorBoundary, { error: useRouteError() }) : void 0;
+  const Component4 = getRouteModuleComponent(routeModule);
+  const HydrateFallback = routeModule.HydrateFallback && (!isSpaMode || route.id === "root") ? routeModule.HydrateFallback : route.id === "root" ? RemixRootDefaultHydrateFallback : void 0;
+  const ErrorBoundary = routeModule.ErrorBoundary ? routeModule.ErrorBoundary : route.id === "root" ? () => /* @__PURE__ */ reactExports.createElement(RemixRootDefaultErrorBoundary, { error: useRouteError() }) : void 0;
   if (route.id === "root" && routeModule.Layout) {
     return {
       ...Component4 ? {
@@ -14170,12 +14170,12 @@ function getRouteComponents(route, routeModule, isSpaMode) {
 }
 function createServerRoutes(manifest, routeModules, future, isSpaMode, parentId = "", routesByParentId = groupRoutesByParentId(manifest), spaModeLazyPromise = Promise.resolve({ Component: () => null })) {
   return (routesByParentId[parentId] || []).map((route) => {
-    let routeModule = routeModules[route.id];
+    const routeModule = routeModules[route.id];
     invariant2(
       routeModule,
       "No `routeModule` available to create server routes"
     );
-    let dataRoute = {
+    const dataRoute = {
       ...getRouteComponents(route, routeModule, isSpaMode),
       caseSensitive: route.caseSensitive,
       id: route.id,
@@ -14195,7 +14195,7 @@ function createServerRoutes(manifest, routeModules, future, isSpaMode, parentId 
       // We don't need action/shouldRevalidate on these routes since they're
       // for a static render
     };
-    let children = createServerRoutes(
+    const children = createServerRoutes(
       manifest,
       routeModules,
       future,
@@ -14221,28 +14221,28 @@ function createClientRoutesWithHMRRevalidationOptOut(needsRevalidation, manifest
 }
 function preventInvalidServerHandlerCall(type, route, isSpaMode) {
   if (isSpaMode) {
-    let fn2 = type === "action" ? "serverAction()" : "serverLoader()";
-    let msg2 = `You cannot call ${fn2} in SPA Mode (routeId: "${route.id}")`;
+    const fn2 = type === "action" ? "serverAction()" : "serverLoader()";
+    const msg2 = `You cannot call ${fn2} in SPA Mode (routeId: "${route.id}")`;
     console.error(msg2);
     throw new ErrorResponseImpl(400, "Bad Request", new Error(msg2), true);
   }
-  let fn = type === "action" ? "serverAction()" : "serverLoader()";
-  let msg = `You are trying to call ${fn} on a route that does not have a server ${type} (routeId: "${route.id}")`;
+  const fn = type === "action" ? "serverAction()" : "serverLoader()";
+  const msg = `You are trying to call ${fn} on a route that does not have a server ${type} (routeId: "${route.id}")`;
   if (type === "loader" && !route.hasLoader || type === "action" && !route.hasAction) {
     console.error(msg);
     throw new ErrorResponseImpl(400, "Bad Request", new Error(msg), true);
   }
 }
 function noActionDefinedError(type, routeId) {
-  let article = type === "clientAction" ? "a" : "an";
-  let msg = `Route "${routeId}" does not have ${article} ${type}, but you are trying to submit to it. To fix this, please add ${article} \`${type}\` function to the route`;
+  const article = type === "clientAction" ? "a" : "an";
+  const msg = `Route "${routeId}" does not have ${article} ${type}, but you are trying to submit to it. To fix this, please add ${article} \`${type}\` function to the route`;
   console.error(msg);
   throw new ErrorResponseImpl(405, "Method Not Allowed", new Error(msg), true);
 }
 function createClientRoutes(manifest, routeModulesCache, initialState, isSpaMode, parentId = "", routesByParentId = groupRoutesByParentId(manifest), needsRevalidation) {
   return (routesByParentId[parentId] || []).map((route) => {
-    var _a, _b, _c;
-    let routeModule = routeModulesCache[route.id];
+    let _a, _b, _c;
+    const routeModule = routeModulesCache[route.id];
     function fetchServerHandler(singleFetch) {
       invariant2(
         typeof singleFetch === "function",
@@ -14261,15 +14261,15 @@ function createClientRoutes(manifest, routeModulesCache, initialState, isSpaMode
       return fetchServerHandler(singleFetch);
     }
     async function prefetchStylesAndCallHandler(handler) {
-      let cachedModule = routeModulesCache[route.id];
-      let linkPrefetchPromise = cachedModule ? prefetchStyleLinks(route, cachedModule) : Promise.resolve();
+      const cachedModule = routeModulesCache[route.id];
+      const linkPrefetchPromise = cachedModule ? prefetchStyleLinks(route, cachedModule) : Promise.resolve();
       try {
         return handler();
       } finally {
         await linkPrefetchPromise;
       }
     }
-    let dataRoute = {
+    const dataRoute = {
       id: route.id,
       index: route.index,
       path: route.path
@@ -14285,14 +14285,14 @@ function createClientRoutes(manifest, routeModulesCache, initialState, isSpaMode
           needsRevalidation
         )
       });
-      let hasInitialData = initialState && initialState.loaderData && route.id in initialState.loaderData;
-      let initialData = hasInitialData ? (_a = initialState == null ? void 0 : initialState.loaderData) == null ? void 0 : _a[route.id] : void 0;
-      let hasInitialError = initialState && initialState.errors && route.id in initialState.errors;
-      let initialError = hasInitialError ? (_b = initialState == null ? void 0 : initialState.errors) == null ? void 0 : _b[route.id] : void 0;
+      const hasInitialData = initialState && initialState.loaderData && route.id in initialState.loaderData;
+      const initialData = hasInitialData ? (_a = initialState == null ? void 0 : initialState.loaderData) == null ? void 0 : _a[route.id] : void 0;
+      const hasInitialError = initialState && initialState.errors && route.id in initialState.errors;
+      const initialError = hasInitialError ? (_b = initialState == null ? void 0 : initialState.errors) == null ? void 0 : _b[route.id] : void 0;
       let isHydrationRequest = needsRevalidation == null && (((_c = routeModule.clientLoader) == null ? void 0 : _c.hydrate) === true || !route.hasLoader);
       dataRoute.loader = async ({ request, params }, singleFetch) => {
         try {
-          let result = await prefetchStylesAndCallHandler(async () => {
+          const result = await prefetchStylesAndCallHandler(async () => {
             invariant2(
               routeModule,
               "No `routeModule` available for critical-route loader"
@@ -14366,13 +14366,13 @@ function createClientRoutes(manifest, routeModulesCache, initialState, isSpaMode
         });
       }
       dataRoute.lazy = async () => {
-        let mod = await loadRouteModuleWithBlockingLinks(
+        const mod = await loadRouteModuleWithBlockingLinks(
           route,
           routeModulesCache
         );
-        let lazyRoute = { ...mod };
+        const lazyRoute = { ...mod };
         if (mod.clientLoader) {
-          let clientLoader = mod.clientLoader;
+          const clientLoader = mod.clientLoader;
           lazyRoute.loader = (args, singleFetch) => clientLoader({
             ...args,
             async serverLoader() {
@@ -14382,7 +14382,7 @@ function createClientRoutes(manifest, routeModulesCache, initialState, isSpaMode
           });
         }
         if (mod.clientAction) {
-          let clientAction = mod.clientAction;
+          const clientAction = mod.clientAction;
           lazyRoute.action = (args, singleFetch) => clientAction({
             ...args,
             async serverAction() {
@@ -14408,7 +14408,7 @@ function createClientRoutes(manifest, routeModulesCache, initialState, isSpaMode
         };
       };
     }
-    let children = createClientRoutes(
+    const children = createClientRoutes(
       manifest,
       routeModulesCache,
       initialState,
@@ -14430,7 +14430,7 @@ function getShouldRevalidateFunction(route, routeId, needsRevalidation) {
     );
   }
   if (route.shouldRevalidate) {
-    let fn = route.shouldRevalidate;
+    const fn = route.shouldRevalidate;
     return (opts) => fn({ ...opts, defaultShouldRevalidate: true });
   }
   return route.shouldRevalidate;
@@ -14446,7 +14446,7 @@ function wrapShouldRevalidateForHdr(routeId, routeShouldRevalidate, needsRevalid
   };
 }
 async function loadRouteModuleWithBlockingLinks(route, routeModules) {
-  let routeModule = await loadRouteModule(route, routeModules);
+  const routeModule = await loadRouteModule(route, routeModules);
   await prefetchStyleLinks(route, routeModule);
   return {
     Component: getRouteModuleComponent(routeModule),
@@ -14461,7 +14461,7 @@ async function loadRouteModuleWithBlockingLinks(route, routeModules) {
 }
 function getRouteModuleComponent(routeModule) {
   if (routeModule.default == null) return void 0;
-  let isEmptyObject = typeof routeModule.default === "object" && Object.keys(routeModule.default).length === 0;
+  const isEmptyObject = typeof routeModule.default === "object" && Object.keys(routeModule.default).length === 0;
   if (!isEmptyObject) {
     return routeModule.default;
   }
@@ -14469,29 +14469,29 @@ function getRouteModuleComponent(routeModule) {
 function shouldHydrateRouteLoader(route, routeModule, isSpaMode) {
   return isSpaMode && route.id !== "root" || routeModule.clientLoader != null && (routeModule.clientLoader.hydrate === true || route.hasLoader !== true);
 }
-var nextPaths = /* @__PURE__ */ new Set();
-var discoveredPathsMaxSize = 1e3;
-var discoveredPaths = /* @__PURE__ */ new Set();
-var URL_LIMIT = 7680;
+const nextPaths = /* @__PURE__ */ new Set();
+const discoveredPathsMaxSize = 1e3;
+const discoveredPaths = /* @__PURE__ */ new Set();
+const URL_LIMIT = 7680;
 function isFogOfWarEnabled(isSpaMode) {
   return !isSpaMode;
 }
 function getPartialManifest(manifest, router2) {
-  let routeIds = new Set(router2.state.matches.map((m2) => m2.route.id));
-  let segments = router2.state.location.pathname.split("/").filter(Boolean);
-  let paths = ["/"];
+  const routeIds = new Set(router2.state.matches.map((m2) => m2.route.id));
+  const segments = router2.state.location.pathname.split("/").filter(Boolean);
+  const paths = ["/"];
   segments.pop();
   while (segments.length > 0) {
     paths.push(`/${segments.join("/")}`);
     segments.pop();
   }
   paths.forEach((path) => {
-    let matches = matchRoutes(router2.routes, path, router2.basename);
+    const matches = matchRoutes(router2.routes, path, router2.basename);
     if (matches) {
       matches.forEach((m2) => routeIds.add(m2.route.id));
     }
   });
-  let initialRoutes = [...routeIds].reduce(
+  const initialRoutes = [...routeIds].reduce(
     (acc, id2) => Object.assign(acc, { [id2]: manifest.routes[id2] }),
     {}
   );
@@ -14520,22 +14520,22 @@ function getPatchRoutesOnNavigationFunction(manifest, routeModules, isSpaMode, b
 }
 function useFogOFWarDiscovery(router2, manifest, routeModules, isSpaMode) {
   reactExports.useEffect(() => {
-    var _a;
+    let _a;
     if (!isFogOfWarEnabled(isSpaMode) || ((_a = navigator.connection) == null ? void 0 : _a.saveData) === true) {
       return;
     }
     function registerElement(el) {
-      let path = el.tagName === "FORM" ? el.getAttribute("action") : el.getAttribute("href");
+      const path = el.tagName === "FORM" ? el.getAttribute("action") : el.getAttribute("href");
       if (!path) {
         return;
       }
-      let url = new URL(path, window.location.origin);
+      const url = new URL(path, window.location.origin);
       if (!discoveredPaths.has(url.pathname)) {
         nextPaths.add(url.pathname);
       }
     }
     async function fetchPatches() {
-      let lazyPaths = Array.from(nextPaths.keys()).filter((path) => {
+      const lazyPaths = Array.from(nextPaths.keys()).filter((path) => {
         if (discoveredPaths.has(path)) {
           nextPaths.delete(path);
           return false;
@@ -14560,12 +14560,12 @@ function useFogOFWarDiscovery(router2, manifest, routeModules, isSpaMode) {
     }
     document.body.querySelectorAll("a[data-discover], form[data-discover]").forEach((el) => registerElement(el));
     fetchPatches();
-    let debouncedFetchPatches = debounce(fetchPatches, 100);
+    const debouncedFetchPatches = debounce(fetchPatches, 100);
     function isElement(node) {
       return node.nodeType === Node.ELEMENT_NODE;
     }
-    let observer2 = new MutationObserver((records) => {
-      let elements = /* @__PURE__ */ new Set();
+    const observer2 = new MutationObserver((records) => {
+      const elements = /* @__PURE__ */ new Set();
       records.forEach((r) => {
         [r.target, ...r.addedNodes].forEach((node) => {
           if (!isElement(node)) return;
@@ -14592,26 +14592,26 @@ function useFogOFWarDiscovery(router2, manifest, routeModules, isSpaMode) {
   }, [isSpaMode, manifest, routeModules, router2]);
 }
 async function fetchAndApplyManifestPatches(paths, manifest, routeModules, isSpaMode, basename, patchRoutes) {
-  let manifestPath = `${basename != null ? basename : "/"}/__manifest`.replace(
+  const manifestPath = `${basename != null ? basename : "/"}/__manifest`.replace(
     /\/+/g,
     "/"
   );
-  let url = new URL(manifestPath, window.location.origin);
+  const url = new URL(manifestPath, window.location.origin);
   paths.sort().forEach((path) => url.searchParams.append("p", path));
   url.searchParams.set("version", manifest.version);
   if (url.toString().length > URL_LIMIT) {
     nextPaths.clear();
     return;
   }
-  let res = await fetch(url);
+  const res = await fetch(url);
   if (!res.ok) {
     throw new Error(`${res.status} ${res.statusText}`);
   } else if (res.status >= 400) {
     throw new Error(await res.text());
   }
-  let serverPatches = await res.json();
-  let knownRoutes = new Set(Object.keys(manifest.routes));
-  let patches = Object.values(serverPatches).reduce((acc, route) => {
+  const serverPatches = await res.json();
+  const knownRoutes = new Set(Object.keys(manifest.routes));
+  const patches = Object.values(serverPatches).reduce((acc, route) => {
     if (route && !knownRoutes.has(route.id)) {
       acc[route.id] = route;
     }
@@ -14619,7 +14619,7 @@ async function fetchAndApplyManifestPatches(paths, manifest, routeModules, isSpa
   }, {});
   Object.assign(manifest.routes, patches);
   paths.forEach((p) => addToFifoQueue(p, discoveredPaths));
-  let parentIds = /* @__PURE__ */ new Set();
+  const parentIds = /* @__PURE__ */ new Set();
   Object.values(patches).forEach((patch) => {
     if (patch && (!patch.parentId || !patches[patch.parentId])) {
       parentIds.add(patch.parentId);
@@ -14634,7 +14634,7 @@ async function fetchAndApplyManifestPatches(paths, manifest, routeModules, isSpa
 }
 function addToFifoQueue(path, queue) {
   if (queue.size >= discoveredPathsMaxSize) {
-    let first = queue.values().next().value;
+    const first = queue.values().next().value;
     queue.delete(first);
   }
   queue.add(path);
@@ -14647,7 +14647,7 @@ function debounce(callback, wait) {
   };
 }
 function useDataRouterContext2() {
-  let context = reactExports.useContext(DataRouterContext);
+  const context = reactExports.useContext(DataRouterContext);
   invariant2(
     context,
     "You must render this element inside a <DataRouterContext.Provider> element"
@@ -14655,17 +14655,17 @@ function useDataRouterContext2() {
   return context;
 }
 function useDataRouterStateContext() {
-  let context = reactExports.useContext(DataRouterStateContext);
+  const context = reactExports.useContext(DataRouterStateContext);
   invariant2(
     context,
     "You must render this element inside a <DataRouterStateContext.Provider> element"
   );
   return context;
 }
-var FrameworkContext = reactExports.createContext(void 0);
+const FrameworkContext = reactExports.createContext(void 0);
 FrameworkContext.displayName = "FrameworkContext";
 function useFrameworkContext() {
-  let context = reactExports.useContext(FrameworkContext);
+  const context = reactExports.useContext(FrameworkContext);
   invariant2(
     context,
     "You must render this element inside a <HydratedRouter> element"
@@ -14673,22 +14673,22 @@ function useFrameworkContext() {
   return context;
 }
 function usePrefetchBehavior(prefetch, theirElementProps) {
-  let frameworkContext = reactExports.useContext(FrameworkContext);
-  let [maybePrefetch, setMaybePrefetch] = reactExports.useState(false);
-  let [shouldPrefetch, setShouldPrefetch] = reactExports.useState(false);
-  let { onFocus, onBlur, onMouseEnter, onMouseLeave, onTouchStart } = theirElementProps;
-  let ref = reactExports.useRef(null);
+  const frameworkContext = reactExports.useContext(FrameworkContext);
+  const [maybePrefetch, setMaybePrefetch] = reactExports.useState(false);
+  const [shouldPrefetch, setShouldPrefetch] = reactExports.useState(false);
+  const { onFocus, onBlur, onMouseEnter, onMouseLeave, onTouchStart } = theirElementProps;
+  const ref = reactExports.useRef(null);
   reactExports.useEffect(() => {
     if (prefetch === "render") {
       setShouldPrefetch(true);
     }
     if (prefetch === "viewport") {
-      let callback = (entries) => {
+      const callback = (entries) => {
         entries.forEach((entry) => {
           setShouldPrefetch(entry.isIntersecting);
         });
       };
-      let observer2 = new IntersectionObserver(callback, { threshold: 0.5 });
+      const observer2 = new IntersectionObserver(callback, { threshold: 0.5 });
       if (ref.current) observer2.observe(ref.current);
       return () => {
         observer2.disconnect();
@@ -14697,7 +14697,7 @@ function usePrefetchBehavior(prefetch, theirElementProps) {
   }, [prefetch]);
   reactExports.useEffect(() => {
     if (maybePrefetch) {
-      let id2 = setTimeout(() => {
+      const id2 = setTimeout(() => {
         setShouldPrefetch(true);
       }, 100);
       return () => {
@@ -14705,10 +14705,10 @@ function usePrefetchBehavior(prefetch, theirElementProps) {
       };
     }
   }, [maybePrefetch]);
-  let setIntent = () => {
+  const setIntent = () => {
     setMaybePrefetch(true);
   };
-  let cancelIntent = () => {
+  const cancelIntent = () => {
     setMaybePrefetch(false);
     setShouldPrefetch(false);
   };
@@ -14743,16 +14743,16 @@ function getActiveMatches(matches, errors, isSpaMode) {
     return [matches[0]];
   }
   if (errors) {
-    let errorIdx = matches.findIndex((m2) => errors[m2.route.id] !== void 0);
+    const errorIdx = matches.findIndex((m2) => errors[m2.route.id] !== void 0);
     return matches.slice(0, errorIdx + 1);
   }
   return matches;
 }
 function Links() {
-  let { isSpaMode, manifest, routeModules, criticalCss } = useFrameworkContext();
-  let { errors, matches: routerMatches } = useDataRouterStateContext();
-  let matches = getActiveMatches(routerMatches, errors, isSpaMode);
-  let keyedLinks = reactExports.useMemo(
+  const { isSpaMode, manifest, routeModules, criticalCss } = useFrameworkContext();
+  const { errors, matches: routerMatches } = useDataRouterStateContext();
+  const matches = getActiveMatches(routerMatches, errors, isSpaMode);
+  const keyedLinks = reactExports.useMemo(
     () => getKeyedLinksForMatches(matches, routeModules, manifest),
     [matches, routeModules, manifest]
   );
@@ -14764,8 +14764,8 @@ function PrefetchPageLinks({
   page,
   ...dataLinkProps
 }) {
-  let { router: router2 } = useDataRouterContext2();
-  let matches = reactExports.useMemo(
+  const { router: router2 } = useDataRouterContext2();
+  const matches = reactExports.useMemo(
     () => matchRoutes(router2.routes, page, router2.basename),
     [router2.routes, page, router2.basename]
   );
@@ -14775,8 +14775,8 @@ function PrefetchPageLinks({
   return /* @__PURE__ */ reactExports.createElement(PrefetchPageLinksImpl, { page, matches, ...dataLinkProps });
 }
 function useKeyedPrefetchLinks(matches) {
-  let { manifest, routeModules } = useFrameworkContext();
-  let [keyedPrefetchLinks, setKeyedPrefetchLinks] = reactExports.useState([]);
+  const { manifest, routeModules } = useFrameworkContext();
+  const [keyedPrefetchLinks, setKeyedPrefetchLinks] = reactExports.useState([]);
   reactExports.useEffect(() => {
     let interrupted = false;
     void getKeyedPrefetchLinks(matches, manifest, routeModules).then(
@@ -14797,10 +14797,10 @@ function PrefetchPageLinksImpl({
   matches: nextMatches,
   ...linkProps
 }) {
-  let location = useLocation();
-  let { manifest, routeModules } = useFrameworkContext();
-  let { loaderData, matches } = useDataRouterStateContext();
-  let newMatchesForData = reactExports.useMemo(
+  const location = useLocation();
+  const { manifest, routeModules } = useFrameworkContext();
+  const { loaderData, matches } = useDataRouterStateContext();
+  const newMatchesForData = reactExports.useMemo(
     () => getNewMatchesForLinks(
       page,
       nextMatches,
@@ -14811,7 +14811,7 @@ function PrefetchPageLinksImpl({
     ),
     [page, nextMatches, matches, manifest, location]
   );
-  let newMatchesForAssets = reactExports.useMemo(
+  const newMatchesForAssets = reactExports.useMemo(
     () => getNewMatchesForLinks(
       page,
       nextMatches,
@@ -14822,15 +14822,15 @@ function PrefetchPageLinksImpl({
     ),
     [page, nextMatches, matches, manifest, location]
   );
-  let dataHrefs = reactExports.useMemo(() => {
+  const dataHrefs = reactExports.useMemo(() => {
     if (page === location.pathname + location.search + location.hash) {
       return [];
     }
-    let routesParams = /* @__PURE__ */ new Set();
+    const routesParams = /* @__PURE__ */ new Set();
     let foundOptOutRoute = false;
     nextMatches.forEach((m2) => {
-      var _a;
-      let manifestRoute = manifest.routes[m2.route.id];
+      let _a;
+      const manifestRoute = manifest.routes[m2.route.id];
       if (!manifestRoute || !manifestRoute.hasLoader) {
         return;
       }
@@ -14845,7 +14845,7 @@ function PrefetchPageLinksImpl({
     if (routesParams.size === 0) {
       return [];
     }
-    let url = singleFetchUrl(page);
+    const url = singleFetchUrl(page);
     if (foundOptOutRoute && routesParams.size > 0) {
       url.searchParams.set(
         "_routes",
@@ -14862,11 +14862,11 @@ function PrefetchPageLinksImpl({
     page,
     routeModules
   ]);
-  let moduleHrefs = reactExports.useMemo(
+  const moduleHrefs = reactExports.useMemo(
     () => getModuleLinkHrefs(newMatchesForAssets, manifest),
     [newMatchesForAssets, manifest]
   );
-  let keyedPrefetchLinks = useKeyedPrefetchLinks(newMatchesForAssets);
+  const keyedPrefetchLinks = useKeyedPrefetchLinks(newMatchesForAssets);
   return /* @__PURE__ */ reactExports.createElement(reactExports.Fragment, null, dataHrefs.map((href) => /* @__PURE__ */ reactExports.createElement("link", { key: href, rel: "prefetch", as: "fetch", href, ...linkProps })), moduleHrefs.map((href) => /* @__PURE__ */ reactExports.createElement("link", { key: href, rel: "modulepreload", href, ...linkProps })), keyedPrefetchLinks.map(({ key, link }) => (
     // these don't spread `linkProps` because they are full link descriptors
     // already with their own props
@@ -14874,29 +14874,29 @@ function PrefetchPageLinksImpl({
   )));
 }
 function Meta() {
-  let { isSpaMode, routeModules } = useFrameworkContext();
-  let {
+  const { isSpaMode, routeModules } = useFrameworkContext();
+  const {
     errors,
     matches: routerMatches,
     loaderData
   } = useDataRouterStateContext();
-  let location = useLocation();
-  let _matches = getActiveMatches(routerMatches, errors, isSpaMode);
+  const location = useLocation();
+  const _matches = getActiveMatches(routerMatches, errors, isSpaMode);
   let error = null;
   if (errors) {
     error = errors[_matches[_matches.length - 1].route.id];
   }
   let meta = [];
   let leafMeta = null;
-  let matches = [];
+  const matches = [];
   for (let i = 0; i < _matches.length; i++) {
-    let _match = _matches[i];
-    let routeId = _match.route.id;
-    let data2 = loaderData[routeId];
-    let params = _match.params;
-    let routeModule = routeModules[routeId];
+    const _match = _matches[i];
+    const routeId = _match.route.id;
+    const data2 = loaderData[routeId];
+    const params = _match.params;
+    const routeModule = routeModules[routeId];
     let routeMeta = [];
-    let match = {
+    const match = {
       id: routeId,
       data: data2,
       meta: [],
@@ -14933,14 +14933,14 @@ function Meta() {
       return null;
     }
     if ("tagName" in metaProps) {
-      let { tagName, ...rest } = metaProps;
+      const { tagName, ...rest } = metaProps;
       if (!isValidMetaTag(tagName)) {
         console.warn(
           `A meta object uses an invalid tagName: ${tagName}. Expected either 'link' or 'meta'`
         );
         return null;
       }
-      let Comp = tagName;
+      const Comp = tagName;
       return /* @__PURE__ */ reactExports.createElement(Comp, { key: JSON.stringify(rest), ...rest });
     }
     if ("title" in metaProps) {
@@ -14955,7 +14955,7 @@ function Meta() {
     }
     if ("script:ld+json" in metaProps) {
       try {
-        let json = JSON.stringify(metaProps["script:ld+json"]);
+        const json = JSON.stringify(metaProps["script:ld+json"]);
         return /* @__PURE__ */ reactExports.createElement(
           "script",
           {
@@ -14976,22 +14976,22 @@ function isValidMetaTag(tagName) {
 }
 var isHydrated = false;
 function Scripts(props) {
-  let { manifest, serverHandoffString, isSpaMode, renderMeta } = useFrameworkContext();
-  let { router: router2, static: isStatic, staticContext } = useDataRouterContext2();
-  let { matches: routerMatches } = useDataRouterStateContext();
-  let enableFogOfWar = isFogOfWarEnabled(isSpaMode);
+  const { manifest, serverHandoffString, isSpaMode, renderMeta } = useFrameworkContext();
+  const { router: router2, static: isStatic, staticContext } = useDataRouterContext2();
+  const { matches: routerMatches } = useDataRouterStateContext();
+  const enableFogOfWar = isFogOfWarEnabled(isSpaMode);
   if (renderMeta) {
     renderMeta.didRenderScripts = true;
   }
-  let matches = getActiveMatches(routerMatches, null, isSpaMode);
+  const matches = getActiveMatches(routerMatches, null, isSpaMode);
   reactExports.useEffect(() => {
     isHydrated = true;
   }, []);
-  let initialScripts = reactExports.useMemo(() => {
-    var _a;
-    let streamScript = "window.__reactRouterContext.stream = new ReadableStream({start(controller){window.__reactRouterContext.streamController = controller;}}).pipeThrough(new TextEncoderStream());";
-    let contextScript = staticContext ? `window.__reactRouterContext = ${serverHandoffString};${streamScript}` : " ";
-    let routeModulesScript = !isStatic ? " " : `${((_a = manifest.hmr) == null ? void 0 : _a.runtime) ? `import ${JSON.stringify(manifest.hmr.runtime)};` : ""}${!enableFogOfWar ? `import ${JSON.stringify(manifest.url)}` : ""};
+  const initialScripts = reactExports.useMemo(() => {
+    let _a;
+    const streamScript = "window.__reactRouterContext.stream = new ReadableStream({start(controller){window.__reactRouterContext.streamController = controller;}}).pipeThrough(new TextEncoderStream());";
+    const contextScript = staticContext ? `window.__reactRouterContext = ${serverHandoffString};${streamScript}` : " ";
+    const routeModulesScript = !isStatic ? " " : `${((_a = manifest.hmr) == null ? void 0 : _a.runtime) ? `import ${JSON.stringify(manifest.hmr.runtime)};` : ""}${!enableFogOfWar ? `import ${JSON.stringify(manifest.url)}` : ""};
 ${matches.map(
       (match, index2) => `import * as route${index2} from ${JSON.stringify(
         manifest.routes[match.route.id].module
@@ -15027,11 +15027,11 @@ import(${JSON.stringify(manifest.entry.module)});`;
       }
     ));
   }, []);
-  let routePreloads = matches.map((match) => {
-    let route = manifest.routes[match.route.id];
+  const routePreloads = matches.map((match) => {
+    const route = manifest.routes[match.route.id];
     return route ? (route.imports || []).concat([route.module]) : [];
   }).flat(1);
-  let preloads = isHydrated ? [] : manifest.entry.imports.concat(routePreloads);
+  const preloads = isHydrated ? [] : manifest.entry.imports.concat(routePreloads);
   return isHydrated ? null : /* @__PURE__ */ reactExports.createElement(reactExports.Fragment, null, !enableFogOfWar ? /* @__PURE__ */ reactExports.createElement(
     "link",
     {
@@ -15070,7 +15070,7 @@ function mergeRefs(...refs) {
     });
   };
 }
-var isBrowser$1 = typeof window !== "undefined" && typeof window.document !== "undefined" && typeof window.document.createElement !== "undefined";
+const isBrowser$1 = typeof window !== "undefined" && typeof window.document !== "undefined" && typeof window.document.createElement !== "undefined";
 try {
   if (isBrowser$1) {
     window.__reactRouterVersion = "7.1.1";
@@ -15115,9 +15115,9 @@ function parseHydrationData() {
 }
 function deserializeErrors(errors) {
   if (!errors) return null;
-  let entries = Object.entries(errors);
-  let serialized = {};
-  for (let [key, val] of entries) {
+  const entries = Object.entries(errors);
+  const serialized = {};
+  for (const [key, val] of entries) {
     if (val && val.__type === "RouteErrorResponse") {
       serialized[key] = new ErrorResponseImpl(
         val.status,
@@ -15127,10 +15127,10 @@ function deserializeErrors(errors) {
       );
     } else if (val && val.__type === "Error") {
       if (val.__subType) {
-        let ErrorConstructor = window[val.__subType];
+        const ErrorConstructor = window[val.__subType];
         if (typeof ErrorConstructor === "function") {
           try {
-            let error = new ErrorConstructor(val.message);
+            const error = new ErrorConstructor(val.message);
             error.stack = "";
             serialized[key] = error;
           } catch (e) {
@@ -15138,7 +15138,7 @@ function deserializeErrors(errors) {
         }
       }
       if (serialized[key] == null) {
-        let error = new Error(val.message);
+        const error = new Error(val.message);
         error.stack = "";
         serialized[key] = error;
       }
@@ -15153,16 +15153,16 @@ function BrowserRouter({
   children,
   window: window2
 }) {
-  let historyRef = reactExports.useRef();
+  const historyRef = reactExports.useRef();
   if (historyRef.current == null) {
     historyRef.current = createBrowserHistory({ window: window2, v5Compat: true });
   }
-  let history = historyRef.current;
-  let [state2, setStateImpl] = reactExports.useState({
+  const history = historyRef.current;
+  const [state2, setStateImpl] = reactExports.useState({
     action: history.action,
     location: history.location
   });
-  let setState = reactExports.useCallback(
+  const setState = reactExports.useCallback(
     (newState) => {
       reactExports.startTransition(() => setStateImpl(newState));
     },
@@ -15181,16 +15181,16 @@ function BrowserRouter({
   );
 }
 function HashRouter({ basename, children, window: window2 }) {
-  let historyRef = reactExports.useRef();
+  const historyRef = reactExports.useRef();
   if (historyRef.current == null) {
     historyRef.current = createHashHistory({ window: window2, v5Compat: true });
   }
-  let history = historyRef.current;
-  let [state2, setStateImpl] = reactExports.useState({
+  const history = historyRef.current;
+  const [state2, setStateImpl] = reactExports.useState({
     action: history.action,
     location: history.location
   });
-  let setState = reactExports.useCallback(
+  const setState = reactExports.useCallback(
     (newState) => {
       reactExports.startTransition(() => setStateImpl(newState));
     },
@@ -15213,11 +15213,11 @@ function HistoryRouter({
   children,
   history
 }) {
-  let [state2, setStateImpl] = reactExports.useState({
+  const [state2, setStateImpl] = reactExports.useState({
     action: history.action,
     location: history.location
   });
-  let setState = reactExports.useCallback(
+  const setState = reactExports.useCallback(
     (newState) => {
       reactExports.startTransition(() => setStateImpl(newState));
     },
@@ -15236,8 +15236,8 @@ function HistoryRouter({
   );
 }
 HistoryRouter.displayName = "unstable_HistoryRouter";
-var ABSOLUTE_URL_REGEX2 = /^(?:[a-z][a-z0-9+.-]*:|\/\/)/i;
-var Link$1 = reactExports.forwardRef(
+const ABSOLUTE_URL_REGEX2 = /^(?:[a-z][a-z0-9+.-]*:|\/\/)/i;
+const Link$1 = reactExports.forwardRef(
   function LinkWithRef({
     onClick,
     discover = "render",
@@ -15252,17 +15252,17 @@ var Link$1 = reactExports.forwardRef(
     viewTransition,
     ...rest
   }, forwardedRef) {
-    let { basename } = reactExports.useContext(NavigationContext);
-    let isAbsolute = typeof to === "string" && ABSOLUTE_URL_REGEX2.test(to);
+    const { basename } = reactExports.useContext(NavigationContext);
+    const isAbsolute = typeof to === "string" && ABSOLUTE_URL_REGEX2.test(to);
     let absoluteHref;
     let isExternal = false;
     if (typeof to === "string" && isAbsolute) {
       absoluteHref = to;
       if (isBrowser$1) {
         try {
-          let currentUrl = new URL(window.location.href);
-          let targetUrl = to.startsWith("//") ? new URL(currentUrl.protocol + to) : new URL(to);
-          let path = stripBasename(targetUrl.pathname, basename);
+          const currentUrl = new URL(window.location.href);
+          const targetUrl = to.startsWith("//") ? new URL(currentUrl.protocol + to) : new URL(to);
+          const path = stripBasename(targetUrl.pathname, basename);
           if (targetUrl.origin === currentUrl.origin && path != null) {
             to = path + targetUrl.search + targetUrl.hash;
           } else {
@@ -15276,12 +15276,12 @@ var Link$1 = reactExports.forwardRef(
         }
       }
     }
-    let href = useHref(to, { relative });
-    let [shouldPrefetch, prefetchRef, prefetchHandlers] = usePrefetchBehavior(
+    const href = useHref(to, { relative });
+    const [shouldPrefetch, prefetchRef, prefetchHandlers] = usePrefetchBehavior(
       prefetch,
       rest
     );
-    let internalOnClick = useLinkClickHandler(to, {
+    const internalOnClick = useLinkClickHandler(to, {
       replace: replace2,
       state: state2,
       target,
@@ -15295,7 +15295,7 @@ var Link$1 = reactExports.forwardRef(
         internalOnClick(event);
       }
     }
-    let link = (
+    const link = (
       // eslint-disable-next-line jsx-a11y/anchor-has-content
       /* @__PURE__ */ reactExports.createElement(
         "a",
@@ -15314,7 +15314,7 @@ var Link$1 = reactExports.forwardRef(
   }
 );
 Link$1.displayName = "Link";
-var NavLink = reactExports.forwardRef(
+const NavLink = reactExports.forwardRef(
   function NavLinkWithRef({
     "aria-current": ariaCurrentProp = "page",
     caseSensitive = false,
@@ -15326,11 +15326,11 @@ var NavLink = reactExports.forwardRef(
     children,
     ...rest
   }, ref) {
-    let path = useResolvedPath(to, { relative: rest.relative });
-    let location = useLocation();
-    let routerState = reactExports.useContext(DataRouterStateContext);
-    let { navigator: navigator2, basename } = reactExports.useContext(NavigationContext);
-    let isTransitioning = routerState != null && // Conditional usage is OK here because the usage of a data router is static
+    const path = useResolvedPath(to, { relative: rest.relative });
+    const location = useLocation();
+    const routerState = reactExports.useContext(DataRouterStateContext);
+    const { navigator: navigator2, basename } = reactExports.useContext(NavigationContext);
+    const isTransitioning = routerState != null && // Conditional usage is OK here because the usage of a data router is static
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useViewTransitionState(path) && viewTransition === true;
     let toPathname = navigator2.encodeLocation ? navigator2.encodeLocation(path).pathname : path.pathname;
@@ -15345,14 +15345,14 @@ var NavLink = reactExports.forwardRef(
       nextLocationPathname = stripBasename(nextLocationPathname, basename) || nextLocationPathname;
     }
     const endSlashPosition = toPathname !== "/" && toPathname.endsWith("/") ? toPathname.length - 1 : toPathname.length;
-    let isActive = locationPathname === toPathname || !end && locationPathname.startsWith(toPathname) && locationPathname.charAt(endSlashPosition) === "/";
-    let isPending = nextLocationPathname != null && (nextLocationPathname === toPathname || !end && nextLocationPathname.startsWith(toPathname) && nextLocationPathname.charAt(toPathname.length) === "/");
-    let renderProps = {
+    const isActive = locationPathname === toPathname || !end && locationPathname.startsWith(toPathname) && locationPathname.charAt(endSlashPosition) === "/";
+    const isPending = nextLocationPathname != null && (nextLocationPathname === toPathname || !end && nextLocationPathname.startsWith(toPathname) && nextLocationPathname.charAt(toPathname.length) === "/");
+    const renderProps = {
       isActive,
       isPending,
       isTransitioning
     };
-    let ariaCurrent = isActive ? ariaCurrentProp : void 0;
+    const ariaCurrent = isActive ? ariaCurrentProp : void 0;
     let className;
     if (typeof classNameProp === "function") {
       className = classNameProp(renderProps);
@@ -15364,7 +15364,7 @@ var NavLink = reactExports.forwardRef(
         isTransitioning ? "transitioning" : null
       ].filter(Boolean).join(" ");
     }
-    let style2 = typeof styleProp === "function" ? styleProp(renderProps) : styleProp;
+    const style2 = typeof styleProp === "function" ? styleProp(renderProps) : styleProp;
     return /* @__PURE__ */ reactExports.createElement(
       Link$1,
       {
@@ -15381,7 +15381,7 @@ var NavLink = reactExports.forwardRef(
   }
 );
 NavLink.displayName = "NavLink";
-var Form = reactExports.forwardRef(
+const Form = reactExports.forwardRef(
   ({
     discover = "render",
     fetcherKey,
@@ -15397,16 +15397,16 @@ var Form = reactExports.forwardRef(
     viewTransition,
     ...props
   }, forwardedRef) => {
-    let submit = useSubmit();
-    let formAction = useFormAction(action, { relative });
-    let formMethod = method.toLowerCase() === "get" ? "get" : "post";
-    let isAbsolute = typeof action === "string" && ABSOLUTE_URL_REGEX2.test(action);
-    let submitHandler = (event) => {
+    const submit = useSubmit();
+    const formAction = useFormAction(action, { relative });
+    const formMethod = method.toLowerCase() === "get" ? "get" : "post";
+    const isAbsolute = typeof action === "string" && ABSOLUTE_URL_REGEX2.test(action);
+    const submitHandler = (event) => {
       onSubmit && onSubmit(event);
       if (event.defaultPrevented) return;
       event.preventDefault();
-      let submitter = event.nativeEvent.submitter;
-      let submitMethod = (submitter == null ? void 0 : submitter.getAttribute("formmethod")) || method;
+      const submitter = event.nativeEvent.submitter;
+      const submitMethod = (submitter == null ? void 0 : submitter.getAttribute("formmethod")) || method;
       submit(submitter || event.currentTarget, {
         fetcherKey,
         method: submitMethod,
@@ -15437,15 +15437,15 @@ function ScrollRestoration({
   storageKey,
   ...props
 }) {
-  let remixContext = reactExports.useContext(FrameworkContext);
-  let { basename } = reactExports.useContext(NavigationContext);
-  let location = useLocation();
-  let matches = useMatches();
+  const remixContext = reactExports.useContext(FrameworkContext);
+  const { basename } = reactExports.useContext(NavigationContext);
+  const location = useLocation();
+  const matches = useMatches();
   useScrollRestoration({ getKey, storageKey });
-  let ssrKey = reactExports.useMemo(
+  const ssrKey = reactExports.useMemo(
     () => {
       if (!remixContext || !getKey) return null;
-      let userKey = getScrollRestorationKey(
+      const userKey = getScrollRestorationKey(
         location,
         matches,
         basename,
@@ -15454,20 +15454,20 @@ function ScrollRestoration({
       return userKey !== location.key ? userKey : null;
     },
     // Nah, we only need this the first time for the SSR render
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
     []
   );
   if (!remixContext || remixContext.isSpaMode) {
     return null;
   }
-  let restoreScroll = ((storageKey2, restoreKey) => {
+  const restoreScroll = ((storageKey2, restoreKey) => {
     if (!window.history.state || !window.history.state.key) {
-      let key = Math.random().toString(32).slice(2);
+      const key = Math.random().toString(32).slice(2);
       window.history.replaceState({ key }, "");
     }
     try {
-      let positions = JSON.parse(sessionStorage.getItem(storageKey2) || "{}");
-      let storedY = positions[restoreKey || window.history.state.key];
+      const positions = JSON.parse(sessionStorage.getItem(storageKey2) || "{}");
+      const storedY = positions[restoreKey || window.history.state.key];
       if (typeof storedY === "number") {
         window.scrollTo(0, storedY);
       }
@@ -15494,12 +15494,12 @@ function getDataRouterConsoleError2(hookName) {
   return `${hookName} must be used within a data router.  See https://reactrouter.com/en/main/routers/picking-a-router.`;
 }
 function useDataRouterContext3(hookName) {
-  let ctx = reactExports.useContext(DataRouterContext);
+  const ctx = reactExports.useContext(DataRouterContext);
   invariant$1(ctx, getDataRouterConsoleError2(hookName));
   return ctx;
 }
 function useDataRouterState2(hookName) {
-  let state2 = reactExports.useContext(DataRouterStateContext);
+  const state2 = reactExports.useContext(DataRouterStateContext);
   invariant$1(state2, getDataRouterConsoleError2(hookName));
   return state2;
 }
@@ -15511,14 +15511,14 @@ function useLinkClickHandler(to, {
   relative,
   viewTransition
 } = {}) {
-  let navigate = useNavigate();
-  let location = useLocation();
-  let path = useResolvedPath(to, { relative });
+  const navigate = useNavigate();
+  const location = useLocation();
+  const path = useResolvedPath(to, { relative });
   return reactExports.useCallback(
     (event) => {
       if (shouldProcessLinkClick(event, target)) {
         event.preventDefault();
-        let replace2 = replaceProp !== void 0 ? replaceProp : createPath(location) === createPath(path);
+        const replace2 = replaceProp !== void 0 ? replaceProp : createPath(location) === createPath(path);
         navigate(to, {
           replace: replace2,
           state: state2,
@@ -15547,10 +15547,10 @@ function useSearchParams(defaultInit) {
     typeof URLSearchParams !== "undefined",
     `You cannot use the \`useSearchParams\` hook in a browser that does not support the URLSearchParams API. If you need to support Internet Explorer 11, we recommend you load a polyfill such as https://github.com/ungap/url-search-params.`
   );
-  let defaultSearchParamsRef = reactExports.useRef(createSearchParams(defaultInit));
-  let hasSetSearchParamsRef = reactExports.useRef(false);
-  let location = useLocation();
-  let searchParams = reactExports.useMemo(
+  const defaultSearchParamsRef = reactExports.useRef(createSearchParams(defaultInit));
+  const hasSetSearchParamsRef = reactExports.useRef(false);
+  const location = useLocation();
+  const searchParams = reactExports.useMemo(
     () => (
       // Only merge in the defaults if we haven't yet called setSearchParams.
       // Once we call that we want those to take precedence, otherwise you can't
@@ -15562,8 +15562,8 @@ function useSearchParams(defaultInit) {
     ),
     [location.search]
   );
-  let navigate = useNavigate();
-  let setSearchParams = reactExports.useCallback(
+  const navigate = useNavigate();
+  const setSearchParams = reactExports.useCallback(
     (nextInit, navigateOptions) => {
       const newSearchParams = createSearchParams(
         typeof nextInit === "function" ? nextInit(searchParams) : nextInit
@@ -15575,23 +15575,23 @@ function useSearchParams(defaultInit) {
   );
   return [searchParams, setSearchParams];
 }
-var fetcherId = 0;
-var getUniqueFetcherId = () => `__${String(++fetcherId)}__`;
+let fetcherId = 0;
+const getUniqueFetcherId = () => `__${String(++fetcherId)}__`;
 function useSubmit() {
-  let { router: router2 } = useDataRouterContext3(
+  const { router: router2 } = useDataRouterContext3(
     "useSubmit"
     /* UseSubmit */
   );
-  let { basename } = reactExports.useContext(NavigationContext);
-  let currentRouteId = useRouteId();
+  const { basename } = reactExports.useContext(NavigationContext);
+  const currentRouteId = useRouteId();
   return reactExports.useCallback(
     async (target, options = {}) => {
-      let { action, method, encType, formData, body } = getFormSubmissionInfo(
+      const { action, method, encType, formData, body } = getFormSubmissionInfo(
         target,
         basename
       );
       if (options.navigate === false) {
-        let key = options.fetcherKey || getUniqueFetcherId();
+        const key = options.fetcherKey || getUniqueFetcherId();
         await router2.fetch(key, currentRouteId, options.action || action, {
           preventScrollReset: options.preventScrollReset,
           formData,
@@ -15619,21 +15619,21 @@ function useSubmit() {
   );
 }
 function useFormAction(action, { relative } = {}) {
-  let { basename } = reactExports.useContext(NavigationContext);
-  let routeContext = reactExports.useContext(RouteContext);
+  const { basename } = reactExports.useContext(NavigationContext);
+  const routeContext = reactExports.useContext(RouteContext);
   invariant$1(routeContext, "useFormAction must be used inside a RouteContext");
-  let [match] = routeContext.matches.slice(-1);
-  let path = { ...useResolvedPath(action ? action : ".", { relative }) };
-  let location = useLocation();
+  const [match] = routeContext.matches.slice(-1);
+  const path = { ...useResolvedPath(action ? action : ".", { relative }) };
+  const location = useLocation();
   if (action == null) {
     path.search = location.search;
-    let params = new URLSearchParams(path.search);
-    let indexValues = params.getAll("index");
-    let hasNakedIndexParam = indexValues.some((v) => v === "");
+    const params = new URLSearchParams(path.search);
+    const indexValues = params.getAll("index");
+    const hasNakedIndexParam = indexValues.some((v) => v === "");
     if (hasNakedIndexParam) {
       params.delete("index");
       indexValues.filter((v) => v).forEach((v) => params.append("index", v));
-      let qs = params.toString();
+      const qs = params.toString();
       path.search = qs ? `?${qs}` : "";
     }
   }
@@ -15648,26 +15648,26 @@ function useFormAction(action, { relative } = {}) {
 function useFetcher({
   key
 } = {}) {
-  var _a;
-  let { router: router2 } = useDataRouterContext3(
+  let _a;
+  const { router: router2 } = useDataRouterContext3(
     "useFetcher"
     /* UseFetcher */
   );
-  let state2 = useDataRouterState2(
+  const state2 = useDataRouterState2(
     "useFetcher"
     /* UseFetcher */
   );
-  let fetcherData = reactExports.useContext(FetchersContext);
-  let route = reactExports.useContext(RouteContext);
-  let routeId = (_a = route.matches[route.matches.length - 1]) == null ? void 0 : _a.route.id;
+  const fetcherData = reactExports.useContext(FetchersContext);
+  const route = reactExports.useContext(RouteContext);
+  const routeId = (_a = route.matches[route.matches.length - 1]) == null ? void 0 : _a.route.id;
   invariant$1(fetcherData, `useFetcher must be used inside a FetchersContext`);
   invariant$1(route, `useFetcher must be used inside a RouteContext`);
   invariant$1(
     routeId != null,
     `useFetcher can only be used on routes that contain a unique "id"`
   );
-  let defaultKey = reactExports.useId();
-  let [fetcherKey, setFetcherKey] = reactExports.useState(key || defaultKey);
+  const defaultKey = reactExports.useId();
+  const [fetcherKey, setFetcherKey] = reactExports.useState(key || defaultKey);
   if (key && key !== fetcherKey) {
     setFetcherKey(key);
   }
@@ -15675,15 +15675,15 @@ function useFetcher({
     router2.getFetcher(fetcherKey);
     return () => router2.deleteFetcher(fetcherKey);
   }, [router2, fetcherKey]);
-  let load = reactExports.useCallback(
+  const load = reactExports.useCallback(
     async (href, opts) => {
       invariant$1(routeId, "No routeId available for fetcher.load()");
       await router2.fetch(fetcherKey, routeId, href, opts);
     },
     [fetcherKey, routeId, router2]
   );
-  let submitImpl = useSubmit();
-  let submit = reactExports.useCallback(
+  const submitImpl = useSubmit();
+  const submit = reactExports.useCallback(
     async (target, opts) => {
       await submitImpl(target, {
         ...opts,
@@ -15693,8 +15693,8 @@ function useFetcher({
     },
     [fetcherKey, submitImpl]
   );
-  let FetcherForm = reactExports.useMemo(() => {
-    let FetcherForm2 = reactExports.forwardRef(
+  const FetcherForm = reactExports.useMemo(() => {
+    const FetcherForm2 = reactExports.forwardRef(
       (props, ref) => {
         return /* @__PURE__ */ reactExports.createElement(Form, { ...props, navigate: false, fetcherKey, ref });
       }
@@ -15702,9 +15702,9 @@ function useFetcher({
     FetcherForm2.displayName = "fetcher.Form";
     return FetcherForm2;
   }, [fetcherKey]);
-  let fetcher = state2.fetchers.get(fetcherKey) || IDLE_FETCHER;
-  let data2 = fetcherData.get(fetcherKey);
-  let fetcherWithComponents = reactExports.useMemo(
+  const fetcher = state2.fetchers.get(fetcherKey) || IDLE_FETCHER;
+  const data2 = fetcherData.get(fetcherKey);
+  const fetcherWithComponents = reactExports.useMemo(
     () => ({
       Form: FetcherForm,
       submit,
@@ -15717,7 +15717,7 @@ function useFetcher({
   return fetcherWithComponents;
 }
 function useFetchers() {
-  let state2 = useDataRouterState2(
+  const state2 = useDataRouterState2(
     "useFetchers"
     /* UseFetchers */
   );
@@ -15727,7 +15727,7 @@ function useFetchers() {
   }));
 }
 var SCROLL_RESTORATION_STORAGE_KEY = "react-router-scroll-positions";
-var savedScrollPositions = {};
+let savedScrollPositions = {};
 function getScrollRestorationKey(location, matches, basename, getKey) {
   let key = null;
   if (getKey) {
@@ -15752,18 +15752,18 @@ function useScrollRestoration({
   getKey,
   storageKey
 } = {}) {
-  let { router: router2 } = useDataRouterContext3(
+  const { router: router2 } = useDataRouterContext3(
     "useScrollRestoration"
     /* UseScrollRestoration */
   );
-  let { restoreScrollPosition, preventScrollReset } = useDataRouterState2(
+  const { restoreScrollPosition, preventScrollReset } = useDataRouterState2(
     "useScrollRestoration"
     /* UseScrollRestoration */
   );
-  let { basename } = reactExports.useContext(NavigationContext);
-  let location = useLocation();
-  let matches = useMatches();
-  let navigation = useNavigation();
+  const { basename } = reactExports.useContext(NavigationContext);
+  const location = useLocation();
+  const matches = useMatches();
+  const navigation = useNavigation();
   reactExports.useEffect(() => {
     window.history.scrollRestoration = "manual";
     return () => {
@@ -15773,7 +15773,7 @@ function useScrollRestoration({
   usePageHide(
     reactExports.useCallback(() => {
       if (navigation.state === "idle") {
-        let key = getScrollRestorationKey(location, matches, basename, getKey);
+        const key = getScrollRestorationKey(location, matches, basename, getKey);
         savedScrollPositions[key] = window.scrollY;
       }
       try {
@@ -15793,7 +15793,7 @@ function useScrollRestoration({
   if (typeof document !== "undefined") {
     reactExports.useLayoutEffect(() => {
       try {
-        let sessionPositions = sessionStorage.getItem(
+        const sessionPositions = sessionStorage.getItem(
           storageKey || SCROLL_RESTORATION_STORAGE_KEY
         );
         if (sessionPositions) {
@@ -15803,7 +15803,7 @@ function useScrollRestoration({
       }
     }, [storageKey]);
     reactExports.useLayoutEffect(() => {
-      let disableScrollRestoration = router2 == null ? void 0 : router2.enableScrollRestoration(
+      const disableScrollRestoration = router2 == null ? void 0 : router2.enableScrollRestoration(
         savedScrollPositions,
         () => window.scrollY,
         getKey ? (location2, matches2) => getScrollRestorationKey(location2, matches2, basename, getKey) : void 0
@@ -15819,7 +15819,7 @@ function useScrollRestoration({
         return;
       }
       if (location.hash) {
-        let el = document.getElementById(
+        const el = document.getElementById(
           decodeURIComponent(location.hash.slice(1))
         );
         if (el) {
@@ -15835,9 +15835,9 @@ function useScrollRestoration({
   }
 }
 function useBeforeUnload(callback, options) {
-  let { capture } = options || {};
+  const { capture } = options || {};
   reactExports.useEffect(() => {
-    let opts = capture != null ? { capture } : void 0;
+    const opts = capture != null ? { capture } : void 0;
     window.addEventListener("beforeunload", callback, opts);
     return () => {
       window.removeEventListener("beforeunload", callback, opts);
@@ -15845,9 +15845,9 @@ function useBeforeUnload(callback, options) {
   }, [callback, capture]);
 }
 function usePageHide(callback, options) {
-  let { capture } = options || {};
+  const { capture } = options || {};
   reactExports.useEffect(() => {
-    let opts = capture != null ? { capture } : void 0;
+    const opts = capture != null ? { capture } : void 0;
     window.addEventListener("pagehide", callback, opts);
     return () => {
       window.removeEventListener("pagehide", callback, opts);
@@ -15858,10 +15858,10 @@ function usePrompt({
   when,
   message
 }) {
-  let blocker = useBlocker(when);
+  const blocker = useBlocker(when);
   reactExports.useEffect(() => {
     if (blocker.state === "blocked") {
-      let proceed = window.confirm(message);
+      const proceed = window.confirm(message);
       if (proceed) {
         setTimeout(blocker.proceed, 0);
       } else {
@@ -15876,21 +15876,21 @@ function usePrompt({
   }, [blocker, when]);
 }
 function useViewTransitionState(to, opts = {}) {
-  let vtContext = reactExports.useContext(ViewTransitionContext);
+  const vtContext = reactExports.useContext(ViewTransitionContext);
   invariant$1(
     vtContext != null,
     "`useViewTransitionState` must be used within `react-router-dom`'s `RouterProvider`.  Did you accidentally import `RouterProvider` from `react-router`?"
   );
-  let { basename } = useDataRouterContext3(
+  const { basename } = useDataRouterContext3(
     "useViewTransitionState"
     /* useViewTransitionState */
   );
-  let path = useResolvedPath(to, { relative: opts.relative });
+  const path = useResolvedPath(to, { relative: opts.relative });
   if (!vtContext.isTransitioning) {
     return false;
   }
-  let currentPath = stripBasename(vtContext.currentLocation.pathname, basename) || vtContext.currentLocation.pathname;
-  let nextPath = stripBasename(vtContext.nextLocation.pathname, basename) || vtContext.nextLocation.pathname;
+  const currentPath = stripBasename(vtContext.currentLocation.pathname, basename) || vtContext.currentLocation.pathname;
+  const nextPath = stripBasename(vtContext.nextLocation.pathname, basename) || vtContext.nextLocation.pathname;
   return matchPath(path.pathname, nextPath) != null || matchPath(path.pathname, currentPath) != null;
 }
 function StaticRouter({
@@ -15901,15 +15901,15 @@ function StaticRouter({
   if (typeof locationProp === "string") {
     locationProp = parsePath(locationProp);
   }
-  let action = "POP";
-  let location = {
+  const action = "POP";
+  const location = {
     pathname: locationProp.pathname || "/",
     search: locationProp.search || "",
     hash: locationProp.hash || "",
     state: locationProp.state != null ? locationProp.state : null,
     key: locationProp.key || "default"
   };
-  let staticNavigator = getStatelessNavigator();
+  const staticNavigator = getStatelessNavigator();
   return /* @__PURE__ */ reactExports.createElement(
     Router$1,
     {
@@ -15932,25 +15932,25 @@ function StaticRouterProvider({
     router2 && context,
     "You must provide `router` and `context` to <StaticRouterProvider>"
   );
-  let dataRouterContext = {
+  const dataRouterContext = {
     router: router2,
     navigator: getStatelessNavigator(),
     static: true,
     staticContext: context,
     basename: context.basename || "/"
   };
-  let fetchersContext = /* @__PURE__ */ new Map();
+  const fetchersContext = /* @__PURE__ */ new Map();
   let hydrateScript = "";
   if (hydrate2 !== false) {
-    let data2 = {
+    const data2 = {
       loaderData: context.loaderData,
       actionData: context.actionData,
       errors: serializeErrors(context.errors)
     };
-    let json = htmlEscape(JSON.stringify(JSON.stringify(data2)));
+    const json = htmlEscape(JSON.stringify(JSON.stringify(data2)));
     hydrateScript = `window.__staticRouterHydrationData = JSON.parse(${json});`;
   }
-  let { state: state2 } = dataRouterContext.router;
+  const { state: state2 } = dataRouterContext.router;
   return /* @__PURE__ */ reactExports.createElement(reactExports.Fragment, null, /* @__PURE__ */ reactExports.createElement(DataRouterContext.Provider, { value: dataRouterContext }, /* @__PURE__ */ reactExports.createElement(DataRouterStateContext.Provider, { value: state2 }, /* @__PURE__ */ reactExports.createElement(FetchersContext.Provider, { value: fetchersContext }, /* @__PURE__ */ reactExports.createElement(ViewTransitionContext.Provider, { value: { isTransitioning: false } }, /* @__PURE__ */ reactExports.createElement(
     Router$1,
     {
@@ -15986,9 +15986,9 @@ function DataRoutes2({
 }
 function serializeErrors(errors) {
   if (!errors) return null;
-  let entries = Object.entries(errors);
-  let serialized = {};
-  for (let [key, val] of entries) {
+  const entries = Object.entries(errors);
+  const serialized = {};
+  for (const [key, val] of entries) {
     if (isRouteErrorResponse(val)) {
       serialized[key] = { ...val, __type: "RouteErrorResponse" };
     } else if (val instanceof Error) {
@@ -16045,21 +16045,21 @@ function createStaticHandler2(routes, opts) {
   });
 }
 function createStaticRouter(routes, context, opts = {}) {
-  let manifest = {};
-  let dataRoutes = convertRoutesToDataRoutes(
+  const manifest = {};
+  const dataRoutes = convertRoutesToDataRoutes(
     routes,
     mapRouteProperties,
     void 0,
     manifest
   );
-  let matches = context.matches.map((match) => {
-    let route = manifest[match.route.id] || match.route;
+  const matches = context.matches.map((match) => {
+    const route = manifest[match.route.id] || match.route;
     return {
       ...match,
       route
     };
   });
-  let msg = (method) => `You cannot use router.${method}() on the server because it is a stateless environment`;
+  const msg = (method) => `You cannot use router.${method}() on the server because it is a stateless environment`;
   return {
     get basename() {
       return context.basename;
@@ -16142,7 +16142,7 @@ function createHref(to) {
 function encodeLocation(to) {
   let href = typeof to === "string" ? to : createPath(to);
   href = href.replace(/ $/, "%20");
-  let encoded = ABSOLUTE_URL_REGEX3.test(href) ? new URL(href) : new URL(href, "http://localhost");
+  const encoded = ABSOLUTE_URL_REGEX3.test(href) ? new URL(href) : new URL(href, "http://localhost");
   return {
     pathname: encoded.pathname,
     search: encoded.search,
@@ -16150,14 +16150,14 @@ function encodeLocation(to) {
   };
 }
 var ABSOLUTE_URL_REGEX3 = /^(?:[a-z][a-z0-9+.-]*:|\/\/)/i;
-var ESCAPE_LOOKUP2 = {
+const ESCAPE_LOOKUP2 = {
   "&": "\\u0026",
   ">": "\\u003e",
   "<": "\\u003c",
   "\u2028": "\\u2028",
   "\u2029": "\\u2029"
 };
-var ESCAPE_REGEX2 = /[&><\u2028\u2029]/g;
+const ESCAPE_REGEX2 = /[&><\u2028\u2029]/g;
 function htmlEscape(str) {
   return str.replace(ESCAPE_REGEX2, (match) => ESCAPE_LOOKUP2[match]);
 }
@@ -16169,8 +16169,8 @@ function ServerRouter({
   if (typeof url === "string") {
     url = new URL(url);
   }
-  let { manifest, routeModules, criticalCss, serverHandoffString } = context;
-  let routes = createServerRoutes(
+  const { manifest, routeModules, criticalCss, serverHandoffString } = context;
+  const routes = createServerRoutes(
     manifest.routes,
     routeModules,
     context.future,
@@ -16179,15 +16179,15 @@ function ServerRouter({
   context.staticHandlerContext.loaderData = {
     ...context.staticHandlerContext.loaderData
   };
-  for (let match of context.staticHandlerContext.matches) {
-    let routeId = match.route.id;
-    let route = routeModules[routeId];
-    let manifestRoute = context.manifest.routes[routeId];
+  for (const match of context.staticHandlerContext.matches) {
+    const routeId = match.route.id;
+    const route = routeModules[routeId];
+    const manifestRoute = context.manifest.routes[routeId];
     if (route && manifestRoute && shouldHydrateRouteLoader(manifestRoute, route, context.isSpaMode) && (route.HydrateFallback || !manifestRoute.hasLoader)) {
       delete context.staticHandlerContext.loaderData[routeId];
     }
   }
-  let router2 = createStaticRouter(routes, context.staticHandlerContext);
+  const router2 = createStaticRouter(routes, context.staticHandlerContext);
   return /* @__PURE__ */ reactExports.createElement(reactExports.Fragment, null, /* @__PURE__ */ reactExports.createElement(
     FrameworkContext.Provider,
     {
@@ -16228,8 +16228,8 @@ function createRoutesStub(routes, context = {}) {
     hydrationData,
     future
   }) {
-    let routerRef = reactExports.useRef();
-    let remixContextRef = reactExports.useRef();
+    const routerRef = reactExports.useRef();
+    const remixContextRef = reactExports.useRef();
     if (routerRef.current == null) {
       remixContextRef.current = {
         future: {},
@@ -16242,7 +16242,7 @@ function createRoutesStub(routes, context = {}) {
         routeModules: {},
         isSpaMode: false
       };
-      let patched = processRoutes(
+      const patched = processRoutes(
         // @ts-expect-error loader/action context types don't match :/
         convertRoutesToDataRoutes(routes, (r) => r),
         context,
@@ -16265,8 +16265,8 @@ function processRoutes(routes, context, manifest, routeModules, parentId) {
         "Expected a route.id in @remix-run/testing processRoutes() function"
       );
     }
-    let { loader, action } = route;
-    let newRoute = {
+    const { loader, action } = route;
+    const newRoute = {
       id: route.id,
       path: route.path,
       index: route.index,
@@ -16278,7 +16278,7 @@ function processRoutes(routes, context, manifest, routeModules, parentId) {
       handle: route.handle,
       shouldRevalidate: route.shouldRevalidate
     };
-    let entryRoute = {
+    const entryRoute = {
       id: route.id,
       path: route.path,
       index: route.index,
@@ -16315,25 +16315,25 @@ function processRoutes(routes, context, manifest, routeModules, parentId) {
     return newRoute;
   });
 }
-var encoder = new TextEncoder();
-var sign = async (value, secret) => {
-  let data2 = encoder.encode(value);
-  let key = await createKey2(secret, ["sign"]);
-  let signature = await crypto.subtle.sign("HMAC", key, data2);
-  let hash = btoa(String.fromCharCode(...new Uint8Array(signature))).replace(
+const encoder = new TextEncoder();
+const sign = async (value, secret) => {
+  const data2 = encoder.encode(value);
+  const key = await createKey2(secret, ["sign"]);
+  const signature = await crypto.subtle.sign("HMAC", key, data2);
+  const hash = btoa(String.fromCharCode(...new Uint8Array(signature))).replace(
     /=+$/,
     ""
   );
   return value + "." + hash;
 };
-var unsign = async (cookie, secret) => {
-  let index2 = cookie.lastIndexOf(".");
-  let value = cookie.slice(0, index2);
-  let hash = cookie.slice(index2 + 1);
-  let data2 = encoder.encode(value);
-  let key = await createKey2(secret, ["verify"]);
-  let signature = byteStringToUint8Array(atob(hash));
-  let valid = await crypto.subtle.verify("HMAC", key, signature, data2);
+const unsign = async (cookie, secret) => {
+  const index2 = cookie.lastIndexOf(".");
+  const value = cookie.slice(0, index2);
+  const hash = cookie.slice(index2 + 1);
+  const data2 = encoder.encode(value);
+  const key = await createKey2(secret, ["verify"]);
+  const signature = byteStringToUint8Array(atob(hash));
+  const valid = await crypto.subtle.verify("HMAC", key, signature, data2);
   return valid ? value : false;
 };
 var createKey2 = async (secret, usages) => crypto.subtle.importKey(
@@ -16344,14 +16344,14 @@ var createKey2 = async (secret, usages) => crypto.subtle.importKey(
   usages
 );
 function byteStringToUint8Array(byteString) {
-  let array = new Uint8Array(byteString.length);
+  const array = new Uint8Array(byteString.length);
   for (let i = 0; i < byteString.length; i++) {
     array[i] = byteString.charCodeAt(i);
   }
   return array;
 }
-var createCookie = (name, cookieOptions = {}) => {
-  let { secrets = [], ...options } = {
+const createCookie = (name, cookieOptions = {}) => {
+  const { secrets = [], ...options } = {
     path: "/",
     sameSite: "lax",
     ...cookieOptions
@@ -16369,11 +16369,11 @@ var createCookie = (name, cookieOptions = {}) => {
     },
     async parse(cookieHeader, parseOptions) {
       if (!cookieHeader) return null;
-      let cookies2 = distExports.parse(cookieHeader, { ...options, ...parseOptions });
+      const cookies2 = distExports.parse(cookieHeader, { ...options, ...parseOptions });
       if (name in cookies2) {
-        let value = cookies2[name];
+        const value = cookies2[name];
         if (typeof value === "string" && value !== "") {
-          let decoded = await decodeCookieValue(value, secrets);
+          const decoded = await decodeCookieValue(value, secrets);
           return decoded;
         } else {
           return "";
@@ -16394,7 +16394,7 @@ var createCookie = (name, cookieOptions = {}) => {
     }
   };
 };
-var isCookie = (object) => {
+const isCookie = (object) => {
   return object != null && typeof object.name === "string" && typeof object.isSigned === "boolean" && typeof object.parse === "function" && typeof object.serialize === "function";
 };
 async function encodeCookieValue(value, secrets) {
@@ -16406,8 +16406,8 @@ async function encodeCookieValue(value, secrets) {
 }
 async function decodeCookieValue(value, secrets) {
   if (secrets.length > 0) {
-    for (let secret of secrets) {
-      let unsignedValue = await unsign(value, secret);
+    for (const secret of secrets) {
+      const unsignedValue = await unsign(value, secret);
       if (unsignedValue !== false) {
         return decodeData(unsignedValue);
       }
@@ -16427,7 +16427,7 @@ function decodeData(value) {
   }
 }
 function myEscape(value) {
-  let str = value.toString();
+  const str = value.toString();
   let result = "";
   let index2 = 0;
   let chr, code;
@@ -16452,7 +16452,7 @@ function hex$1(code, length) {
   return result;
 }
 function myUnescape(value) {
-  let str = value.toString();
+  const str = value.toString();
   let result = "";
   let index2 = 0;
   let chr, part;
@@ -16487,7 +16487,7 @@ function warnOnceAboutExpiresCookie(name, expires) {
 }
 function createEntryRouteModules(manifest) {
   return Object.keys(manifest).reduce((memo2, routeId) => {
-    let route = manifest[routeId];
+    const route = manifest[routeId];
     if (route) {
       memo2[routeId] = route.module;
     }
@@ -16505,7 +16505,7 @@ function isServerMode(value) {
 }
 function sanitizeError(error, serverMode) {
   if (error instanceof Error && serverMode !== "development") {
-    let sanitized = new Error("Unexpected Server Error");
+    const sanitized = new Error("Unexpected Server Error");
     sanitized.stack = void 0;
     return sanitized;
   }
@@ -16517,7 +16517,7 @@ function sanitizeErrors(errors, serverMode) {
   }, {});
 }
 function serializeError(error, serverMode) {
-  let sanitized = sanitizeError(error, serverMode);
+  const sanitized = sanitizeError(error, serverMode);
   return {
     message: sanitized.message,
     stack: sanitized.stack
@@ -16525,13 +16525,13 @@ function serializeError(error, serverMode) {
 }
 function serializeErrors2(errors, serverMode) {
   if (!errors) return null;
-  let entries = Object.entries(errors);
-  let serialized = {};
-  for (let [key, val] of entries) {
+  const entries = Object.entries(errors);
+  const serialized = {};
+  for (const [key, val] of entries) {
     if (isRouteErrorResponse(val)) {
       serialized[key] = { ...val, __type: "RouteErrorResponse" };
     } else if (val instanceof Error) {
-      let sanitized = sanitizeError(val, serverMode);
+      const sanitized = sanitizeError(val, serverMode);
       serialized[key] = {
         message: sanitized.message,
         stack: sanitized.stack,
@@ -16551,7 +16551,7 @@ function serializeErrors2(errors, serverMode) {
   return serialized;
 }
 function matchServerRoutes(routes, pathname, basename) {
-  let matches = matchRoutes(
+  const matches = matchRoutes(
     routes,
     pathname,
     basename
@@ -16564,7 +16564,7 @@ function matchServerRoutes(routes, pathname, basename) {
   }));
 }
 async function callRouteHandler(handler, args) {
-  let result = await handler({
+  const result = await handler({
     request: stripRoutesParam(stripIndexParam2(args.request)),
     params: args.params,
     context: args.context
@@ -16575,19 +16575,19 @@ async function callRouteHandler(handler, args) {
   return result;
 }
 function stripIndexParam2(request) {
-  let url = new URL(request.url);
-  let indexValues = url.searchParams.getAll("index");
+  const url = new URL(request.url);
+  const indexValues = url.searchParams.getAll("index");
   url.searchParams.delete("index");
-  let indexValuesToKeep = [];
-  for (let indexValue of indexValues) {
+  const indexValuesToKeep = [];
+  for (const indexValue of indexValues) {
     if (indexValue) {
       indexValuesToKeep.push(indexValue);
     }
   }
-  for (let toKeep of indexValuesToKeep) {
+  for (const toKeep of indexValuesToKeep) {
     url.searchParams.append("index", toKeep);
   }
-  let init = {
+  const init = {
     method: request.method,
     body: request.body,
     headers: request.headers,
@@ -16599,9 +16599,9 @@ function stripIndexParam2(request) {
   return new Request(url.href, init);
 }
 function stripRoutesParam(request) {
-  let url = new URL(request.url);
+  const url = new URL(request.url);
   url.searchParams.delete("_routes");
-  let init = {
+  const init = {
     method: request.method,
     body: request.body,
     headers: request.headers,
@@ -16621,10 +16621,10 @@ function invariant3(value, message) {
   }
 }
 function groupRoutesByParentId2(manifest) {
-  let routes = {};
+  const routes = {};
   Object.values(manifest).forEach((route) => {
     if (route) {
-      let parentId = route.parentId || "";
+      const parentId = route.parentId || "";
       if (!routes[parentId]) {
         routes[parentId] = [];
       }
@@ -16641,7 +16641,7 @@ function createRoutes(manifest, parentId = "", routesByParentId = groupRoutesByP
 }
 function createStaticHandlerDataRoutes(manifest, future, parentId = "", routesByParentId = groupRoutesByParentId2(manifest)) {
   return (routesByParentId[parentId] || []).map((route) => {
-    let commonRoute = {
+    const commonRoute = {
       // Always include root due to default boundaries
       hasErrorBoundary: route.id === "root" || route.module.ErrorBoundary != null,
       id: route.id,
@@ -16653,26 +16653,26 @@ function createStaticHandlerDataRoutes(manifest, future, parentId = "", routesBy
           const preRenderedData = args.request.headers.get(
             "X-React-Router-Prerender-Data"
           );
-          let encoded = preRenderedData ? decodeURI(preRenderedData) : preRenderedData;
+          const encoded = preRenderedData ? decodeURI(preRenderedData) : preRenderedData;
           invariant3(encoded, "Missing prerendered data for route");
-          let uint8array = new TextEncoder().encode(encoded);
-          let stream = new ReadableStream({
+          const uint8array = new TextEncoder().encode(encoded);
+          const stream = new ReadableStream({
             start(controller) {
               controller.enqueue(uint8array);
               controller.close();
             }
           });
-          let decoded = await decodeViaTurboStream(stream, global);
-          let data2 = decoded.value;
+          const decoded = await decodeViaTurboStream(stream, global);
+          const data2 = decoded.value;
           invariant3(
             data2 && route.id in data2,
             "Unable to decode prerendered data"
           );
-          let result = data2[route.id];
+          const result = data2[route.id];
           invariant3("data" in result, "Unable to process prerendered data");
           return result.data;
         }
-        let val = await callRouteHandler(route.module.loader, args);
+        const val = await callRouteHandler(route.module.loader, args);
         return val;
       } : void 0,
       action: route.module.action ? (args) => callRouteHandler(route.module.action, args) : void 0,
@@ -16693,21 +16693,21 @@ function createStaticHandlerDataRoutes(manifest, future, parentId = "", routesBy
     };
   });
 }
-var ESCAPE_LOOKUP3 = {
+const ESCAPE_LOOKUP3 = {
   "&": "\\u0026",
   ">": "\\u003e",
   "<": "\\u003c",
   "\u2028": "\\u2028",
   "\u2029": "\\u2029"
 };
-var ESCAPE_REGEX3 = /[&><\u2028\u2029]/g;
+const ESCAPE_REGEX3 = /[&><\u2028\u2029]/g;
 function escapeHtml2(html) {
   return html.replace(ESCAPE_REGEX3, (match) => ESCAPE_LOOKUP3[match]);
 }
 function createServerHandoffString(serverHandoff) {
   return escapeHtml2(JSON.stringify(serverHandoff));
 }
-var globalDevServerHooksKey = "__reactRouterDevServerHooks";
+const globalDevServerHooksKey = "__reactRouterDevServerHooks";
 function setDevServerHooks(devServerHooks) {
   globalThis[globalDevServerHooksKey] = devServerHooks;
 }
@@ -16715,13 +16715,13 @@ function getDevServerHooks() {
   return globalThis[globalDevServerHooksKey];
 }
 function getDocumentHeaders(build, context) {
-  let boundaryIdx = context.errors ? context.matches.findIndex((m2) => context.errors[m2.route.id]) : -1;
-  let matches = boundaryIdx >= 0 ? context.matches.slice(0, boundaryIdx + 1) : context.matches;
+  const boundaryIdx = context.errors ? context.matches.findIndex((m2) => context.errors[m2.route.id]) : -1;
+  const matches = boundaryIdx >= 0 ? context.matches.slice(0, boundaryIdx + 1) : context.matches;
   let errorHeaders;
   if (boundaryIdx >= 0) {
-    let { actionHeaders, actionData, loaderHeaders, loaderData } = context;
+    const { actionHeaders, actionData, loaderHeaders, loaderData } = context;
     context.matches.slice(boundaryIdx).some((match) => {
-      let id2 = match.route.id;
+      const id2 = match.route.id;
       if (actionHeaders[id2] && (!actionData || !actionData.hasOwnProperty(id2))) {
         errorHeaders = actionHeaders[id2];
       } else if (loaderHeaders[id2] && !loaderData.hasOwnProperty(id2)) {
@@ -16731,16 +16731,16 @@ function getDocumentHeaders(build, context) {
     });
   }
   return matches.reduce((parentHeaders, match, idx) => {
-    let { id: id2 } = match.route;
-    let route = build.routes[id2];
+    const { id: id2 } = match.route;
+    const route = build.routes[id2];
     invariant3(route, `Route with id "${id2}" not found in build`);
-    let routeModule = route.module;
-    let loaderHeaders = context.loaderHeaders[id2] || new Headers();
-    let actionHeaders = context.actionHeaders[id2] || new Headers();
-    let includeErrorHeaders = errorHeaders != null && idx === matches.length - 1;
-    let includeErrorCookies = includeErrorHeaders && errorHeaders !== loaderHeaders && errorHeaders !== actionHeaders;
+    const routeModule = route.module;
+    const loaderHeaders = context.loaderHeaders[id2] || new Headers();
+    const actionHeaders = context.actionHeaders[id2] || new Headers();
+    const includeErrorHeaders = errorHeaders != null && idx === matches.length - 1;
+    const includeErrorCookies = includeErrorHeaders && errorHeaders !== loaderHeaders && errorHeaders !== actionHeaders;
     if (routeModule.headers == null) {
-      let headers2 = new Headers(parentHeaders);
+      const headers2 = new Headers(parentHeaders);
       if (includeErrorCookies) {
         prependCookies(errorHeaders, headers2);
       }
@@ -16748,7 +16748,7 @@ function getDocumentHeaders(build, context) {
       prependCookies(loaderHeaders, headers2);
       return headers2;
     }
-    let headers = new Headers(
+    const headers = new Headers(
       routeModule.headers ? typeof routeModule.headers === "function" ? routeModule.headers({
         loaderHeaders,
         parentHeaders,
@@ -16766,15 +16766,15 @@ function getDocumentHeaders(build, context) {
   }, new Headers());
 }
 function prependCookies(parentHeaders, childHeaders) {
-  let parentSetCookieString = parentHeaders.get("Set-Cookie");
+  const parentSetCookieString = parentHeaders.get("Set-Cookie");
   if (parentSetCookieString) {
-    let cookies2 = setCookieExports.splitCookiesString(parentSetCookieString);
+    const cookies2 = setCookieExports.splitCookiesString(parentSetCookieString);
     cookies2.forEach((cookie) => {
       childHeaders.append("Set-Cookie", cookie);
     });
   }
 }
-var SINGLE_FETCH_REDIRECT_STATUS = 202;
+const SINGLE_FETCH_REDIRECT_STATUS = 202;
 function getSingleFetchDataStrategy2({
   isActionDataRequest,
   loadRouteIds
@@ -16783,8 +16783,8 @@ function getSingleFetchDataStrategy2({
     if (isActionDataRequest && request.method === "GET") {
       return {};
     }
-    let matchesToLoad = loadRouteIds ? matches.filter((m2) => loadRouteIds.includes(m2.route.id)) : matches;
-    let results = await Promise.all(
+    const matchesToLoad = loadRouteIds ? matches.filter((m2) => loadRouteIds.includes(m2.route.id)) : matches;
+    const results = await Promise.all(
       matchesToLoad.map((match) => match.resolve())
     );
     return results.reduce(
@@ -16795,14 +16795,14 @@ function getSingleFetchDataStrategy2({
 }
 async function singleFetchAction(build, serverMode, staticHandler, request, handlerUrl, loadContext, handleError) {
   try {
-    let handlerRequest = new Request(handlerUrl, {
+    const handlerRequest = new Request(handlerUrl, {
       method: request.method,
       body: request.body,
       headers: request.headers,
       signal: request.signal,
       ...request.body ? { duplex: "half" } : void 0
     });
-    let result = await staticHandler.query(handlerRequest, {
+    const result = await staticHandler.query(handlerRequest, {
       requestContext: loadContext,
       skipLoaderErrorBubbling: true,
       dataStrategy: getSingleFetchDataStrategy2({
@@ -16820,8 +16820,8 @@ async function singleFetchAction(build, serverMode, staticHandler, request, hand
         status: SINGLE_FETCH_REDIRECT_STATUS
       };
     }
-    let context = result;
-    let headers = getDocumentHeaders(build, context);
+    const context = result;
+    const headers = getDocumentHeaders(build, context);
     if (isRedirectStatusCode(context.statusCode) && headers.has("Location")) {
       return {
         result: getSingleFetchRedirect(
@@ -16862,14 +16862,14 @@ async function singleFetchAction(build, serverMode, staticHandler, request, hand
   }
 }
 async function singleFetchLoaders(build, serverMode, staticHandler, request, handlerUrl, loadContext, handleError) {
-  var _a;
+  let _a;
   try {
-    let handlerRequest = new Request(handlerUrl, {
+    const handlerRequest = new Request(handlerUrl, {
       headers: request.headers,
       signal: request.signal
     });
-    let loadRouteIds = ((_a = new URL(request.url).searchParams.get("_routes")) == null ? void 0 : _a.split(",")) || void 0;
-    let result = await staticHandler.query(handlerRequest, {
+    const loadRouteIds = ((_a = new URL(request.url).searchParams.get("_routes")) == null ? void 0 : _a.split(",")) || void 0;
+    const result = await staticHandler.query(handlerRequest, {
       requestContext: loadContext,
       skipLoaderErrorBubbling: true,
       dataStrategy: getSingleFetchDataStrategy2({
@@ -16889,8 +16889,8 @@ async function singleFetchLoaders(build, serverMode, staticHandler, request, han
         status: SINGLE_FETCH_REDIRECT_STATUS
       };
     }
-    let context = result;
-    let headers = getDocumentHeaders(build, context);
+    const context = result;
+    const headers = getDocumentHeaders(build, context);
     if (isRedirectStatusCode(context.statusCode) && headers.has("Location")) {
       return {
         result: {
@@ -16912,12 +16912,12 @@ async function singleFetchLoaders(build, serverMode, staticHandler, request, han
       });
       context.errors = sanitizeErrors(context.errors, serverMode);
     }
-    let results = {};
-    let loadedMatches = loadRouteIds ? context.matches.filter(
+    const results = {};
+    const loadedMatches = loadRouteIds ? context.matches.filter(
       (m2) => m2.route.loader && loadRouteIds.includes(m2.route.id)
     ) : context.matches;
     loadedMatches.forEach((m2) => {
-      let { id: id2 } = m2.route;
+      const { id: id2 } = m2.route;
       if (context.errors && context.errors.hasOwnProperty(id2)) {
         results[id2] = { error: context.errors[id2] };
       } else if (context.loaderData.hasOwnProperty(id2)) {
@@ -16961,8 +16961,8 @@ function getSingleFetchRedirect(status, headers, basename) {
   };
 }
 function encodeViaTurboStream(data2, requestSignal, streamTimeout, serverMode) {
-  let controller = new AbortController();
-  let timeoutId = setTimeout(
+  const controller = new AbortController();
+  const timeoutId = setTimeout(
     () => controller.abort(new Error("Server Timeout")),
     typeof streamTimeout === "number" ? streamTimeout : 4950
   );
@@ -16972,11 +16972,11 @@ function encodeViaTurboStream(data2, requestSignal, streamTimeout, serverMode) {
     plugins: [
       (value) => {
         if (value instanceof Error) {
-          let { name, message, stack } = serverMode === "production" ? sanitizeError(value, serverMode) : value;
+          const { name, message, stack } = serverMode === "production" ? sanitizeError(value, serverMode) : value;
           return ["SanitizedError", name, message, stack];
         }
         if (value instanceof ErrorResponseImpl) {
-          let { data: data3, status, statusText } = value;
+          const { data: data3, status, statusText } = value;
           return ["ErrorResponse", data3, status, statusText];
         }
         if (value && typeof value === "object" && SingleFetchRedirectSymbol in value) {
@@ -16998,13 +16998,13 @@ function encodeViaTurboStream(data2, requestSignal, streamTimeout, serverMode) {
   });
 }
 function derive(build, mode) {
-  let routes = createRoutes(build.routes);
-  let dataRoutes = createStaticHandlerDataRoutes(build.routes, build.future);
-  let serverMode = isServerMode(mode) ? mode : "production";
-  let staticHandler = createStaticHandler(dataRoutes, {
+  const routes = createRoutes(build.routes);
+  const dataRoutes = createStaticHandlerDataRoutes(build.routes, build.future);
+  const serverMode = isServerMode(mode) ? mode : "production";
+  const staticHandler = createStaticHandler(dataRoutes, {
     basename: build.basename
   });
-  let errorHandler = build.entry.module.handleError || ((error, { request }) => {
+  const errorHandler = build.entry.module.handleError || ((error, { request }) => {
     if (serverMode !== "test" && !request.signal.aborted) {
       console.error(
         // @ts-expect-error This is "private" from users but intended for internal use
@@ -17020,32 +17020,32 @@ function derive(build, mode) {
     errorHandler
   };
 }
-var createRequestHandler = (build, mode) => {
+const createRequestHandler = (build, mode) => {
   let _build;
   let routes;
   let serverMode;
   let staticHandler;
   let errorHandler;
   return async function requestHandler(request, loadContext = {}) {
-    var _a, _b;
+    let _a, _b;
     _build = typeof build === "function" ? await build() : build;
     if (typeof build === "function") {
-      let derived = derive(_build, mode);
+      const derived = derive(_build, mode);
       routes = derived.routes;
       serverMode = derived.serverMode;
       staticHandler = derived.staticHandler;
       errorHandler = derived.errorHandler;
     } else if (!routes || !serverMode || !staticHandler || !errorHandler) {
-      let derived = derive(_build, mode);
+      const derived = derive(_build, mode);
       routes = derived.routes;
       serverMode = derived.serverMode;
       staticHandler = derived.staticHandler;
       errorHandler = derived.errorHandler;
     }
-    let url = new URL(request.url);
-    let params = {};
-    let handleError = (error) => {
-      var _a2, _b2;
+    const url = new URL(request.url);
+    const params = {};
+    const handleError = (error) => {
+      let _a2, _b2;
       if (mode === "development") {
         (_b2 = (_a2 = getDevServerHooks()) == null ? void 0 : _a2.processRequestError) == null ? void 0 : _b2.call(_a2, error);
       }
@@ -17055,28 +17055,28 @@ var createRequestHandler = (build, mode) => {
         request
       });
     };
-    let manifestUrl = `${_build.basename ?? "/"}/__manifest`.replace(
+    const manifestUrl = `${_build.basename ?? "/"}/__manifest`.replace(
       /\/+/g,
       "/"
     );
     if (url.pathname === manifestUrl) {
       try {
-        let res = await handleManifestRequest(_build, routes, url);
+        const res = await handleManifestRequest(_build, routes, url);
         return res;
       } catch (e) {
         handleError(e);
         return new Response("Unknown Server Error", { status: 500 });
       }
     }
-    let matches = matchServerRoutes(routes, url.pathname, _build.basename);
+    const matches = matchServerRoutes(routes, url.pathname, _build.basename);
     if (matches && matches.length > 0) {
       Object.assign(params, matches[0].params);
     }
     let response;
     if (url.pathname.endsWith(".data")) {
-      let handlerUrl = new URL(request.url);
+      const handlerUrl = new URL(request.url);
       handlerUrl.pathname = handlerUrl.pathname.replace(/\.data$/, "").replace(/^\/_root$/, "/");
-      let singleFetchMatches = matchServerRoutes(
+      const singleFetchMatches = matchServerRoutes(
         routes,
         handlerUrl.pathname,
         _build.basename
@@ -17107,7 +17107,7 @@ var createRequestHandler = (build, mode) => {
               [SingleFetchRedirectSymbol]: result
             };
           }
-          let headers = new Headers(response.headers);
+          const headers = new Headers(response.headers);
           headers.set("Content-Type", "text/x-script");
           return new Response(
             encodeViaTurboStream(
@@ -17133,7 +17133,7 @@ var createRequestHandler = (build, mode) => {
         handleError
       );
     } else {
-      let criticalCss = mode === "development" ? await ((_b = (_a = getDevServerHooks()) == null ? void 0 : _a.getCriticalCss) == null ? void 0 : _b.call(_a, _build, url.pathname)) : void 0;
+      const criticalCss = mode === "development" ? await ((_b = (_a = getDevServerHooks()) == null ? void 0 : _a.getCriticalCss) == null ? void 0 : _b.call(_a, _build, url.pathname)) : void 0;
       response = await handleDocumentRequest(
         serverMode,
         _build,
@@ -17155,14 +17155,14 @@ var createRequestHandler = (build, mode) => {
   };
 };
 async function handleManifestRequest(build, routes, url) {
-  let patches = {};
+  const patches = {};
   if (url.searchParams.has("p")) {
-    for (let path of url.searchParams.getAll("p")) {
-      let matches = matchServerRoutes(routes, path, build.basename);
+    for (const path of url.searchParams.getAll("p")) {
+      const matches = matchServerRoutes(routes, path, build.basename);
       if (matches) {
-        for (let match of matches) {
-          let routeId = match.route.id;
-          let route = build.assets.routes[routeId];
+        for (const match of matches) {
+          const routeId = match.route.id;
+          const route = build.assets.routes[routeId];
           if (route) {
             patches[routeId] = route;
           }
@@ -17178,7 +17178,7 @@ async function handleManifestRequest(build, routes, url) {
   return new Response("Invalid Request", { status: 400 });
 }
 async function handleSingleFetchRequest(serverMode, build, staticHandler, request, handlerUrl, loadContext, handleError) {
-  let { result, headers, status } = request.method !== "GET" ? await singleFetchAction(
+  const { result, headers, status } = request.method !== "GET" ? await singleFetchAction(
     build,
     serverMode,
     staticHandler,
@@ -17195,7 +17195,7 @@ async function handleSingleFetchRequest(serverMode, build, staticHandler, reques
     loadContext,
     handleError
   );
-  let resultHeaders = new Headers(headers);
+  const resultHeaders = new Headers(headers);
   resultHeaders.set("X-Remix-Response", "yes");
   if (status === 304) {
     return new Response(null, { status: 304, headers: resultHeaders });
@@ -17227,7 +17227,7 @@ async function handleDocumentRequest(serverMode, build, staticHandler, request, 
   if (isResponse$1(context)) {
     return context;
   }
-  let headers = getDocumentHeaders(build, context);
+  const headers = getDocumentHeaders(build, context);
   if (context.statusCode === 304) {
     return new Response(null, { status: 304, headers });
   }
@@ -17239,7 +17239,7 @@ async function handleDocumentRequest(serverMode, build, staticHandler, request, 
     });
     context.errors = sanitizeErrors(context.errors, serverMode);
   }
-  let state2 = {
+  const state2 = {
     loaderData: context.loaderData,
     actionData: context.actionData,
     errors: serializeErrors2(context.errors, serverMode)
@@ -17266,7 +17266,7 @@ async function handleDocumentRequest(serverMode, build, staticHandler, request, 
     isSpaMode: build.isSpaMode,
     serializeError: (err) => serializeError(err, serverMode)
   };
-  let handleDocumentRequestFunction = build.entry.module.default;
+  const handleDocumentRequestFunction = build.entry.module.default;
   try {
     return await handleDocumentRequestFunction(
       request,
@@ -17280,7 +17280,7 @@ async function handleDocumentRequest(serverMode, build, staticHandler, request, 
     let errorForSecondRender = error;
     if (isResponse$1(error)) {
       try {
-        let data2 = await unwrapResponse(error);
+        const data2 = await unwrapResponse(error);
         errorForSecondRender = new ErrorResponseImpl(
           error.status,
           error.statusText,
@@ -17297,7 +17297,7 @@ async function handleDocumentRequest(serverMode, build, staticHandler, request, 
     if (context.errors) {
       context.errors = sanitizeErrors(context.errors, serverMode);
     }
-    let state22 = {
+    const state22 = {
       loaderData: context.loaderData,
       actionData: context.actionData,
       errors: serializeErrors2(context.errors, serverMode)
@@ -17334,7 +17334,7 @@ async function handleDocumentRequest(serverMode, build, staticHandler, request, 
 }
 async function handleResourceRequest(serverMode, staticHandler, routeId, request, loadContext, handleError) {
   try {
-    let response = await staticHandler.queryRoute(request, {
+    const response = await staticHandler.queryRoute(request, {
       routeId,
       requestContext: loadContext
     });
@@ -17389,14 +17389,14 @@ ${String(error)}`;
   });
 }
 function unwrapResponse(response) {
-  let contentType = response.headers.get("Content-Type");
+  const contentType = response.headers.get("Content-Type");
   return contentType && /\bapplication\/json\b/.test(contentType) ? response.body == null ? null : response.json() : response.text();
 }
 function flash(name) {
   return `__flash_${name}__`;
 }
-var createSession = (initialData = {}, id2 = "") => {
-  let map = new Map(Object.entries(initialData));
+const createSession = (initialData = {}, id2 = "") => {
+  const map = new Map(Object.entries(initialData));
   return {
     get id() {
       return id2;
@@ -17409,9 +17409,9 @@ var createSession = (initialData = {}, id2 = "") => {
     },
     get(name) {
       if (map.has(name)) return map.get(name);
-      let flashName = flash(name);
+      const flashName = flash(name);
       if (map.has(flashName)) {
-        let value = map.get(flashName);
+        const value = map.get(flashName);
         map.delete(flashName);
         return value;
       }
@@ -17428,7 +17428,7 @@ var createSession = (initialData = {}, id2 = "") => {
     }
   };
 };
-var isSession = (object) => {
+const isSession = (object) => {
   return object != null && typeof object.id === "string" && typeof object.data !== "undefined" && typeof object.has === "function" && typeof object.get === "function" && typeof object.set === "function" && typeof object.flash === "function" && typeof object.unset === "function";
 };
 function createSessionStorage({
@@ -17438,17 +17438,17 @@ function createSessionStorage({
   updateData,
   deleteData
 }) {
-  let cookie = isCookie(cookieArg) ? cookieArg : createCookie((cookieArg == null ? void 0 : cookieArg.name) || "__session", cookieArg);
+  const cookie = isCookie(cookieArg) ? cookieArg : createCookie((cookieArg == null ? void 0 : cookieArg.name) || "__session", cookieArg);
   warnOnceAboutSigningSessionCookie(cookie);
   return {
     async getSession(cookieHeader, options) {
-      let id2 = cookieHeader && await cookie.parse(cookieHeader, options);
-      let data2 = id2 && await readData(id2);
+      const id2 = cookieHeader && await cookie.parse(cookieHeader, options);
+      const data2 = id2 && await readData(id2);
       return createSession(data2 || {}, id2 || "");
     },
     async commitSession(session, options) {
       let { id: id2, data: data2 } = session;
-      let expires = (options == null ? void 0 : options.maxAge) != null ? new Date(Date.now() + options.maxAge * 1e3) : (options == null ? void 0 : options.expires) != null ? options.expires : cookie.expires;
+      const expires = (options == null ? void 0 : options.maxAge) != null ? new Date(Date.now() + options.maxAge * 1e3) : (options == null ? void 0 : options.expires) != null ? options.expires : cookie.expires;
       if (id2) {
         await updateData(id2, data2, expires);
       } else {
@@ -17473,7 +17473,7 @@ function warnOnceAboutSigningSessionCookie(cookie) {
   );
 }
 function createCookieSessionStorage({ cookie: cookieArg } = {}) {
-  let cookie = isCookie(cookieArg) ? cookieArg : createCookie((cookieArg == null ? void 0 : cookieArg.name) || "__session", cookieArg);
+  const cookie = isCookie(cookieArg) ? cookieArg : createCookie((cookieArg == null ? void 0 : cookieArg.name) || "__session", cookieArg);
   warnOnceAboutSigningSessionCookie(cookie);
   return {
     async getSession(cookieHeader, options) {
@@ -17482,7 +17482,7 @@ function createCookieSessionStorage({ cookie: cookieArg } = {}) {
       );
     },
     async commitSession(session, options) {
-      let serializedCookie = await cookie.serialize(session.data, options);
+      const serializedCookie = await cookie.serialize(session.data, options);
       if (serializedCookie.length > 4096) {
         throw new Error(
           "Cookie length will exceed browser maximum. Length: " + serializedCookie.length
@@ -17500,17 +17500,17 @@ function createCookieSessionStorage({ cookie: cookieArg } = {}) {
   };
 }
 function createMemorySessionStorage({ cookie } = {}) {
-  let map = /* @__PURE__ */ new Map();
+  const map = /* @__PURE__ */ new Map();
   return createSessionStorage({
     cookie,
     async createData(data2, expires) {
-      let id2 = Math.random().toString(36).substring(2, 10);
+      const id2 = Math.random().toString(36).substring(2, 10);
       map.set(id2, { data: data2, expires });
       return id2;
     },
     async readData(id2) {
       if (map.has(id2)) {
-        let { data: data2, expires } = map.get(id2);
+        const { data: data2, expires } = map.get(id2);
         if (!expires || expires > /* @__PURE__ */ new Date()) {
           return data2;
         }
@@ -17528,9 +17528,9 @@ function createMemorySessionStorage({ cookie } = {}) {
 }
 function deserializeErrors2(errors) {
   if (!errors) return null;
-  let entries = Object.entries(errors);
-  let serialized = {};
-  for (let [key, val] of entries) {
+  const entries = Object.entries(errors);
+  const serialized = {};
+  for (const [key, val] of entries) {
     if (val && val.__type === "RouteErrorResponse") {
       serialized[key] = new ErrorResponseImpl(
         val.status,
@@ -17540,10 +17540,10 @@ function deserializeErrors2(errors) {
       );
     } else if (val && val.__type === "Error") {
       if (val.__subType) {
-        let ErrorConstructor = window[val.__subType];
+        const ErrorConstructor = window[val.__subType];
         if (typeof ErrorConstructor === "function") {
           try {
-            let error = new ErrorConstructor(val.message);
+            const error = new ErrorConstructor(val.message);
             error.stack = val.stack;
             serialized[key] = error;
           } catch (e) {
@@ -17551,7 +17551,7 @@ function deserializeErrors2(errors) {
         }
       }
       if (serialized[key] == null) {
-        let error = new Error(val.message);
+        const error = new Error(val.message);
         error.stack = val.stack;
         serialized[key] = error;
       }
@@ -17561,13 +17561,13 @@ function deserializeErrors2(errors) {
   }
   return serialized;
 }
-var reactDomExports = requireReactDom();
+const reactDomExports = requireReactDom();
 const index$1 = /* @__PURE__ */ getDefaultExportFromCjs(reactDomExports);
 function RouterProvider2(props) {
   return /* @__PURE__ */ reactExports.createElement(RouterProvider, { flushSync: reactDomExports.flushSync, ...props });
 }
-var ssrInfo = null;
-var router = null;
+let ssrInfo = null;
+let router = null;
 function initSsrInfo() {
   if (!ssrInfo && window.__reactRouterContext && window.__reactRouterManifest && window.__reactRouterRouteModules) {
     ssrInfo = {
@@ -17581,16 +17581,16 @@ function initSsrInfo() {
   }
 }
 function createHydratedRouter() {
-  var _a;
+  let _a;
   initSsrInfo();
   if (!ssrInfo) {
     throw new Error(
       "You must be using the SSR features of React Router in order to skip passing a `router` prop to `<RouterProvider>`"
     );
   }
-  let localSsrInfo = ssrInfo;
+  const localSsrInfo = ssrInfo;
   if (!ssrInfo.stateDecodingPromise) {
-    let stream = ssrInfo.context.stream;
+    const stream = ssrInfo.context.stream;
     invariant$1(stream, "No stream found for single fetch decoding");
     ssrInfo.context.stream = void 0;
     ssrInfo.stateDecodingPromise = decodeViaTurboStream(stream, window).then((value) => {
@@ -17606,7 +17606,7 @@ function createHydratedRouter() {
   if (!ssrInfo.stateDecodingPromise.value) {
     throw ssrInfo.stateDecodingPromise;
   }
-  let routes = createClientRoutes(
+  const routes = createClientRoutes(
     ssrInfo.manifest.routes,
     ssrInfo.routeModules,
     ssrInfo.context.state,
@@ -17618,16 +17618,16 @@ function createHydratedRouter() {
       ...ssrInfo.context.state,
       loaderData: { ...ssrInfo.context.state.loaderData }
     };
-    let initialMatches = matchRoutes(
+    const initialMatches = matchRoutes(
       routes,
       window.location,
       (_a = window.__reactRouterContext) == null ? void 0 : _a.basename
     );
     if (initialMatches) {
-      for (let match of initialMatches) {
-        let routeId = match.route.id;
-        let route = ssrInfo.routeModules[routeId];
-        let manifestRoute = ssrInfo.manifest.routes[routeId];
+      for (const match of initialMatches) {
+        const routeId = match.route.id;
+        const route = ssrInfo.routeModules[routeId];
+        const manifestRoute = ssrInfo.manifest.routes[routeId];
         if (route && manifestRoute && shouldHydrateRouteLoader(
           manifestRoute,
           route,
@@ -17643,7 +17643,7 @@ function createHydratedRouter() {
       hydrationData.errors = deserializeErrors2(hydrationData.errors);
     }
   }
-  let router2 = createRouter({
+  const router2 = createRouter({
     routes,
     history: createBrowserHistory(),
     basename: ssrInfo.context.basename,
@@ -17675,7 +17675,7 @@ function HydratedRouter() {
   if (!router) {
     router = createHydratedRouter();
   }
-  let [criticalCss, setCriticalCss] = reactExports.useState(
+  const [criticalCss, setCriticalCss] = reactExports.useState(
     false ? ssrInfo == null ? void 0 : ssrInfo.context.criticalCss : void 0
   );
   if (false) {
@@ -17683,7 +17683,7 @@ function HydratedRouter() {
       window.__reactRouterClearCriticalCss = () => setCriticalCss(void 0);
     }
   }
-  let [location, setLocation] = reactExports.useState(router.state.location);
+  const [location, setLocation] = reactExports.useState(router.state.location);
   reactExports.useLayoutEffect(() => {
     if (ssrInfo && ssrInfo.router && !ssrInfo.routerInitialized) {
       ssrInfo.routerInitialized = true;
@@ -17736,7 +17736,7 @@ const toPascalCase = (string) => {
 const mergeClasses = (...classes) => classes.filter((className, index2, array) => {
   return Boolean(className) && className.trim() !== "" && array.indexOf(className) === index2;
 }).join(" ").trim();
-var defaultAttributes = {
+const defaultAttributes = {
   xmlns: "http://www.w3.org/2000/svg",
   width: 24,
   height: 24,
@@ -34540,7 +34540,7 @@ const { schedule: microtask, cancel: cancelMicrotask } = createRenderBatcher(que
 "use client";
 const SwitchLayoutGroupContext = reactExports.createContext({});
 function useVisualElement(Component2, visualState, props, createVisualElement, ProjectionNodeConstructor) {
-  var _a, _b;
+  let _a, _b;
   const { visualElement: parent } = reactExports.useContext(MotionContext);
   const lazyContext = reactExports.useContext(LazyContext);
   const presenceContext = reactExports.useContext(PresenceContext);
@@ -34589,7 +34589,7 @@ function useVisualElement(Component2, visualState, props, createVisualElement, P
     }
     if (wantsHandoff.current) {
       queueMicrotask(() => {
-        var _a2;
+        let _a2;
         (_a2 = window.MotionHandoffMarkAsComplete) === null || _a2 === void 0 ? void 0 : _a2.call(window, optimisedAppearId);
       });
       wantsHandoff.current = false;
@@ -34625,7 +34625,7 @@ function getClosestProjectingNode(visualElement) {
 }
 "use client";
 function createRendererMotionComponent({ preloadedFeatures, createVisualElement, useRender, useVisualState: useVisualState2, Component: Component2 }) {
-  var _a, _b;
+  let _a, _b;
   preloadedFeatures && loadFeatures(preloadedFeatures);
   function MotionComponent(props, externalRef) {
     let MeasureLayout2;
@@ -34789,7 +34789,7 @@ function isForcedMotionValue(key, { layout: layout2, layoutId }) {
   return transformProps.has(key) || key.startsWith("origin") || (layout2 || layoutId !== void 0) && (!!scaleCorrectors[key] || key === "opacity");
 }
 function scrapeMotionValuesFromProps$1(props, prevProps, visualElement) {
-  var _a;
+  let _a;
   const { style: style2 } = props;
   const newValues = {};
   for (const key in style2) {
@@ -35422,12 +35422,12 @@ class NativeAnimationControls {
     this.animation = animation;
   }
   get duration() {
-    var _a, _b, _c;
+    let _a, _b, _c;
     const durationInMs = ((_b = (_a = this.animation) === null || _a === void 0 ? void 0 : _a.effect) === null || _b === void 0 ? void 0 : _b.getComputedTiming().duration) || ((_c = this.options) === null || _c === void 0 ? void 0 : _c.duration) || 300;
     return millisecondsToSeconds(Number(durationInMs));
   }
   get time() {
-    var _a;
+    let _a;
     if (this.animation) {
       return millisecondsToSeconds(((_a = this.animation) === null || _a === void 0 ? void 0 : _a.currentTime) || 0);
     }
@@ -35471,7 +35471,7 @@ class NativeAnimationControls {
     this.cancel();
   }
   flatten() {
-    var _a;
+    let _a;
     if (!this.animation)
       return;
     (_a = this.animation.effect) === null || _a === void 0 ? void 0 : _a.updateTiming({ easing: "linear" });
@@ -35498,7 +35498,7 @@ const supportsFlags = {
 function memoSupports(callback, supportsFlag) {
   const memoized = memo(callback);
   return () => {
-    var _a;
+    let _a;
     return (_a = supportsFlags[supportsFlag]) !== null && _a !== void 0 ? _a : memoized();
   };
 }
@@ -35554,7 +35554,7 @@ function isDragActive() {
   return isDragging.x || isDragging.y;
 }
 function resolveElements(elementOrSelector, scope, selectorCache) {
-  var _a;
+  let _a;
   if (elementOrSelector instanceof Element) {
     return [elementOrSelector];
   } else if (typeof elementOrSelector === "string") {
@@ -35701,7 +35701,7 @@ function press(elementOrSelector, onPressStart, options = {}) {
 }
 const defaultEasing$2 = "easeOut";
 function applyGeneratorOptions(options) {
-  var _a;
+  let _a;
   if (isGenerator(options.type)) {
     const generatorOptions = createGeneratorEasing(options, 100, options.type);
     options.ease = supportsLinearEasing() ? generatorOptions.ease : defaultEasing$2;
@@ -35713,7 +35713,7 @@ function applyGeneratorOptions(options) {
   }
 }
 function convertMotionOptionsToNative(valueName, keyframes2, options) {
-  var _a;
+  let _a;
   const nativeKeyframes = {};
   const nativeOptions = {
     fill: "both",
@@ -35796,7 +35796,7 @@ function getLayerName(pseudoElement) {
   return { layer: match[2], type: match[1] };
 }
 function filterViewAnimations(animation) {
-  var _a;
+  let _a;
   const { effect } = animation;
   if (!effect)
     return false;
@@ -35831,7 +35831,7 @@ function startViewAnimation(update, defaultOptions, targets) {
   });
   return new Promise((resolve) => {
     transition.ready.then(() => {
-      var _a;
+      let _a;
       const generatedViewAnimations = getViewAnimations();
       const animations2 = [];
       targets.forEach((definition, target) => {
@@ -35896,7 +35896,7 @@ function startViewAnimation(update, defaultOptions, targets) {
   });
 }
 function hasOpacity(target, key) {
-  var _a;
+  let _a;
   return (_a = target === null || target === void 0 ? void 0 : target[key]) === null || _a === void 0 ? void 0 : _a.keyframes.opacity;
 }
 class ViewTransitionBuilder {
@@ -36482,7 +36482,7 @@ const color = {
 };
 const colorRegex = /(?:#[\da-f]{3,8}|(?:rgb|hsl)a?\((?:-?[\d.]+%?[,\s]+){2}-?[\d.]+%?\s*(?:[,/]\s*)?(?:\b\d+(?:\.\d+)?|\.\d+)?%?\))/giu;
 function test$1(v) {
-  var _a, _b;
+  let _a, _b;
   return isNaN(v) && typeof v === "string" && (((_a = v.match(floatRegex)) === null || _a === void 0 ? void 0 : _a.length) || 0) + (((_b = v.match(colorRegex)) === null || _b === void 0 ? void 0 : _b.length) || 0) > 0;
 }
 const NUMBER_TOKEN = "number";
@@ -36685,7 +36685,7 @@ function measureAllKeyframes() {
       const restore = transformsToRestore.get(element);
       if (restore) {
         restore.forEach(([key, value]) => {
-          var _a;
+          let _a;
           (_a = element.getValue(key)) === null || _a === void 0 ? void 0 : _a.set(value);
         });
       }
@@ -36895,7 +36895,7 @@ class DOMKeyframesResolver extends KeyframeResolver {
     }
   }
   measureEndState() {
-    var _a;
+    let _a;
     const { element, name, unresolvedKeyframes } = this;
     if (!element || !element.current)
       return;
@@ -37101,7 +37101,7 @@ const getColorType = (v) => colorTypes.find((type) => type.test(v));
 function asRGBA(color2) {
   const type = getColorType(color2);
   warning(Boolean(type), `'${color2}' is not an animatable color. Use the equivalent color code instead.`);
-  if (!Boolean(type))
+  if (!type)
     return false;
   let model = type.parse(color2);
   if (type === hsla) {
@@ -37176,7 +37176,7 @@ function mixObject(a, b) {
   };
 }
 function matchOrder(origin2, target) {
-  var _a;
+  let _a;
   const orderedOrigin = [];
   const pointers = { color: 0, var: 0, number: 0 };
   for (let i = 0; i < target.values.length; i++) {
@@ -37816,7 +37816,7 @@ class MainThreadAnimation extends BaseAnimation {
     this.driver.start();
   }
   pause() {
-    var _a;
+    let _a;
     if (!this._resolved) {
       this.pendingPlayState = "paused";
       return;
@@ -37936,7 +37936,7 @@ class AcceleratedAnimation extends BaseAnimation {
     this.resolver.scheduleResolve();
   }
   initPlayback(keyframes2, finalKeyframe) {
-    var _a;
+    let _a;
     let { duration = 300, times, ease: ease2, type, motionValue: motionValue2, name, startTime } = this.options;
     if (!((_a = motionValue2.owner) === null || _a === void 0 ? void 0 : _a.current)) {
       return false;
@@ -38220,7 +38220,7 @@ function shouldBlockAnimation({ protectedKeys, needsAnimating }, key) {
   return shouldBlock;
 }
 function animateTarget(visualElement, targetAndTransition, { delay: delay2 = 0, transitionOverride, type } = {}) {
-  var _a;
+  let _a;
   let { transition = visualElement.getDefaultTransition(), transitionEnd, ...target } = targetAndTransition;
   if (transitionOverride)
     transition = transitionOverride;
@@ -38264,7 +38264,7 @@ function animateTarget(visualElement, targetAndTransition, { delay: delay2 = 0, 
   return animations2;
 }
 function animateVariant(visualElement, variant, options = {}) {
-  var _a;
+  let _a;
   const resolved = resolveVariant(visualElement, variant, options.type === "exit" ? (_a = visualElement.presenceContext) === null || _a === void 0 ? void 0 : _a.custom : void 0);
   let { transition = visualElement.getDefaultTransition() || {} } = resolved || {};
   if (options.transitionOverride) {
@@ -38346,7 +38346,7 @@ function createAnimationState(visualElement) {
   let state2 = createState();
   let isInitialRender = true;
   const buildResolvedTypeValues = (type) => (acc, definition) => {
-    var _a;
+    let _a;
     const resolved = resolveVariant(visualElement, definition, type === "exit" ? (_a = visualElement.presenceContext) === null || _a === void 0 ? void 0 : _a.custom : void 0);
     if (resolved) {
       const { transition, transitionEnd, ...target } = resolved;
@@ -38469,11 +38469,11 @@ function createAnimationState(visualElement) {
     return shouldAnimate ? animate2(animations2) : Promise.resolve();
   }
   function setActive(type, isActive) {
-    var _a;
+    let _a;
     if (state2[type].isActive === isActive)
       return Promise.resolve();
     (_a = visualElement.variantChildren) === null || _a === void 0 ? void 0 : _a.forEach((child) => {
-      var _a2;
+      let _a2;
       return (_a2 = child.animationState) === null || _a2 === void 0 ? void 0 : _a2.setActive(type, isActive);
     });
     state2[type].isActive = isActive;
@@ -38559,7 +38559,7 @@ class AnimationFeature extends Feature {
     }
   }
   unmount() {
-    var _a;
+    let _a;
     this.node.animationState.reset();
     (_a = this.unmountControls) === null || _a === void 0 ? void 0 : _a.call(this);
   }
@@ -39080,7 +39080,7 @@ class VisualElementDragControls {
     };
     const onSessionEnd = (event, info) => this.stop(event, info);
     const resumeAnimation = () => eachAxis((axis) => {
-      var _a;
+      let _a;
       return this.getAnimationState(axis) === "paused" && ((_a = this.getAxisMotionValue(axis).animation) === null || _a === void 0 ? void 0 : _a.play());
     });
     const { dragSnapToOrigin } = this.getProps();
@@ -39135,7 +39135,7 @@ class VisualElementDragControls {
     axisValue.set(next);
   }
   resolveConstraints() {
-    var _a;
+    let _a;
     const { dragConstraints, dragElastic } = this.getProps();
     const layout2 = this.visualElement.projection && !this.visualElement.projection.layout ? this.visualElement.projection.measure(false) : (_a = this.visualElement.projection) === null || _a === void 0 ? void 0 : _a.layout;
     const prevConstraints = this.constraints;
@@ -39216,12 +39216,12 @@ class VisualElementDragControls {
   }
   pauseAnimation() {
     eachAxis((axis) => {
-      var _a;
+      let _a;
       return (_a = this.getAxisMotionValue(axis).animation) === null || _a === void 0 ? void 0 : _a.pause();
     });
   }
   getAnimationState(axis) {
-    var _a;
+    let _a;
     return (_a = this.getAxisMotionValue(axis).animation) === null || _a === void 0 ? void 0 : _a.state;
   }
   /**
@@ -40229,7 +40229,7 @@ function createProjectionNode({ attachResizeListener, defaultParent, measureScro
       };
     }
     measurePageBox() {
-      var _a;
+      let _a;
       const { visualElement } = this.options;
       if (!visualElement)
         return createBox();
@@ -40245,7 +40245,7 @@ function createProjectionNode({ attachResizeListener, defaultParent, measureScro
       return box;
     }
     removeElementScroll(box) {
-      var _a;
+      let _a;
       const boxWithoutScroll = createBox();
       copyBoxInto(boxWithoutScroll, box);
       if ((_a = this.scroll) === null || _a === void 0 ? void 0 : _a.wasRoot) {
@@ -40333,7 +40333,7 @@ function createProjectionNode({ attachResizeListener, defaultParent, measureScro
       }
     }
     resolveTargetDelta(forceRecalculation = false) {
-      var _a;
+      let _a;
       const lead = this.getLead();
       this.isProjectionDirty || (this.isProjectionDirty = lead.isProjectionDirty);
       this.isTransformDirty || (this.isTransformDirty = lead.isTransformDirty);
@@ -40369,7 +40369,7 @@ function createProjectionNode({ attachResizeListener, defaultParent, measureScro
         this.forceRelativeParentToResolveTarget();
         calcRelativeBox(this.target, this.relativeTarget, this.relativeParent.target);
       } else if (this.targetDelta) {
-        if (Boolean(this.resumingFrom)) {
+        if (this.resumingFrom) {
           this.target = this.applyTransform(this.layout.layoutBox);
         } else {
           copyBoxInto(this.target, this.layout.layoutBox);
@@ -40410,7 +40410,7 @@ function createProjectionNode({ attachResizeListener, defaultParent, measureScro
       return Boolean((this.relativeTarget || this.targetDelta || this.options.layoutRoot) && this.layout);
     }
     calcProjection() {
-      var _a;
+      let _a;
       const lead = this.getLead();
       const isShared = Boolean(this.resumingFrom) || this !== lead;
       let canSkip = true;
@@ -40471,7 +40471,7 @@ function createProjectionNode({ attachResizeListener, defaultParent, measureScro
       this.isVisible = true;
     }
     scheduleRender(notifyAll2 = true) {
-      var _a;
+      let _a;
       (_a = this.options.visualElement) === null || _a === void 0 ? void 0 : _a.scheduleRender();
       if (notifyAll2) {
         const stack = this.getStack();
@@ -40610,12 +40610,12 @@ function createProjectionNode({ attachResizeListener, defaultParent, measureScro
       return stack ? stack.lead === this : true;
     }
     getLead() {
-      var _a;
+      let _a;
       const { layoutId } = this.options;
       return layoutId ? ((_a = this.getStack()) === null || _a === void 0 ? void 0 : _a.lead) || this : this;
     }
     getPrevLead() {
-      var _a;
+      let _a;
       const { layoutId } = this.options;
       return layoutId ? (_a = this.getStack()) === null || _a === void 0 ? void 0 : _a.prevLead : void 0;
     }
@@ -40672,7 +40672,7 @@ function createProjectionNode({ attachResizeListener, defaultParent, measureScro
       visualElement.scheduleRender();
     }
     getProjectionStyles(styleProp) {
-      var _a, _b;
+      let _a, _b;
       if (!this.instance || this.isSVG)
         return void 0;
       if (!this.isVisible) {
@@ -40740,7 +40740,7 @@ function createProjectionNode({ attachResizeListener, defaultParent, measureScro
     // Only run on root
     resetTree() {
       this.root.nodes.forEach((node) => {
-        var _a;
+        let _a;
         return (_a = node.currentAnimation) === null || _a === void 0 ? void 0 : _a.stop();
       });
       this.root.nodes.forEach(clearMeasurements);
@@ -40752,7 +40752,7 @@ function updateLayout(node) {
   node.updateLayout();
 }
 function notifyLayoutUpdate(node) {
-  var _a;
+  let _a;
   const snapshot = ((_a = node.resumeFrom) === null || _a === void 0 ? void 0 : _a.snapshot) || node.snapshot;
   if (node.isLead() && node.layout && snapshot && node.hasListeners("didUpdate")) {
     const { layoutBox: layout2, measuredBox: measuredLayout } = node.layout;
@@ -40903,7 +40903,7 @@ function shouldAnimatePositionOnly(animationType, snapshot, layout2) {
   return animationType === "position" || animationType === "preserve-aspect" && !isNear(aspectRatio(snapshot), aspectRatio(layout2), 0.2);
 }
 function checkNodeWasScrollRoot(node) {
-  var _a;
+  let _a;
   return node !== node.root && ((_a = node.scroll) === null || _a === void 0 ? void 0 : _a.wasRoot);
 }
 const DocumentProjectionNode = createProjectionNode({
@@ -41473,7 +41473,7 @@ class VisualElement {
    * directly from the instance (which might have performance implications).
    */
   readValue(key, target) {
-    var _a;
+    let _a;
     let value = this.latestValues[key] !== void 0 || !this.current ? this.latestValues[key] : (_a = this.getBaseTargetFromProps(this.props, key)) !== null && _a !== void 0 ? _a : this.readValueFromInstance(this.current, key, this.options);
     if (value !== void 0 && value !== null) {
       if (typeof value === "string" && (isNumericalString(value) || isZeroValueString(value))) {
@@ -41497,7 +41497,7 @@ class VisualElement {
    * props.
    */
   getBaseTarget(key) {
-    var _a;
+    let _a;
     const { initial } = this.props;
     let valueFromInitial;
     if (typeof initial === "string" || typeof initial === "object") {
@@ -41676,7 +41676,7 @@ function getElementSize(target, borderBoxSize) {
   }
 }
 function notifyTarget({ target, contentRect, borderBoxSize }) {
-  var _a;
+  let _a;
   (_a = resizeHandlers.get(target)) === null || _a === void 0 ? void 0 : _a.forEach((handler) => {
     handler({
       target,
@@ -41999,7 +41999,7 @@ function scrollInfo(onScroll, { container = document.documentElement, ...options
   const listener = scrollListeners.get(container);
   frame.read(listener, false, true);
   return () => {
-    var _a;
+    let _a;
     cancelFrame(listener);
     const currentHandlers = onScrollHandlers.get(container);
     if (!currentHandlers)
@@ -42417,7 +42417,7 @@ function calculateRepeatDuration(duration, repeat, _repeatDelay) {
   return duration * (repeat + 1);
 }
 function calcNextTime(current, next, prev, labels) {
-  var _a;
+  let _a;
   if (typeof next === "number") {
     return next;
   } else if (next.startsWith("-") || next.startsWith("+")) {
@@ -42820,7 +42820,7 @@ class NativeAnimation extends NativeAnimationControls {
       this.options = options;
       this.updateFinishedPromise();
       this.removeAnimation = () => {
-        var _a;
+        let _a;
         return (_a = state.get(element)) === null || _a === void 0 ? void 0 : _a.delete(valueName);
       };
     };
@@ -42994,7 +42994,7 @@ function useCycle(...items) {
     },
     // The array will change on each call, but by putting items.length at
     // the front of this array, we guarantee the dependency comparison will match up
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
     [items.length, ...items]
   );
   return [item, runCycle];
@@ -43080,7 +43080,7 @@ const appearStoreId = (elementId, valueName) => {
 const appearAnimationStore = /* @__PURE__ */ new Map();
 const appearComplete = /* @__PURE__ */ new Map();
 function handoffOptimizedAppearAnimation(elementId, valueName, frame2) {
-  var _a;
+  let _a;
   const storeId = appearStoreId(elementId, valueName);
   const optimisedAnimation = appearAnimationStore.get(storeId);
   if (!optimisedAnimation) {
@@ -43088,7 +43088,7 @@ function handoffOptimizedAppearAnimation(elementId, valueName, frame2) {
   }
   const { animation, startTime } = optimisedAnimation;
   function cancelAnimation() {
-    var _a2;
+    let _a2;
     (_a2 = window.MotionCancelOptimisedAnimation) === null || _a2 === void 0 ? void 0 : _a2.call(window, elementId, valueName, frame2);
   }
   animation.onfinish = cancelAnimation;
@@ -43176,7 +43176,7 @@ function startOptimizedAppearAnimation(element, name, keyframes2, options, onRea
       }
     };
     window.MotionCheckAppearSync = (visualElement, valueName, value) => {
-      var _a, _b;
+      let _a, _b;
       const appearId = getOptimisedAppearId(visualElement);
       if (!appearId)
         return;
@@ -43185,7 +43185,7 @@ function startOptimizedAppearAnimation(element, name, keyframes2, options, onRea
       if (!valueIsOptimised || !externalAnimationValue)
         return;
       const removeSyncCheck = value.on("change", (latestValue) => {
-        var _a2;
+        let _a2;
         if (externalAnimationValue.get() !== latestValue) {
           (_a2 = window.MotionCancelOptimisedAnimation) === null || _a2 === void 0 ? void 0 : _a2.call(window, appearId, valueName);
           removeSyncCheck();
@@ -43959,7 +43959,7 @@ const descriptors = {};
   "ERR_CANCELED",
   "ERR_NOT_SUPPORT",
   "ERR_INVALID_URL"
-  // eslint-disable-next-line func-names
+   
 ].forEach((code) => {
   descriptors[code] = { value: code };
 });
@@ -44043,7 +44043,7 @@ function toFormData$1(obj, formData, options) {
         key = removeBrackets(key);
         arr.forEach(function each(el, index2) {
           !(utils$1.isUndefined(el) || el === null) && formData.append(
-            // eslint-disable-next-line no-nested-ternary
+             
             indexes === true ? renderKey([key], index2, dots) : indexes === null ? key : key + "[]",
             convertValue(el)
           );
@@ -44519,7 +44519,7 @@ function buildAccessors(obj, header) {
     });
   });
 }
-let AxiosHeaders$1 = class AxiosHeaders {
+const AxiosHeaders$1 = class AxiosHeaders {
   constructor(headers) {
     headers && this.set(headers);
   }
@@ -44677,7 +44677,7 @@ let AxiosHeaders$1 = class AxiosHeaders {
 };
 AxiosHeaders$1.accessor(["Content-Type", "Content-Length", "Accept", "Accept-Encoding", "User-Agent", "Authorization"]);
 utils$1.reduceDescriptors(AxiosHeaders$1.prototype, ({ value }, key) => {
-  let mapped = key[0].toUpperCase() + key.slice(1);
+  const mapped = key[0].toUpperCase() + key.slice(1);
   return {
     get: () => value,
     set(headerValue) {
@@ -44766,7 +44766,7 @@ function speedometer(samplesCount, min) {
 }
 function throttle(fn, freq) {
   let timestamp = 0;
-  let threshold = 1e3 / freq;
+  const threshold = 1e3 / freq;
   let lastArgs;
   let timer;
   const invoke = (args, now2 = Date.now()) => {
@@ -44877,7 +44877,7 @@ function combineURLs(baseURL, relativeURL) {
 }
 "use strict";
 function buildFullPath(baseURL, requestedURL, allowAbsoluteUrls) {
-  let isRelativeUrl = !isAbsoluteURL(requestedURL);
+  const isRelativeUrl = !isAbsoluteURL(requestedURL);
   if (baseURL && (isRelativeUrl || allowAbsoluteUrls == false)) {
     return combineURLs(baseURL, requestedURL);
   }
@@ -44997,9 +44997,9 @@ const isXHRAdapterSupported = typeof XMLHttpRequest !== "undefined";
 const xhrAdapter = isXHRAdapterSupported && function(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
     const _config = resolveConfig(config);
-    let requestData = _config.data;
+    const requestData = _config.data;
     const requestHeaders = AxiosHeaders$1.from(_config.headers).normalize();
-    let { responseType, onUploadProgress, onDownloadProgress } = _config;
+    const { responseType, onUploadProgress, onDownloadProgress } = _config;
     let onCanceled;
     let uploadThrottled, downloadThrottled;
     let flushUpload, flushDownload;
@@ -45121,7 +45121,7 @@ const xhrAdapter = isXHRAdapterSupported && function(config) {
 const composeSignals = (signals, timeout) => {
   const { length } = signals = signals ? signals.filter(Boolean) : [];
   if (timeout || length) {
-    let controller = new AbortController();
+    const controller = new AbortController();
     let aborted;
     const onabort = function(reason) {
       if (!aborted) {
@@ -45152,7 +45152,7 @@ const composeSignals = (signals, timeout) => {
   }
 };
 const streamChunk = function* (chunk, chunkSize) {
-  let len = chunk.byteLength;
+  const len = chunk.byteLength;
   if (!chunkSize || len < chunkSize) {
     yield chunk;
     return;
@@ -45192,7 +45192,7 @@ const trackStream = (stream, chunkSize, onProgress, onFinish) => {
   const iterator = readBytes(stream, chunkSize);
   let bytes = 0;
   let done;
-  let _onFinish = (e) => {
+  const _onFinish = (e) => {
     if (!done) {
       done = true;
       onFinish && onFinish(e);
@@ -45207,9 +45207,9 @@ const trackStream = (stream, chunkSize, onProgress, onFinish) => {
           controller.close();
           return;
         }
-        let len = value.byteLength;
+        const len = value.byteLength;
         if (onProgress) {
-          let loadedBytes = bytes += len;
+          const loadedBytes = bytes += len;
           onProgress(loadedBytes);
         }
         controller.enqueue(new Uint8Array(value));
@@ -45304,7 +45304,7 @@ const fetchAdapter = isFetchSupported && (async (config) => {
     fetchOptions
   } = resolveConfig(config);
   responseType = responseType ? (responseType + "").toLowerCase() : "text";
-  let composedSignal = composeSignals([signal, cancelToken && cancelToken.toAbortSignal()], timeout);
+  const composedSignal = composeSignals([signal, cancelToken && cancelToken.toAbortSignal()], timeout);
   let request;
   const unsubscribe = composedSignal && composedSignal.unsubscribe && (() => {
     composedSignal.unsubscribe();
@@ -45312,7 +45312,7 @@ const fetchAdapter = isFetchSupported && (async (config) => {
   let requestContentLength;
   try {
     if (onUploadProgress && supportsRequestStream && method !== "get" && method !== "head" && (requestContentLength = await resolveBodyLength(headers, data2)) !== 0) {
-      let _request = new Request(url, {
+      const _request = new Request(url, {
         method: "POST",
         body: data2,
         duplex: "half"
@@ -45363,7 +45363,7 @@ const fetchAdapter = isFetchSupported && (async (config) => {
       );
     }
     responseType = responseType || "text";
-    let responseData = await resolvers[utils$1.findKey(resolvers, responseType) || "text"](response, config);
+    const responseData = await resolvers[utils$1.findKey(resolvers, responseType) || "text"](response, config);
     !isStreamResponse && unsubscribe && unsubscribe();
     return await new Promise((resolve, reject) => {
       settle(resolve, reject, {
@@ -45430,7 +45430,7 @@ const adapters = {
       const reasons = Object.entries(rejectedReasons).map(
         ([id2, state2]) => `adapter ${id2} ` + (state2 === false ? "is not supported by the environment" : "is not available in the build")
       );
-      let s = length ? reasons.length > 1 ? "since :\n" + reasons.map(renderReason).join("\n") : " " + renderReason(reasons[0]) : "as no adapter specified";
+      const s = length ? reasons.length > 1 ? "since :\n" + reasons.map(renderReason).join("\n") : " " + renderReason(reasons[0]) : "as no adapter specified";
       throw new AxiosError$1(
         `There is no suitable adapter to dispatch the request ` + s,
         "ERR_NOT_SUPPORT"
@@ -45550,7 +45550,7 @@ const validator = {
 };
 "use strict";
 const validators = validator.validators;
-let Axios$1 = class Axios {
+const Axios$1 = class Axios {
   constructor(instanceConfig) {
     this.defaults = instanceConfig;
     this.interceptors = {
@@ -45625,7 +45625,7 @@ let Axios$1 = class Axios {
       withXsrfToken: validators.spelling("withXSRFToken")
     }, true);
     config.method = (config.method || this.defaults.method || "get").toLowerCase();
-    let contextHeaders = headers && utils$1.merge(
+    const contextHeaders = headers && utils$1.merge(
       headers.common,
       headers[config.method]
     );
@@ -45720,7 +45720,7 @@ utils$1.forEach(["post", "put", "patch"], function forEachMethodWithData(method)
   Axios$1.prototype[method + "Form"] = generateHTTPMethod(true);
 });
 "use strict";
-let CancelToken$1 = class CancelToken {
+const CancelToken$1 = class CancelToken {
   constructor(executor) {
     if (typeof executor !== "function") {
       throw new TypeError("executor must be a function.");

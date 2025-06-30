@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { Save, RefreshCw, AlertTriangle, CheckCircle } from "lucide-react";
-import Card from "./Card";
-import Button from "./Button";
-import LoadingSpinner from "./LoadingSpinner";
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { Save, RefreshCw, AlertTriangle, CheckCircle } from 'lucide-react';
+import Card from './Card';
+import Button from './Button';
+import LoadingSpinner from './LoadingSpinner';
 
 const Settings = () => {
   const [settings, setSettings] = useState({
     snmpTimeout: 5,
     snmpRetries: 2,
-    snmpVersion: "2c",
+    snmpVersion: '2c',
     testConcurrency: 3,
     enableAI: true,
     alertThresholds: {
@@ -18,9 +18,9 @@ const Settings = () => {
       highLatency: 100,
     },
     cnMaestroSettings: {
-      apiUrl: "https://cnmaestro.gvec.net/api/v2/",
-      clientId: "",
-      clientSecret: "",
+      apiUrl: 'https://cnmaestro.gvec.net/api/v2/',
+      clientId: '',
+      clientSecret: '',
       refreshInterval: 300,
     },
   });
@@ -40,7 +40,7 @@ const Settings = () => {
         setLoading(false);
       }, 1000);
     } catch (error) {
-      console.error("Error fetching settings:", error);
+      console.error('Error fetching settings:', error);
       setLoading(false);
     }
   };
@@ -49,10 +49,10 @@ const Settings = () => {
     setSaving(true);
     try {
       // Mock save operation
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      console.log("Settings saved:", settings);
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      console.log('Settings saved:', settings);
     } catch (error) {
-      console.error("Error saving settings:", error);
+      console.error('Error saving settings:', error);
     } finally {
       setSaving(false);
     }
@@ -64,19 +64,19 @@ const Settings = () => {
 
     try {
       // Mock connection test
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      setConnectionStatus("success");
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      setConnectionStatus('success');
     } catch (error) {
-      setConnectionStatus("error");
+      setConnectionStatus('error');
     } finally {
       setTestConnection(false);
     }
   };
 
   const updateSetting = (path, value) => {
-    setSettings((prev) => {
+    setSettings(prev => {
       const newSettings = { ...prev };
-      const keys = path.split(".");
+      const keys = path.split('.');
       let current = newSettings;
 
       for (let i = 0; i < keys.length - 1; i++) {
@@ -117,8 +117,8 @@ const Settings = () => {
                 min="1"
                 max="30"
                 value={settings.snmpTimeout}
-                onChange={(e) =>
-                  updateSetting("snmpTimeout", parseInt(e.target.value))
+                onChange={e =>
+                  updateSetting('snmpTimeout', parseInt(e.target.value))
                 }
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
@@ -132,8 +132,8 @@ const Settings = () => {
                 min="0"
                 max="5"
                 value={settings.snmpRetries}
-                onChange={(e) =>
-                  updateSetting("snmpRetries", parseInt(e.target.value))
+                onChange={e =>
+                  updateSetting('snmpRetries', parseInt(e.target.value))
                 }
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
@@ -144,7 +144,7 @@ const Settings = () => {
               </label>
               <select
                 value={settings.snmpVersion}
-                onChange={(e) => updateSetting("snmpVersion", e.target.value)}
+                onChange={e => updateSetting('snmpVersion', e.target.value)}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="1">SNMPv1</option>
@@ -176,8 +176,8 @@ const Settings = () => {
                 min="1"
                 max="10"
                 value={settings.testConcurrency}
-                onChange={(e) =>
-                  updateSetting("testConcurrency", parseInt(e.target.value))
+                onChange={e =>
+                  updateSetting('testConcurrency', parseInt(e.target.value))
                 }
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
@@ -190,7 +190,7 @@ const Settings = () => {
                 <input
                   type="checkbox"
                   checked={settings.enableAI}
-                  onChange={(e) => updateSetting("enableAI", e.target.checked)}
+                  onChange={e => updateSetting('enableAI', e.target.checked)}
                   className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                 />
                 <span className="ml-2 text-sm font-medium text-gray-700">
@@ -224,10 +224,10 @@ const Settings = () => {
                 type="number"
                 min="1"
                 value={settings.alertThresholds.lowThroughput}
-                onChange={(e) =>
+                onChange={e =>
                   updateSetting(
-                    "alertThresholds.lowThroughput",
-                    parseInt(e.target.value),
+                    'alertThresholds.lowThroughput',
+                    parseInt(e.target.value)
                   )
                 }
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -241,10 +241,10 @@ const Settings = () => {
                 type="number"
                 min="1"
                 value={settings.alertThresholds.lowSNR}
-                onChange={(e) =>
+                onChange={e =>
                   updateSetting(
-                    "alertThresholds.lowSNR",
-                    parseInt(e.target.value),
+                    'alertThresholds.lowSNR',
+                    parseInt(e.target.value)
                   )
                 }
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -258,10 +258,10 @@ const Settings = () => {
                 type="number"
                 min="1"
                 value={settings.alertThresholds.highLatency}
-                onChange={(e) =>
+                onChange={e =>
                   updateSetting(
-                    "alertThresholds.highLatency",
-                    parseInt(e.target.value),
+                    'alertThresholds.highLatency',
+                    parseInt(e.target.value)
                   )
                 }
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -289,8 +289,8 @@ const Settings = () => {
               <input
                 type="url"
                 value={settings.cnMaestroSettings.apiUrl}
-                onChange={(e) =>
-                  updateSetting("cnMaestroSettings.apiUrl", e.target.value)
+                onChange={e =>
+                  updateSetting('cnMaestroSettings.apiUrl', e.target.value)
                 }
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
@@ -303,8 +303,8 @@ const Settings = () => {
                 <input
                   type="text"
                   value={settings.cnMaestroSettings.clientId}
-                  onChange={(e) =>
-                    updateSetting("cnMaestroSettings.clientId", e.target.value)
+                  onChange={e =>
+                    updateSetting('cnMaestroSettings.clientId', e.target.value)
                   }
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
@@ -316,10 +316,10 @@ const Settings = () => {
                 <input
                   type="password"
                   value={settings.cnMaestroSettings.clientSecret}
-                  onChange={(e) =>
+                  onChange={e =>
                     updateSetting(
-                      "cnMaestroSettings.clientSecret",
-                      e.target.value,
+                      'cnMaestroSettings.clientSecret',
+                      e.target.value
                     )
                   }
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -335,10 +335,10 @@ const Settings = () => {
                 min="60"
                 max="3600"
                 value={settings.cnMaestroSettings.refreshInterval}
-                onChange={(e) =>
+                onChange={e =>
                   updateSetting(
-                    "cnMaestroSettings.refreshInterval",
-                    parseInt(e.target.value),
+                    'cnMaestroSettings.refreshInterval',
+                    parseInt(e.target.value)
                   )
                 }
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -360,20 +360,20 @@ const Settings = () => {
               {connectionStatus && (
                 <div
                   className={`flex items-center space-x-2 ${
-                    connectionStatus === "success"
-                      ? "text-green-600"
-                      : "text-red-600"
+                    connectionStatus === 'success'
+                      ? 'text-green-600'
+                      : 'text-red-600'
                   }`}
                 >
-                  {connectionStatus === "success" ? (
+                  {connectionStatus === 'success' ? (
                     <CheckCircle className="w-4 h-4" />
                   ) : (
                     <AlertTriangle className="w-4 h-4" />
                   )}
                   <span className="text-sm">
-                    {connectionStatus === "success"
-                      ? "Connection successful"
-                      : "Connection failed"}
+                    {connectionStatus === 'success'
+                      ? 'Connection successful'
+                      : 'Connection failed'}
                   </span>
                 </div>
               )}
@@ -395,7 +395,7 @@ const Settings = () => {
             ) : (
               <Save className="w-4 h-4 mr-2" />
             )}
-            {saving ? "Saving..." : "Save Settings"}
+            {saving ? 'Saving...' : 'Save Settings'}
           </Button>
         </div>
       </motion.div>
