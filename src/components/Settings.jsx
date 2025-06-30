@@ -4,26 +4,10 @@ import { Save, RefreshCw, AlertTriangle, CheckCircle } from 'lucide-react';
 import Card from './Card';
 import Button from './Button';
 import LoadingSpinner from './LoadingSpinner';
+import { useApp } from '../context/AppContext';
 
 const Settings = () => {
-  const [settings, setSettings] = useState({
-    snmpTimeout: 5,
-    snmpRetries: 2,
-    snmpVersion: '2c',
-    testConcurrency: 3,
-    enableAI: true,
-    alertThresholds: {
-      lowThroughput: 50,
-      lowSNR: 15,
-      highLatency: 100,
-    },
-    cnMaestroSettings: {
-      apiUrl: 'https://cnmaestro.gvec.net/api/v2/',
-      clientId: '',
-      clientSecret: '',
-      refreshInterval: 300,
-    },
-  });
+  const { settings, updateSettings } = useApp();
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [testConnection, setTestConnection] = useState(false);
@@ -74,18 +58,7 @@ const Settings = () => {
   };
 
   const updateSetting = (path, value) => {
-    setSettings(prev => {
-      const newSettings = { ...prev };
-      const keys = path.split('.');
-      let current = newSettings;
-
-      for (let i = 0; i < keys.length - 1; i++) {
-        current = current[keys[i]];
-      }
-
-      current[keys[keys.length - 1]] = value;
-      return newSettings;
-    });
+    updateSettings(path, value);
   };
 
   if (loading) {

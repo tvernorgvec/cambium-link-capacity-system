@@ -4,6 +4,7 @@ import { Play, Pause, Settings, Plus, Trash2 } from 'lucide-react';
 import Card from './Card';
 import Button from './Button';
 import LoadingSpinner from './LoadingSpinner';
+import { useApp } from '../context/AppContext';
 
 const Scheduler = () => {
   const [accessPoints, setAccessPoints] = useState([]);
@@ -12,6 +13,7 @@ const Scheduler = () => {
   const [scheduledTests, setScheduledTests] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isRunning, setIsRunning] = useState(false);
+  const { scheduleTest } = useApp();
 
   useEffect(() => {
     fetchAccessPoints();
@@ -102,7 +104,7 @@ const Scheduler = () => {
       scheduledAt: new Date().toISOString(),
     };
 
-    setScheduledTests(prev => [...prev, newTest]);
+    scheduleTest(newTest);
     setSelectedAP('');
 
     // Test scheduling logic would be implemented here

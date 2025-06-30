@@ -5,82 +5,23 @@ import Card from './Card';
 import Button from './Button';
 import StatusBadge from './StatusBadge';
 import LoadingSpinner from './LoadingSpinner';
+import { useApp } from '../context/AppContext';
 
 const History = () => {
-  const [testHistory, setTestHistory] = useState([]);
   const [filteredHistory, setFilteredHistory] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
   const [dateFilter, setDateFilter] = useState('all');
-
-  useEffect(() => {
-    fetchTestHistory();
-  }, []);
+  const { testHistory } = useApp();
 
   useEffect(() => {
     filterHistory();
   }, [testHistory, searchTerm, statusFilter, dateFilter]);
 
-  const fetchTestHistory = async () => {
-    try {
-      // Mock data for demonstration
-      const mockHistory = [
-        {
-          id: 1,
-          apName: 'WestHill-AP1',
-          apMac: '00:04:56:AA:BB:CC',
-          smMac: '00:04:56:11:22:33',
-          testType: 'individual',
-          status: 'success',
-          uplinkMbps: 63.4,
-          downlinkMbps: 128.2,
-          snrDl: 26.1,
-          snrUl: 24.8,
-          startTime: '2024-01-15T10:30:00Z',
-          endTime: '2024-01-15T10:32:15Z',
-          duration: 135,
-        },
-        {
-          id: 2,
-          apName: 'EastTower-AP2',
-          apMac: '00:04:56:DD:EE:FF',
-          smMac: '00:04:56:44:55:66',
-          testType: 'flood',
-          status: 'failed',
-          uplinkMbps: null,
-          downlinkMbps: null,
-          snrDl: null,
-          snrUl: null,
-          startTime: '2024-01-15T09:15:00Z',
-          endTime: '2024-01-15T09:16:30Z',
-          duration: 90,
-          errorMessage: 'SNMP timeout',
-        },
-        {
-          id: 3,
-          apName: 'SouthSite-AP3',
-          apMac: '00:04:56:11:22:33',
-          smMac: '00:04:56:77:88:99',
-          testType: 'individual',
-          status: 'success',
-          uplinkMbps: 45.2,
-          downlinkMbps: 89.7,
-          snrDl: 22.3,
-          snrUl: 21.1,
-          startTime: '2024-01-14T16:45:00Z',
-          endTime: '2024-01-14T16:47:20Z',
-          duration: 140,
-        },
-      ];
-
-      setTestHistory(mockHistory);
-      setLoading(false);
-    } catch (error) {
-      // Console statement removed by auto-fix
-      setLoading(false);
-    }
-  };
+  useEffect(() => {
+    setLoading(false);
+  }, [testHistory]);
 
   const filterHistory = () => {
     let filtered = testHistory;
@@ -259,7 +200,7 @@ const History = () => {
             </h3>
           </div>
 
-          {filteredHistory.length === 0 ? (
+          {testHistory.length === 0 ? (
             <div className="text-center py-8 text-gray-500">
               No test results found
             </div>
@@ -295,7 +236,7 @@ const History = () => {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                  {filteredHistory.map(test => (
+                  {testHistory.map((test) => (
                     <tr key={test.id} className="hover:bg-gray-50">
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div>
