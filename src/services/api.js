@@ -42,23 +42,23 @@ export const getLinkCapacity = async () => {
     const response = await apiClient.get('/link-capacity');
     return response.data;
   } catch (error) {
-    console.warn('API call failed, returning mock data:', error.message);
+    // Console statement removed by auto-fix
     return [
       {
-        id: "1",
-        ap_mac: "00:04:56:AA:BB:CC",
-        sm_mac: "00:04:56:11:22:33",
-        name: "WestHill-AP1-SM1",
-        model: "450v",
-        tower_name: "WestHill",
-        ip_address: "10.67.1.100",
-        status: "active",
+        id: '1',
+        ap_mac: '00:04:56:AA:BB:CC',
+        sm_mac: '00:04:56:11:22:33',
+        name: 'WestHill-AP1-SM1',
+        model: '450v',
+        tower_name: 'WestHill',
+        ip_address: '10.67.1.100',
+        status: 'active',
         uplink_mbps: 63.4,
         downlink_mbps: 128.2,
         snr_dl: 26.1,
         snr_ul: 24.8,
-        last_test: "2024-01-15T10:30:00Z"
-      }
+        last_test: '2024-01-15T10:30:00Z',
+      },
     ];
   }
 };
@@ -68,7 +68,7 @@ export const getTestResults = async () => {
     const response = await apiClient.get('/test-results');
     return response.data;
   } catch (error) {
-    console.warn('API call failed, returning mock data:', error.message);
+    // Console statement removed by auto-fix
     return [];
   }
 };
@@ -78,37 +78,37 @@ export const getScheduledTests = async () => {
     const response = await apiClient.get('/scheduled-tests');
     return response.data;
   } catch (error) {
-    console.warn('API call failed, returning mock data:', error.message);
+    // Console statement removed by auto-fix
     return [];
   }
 };
 
-export const scheduleTest = async (testData) => {
+export const scheduleTest = async testData => {
   try {
     const response = await apiClient.post('/scheduled-tests', testData);
     return response.data;
   } catch (error) {
-    console.warn('API call failed:', error.message);
+    // Console statement removed by auto-fix
     throw error;
   }
 };
 
-export const deleteScheduledTest = async (testId) => {
+export const deleteScheduledTest = async testId => {
   try {
     const response = await apiClient.delete(`/scheduled-tests/${testId}`);
     return response.data;
   } catch (error) {
-    console.warn('API call failed:', error.message);
+    // Console statement removed by auto-fix
     throw error;
   }
 };
 
-export const updateSettings = async (settings) => {
+export const updateSettings = async settings => {
   try {
     const response = await apiClient.put('/settings', settings);
     return response.data;
   } catch (error) {
-    console.warn('API call failed:', error.message);
+    // Console statement removed by auto-fix
     throw error;
   }
 };

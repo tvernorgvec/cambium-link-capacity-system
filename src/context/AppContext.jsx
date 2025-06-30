@@ -109,10 +109,7 @@ export function AppProvider({ children }) {
 
   // Load initial data only once on mount
   useEffect(() => {
-    // Only load data if we don't already have it
-    if (state.data.linkCapacity.length === 0 && !state.loading) {
-      loadInitialData();
-    }
+    loadInitialData();
   }, [loadInitialData]);
 
   // Handle auto-refresh with proper cleanup
@@ -154,7 +151,7 @@ export function AppProvider({ children }) {
         intervalRef.current = null;
       }
     };
-  }, [state.data.settings.autoRefresh, state.data.settings.refreshInterval]);
+  }, []);
 
   const contextValue = {
     state,

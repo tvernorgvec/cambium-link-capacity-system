@@ -1,0 +1,259 @@
+# ===========================================
+# NGINX Reverse Proxy for isp-devbox.gvec.net
+# ===========================================
+
+# --------- Upstream Definitions ----------
+upstream portainer {
+    server 127.0.0.1:9000;
+}
+
+upstream grafana {
+    server 127.0.0.1:3000;
+}
+
+upstream nodered {
+    server 127.0.0.1:1880;
+}
+
+upstream cambium_monitor {
+    server 127.0.0.1:5000;
+}
+
+upstream cnmaestro_cleanup {
+    server 127.0.0.1:5010;
+}
+
+upstream nginx_ui {
+    server 127.0.0.1:9001;
+}
+
+upstream chronograf {
+    server 127.0.0.1:8888;
+}
+
+upstream influxdb {
+    server 127.0.0.1:8086;
+}
+
+# --------- Main Virtual Host ----------
+server {
+    listen 80;
+    server_name isp-devbox.gvec.net;
+
+    # ---------- Global Headers ----------
+    add_header X-Frame-Options "SAMEORIGIN";
+    add_header X-Content-Type-Options "nosniff";
+    add_header Referrer-Policy "strict-origin-when-cross-origin";
+
+    # ---------- Logging ----------
+    access_log /var/log/nginx/access.log;
+    error_log /var/log/nginx/error.log;
+
+    # ---------- General Behavior ----------
+    proxy_buffering off;
+    proxy_cache off;
+
+    # ---------- FQDN Redirects for trailing slashes ----------
+    rewrite ^(/portainer|/grafana|/nodered|/cambiumapethmonitor|/cnmaestrocleanup|/nginx-ui|/chronograf|/influxdb)$ $1/ permanent;
+
+    # ========================================
+    #               PORTAINER
+    # ========================================
+    location /portainer/ {
+        proxy_pass http://portainer/;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_read_timeout 86400;
+    }
+
+    # ========================================
+    #                GRAFANA
+    # ========================================
+    location /grafana/ {
+        proxy_pass http://grafana/;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_read_timeout 86400;
+    }
+
+    # ========================================
+    #               NODE-RED
+    # ========================================
+    location /nodered/ {
+        proxy_pass http://nodered/;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_read_timeout 86400;
+    }
+
+    # ========================================
+    #        CAMBIUM PATH MONITOR
+    # ========================================
+    location /cambiumapethmonitor/api/ws {
+        proxy_pass http://cambium_monitor/api/ws;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_read_timeout 86400s;
+        proxy_send_timeout 86400s;
+    }
+
+    location /cambiumapethmonitor/api/ {
+        proxy_pass http://cambium_monitor/api/;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_read_timeout 60s;
+        proxy_send_timeout 60s;
+    }
+
+    location /cambiumapethmonitor/ {
+        proxy_pass http://cambium_monitor/;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_read_timeout 60s;
+        proxy_send_timeout 60s;
+    }
+
+    # ========================================
+    #           CNMAESTRO CLEANUP
+    # ========================================
+    location /cnmaestrocleanup/api/ws {
+        proxy_pass http://cnmaestro_cleanup/api/ws;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_read_timeout 86400s;
+        proxy_send_timeout 86400s;
+    }
+
+    location /cnmaestrocleanup/api/ {
+        proxy_pass http://cnmaestro_cleanup/api/;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_read_timeout 60s;
+        proxy_send_timeout 60s;
+    }
+
+    location /cnmaestrocleanup/ {
+        proxy_pass http://cnmaestro_cleanup/;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_read_timeout 60s;
+        proxy_send_timeout 60s;
+    }
+
+    # ========================================
+    #                NGINX UI
+    # ========================================
+    location /nginx-ui/ {
+        proxy_pass http://nginx_ui/;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_redirect off;
+        proxy_buffering off;
+        sub_filter_once off;
+        sub_filter 'href="/' 'href="/nginx-ui/';
+        sub_filter 'src="/' 'src="/nginx-ui/';
+        sub_filter 'action="/' 'action="/nginx-ui/';
+    }
+
+    # ========================================
+    #               CHRONOGRAF
+    # ========================================
+    location /chronograf/ {
+        proxy_pass http://chronograf/;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+    # ========================================
+    # INFLUXDB UI (served from root of a subdomain)
+    # ========================================
+    location / {
+        proxy_pass http://influxdb/;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_read_timeout 86400;
+        proxy_send_timeout 86400;
+    }
+
+    # ========================================
+    #          STATIC / ERROR PAGES
+    # ========================================
+    location = /favicon.ico {
+        return 204;
+    }
+
+    error_page 404 /404.html;
+    location = /404.html {
+        root /usr/share/nginx/html;
+        internal;
+    }
+
+    error_page 500 502 503 504 /50x.html;
+    location = /50x.html {
+        root /usr/share/nginx/html;
+        internal;
+    }
+}
+
+# ========================================
+# Redirect Raw IP to FQDN
+# ========================================
+server {
+    listen 80;
+    server_name 192.168.67.150;
+    return 301 http://isp-devbox.gvec.net$request_uri;
+}
