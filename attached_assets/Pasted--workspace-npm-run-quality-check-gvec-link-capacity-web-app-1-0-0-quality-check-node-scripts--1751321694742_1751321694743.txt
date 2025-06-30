@@ -1,0 +1,53 @@
+~/workspace$ npm run quality:check
+
+> gvec-link-capacity-web-app@1.0.0 quality:check
+> node scripts/autonomous-quality.js
+
+🚀 Starting Comprehensive Quality Checks...
+
+🔍 Analyzing unused imports...
+📁 src/components/Layout.jsx: 9 imports, 9 used
+📁 src/components/Button.jsx: 1 imports, 1 used
+📁 src/components/Card.jsx: 1 imports, 1 used
+📁 src/components/LoadingSpinner.jsx: 1 imports, 1 used
+📁 src/components/StatusBadge.jsx: 0 imports, 0 used
+📁 src/components/ErrorBoundary.jsx: 2 imports, 2 used
+📁 src/components/Settings.jsx: 9 imports, 9 used
+📁 src/components/DataTable.jsx: 4 imports, 3 used
+📁 src/components/History.jsx: 10 imports, 10 used
+📁 src/components/Scheduler.jsx: 11 imports, 8 used
+📁 src/components/Dashboard.jsx: 8 imports, 8 used
+📁 src/index.jsx: 3 imports, 3 used
+📁 src/main.jsx: 3 imports, 3 used
+📁 src/utils/motion.js: 0 imports, 0 used
+📁 src/services/api.js: 1 imports, 1 used
+📁 src/context/AppContext.jsx: 0 imports, 0 used
+📁 src/config/environment.js: 0 imports, 0 used
+📁 src/types/index.js: 0 imports, 0 used
+📁 src/App.jsx: 8 imports, 7 used
+
+🔄 React useEffect dependency analysis...
+✅ React useEffect dependency analysis completed
+🔄 React infinite loop pattern detection...
+✅ React infinite loop pattern detection completed
+🔄 Code linting with auto-fix...
+⚠️ Code linting with auto-fix found issues but applied available fixes
+🔄 Code formatting with auto-fix...
+✅ Code formatting with auto-fix completed
+🔄 TypeScript type checking...
+✅ TypeScript type checking completed
+🔄 Dead code detection...
+✅ Dead code detection completed
+🔄 Circular dependency detection...
+✅ Circular dependency detection completed
+🔄 Code duplication analysis...
+✅ Code duplication analysis completed
+🔄 Security audit with auto-fix...
+✅ Security audit with auto-fix completed
+🔄 Unused dependency detection...
+✅ Unused dependency detection completed
+🔄 License compliance check...
+✅ License compliance check completed
+
+📊 Quality checks complete: 11/11 passed, 4 auto-fixed
+~/workspace$ 
