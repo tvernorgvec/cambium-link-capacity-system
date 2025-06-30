@@ -17,7 +17,7 @@ mode = "sequential"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "npm install && npm run quality:autofix && npm run quality:check && npm run dev"
+args = "npm install && npm run quality:check && npm run dev"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
