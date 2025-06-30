@@ -1,4 +1,10 @@
-import { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+} from 'react';
 
 const AppContext = createContext();
 
@@ -20,11 +26,11 @@ export const AppProvider = ({ children }) => {
       autoRefresh: true,
       refreshInterval: 30000,
       notifications: true,
-      theme: 'light'
-    }
+      theme: 'light',
+    },
   });
 
-  const updateState = useCallback((newState) => {
+  const updateState = useCallback(newState => {
     setState(prevState => ({ ...prevState, ...newState }));
   }, []);
 
@@ -36,7 +42,7 @@ export const AppProvider = ({ children }) => {
         const parsedSettings = JSON.parse(savedSettings);
         setState(prevState => ({
           ...prevState,
-          settings: { ...prevState.settings, ...parsedSettings }
+          settings: { ...prevState.settings, ...parsedSettings },
         }));
       } catch (error) {
         // Console statement removed by auto-fix
@@ -52,37 +58,65 @@ export const AppProvider = ({ children }) => {
   const value = {
     ...state,
     updateState,
-    setLoading: useCallback((isLoading) => updateState({ isLoading }), [updateState]),
-    setUser: useCallback((user) => updateState({ user }), [updateState]),
-    setTheme: useCallback((theme) => updateState({ theme }), [updateState]),
-    addNotification: useCallback((notification) => {
+    setLoading: useCallback(
+      isLoading => updateState({ isLoading }),
+      [updateState]
+    ),
+    setUser: useCallback(user => updateState({ user }), [updateState]),
+    setTheme: useCallback(theme => updateState({ theme }), [updateState]),
+    addNotification: useCallback(notification => {
       const newNotification = {
         id: Date.now(),
         timestamp: new Date().toISOString(),
-        ...notification
+        ...notification,
       };
       setState(prevState => ({
         ...prevState,
-        notifications: [...prevState.notifications, newNotification]
+        notifications: [...prevState.notifications, newNotification],
       }));
     }, []),
-    removeNotification: useCallback((id) => {
+    removeNotification: useCallback(id => {
       setState(prevState => ({
         ...prevState,
-        notifications: prevState.notifications.filter(n => n.id !== id)
+        notifications: prevState.notifications.filter(n => n.id !== id),
       }));
     }, []),
-    updateSettings: useCallback((newSettings) => {
+    updateSettings: useCallback(newSettings => {
       setState(prevState => ({
         ...prevState,
-        settings: { ...prevState.settings, ...newSettings }
+        settings: { ...prevState.settings, ...newSettings },
       }));
-    }, [])
+    }, []),
   };
 
-  return (
-    <AppContext.Provider value={value}>
-      {children}
-    </AppContext.Provider>
-  );
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const saved = localStorage.getItem('gvec-app-data');
+      if (saved) {
+        try {
+          const data = JSON.parse(saved);
+          setState(prevState => ({ ...prevState, ...data }));
+        } catch (error) {
+          // Console statement removed by auto-fix
+        }
+      }
+    };
+
+    handleStorageChange();
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, []);
+
+  const saveToStorage = useCallback(newState => {
+    localStorage.setItem('gvec-app-data', JSON.stringify(newState));
+  }, []);
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      saveToStorage(state);
+    }, 100);
+    return () => clearTimeout(timeoutId);
+  }, [state, saveToStorage]);
+
+  return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };

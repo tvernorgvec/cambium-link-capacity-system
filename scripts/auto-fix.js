@@ -89,6 +89,43 @@ const autoFixIssues = async () => {
     fixes.push('⚠️ Some React hooks issues may need manual attention');
   }
 
+  // 7. Fix React infinite loop patterns
+  console.log('🔄 Checking for React infinite loop patterns...');
+  try {
+    const files = await glob('src/**/*.{js,jsx,ts,tsx}');
+    let loopFixed = 0;
+    
+    files.forEach(file => {
+      const content = readFileSync(file, 'utf8');
+      let modified = false;
+      
+      // Check for setState in useEffect without proper dependencies
+      if (content.includes('setState') && content.includes('useEffect') && content.includes('}, [state])')) {
+        const lines = content.split('\n');
+        const fixedContent = lines.map(line => {
+          if (line.includes('}, [state])') && line.includes('useEffect')) {
+            modified = true;
+            loopFixed++;
+            return line.replace('}, [state])', '}, [])');
+          }
+          return line;
+        }).join('\n');
+        
+        if (modified) {
+          writeFileSync(file, fixedContent);
+        }
+      }
+    });
+    
+    if (loopFixed > 0) {
+      fixes.push(`✅ Fixed ${loopFixed} React infinite loop patterns`);
+    } else {
+      fixes.push('✅ No React infinite loops detected');
+    }
+  } catch (error) {
+    fixes.push('⚠️ React loop check had issues');
+  }
+
   // Generate fix report
   const report = `# Auto-Fix Report
 
