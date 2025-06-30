@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "@emotion/is-prop-valid": "^1.2.1",
+    "@tailwindcss/typography": "^0.5.16",
     "axios": "^1.6.0",
     "framer-motion": "^10.16.0",
     "lucide-react": "^0.292.0",
