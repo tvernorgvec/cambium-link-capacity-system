@@ -35,15 +35,6 @@ export const AppProvider = ({ children }) => {
     },
   });
 
-  // Memoize the saveToStorage function to prevent re-creation on every render
-  const saveToStorage = useCallback(data => {
-    try {
-      localStorage.setItem('gvec-app-data', JSON.stringify(data));
-    } catch (error) {
-      console.error('Failed to save to localStorage:', error);
-    }
-  }, []);
-
   // Load data from localStorage on mount only
   useEffect(() => {
     const loadFromStorage = () => {
@@ -64,7 +55,11 @@ export const AppProvider = ({ children }) => {
   // Save to localStorage when state changes (with debounce)
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      saveToStorage(state);
+      try {
+        localStorage.setItem('gvec-app-data', JSON.stringify(state));
+      } catch (error) {
+        console.error('Failed to save to localStorage:', error);
+      }
     }, 500);
 
     return () => clearTimeout(timeoutId);
