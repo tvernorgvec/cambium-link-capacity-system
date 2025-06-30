@@ -80,6 +80,15 @@ const autoFixIssues = async () => {
     fixes.push('⚠️ PropTypes standardization incomplete');
   }
 
+  // 6. Fix React useEffect dependency issues
+  console.log('🔄 Checking React useEffect dependencies...');
+  try {
+    execSync('npx eslint src --ext .jsx,.tsx --fix --rule "react-hooks/exhaustive-deps: error"', { stdio: 'pipe' });
+    fixes.push('✅ React hooks dependencies fixed');
+  } catch (error) {
+    fixes.push('⚠️ Some React hooks issues may need manual attention');
+  }
+
   // Generate fix report
   const report = `# Auto-Fix Report
 

@@ -1,16 +1,12 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 import { AppProvider } from './context/AppContext';
-import ErrorBoundary from './components/ErrorBoundary';
+import { ErrorBoundary } from './components/ErrorBoundary';
 import Layout from './components/Layout';
 import Dashboard from './components/Dashboard';
-import Scheduler from './components/Scheduler';
 import History from './components/History';
+import Scheduler from './components/Scheduler';
 import Settings from './components/Settings';
 
 const App = () => {
