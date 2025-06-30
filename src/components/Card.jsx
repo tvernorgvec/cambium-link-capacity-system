@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 
-const Card = ({ children, className = "", ...props }) => {
+const Card = ({ children, className = '', ...props }) => {
   return (
     <div
       className={`bg-white rounded-lg shadow-md border border-gray-200 ${className}`}

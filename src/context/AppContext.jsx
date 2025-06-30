@@ -109,7 +109,10 @@ export function AppProvider({ children }) {
 
   // Load initial data only once on mount
   useEffect(() => {
-    loadInitialData();
+    // Only load data if we don't already have it
+    if (state.data.linkCapacity.length === 0 && !state.loading) {
+      loadInitialData();
+    }
   }, [loadInitialData]);
 
   // Handle auto-refresh with proper cleanup

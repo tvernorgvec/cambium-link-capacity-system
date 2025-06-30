@@ -1,6 +1,6 @@
 {
   "statistics": {
-    "detectionDate": "2025-06-30T22:44:41.933Z",
+    "detectionDate": "2025-06-30T22:49:13.544Z",
     "formats": {
       "javascript": {
         "sources": {
@@ -149,8 +149,8 @@
             "newClones": 0
           },
           "/home/runner/workspace/src/components/Card.jsx": {
-            "lines": 3,
-            "tokens": 49,
+            "lines": 0,
+            "tokens": 7,
             "sources": 1,
             "clones": 0,
             "duplicatedLines": 0,
@@ -186,8 +186,8 @@
           }
         },
         "total": {
-          "lines": 685,
-          "tokens": 5500,
+          "lines": 682,
+          "tokens": 5458,
           "sources": 15,
           "clones": 0,
           "duplicatedLines": 0,
@@ -201,8 +201,8 @@
       "jsx": {
         "sources": {
           "/home/runner/workspace/src/context/AppContext.jsx": {
-            "lines": 186,
-            "tokens": 1425,
+            "lines": 189,
+            "tokens": 1457,
             "sources": 1,
             "clones": 0,
             "duplicatedLines": 0,
@@ -297,8 +297,8 @@
             "newClones": 0
           },
           "/home/runner/workspace/src/components/Card.jsx": {
-            "lines": 24,
-            "tokens": 196,
+            "lines": 15,
+            "tokens": 102,
             "sources": 1,
             "clones": 0,
             "duplicatedLines": 0,
@@ -358,28 +358,28 @@
           }
         },
         "total": {
-          "lines": 1065,
-          "tokens": 8169,
+          "lines": 1059,
+          "tokens": 8107,
           "sources": 13,
           "clones": 2,
           "duplicatedLines": 27,
           "duplicatedTokens": 205,
-          "percentage": 2.54,
-          "percentageTokens": 2.51,
+          "percentage": 2.55,
+          "percentageTokens": 2.53,
           "newDuplicatedLines": 0,
           "newClones": 0
         }
       }
     },
     "total": {
-      "lines": 1750,
-      "tokens": 13669,
+      "lines": 1741,
+      "tokens": 13565,
       "sources": 28,
       "clones": 2,
       "duplicatedLines": 27,
       "duplicatedTokens": 205,
-      "percentage": 1.54,
-      "percentageTokens": 1.5,
+      "percentage": 1.55,
+      "percentageTokens": 1.51,
       "newDuplicatedLines": 0,
       "newClones": 0
     }
