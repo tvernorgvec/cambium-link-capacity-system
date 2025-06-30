@@ -1,8 +1,8 @@
 
 #!/usr/bin/env node
 
-import { execSync } from 'child_process';
-import { existsSync } from 'fs';
+const { execSync } = require('child_process');
+const { existsSync } = require('fs');
 
 const tools = [
   { name: 'ESLint', command: 'npx eslint --version', config: 'eslint.config.js' },
@@ -63,10 +63,8 @@ const generateReport = () => {
 };
 
 // Check if this script is being run directly
-const isMainModule = process.argv[1] && process.argv[1].endsWith('validate-quality-tools.js');
-
-if (isMainModule) {
+if (require.main === module) {
   generateReport();
 }
 
-export { validateTool, generateReport };
+module.exports = { validateTool, generateReport };
