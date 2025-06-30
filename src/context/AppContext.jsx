@@ -1,56 +1,72 @@
+
 import React, { createContext, useContext, useState, useCallback } from 'react';
 
 const AppContext = createContext();
 
-export const useAppContext = () => {
+export const useApp = () => {
   const context = useContext(AppContext);
   if (!context) {
-    throw new Error('useAppContext must be used within an AppProvider');
+    throw new Error('useApp must be used within an AppProvider');
   }
   return context;
 };
 
 export const AppProvider = ({ children }) => {
   const [currentTest, setCurrentTest] = useState(null);
-  const [testResults, setTestResults] = useState([]);
-  const [isTestRunning, setIsTestRunning] = useState(false);
+  const [testHistory, setTestHistory] = useState([]);
+  const [scheduledTests, setScheduledTests] = useState([]);
   const [settings, setSettings] = useState({
-    autoSave: true,
-    darkMode: false,
+    autoRefresh: true,
+    refreshInterval: 30,
     notifications: true,
-    testInterval: 300000,
-    maxRetries: 3,
-    timeout: 30000,
+    theme: 'light',
   });
 
-  const addTestResult = useCallback(result => {
-    setTestResults(prev => [...prev, { ...result, id: Date.now() }]);
+  const startTest = useCallback((testConfig) => {
+    const test = {
+      id: Date.now(),
+      ...testConfig,
+      status: 'running',
+      startTime: new Date(),
+    };
+    setCurrentTest(test);
   }, []);
 
-  const clearTestResults = useCallback(() => {
-    setTestResults([]);
+  const stopTest = useCallback(() => {
+    if (currentTest) {
+      const completedTest = {
+        ...currentTest,
+        status: 'completed',
+        endTime: new Date(),
+      };
+      setTestHistory(prev => [completedTest, ...prev]);
+      setCurrentTest(null);
+    }
+  }, [currentTest]);
+
+  const scheduleTest = useCallback((testConfig) => {
+    const scheduledTest = {
+      id: Date.now(),
+      ...testConfig,
+      status: 'scheduled',
+    };
+    setScheduledTests(prev => [...prev, scheduledTest]);
   }, []);
 
-  const updateSettings = useCallback(
-    newSettings => {
-      setSettings(prev => ({ ...prev, ...newSettings }));
-    },
-    [setSettings]
-  );
+  const updateSettings = useCallback((newSettings) => {
+    setSettings(prev => ({ ...prev, ...newSettings }));
+  }, []);
 
   const value = {
     currentTest,
-    setCurrentTest,
-    testResults,
-    addTestResult,
-    clearTestResults,
-    isTestRunning,
-    setIsTestRunning,
+    testHistory,
+    scheduledTests,
     settings,
+    startTest,
+    stopTest,
+    scheduleTest,
     updateSettings,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
-
-export default AppContext;
