@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-06-30T20:46:52.531Z",
+  "timestamp": "2025-06-30T20:48:01.015Z",
   "project": {
     "name": "gvec-link-capacity-web-app",
     "version": "1.0.0",
@@ -10,9 +10,9 @@
   },
   "git": {
     "branch": "main",
-    "commit": "289cbab",
+    "commit": "9056dea",
     "hasUncommittedChanges": true,
-    "uncommittedFiles": 5
+    "uncommittedFiles": 3
   },
   "runtime": {
     "node": "v20.18.1",
@@ -42,7 +42,7 @@
     "Audit CI": "7.1.0"
   },
   "structure": {
-    "totalSize": 253732530,
+    "totalSize": 253741380,
     "files": {
       ".js": [
         "src/config/environment.js",
