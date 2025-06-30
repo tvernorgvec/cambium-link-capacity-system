@@ -1,6 +1,6 @@
 # Project Inventory
 
-**Generated:** 2025-06-30T20:48:01.015Z
+**Generated:** 2025-06-30T20:49:30.053Z
 
 ## Project Information
 - **Name:** gvec-link-capacity-web-app
@@ -13,7 +13,7 @@
 ## Git Information
 
 - **Branch:** main
-- **Commit:** 9056dea
+- **Commit:** 9f506d2
 - **Uncommitted Changes:** Yes
 - **Uncommitted Files:** 3
 
@@ -48,7 +48,7 @@
 - **Audit CI:** 7.1.0
 
 ## Project Structure
-- **Total Size:** 241.99 MB
+- **Total Size:** 242.00 MB
 - **Source Directories:** assets, components, config, context, services, types, utils
 
 ## File Counts by Extension
