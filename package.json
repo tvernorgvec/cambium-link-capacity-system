@@ -21,6 +21,7 @@
     "quality:check": "node scripts/autonomous-quality.js",
     "quality:autofix": "node scripts/auto-fix.js",
     "quality:full": "npm run quality:autofix && npm run quality:check && npm run quality:inventory",
+    "quality:startup": "node scripts/startup-quality.js",
     "prepare": "husky install",
     "commit": "cz"
   },
