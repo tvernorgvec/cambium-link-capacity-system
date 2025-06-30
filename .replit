@@ -23,90 +23,9 @@ args = "npm install && npm run quality:autofix && npm run dev"
 task = "shell.exec"
 args = "cd backend && python -m uvicorn main:app --host 0.0.0.0 --port 5000 --reload"
 
-[[workflows.workflow]]
-name = "Quality Check"
-author = 40704979
-mode = "sequential"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "npm run quality:check"
-
-[[workflows.workflow]]
-name = "Full Quality Suite"
-author = 40704979
-mode = "sequential"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "npm run quality:validate"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "npm run quality:inventory"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "npm run quality:check"
-
-[[workflows.workflow]]
-name = "Auto Quality Fix & Check"
-author = 40704979
-mode = "sequential"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "npm run quality:autofix"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "npm run quality:check"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "npm run quality:inventory"
-
-[[workflows.workflow]]
-name = "Fix React Loop & Validate"
-author = 40704979
-mode = "sequential"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "npm run quality:autofix"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "npm run quality:check"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "npm run dev"
-
-[[workflows.workflow]]
-name = "Comprehensive Quality Analysis"
-author = 40704979
-mode = "sequential"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "echo \"🔍 Starting comprehensive analysis of ENTIRE codebase...\""
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "npm run quality:fix-all"
-
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "npm run quality:comprehensive"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "npm run quality:inventory"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "echo \"✅ Complete codebase analysis finished!\""
 
 [[ports]]
 localPort = 5000
