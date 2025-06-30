@@ -17,7 +17,8 @@ const validateTool = (tool) => {
     const output = execSync(tool.command, { 
       encoding: 'utf8', 
       stdio: 'pipe', 
-      timeout: 10000 
+      timeout: 10000,
+      cwd: process.cwd()
     }).trim();
     
     const configExists = tool.config ? existsSync(tool.config) : true;
@@ -33,8 +34,8 @@ const validateTool = (tool) => {
     return {
       name: tool.name,
       status: 'missing',
-      error: 'Not available',
-      configExists: false,
+      error: error.message || 'Not available',
+      configExists: tool.config ? existsSync(tool.config) : false,
       config: tool.config
     };
   }
@@ -61,7 +62,10 @@ const generateReport = () => {
   };
 };
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+// Check if this script is being run directly
+const isMainModule = process.argv[1] && process.argv[1].endsWith('validate-quality-tools.js');
+
+if (isMainModule) {
   generateReport();
 }
 
