@@ -71,7 +71,7 @@ export const AppProvider = ({ children }) => {
     }, 500);
 
     return () => clearTimeout(timeoutId);
-  }, []); // Only depend on state
+  }, [state]); // Only depend on state
 
   const updateState = useCallback(updates => {
     setState(prevState => ({ ...prevState, ...updates }));
