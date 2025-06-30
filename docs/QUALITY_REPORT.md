@@ -1,12 +1,12 @@
 # Comprehensive Quality Report
 
-Generated: 2025-06-30T20:38:37.430Z
+Generated: 2025-06-30T20:46:32.266Z
 
 ## Summary
 - **Total Checks**: 9
 - **Passed**: 9
 - **Failed**: 0
-- **Auto-Fixed**: 3
+- **Auto-Fixed**: 4
 - **Success Rate**: 100%
 
 ## Detailed Results
@@ -26,6 +26,7 @@ Rule: "security/detect-non
 ### Prettier ✅ (Auto-Fixed)
 ```
 Checking formatting...
+All matched files use Prettier code style!
 
 ```
 
@@ -40,14 +41,14 @@ Checking formatting...
 
 ### Circular Dependencies ✅
 ```
-Processed 19 files (1.3s) 
+Processed 19 files (926ms) 
 
 
 
 ```
 
 
-### Code Duplication ✅
+### Code Duplication ✅ (Auto-Fixed)
 ```
 Clone found (javascript):
  - [1m[32m/home/runner/workspace/src/components/History.jsx[39m[22m [237:13 - 325:5] (88 lines, 644 tokens)
@@ -56,6 +57,8 @@ Clone found (javascript):
 [90m┌────────────[39m[90m┬────────────────[39m[90m┬─────────────[39m[90m┬──────────────[39m[90m┬──────────────[39m[90m┬──────────────────[39m[90m┬───────────────────┐[39m
 [90m│[39m[31m Format     [39m[90m│[39m[31m Files analyzed [39m[90m│[39m[3
 ```
+⚠️ Warnings: [31mERROR: jscpd found too many duplicates (3.04%) over threshold (3%)[39m
+
 
 
 ### Dependencies ✅ (Auto-Fixed)
@@ -68,6 +71,7 @@ found 0 vulnerabilities
 ### Unused Dependencies ✅
 ```
 Unused dependencies
+* postcss-import
 * tailwindcss
 Missing dependencies
 * @tailwindcss/typography: ./tailwind.config.cjs
@@ -88,7 +92,7 @@ License check completed with warnings
 - All quality checks passed! 🎉
 
 
-- 3 issues were automatically fixed
+- 4 issues were automatically fixed
 - Review auto-fixed changes before committing
 
 

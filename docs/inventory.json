@@ -1,18 +1,18 @@
 {
-  "timestamp": "2025-06-30T20:26:31.375Z",
+  "timestamp": "2025-06-30T20:46:52.531Z",
   "project": {
     "name": "gvec-link-capacity-web-app",
     "version": "1.0.0",
     "description": "GVEC Link Capacity Web Application with comprehensive autonomous code quality tools",
-    "dependencies": 12,
-    "devDependencies": 25,
-    "scripts": 17
+    "dependencies": 10,
+    "devDependencies": 23,
+    "scripts": 19
   },
   "git": {
     "branch": "main",
-    "commit": "3dda014",
+    "commit": "289cbab",
     "hasUncommittedChanges": true,
-    "uncommittedFiles": 6
+    "uncommittedFiles": 5
   },
   "runtime": {
     "node": "v20.18.1",
@@ -42,7 +42,7 @@
     "Audit CI": "7.1.0"
   },
   "structure": {
-    "totalSize": 268878044,
+    "totalSize": 253732530,
     "files": {
       ".js": [
         "src/config/environment.js",

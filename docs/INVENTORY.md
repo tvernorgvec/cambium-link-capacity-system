@@ -1,21 +1,21 @@
 # Project Inventory
 
-**Generated:** 2025-06-30T20:26:31.375Z
+**Generated:** 2025-06-30T20:46:52.531Z
 
 ## Project Information
 - **Name:** gvec-link-capacity-web-app
 - **Version:** 1.0.0
 - **Description:** GVEC Link Capacity Web Application with comprehensive autonomous code quality tools
-- **Dependencies:** 12
-- **Dev Dependencies:** 25
-- **Scripts:** 17
+- **Dependencies:** 10
+- **Dev Dependencies:** 23
+- **Scripts:** 19
 
 ## Git Information
 
 - **Branch:** main
-- **Commit:** 3dda014
+- **Commit:** 289cbab
 - **Uncommitted Changes:** Yes
-- **Uncommitted Files:** 6
+- **Uncommitted Files:** 5
 
 
 ## Runtime Environment
@@ -48,7 +48,7 @@
 - **Audit CI:** 7.1.0
 
 ## Project Structure
-- **Total Size:** 256.42 MB
+- **Total Size:** 241.98 MB
 - **Source Directories:** assets, components, config, context, services, types, utils
 
 ## File Counts by Extension
