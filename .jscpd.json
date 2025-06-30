@@ -1,11 +1,11 @@
 
 {
-  "threshold": 5,
-  "minTokens": 50,
-  "minLines": 10,
+  "threshold": 3,
+  "minTokens": 30,
+  "minLines": 5,
   "maxLines": 500,
   "maxSize": "100kb",
-  "reporters": ["console", "json"],
+  "reporters": ["console", "json", "html"],
   "output": "./reports/jscpd",
   "absolute": true,
   "gitignore": true,
@@ -20,11 +20,17 @@
     "**/*.min.js",
     "**/reports/**",
     "**/docs/**",
-    "**/.husky/**"
+    "**/.husky/**",
+    "**/attached_assets/**"
   ],
   "format": ["javascript", "jsx", "typescript", "tsx"],
   "mode": "strict",
   "skipComments": true,
   "languages": ["javascript", "jsx", "typescript"],
-  "executors": ["javascript", "jsx"]
+  "executors": ["javascript", "jsx"],
+  "detectors": [
+    {
+      "engine": "pmdcpd"
+    }
+  ]
 }

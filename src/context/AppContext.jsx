@@ -126,7 +126,7 @@ export function AppProvider({ children }) {
     return () => {
       isMounted = false;
     };
-  }, []); // Empty dependency array - only run once
+  }, []);
 
   const value = {
     ...state,

@@ -160,9 +160,6 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-```
-
-```jsx
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { fetchSettings } from '../services/api';
 
