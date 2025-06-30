@@ -155,7 +155,7 @@ const Scheduler = () => {
   }));
 
   const handleEdit = task => {
-    console.log('Edit task:', task);
+    // Console statement removed by auto-fix
   };
 
   const handleDelete = taskId => {

@@ -1,6 +1,6 @@
 {
   "statistics": {
-    "detectionDate": "2025-06-30T22:08:41.121Z",
+    "detectionDate": "2025-06-30T22:12:48.837Z",
     "formats": {
       "javascript": {
         "sources": {
@@ -76,6 +76,18 @@
             "newDuplicatedLines": 0,
             "newClones": 0
           },
+          "/home/runner/workspace/src/components/Settings.jsx": {
+            "lines": 289,
+            "tokens": 1899,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
           "/home/runner/workspace/src/components/Scheduler.jsx": {
             "lines": 88,
             "tokens": 731,
@@ -103,6 +115,18 @@
           "/home/runner/workspace/src/components/Layout.jsx": {
             "lines": 65,
             "tokens": 527,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/home/runner/workspace/src/components/History.jsx": {
+            "lines": 152,
+            "tokens": 1195,
             "sources": 1,
             "clones": 0,
             "duplicatedLines": 0,
@@ -186,9 +210,9 @@
           }
         },
         "total": {
-          "lines": 642,
-          "tokens": 5211,
-          "sources": 15,
+          "lines": 1083,
+          "tokens": 8305,
+          "sources": 17,
           "clones": 0,
           "duplicatedLines": 0,
           "duplicatedTokens": 0,
@@ -201,8 +225,8 @@
       "jsx": {
         "sources": {
           "/home/runner/workspace/src/context/AppContext.jsx": {
-            "lines": 154,
-            "tokens": 1296,
+            "lines": 169,
+            "tokens": 1359,
             "sources": 1,
             "clones": 0,
             "duplicatedLines": 0,
@@ -224,15 +248,27 @@
             "newDuplicatedLines": 0,
             "newClones": 0
           },
+          "/home/runner/workspace/src/components/Settings.jsx": {
+            "lines": 379,
+            "tokens": 2603,
+            "sources": 1,
+            "clones": 4,
+            "duplicatedLines": 56,
+            "duplicatedTokens": 284,
+            "percentage": 14.78,
+            "percentageTokens": 10.91,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
           "/home/runner/workspace/src/components/Scheduler.jsx": {
             "lines": 267,
-            "tokens": 2046,
+            "tokens": 2037,
             "sources": 1,
-            "clones": 0,
-            "duplicatedLines": 0,
-            "duplicatedTokens": 0,
-            "percentage": 0,
-            "percentageTokens": 0,
+            "clones": 1,
+            "duplicatedLines": 11,
+            "duplicatedTokens": 53,
+            "percentage": 4.12,
+            "percentageTokens": 2.6,
             "newDuplicatedLines": 0,
             "newClones": 0
           },
@@ -257,6 +293,18 @@
             "duplicatedTokens": 0,
             "percentage": 0,
             "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/home/runner/workspace/src/components/History.jsx": {
+            "lines": 305,
+            "tokens": 2414,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 11,
+            "duplicatedTokens": 55,
+            "percentage": 3.61,
+            "percentageTokens": 2.28,
             "newDuplicatedLines": 0,
             "newClones": 0
           },
@@ -358,33 +406,141 @@
           }
         },
         "total": {
-          "lines": 1031,
-          "tokens": 8021,
-          "sources": 13,
-          "clones": 2,
-          "duplicatedLines": 27,
-          "duplicatedTokens": 205,
-          "percentage": 2.62,
-          "percentageTokens": 2.56,
+          "lines": 1730,
+          "tokens": 13092,
+          "sources": 15,
+          "clones": 5,
+          "duplicatedLines": 66,
+          "duplicatedTokens": 401,
+          "percentage": 3.82,
+          "percentageTokens": 3.06,
           "newDuplicatedLines": 0,
           "newClones": 0
         }
       }
     },
     "total": {
-      "lines": 1673,
-      "tokens": 13232,
-      "sources": 28,
-      "clones": 2,
-      "duplicatedLines": 27,
-      "duplicatedTokens": 205,
-      "percentage": 1.61,
-      "percentageTokens": 1.55,
+      "lines": 2813,
+      "tokens": 21397,
+      "sources": 32,
+      "clones": 5,
+      "duplicatedLines": 66,
+      "duplicatedTokens": 401,
+      "percentage": 2.35,
+      "percentageTokens": 1.87,
       "newDuplicatedLines": 0,
       "newClones": 0
     }
   },
   "duplicates": [
+    {
+      "format": "jsx",
+      "lines": 18,
+      "fragment": ")\n              </label>\n              <input\n                type=\"number\"\n                min=\"1\"\n                value={settings.alertThresholds.lowSNR}\n                onChange={e =>\n                  updateSetting(\n                    'alertThresholds.lowSNR',\n                    parseInt(e.target.value)\n                  )\n                }\n                className=\"w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500\"\n              />\n            </div>\n            <div>\n              <label className=\"block text-sm font-medium text-gray-700 mb-2\">\n                High",
+      "tokens": 0,
+      "firstFile": {
+        "name": "/home/runner/workspace/src/components/Settings.jsx",
+        "start": 211,
+        "end": 228,
+        "startLoc": {
+          "line": 211,
+          "column": 3,
+          "position": 1560
+        },
+        "endLoc": {
+          "line": 228,
+          "column": 5,
+          "position": 1648
+        }
+      },
+      "secondFile": {
+        "name": "/home/runner/workspace/src/components/Settings.jsx",
+        "start": 194,
+        "end": 211,
+        "startLoc": {
+          "line": 194,
+          "column": 5,
+          "position": 1466
+        },
+        "endLoc": {
+          "line": 211,
+          "column": 4,
+          "position": 1554
+        }
+      }
+    },
+    {
+      "format": "jsx",
+      "lines": 12,
+      "fragment": ");\n  };\n\n  if (loading) {\n    return (\n      <div className=\"flex items-center justify-center h-64\">\n        <LoadingSpinner />\n      </div>\n    );\n  }\n\n  const",
+      "tokens": 0,
+      "firstFile": {
+        "name": "/home/runner/workspace/src/components/Scheduler.jsx",
+        "start": 136,
+        "end": 147,
+        "startLoc": {
+          "line": 136,
+          "column": 5,
+          "position": 1042
+        },
+        "endLoc": {
+          "line": 147,
+          "column": 6,
+          "position": 1095
+        }
+      },
+      "secondFile": {
+        "name": "/home/runner/workspace/src/components/Settings.jsx",
+        "start": 61,
+        "end": 72,
+        "startLoc": {
+          "line": 61,
+          "column": 6,
+          "position": 527
+        },
+        "endLoc": {
+          "line": 72,
+          "column": 7,
+          "position": 580
+        }
+      }
+    },
+    {
+      "format": "jsx",
+      "lines": 12,
+      "fragment": ");\n  };\n\n  if (loading) {\n    return (\n      <div className=\"flex items-center justify-center h-64\">\n        <LoadingSpinner />\n      </div>\n    );\n  }\n\n  const columns",
+      "tokens": 0,
+      "firstFile": {
+        "name": "/home/runner/workspace/src/components/History.jsx",
+        "start": 112,
+        "end": 123,
+        "startLoc": {
+          "line": 112,
+          "column": 4,
+          "position": 979
+        },
+        "endLoc": {
+          "line": 123,
+          "column": 8,
+          "position": 1034
+        }
+      },
+      "secondFile": {
+        "name": "/home/runner/workspace/src/components/Settings.jsx",
+        "start": 61,
+        "end": 147,
+        "startLoc": {
+          "line": 61,
+          "column": 6,
+          "position": 527
+        },
+        "endLoc": {
+          "line": 147,
+          "column": 14,
+          "position": 1097
+        }
+      }
+    },
     {
       "format": "jsx",
       "lines": 15,
