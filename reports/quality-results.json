@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-06-30T20:32:28.554Z",
+  "timestamp": "2025-06-30T20:38:37.430Z",
   "tools": {
     "ESLint": {
       "success": true,
@@ -9,7 +9,7 @@
     },
     "Prettier": {
       "success": true,
-      "output": "Checking formatting...\nAll matched files use Prettier code style!\n",
+      "output": "Checking formatting...\n",
       "fixed": true
     },
     "TypeScript": {
@@ -24,7 +24,7 @@
     },
     "Circular Dependencies": {
       "success": true,
-      "output": "Processed 19 files (1.2s) \n\n\n",
+      "output": "Processed 19 files (1.3s) \n\n\n",
       "fixed": false
     },
     "Code Duplication": {
@@ -38,9 +38,9 @@
       "fixed": true
     },
     "Unused Dependencies": {
-      "success": false,
-      "error": "Command failed: npx depcheck --ignores=\"@types/*,eslint-*,@typescript-eslint/*\"",
-      "output": "Unused dependencies\n* @tailwindcss/postcss\n* autoprefixer\n* postcss-import\nUnused devDependencies\n* @commitlint/cli\n* @commitlint/config-conventional\n* audit-ci\n* lint-staged\n* npm-check-updates\nMissing dependencies\n* @emotion/is-prop-valid: ./preview-dist/assets/index-CZKHK-VA.js\n"
+      "success": true,
+      "output": "Unused dependencies\n* tailwindcss\nMissing dependencies\n* @tailwindcss/typography: ./tailwind.config.cjs\nDependency check completed with warnings\n",
+      "fixed": false
     },
     "License Check": {
       "success": true,
@@ -49,8 +49,8 @@
     }
   },
   "summary": {
-    "passed": 8,
-    "failed": 1,
+    "passed": 9,
+    "failed": 0,
     "total": 9,
     "fixed": 3
   }
