@@ -1,6 +1,6 @@
 {
   "statistics": {
-    "detectionDate": "2025-06-30T21:12:51.829Z",
+    "detectionDate": "2025-06-30T22:08:41.121Z",
     "formats": {
       "javascript": {
         "sources": {
@@ -137,8 +137,8 @@
             "newClones": 0
           },
           "/home/runner/workspace/src/components/Dashboard.jsx": {
-            "lines": 146,
-            "tokens": 1203,
+            "lines": 108,
+            "tokens": 862,
             "sources": 1,
             "clones": 0,
             "duplicatedLines": 0,
@@ -186,8 +186,8 @@
           }
         },
         "total": {
-          "lines": 680,
-          "tokens": 5552,
+          "lines": 642,
+          "tokens": 5211,
           "sources": 15,
           "clones": 0,
           "duplicatedLines": 0,
@@ -285,14 +285,14 @@
             "newClones": 0
           },
           "/home/runner/workspace/src/components/Dashboard.jsx": {
-            "lines": 242,
-            "tokens": 1988,
+            "lines": 163,
+            "tokens": 1321,
             "sources": 1,
             "clones": 4,
             "duplicatedLines": 54,
             "duplicatedTokens": 410,
-            "percentage": 22.31,
-            "percentageTokens": 20.62,
+            "percentage": 33.13,
+            "percentageTokens": 31.04,
             "newDuplicatedLines": 0,
             "newClones": 0
           },
@@ -358,28 +358,28 @@
           }
         },
         "total": {
-          "lines": 1110,
-          "tokens": 8688,
+          "lines": 1031,
+          "tokens": 8021,
           "sources": 13,
           "clones": 2,
           "duplicatedLines": 27,
           "duplicatedTokens": 205,
-          "percentage": 2.43,
-          "percentageTokens": 2.36,
+          "percentage": 2.62,
+          "percentageTokens": 2.56,
           "newDuplicatedLines": 0,
           "newClones": 0
         }
       }
     },
     "total": {
-      "lines": 1790,
-      "tokens": 14240,
+      "lines": 1673,
+      "tokens": 13232,
       "sources": 28,
       "clones": 2,
       "duplicatedLines": 27,
       "duplicatedTokens": 205,
-      "percentage": 1.51,
-      "percentageTokens": 1.44,
+      "percentage": 1.61,
+      "percentageTokens": 1.55,
       "newDuplicatedLines": 0,
       "newClones": 0
     }
@@ -392,32 +392,32 @@
       "tokens": 0,
       "firstFile": {
         "name": "/home/runner/workspace/src/components/Dashboard.jsx",
-        "start": 173,
-        "end": 187,
+        "start": 94,
+        "end": 108,
         "startLoc": {
-          "line": 173,
+          "line": 94,
           "column": 2,
-          "position": 1471
+          "position": 804
         },
         "endLoc": {
-          "line": 187,
+          "line": 108,
           "column": 29,
-          "position": 1576
+          "position": 909
         }
       },
       "secondFile": {
         "name": "/home/runner/workspace/src/components/Dashboard.jsx",
-        "start": 151,
-        "end": 165,
+        "start": 72,
+        "end": 86,
         "startLoc": {
-          "line": 151,
+          "line": 72,
           "column": 6,
-          "position": 1288
+          "position": 617
         },
         "endLoc": {
-          "line": 165,
+          "line": 86,
           "column": 28,
-          "position": 1393
+          "position": 722
         }
       }
     },
@@ -428,32 +428,32 @@
       "tokens": 0,
       "firstFile": {
         "name": "/home/runner/workspace/src/components/Dashboard.jsx",
-        "start": 194,
-        "end": 207,
+        "start": 115,
+        "end": 128,
         "startLoc": {
-          "line": 194,
+          "line": 115,
           "column": 2,
-          "position": 1640
+          "position": 973
         },
         "endLoc": {
-          "line": 207,
+          "line": 128,
           "column": 29,
-          "position": 1740
+          "position": 1073
         }
       },
       "secondFile": {
         "name": "/home/runner/workspace/src/components/Dashboard.jsx",
-        "start": 152,
-        "end": 165,
+        "start": 73,
+        "end": 86,
         "startLoc": {
-          "line": 152,
+          "line": 73,
           "column": 17,
-          "position": 1293
+          "position": 622
         },
         "endLoc": {
-          "line": 165,
+          "line": 86,
           "column": 28,
-          "position": 1393
+          "position": 722
         }
       }
     }
