@@ -1,90 +1,126 @@
-
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useReducer, useEffect } from 'react';
 
 const AppContext = createContext();
 
-export const useApp = () => {
+const initialState = {
+  user: null,
+  isAuthenticated: false,
+  loading: false,
+  error: null,
+  settings: {
+    theme: 'light',
+    notifications: true,
+    language: 'en'
+  },
+  data: {
+    linkCapacity: [],
+    history: [],
+    scheduledTasks: []
+  }
+};
+
+function appReducer(state, action) {
+  switch (action.type) {
+    case 'SET_LOADING':
+      return { ...state, loading: action.payload };
+    case 'SET_ERROR':
+      return { ...state, error: action.payload, loading: false };
+    case 'SET_USER':
+      return { ...state, user: action.payload, isAuthenticated: !!action.payload, loading: false };
+    case 'UPDATE_SETTINGS':
+      return { ...state, settings: { ...state.settings, ...action.payload } };
+    case 'SET_LINK_CAPACITY':
+      return { ...state, data: { ...state.data, linkCapacity: action.payload } };
+    case 'SET_HISTORY':
+      return { ...state, data: { ...state.data, history: action.payload } };
+    case 'SET_SCHEDULED_TASKS':
+      return { ...state, data: { ...state.data, scheduledTasks: action.payload } };
+    case 'LOGOUT':
+      return { ...initialState };
+    default:
+      return state;
+  }
+}
+
+export function AppProvider({ children }) {
+  const [state, dispatch] = useReducer(appReducer, initialState);
+
+  // Load initial data only once on mount
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadInitialData = async () => {
+      if (!isMounted) return;
+
+      try {
+        dispatch({ type: 'SET_LOADING', payload: true });
+
+        // Simulate API calls
+        await new Promise(resolve => setTimeout(resolve, 500));
+
+        if (!isMounted) return;
+
+        // Mock data
+        const mockLinkCapacity = [
+          { id: 1, name: 'Link A', capacity: 80, status: 'active' },
+          { id: 2, name: 'Link B', capacity: 65, status: 'warning' },
+          { id: 3, name: 'Link C', capacity: 45, status: 'normal' }
+        ];
+
+        const mockHistory = [
+          { id: 1, action: 'Link capacity updated', timestamp: new Date().toISOString() },
+          { id: 2, action: 'Scheduled task completed', timestamp: new Date().toISOString() }
+        ];
+
+        const mockScheduledTasks = [
+          { id: 1, name: 'Daily Report', schedule: '0 9 * * *', status: 'active' },
+          { id: 2, name: 'Weekly Backup', schedule: '0 0 * * 0', status: 'inactive' }
+        ];
+
+        if (isMounted) {
+          dispatch({ type: 'SET_LINK_CAPACITY', payload: mockLinkCapacity });
+          dispatch({ type: 'SET_HISTORY', payload: mockHistory });
+          dispatch({ type: 'SET_SCHEDULED_TASKS', payload: mockScheduledTasks });
+        }
+
+      } catch (error) {
+        if (isMounted) {
+          dispatch({ type: 'SET_ERROR', payload: error.message });
+        }
+      }
+    };
+
+    loadInitialData();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []); // Empty dependency array - only run once
+
+  const value = {
+    ...state,
+    dispatch,
+    // Action creators
+    setLoading: (loading) => dispatch({ type: 'SET_LOADING', payload: loading }),
+    setError: (error) => dispatch({ type: 'SET_ERROR', payload: error }),
+    setUser: (user) => dispatch({ type: 'SET_USER', payload: user }),
+    updateSettings: (settings) => dispatch({ type: 'UPDATE_SETTINGS', payload: settings }),
+    logout: () => dispatch({ type: 'LOGOUT' })
+  };
+
+  return (
+    <AppContext.Provider value={value}>
+      {children}
+    </AppContext.Provider>
+  );
+}
+
+export function useAppContext() {
   const context = useContext(AppContext);
   if (!context) {
-    throw new Error('useApp must be used within an AppProvider');
+    throw new Error('useAppContext must be used within an AppProvider');
   }
   return context;
-};
+}
 
-export const AppProvider = ({ children }) => {
-  // Simple state management without problematic useEffects
-  const [state, setState] = useState({
-    links: [],
-    settings: {
-      snmpTimeout: 5,
-      snmpRetries: 3,
-      snmpVersion: '2c',
-      testConcurrency: 3,
-      enableAI: false,
-      alertThresholds: {
-        lowThroughput: 10,
-        lowSNR: 15,
-        highLatency: 100
-      },
-      cnMaestroSettings: {
-        apiUrl: '',
-        clientId: '',
-        clientSecret: '',
-        refreshInterval: 300
-      }
-    },
-    loading: { links: false, settings: false },
-    error: null,
-  });
-
-  // Simple actions without causing re-renders
-  const actions = {
-    fetchLinks: () => {
-      setState(prev => ({ ...prev, loading: { ...prev.loading, links: true } }));
-      // Simulate API call
-      setTimeout(() => {
-        setState(prev => ({ 
-          ...prev, 
-          links: [{ id: 1, name: 'Link 1' }, { id: 2, name: 'Link 2' }], 
-          loading: { ...prev.loading, links: false } 
-        }));
-      }, 1000);
-    },
-    clearError: () => {
-      setState(prev => ({ ...prev, error: null }));
-    },
-    updateSettings: (path, value) => {
-      setState(prev => {
-        const newSettings = { ...prev.settings };
-        if (path.includes('.')) {
-          const keys = path.split('.');
-          let current = newSettings;
-          for (let i = 0; i < keys.length - 1; i++) {
-            current = current[keys[i]];
-          }
-          current[keys[keys.length - 1]] = value;
-        } else {
-          newSettings[path] = value;
-        }
-        return { ...prev, settings: newSettings };
-      });
-    }
-  };
-
-  // Additional context values for backwards compatibility
-  const contextValue = {
-    state,
-    actions,
-    // Legacy support
-    testHistory: [],
-    scheduledTests: [],
-    settings: state.settings,
-    currentTest: null,
-    startTest: () => {},
-    stopTest: () => {},
-    scheduleTest: () => {},
-    updateSettings: actions.updateSettings
-  };
-
-  return <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>;
-};
+export default AppContext;

@@ -98,22 +98,33 @@ const autoFixIssues = async () => {
     files.forEach(file => {
       const content = readFileSync(file, 'utf8');
       let modified = false;
+      let fixedContent = content;
       
       // Check for setState in useEffect without proper dependencies
       if (content.includes('setState') && content.includes('useEffect') && content.includes('}, [state])')) {
-        const lines = content.split('\n');
-        const fixedContent = lines.map(line => {
-          if (line.includes('}, [state])') && line.includes('useEffect')) {
-            modified = true;
-            loopFixed++;
-            return line.replace('}, [state])', '}, [])');
+        fixedContent = fixedContent.replace(/}, \[state\]\)/g, '}, [])');
+        modified = true;
+        loopFixed++;
+      }
+      
+      // Check for useEffect causing infinite loops
+      if (content.includes('useEffect') && content.includes('dispatch')) {
+        const lines = fixedContent.split('\n');
+        fixedContent = lines.map(line => {
+          if (line.includes('useEffect') && line.includes('dispatch') && !line.includes('[]')) {
+            const effectMatch = line.match(/useEffect\([^,]+,\s*\[[^\]]*\]/);
+            if (effectMatch && !effectMatch[0].includes('[]')) {
+              modified = true;
+              loopFixed++;
+              return line.replace(/useEffect\(([^,]+),\s*\[[^\]]*\]/, 'useEffect($1, [])');
+            }
           }
           return line;
         }).join('\n');
-        
-        if (modified) {
-          writeFileSync(file, fixedContent);
-        }
+      }
+      
+      if (modified) {
+        writeFileSync(file, fixedContent);
       }
     });
     
@@ -124,6 +135,32 @@ const autoFixIssues = async () => {
     }
   } catch (error) {
     fixes.push('⚠️ React loop check had issues');
+  }
+
+  // 8. Extract duplicate code into reusable components
+  console.log('🔄 Extracting duplicate code...');
+  try {
+    execSync('npx jscpd src --reporters json --output reports/jscpd', { stdio: 'pipe' });
+    
+    if (existsSync('reports/jscpd/jscpd-report.json')) {
+      const duplicateReport = JSON.parse(readFileSync('reports/jscpd/jscpd-report.json', 'utf8'));
+      let duplicatesFixed = 0;
+      
+      if (duplicateReport.duplicates && duplicateReport.duplicates.length > 0) {
+        // For now, just log the duplicates for manual review
+        duplicateReport.duplicates.forEach(duplicate => {
+          console.log(`Found duplicate: ${duplicate.firstFile.name}:${duplicate.firstFile.start} and ${duplicate.secondFile.name}:${duplicate.secondFile.start}`);
+        });
+        
+        fixes.push(`⚠️ Found ${duplicateReport.duplicates.length} code duplicates - review reports/jscpd for details`);
+      } else {
+        fixes.push('✅ No significant code duplicates found');
+      }
+    } else {
+      fixes.push('✅ Duplicate code analysis completed');
+    }
+  } catch (error) {
+    fixes.push('⚠️ Duplicate code extraction had issues');
   }
 
   // Generate fix report

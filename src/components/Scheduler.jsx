@@ -5,6 +5,7 @@ import Card from './Card';
 import Button from './Button';
 import LoadingSpinner from './LoadingSpinner';
 import { useApp } from '../context/AppContext';
+import { DataTable } from './DataTable';
 
 const Scheduler = () => {
   const [accessPoints, setAccessPoints] = useState([]);
@@ -143,6 +144,25 @@ const Scheduler = () => {
     );
   }
 
+  const filteredTasks = scheduledTests.map(test => ({
+    id: test.id,
+    name: test.apName,
+    schedule: new Date(test.scheduledAt).toLocaleString(),
+    status: test.status,
+    lastRun: null, // Add logic to determine last run time
+    apMac: test.apMac,
+    testType: test.testType,
+  }));
+
+  const handleEdit = (task) => {
+    console.log("Edit task:", task);
+  };
+
+  const handleDelete = (taskId) => {
+    handleDeleteTest(taskId);
+  };
+
+
   return (
     <div className="space-y-6">
       {/* Schedule New Test */}
@@ -225,81 +245,19 @@ const Scheduler = () => {
               No tests scheduled
             </div>
           ) : (
-            <div className="space-y-3">
-              {scheduledTests.map(test => (
-                <div
-                  key={test.id}
-                  className="flex items-center justify-between p-4 bg-gray-50 rounded-lg"
-                >
-                  <div className="flex-1">
-                    <div className="flex items-center space-x-4">
-                      <div>
-                        <p className="font-medium text-gray-900">
-                          {test.apName}
-                        </p>
-                        <p className="text-sm text-gray-500">{test.apMac}</p>
-                      </div>
-                      <div>
-                        <span
-                          className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                            test.testType === 'flood'
-                              ? 'bg-purple-100 text-purple-800'
-                              : 'bg-blue-100 text-blue-800'
-                          }`}
-                        >
-                          {test.testType === 'flood'
-                            ? 'Flood Mode'
-                            : 'Individual'}
-                        </span>
-                      </div>
-                      <div>
-                        <span
-                          className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                            test.status === 'running'
-                              ? 'bg-yellow-100 text-yellow-800'
-                              : test.status === 'success'
-                                ? 'bg-green-100 text-green-800'
-                                : test.status === 'failed'
-                                  ? 'bg-red-100 text-red-800'
-                                  : 'bg-gray-100 text-gray-800'
-                          }`}
-                        >
-                          {test.status.charAt(0).toUpperCase() +
-                            test.status.slice(1)}
-                        </span>
-                      </div>
-                    </div>
-                    <p className="text-xs text-gray-500 mt-1">
-                      Scheduled: {new Date(test.scheduledAt).toLocaleString()}
-                    </p>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    {test.status === 'queued' && (
-                      <Button
-                        size="sm"
-                        onClick={() => handleRunTest(test.id)}
-                        disabled={isRunning}
-                      >
-                        <Play className="w-4 h-4" />
-                      </Button>
-                    )}
-                    {test.status === 'running' && (
-                      <Button size="sm" variant="outline" disabled>
-                        <Pause className="w-4 h-4" />
-                      </Button>
-                    )}
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      onClick={() => handleDeleteTest(test.id)}
-                      disabled={test.status === 'running'}
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </Button>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <DataTable
+              title=""
+              data={filteredTasks}
+              columns={[
+                { key: 'name', label: 'Name' },
+                { key: 'schedule', label: 'Schedule' },
+                { key: 'status', label: 'Status', type: 'status' },
+                { key: 'lastRun', label: 'Last Run', type: 'datetime' }
+              ]}
+              onEdit={handleEdit}
+              onDelete={handleDelete}
+              emptyMessage="No scheduled tasks found."
+            />
           )}
         </Card>
       </motion.div>

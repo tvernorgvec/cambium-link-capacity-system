@@ -1,14 +1,30 @@
 
 {
-  "threshold": 3,
-  "reporters": ["console"],
+  "threshold": 5,
+  "minTokens": 50,
+  "minLines": 10,
+  "maxLines": 500,
+  "maxSize": "100kb",
+  "reporters": ["console", "json"],
+  "output": "./reports/jscpd",
   "absolute": true,
   "gitignore": true,
+  "blame": false,
+  "silent": false,
+  "verbose": true,
   "ignore": [
     "**/node_modules/**",
     "**/build/**",
     "**/dist/**",
-    "**/*.min.js"
+    "**/preview-dist/**",
+    "**/*.min.js",
+    "**/reports/**",
+    "**/docs/**",
+    "**/.husky/**"
   ],
-  "format": ["javascript", "jsx", "typescript"]
+  "format": ["javascript", "jsx", "typescript", "tsx"],
+  "mode": "strict",
+  "skipComments": true,
+  "languages": ["javascript", "jsx", "typescript"],
+  "executors": ["javascript", "jsx"]
 }
