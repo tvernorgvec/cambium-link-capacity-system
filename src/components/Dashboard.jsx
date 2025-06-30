@@ -13,7 +13,7 @@ const Dashboard = () => {
     if (links.length === 0 && !loading.links) {
       actions.fetchLinks();
     }
-  }, [actions, links.length, loading.links]);
+  }, []);
 
   if (loading.links) {
     return (
@@ -55,7 +55,7 @@ const Dashboard = () => {
           transition={{ delay: 0.1 }}
         >
           <Card>
-            <div className="flex items-center">
+            <div className="flex items-center p-6">
               <div className="p-3 bg-blue-100 rounded-lg">
                 <Wifi className="w-6 h-6 text-blue-600" />
               </div>
@@ -64,7 +64,7 @@ const Dashboard = () => {
                   Access Points
                 </p>
                 <p className="text-2xl font-bold text-gray-900">
-                  {/*stats.onlineAPs}/{stats.totalAPs*/}
+                  {links.length}
                 </p>
               </div>
             </div>
@@ -77,16 +77,16 @@ const Dashboard = () => {
           transition={{ delay: 0.2 }}
         >
           <Card>
-            <div className="flex items-center">
+            <div className="flex items-center p-6">
               <div className="p-3 bg-green-100 rounded-lg">
                 <Activity className="w-6 h-6 text-green-600" />
               </div>
               <div className="ml-4">
                 <p className="text-sm font-medium text-gray-600">
-                  Subscriber Modules
+                  Active Links
                 </p>
                 <p className="text-2xl font-bold text-gray-900">
-                  {/*stats.onlineSMs}/{stats.totalSMs*/}
+                  {links.filter(link => link.name).length}
                 </p>
               </div>
             </div>
@@ -99,16 +99,16 @@ const Dashboard = () => {
           transition={{ delay: 0.3 }}
         >
           <Card>
-            <div className="flex items-center">
+            <div className="flex items-center p-6">
               <div className="p-3 bg-orange-100 rounded-lg">
                 <TrendingUp className="w-6 h-6 text-orange-600" />
               </div>
               <div className="ml-4">
                 <p className="text-sm font-medium text-gray-600">
-                  Active Tests
+                  Tests Running
                 </p>
                 <p className="text-2xl font-bold text-gray-900">
-                  {/*stats.activeTests*/}
+                  0
                 </p>
               </div>
             </div>
@@ -121,7 +121,7 @@ const Dashboard = () => {
           transition={{ delay: 0.4 }}
         >
           <Card>
-            <div className="flex items-center">
+            <div className="flex items-center p-6">
               <div className="p-3 bg-purple-100 rounded-lg">
                 <Activity className="w-6 h-6 text-purple-600" />
               </div>
@@ -130,7 +130,7 @@ const Dashboard = () => {
                   Avg Throughput
                 </p>
                 <p className="text-2xl font-bold text-gray-900">
-                  {/*stats.avgThroughput*/} Mbps
+                  -- Mbps
                 </p>
               </div>
             </div>
@@ -138,86 +138,23 @@ const Dashboard = () => {
         </motion.div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Recent Tests */}
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.5 }}
-        >
-          <Card>
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-medium text-gray-900">
-                Recent Tests
-              </h3>
-              {/*<Button variant="outline" size="sm">
-                View All
-              </Button>*/}
+      {/* Recent Activity */}
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.5 }}
+      >
+        <Card>
+          <div className="p-6">
+            <h3 className="text-lg font-medium text-gray-900 mb-4">
+              Recent Activity
+            </h3>
+            <div className="text-center py-8 text-gray-500">
+              No recent activity
             </div>
-            <div className="space-y-3">
-              {/*recentTests.map((test) => (
-                <div
-                  key={test.id}
-                  className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
-                >
-                  <div>
-                    <p className="font-medium text-gray-900">{test.apName}</p>
-                    <p className="text-sm text-gray-500">{test.smMac}</p>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    {test.throughput && (
-                      <span className="text-sm font-medium text-gray-900">
-                        {test.throughput} Mbps
-                      </span>
-                    )}
-                    <StatusBadge status={test.status} />
-                  </div>
-                </div>
-              ))*/}
-            </div>
-          </Card>
-        </motion.div>
-
-        {/* Alerts */}
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.6 }}
-        >
-          <Card>
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-medium text-gray-900">Alerts</h3>
-              {/*<Button variant="outline" size="sm">
-                Clear All
-              </Button>*/}
-            </div>
-            <div className="space-y-3">
-              {/*alerts.map((alert) => (
-                <div
-                  key={alert.id}
-                  className="flex items-start space-x-3 p-3 bg-gray-50 rounded-lg"
-                >
-                  <AlertTriangle
-                    className={`w-5 h-5 mt-0.5 ${
-                      alert.type === "error"
-                        ? "text-red-500"
-                        : "text-yellow-500"
-                    }`}
-                  />
-                  <div className="flex-1">
-                    <p className="text-sm font-medium text-gray-900">
-                      {alert.message}
-                    </p>
-                    <p className="text-xs text-gray-500">
-                      {new Date(alert.timestamp).toLocaleString()}
-                    </p>
-                  </div>
-                </div>
-              ))*/}
-            </div>
-          </Card>
-        </motion.div>
-      </div>
+          </div>
+        </Card>
+      </motion.div>
     </div>
   );
 };
@@ -225,7 +162,7 @@ const Dashboard = () => {
 export default Dashboard;
 ```
 
-```
+```jsx
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { fetchSettings } from '../services/api';
 

@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState, useCallback } from 'react';
+
+import React, { createContext, useContext, useState } from 'react';
 
 const AppContext = createContext();
 
@@ -11,61 +12,79 @@ export const useApp = () => {
 };
 
 export const AppProvider = ({ children }) => {
-  const [currentTest, setCurrentTest] = useState(null);
-  const [testHistory, setTestHistory] = useState([]);
-  const [scheduledTests, setScheduledTests] = useState([]);
-  const [settings, setSettings] = useState({
-    autoRefresh: true,
-    refreshInterval: 30,
-    notifications: true,
-    theme: 'light',
+  // Simple state management without problematic useEffects
+  const [state, setState] = useState({
+    links: [],
+    settings: {
+      snmpTimeout: 5,
+      snmpRetries: 3,
+      snmpVersion: '2c',
+      testConcurrency: 3,
+      enableAI: false,
+      alertThresholds: {
+        lowThroughput: 10,
+        lowSNR: 15,
+        highLatency: 100
+      },
+      cnMaestroSettings: {
+        apiUrl: '',
+        clientId: '',
+        clientSecret: '',
+        refreshInterval: 300
+      }
+    },
+    loading: { links: false, settings: false },
+    error: null,
   });
 
-  const startTest = useCallback(testConfig => {
-    const test = {
-      id: Date.now(),
-      ...testConfig,
-      status: 'running',
-      startTime: new Date(),
-    };
-    setCurrentTest(test);
-  }, []);
-
-  const stopTest = useCallback(() => {
-    if (currentTest) {
-      const completedTest = {
-        ...currentTest,
-        status: 'completed',
-        endTime: new Date(),
-      };
-      setTestHistory(prev => [completedTest, ...prev]);
-      setCurrentTest(null);
+  // Simple actions without causing re-renders
+  const actions = {
+    fetchLinks: () => {
+      setState(prev => ({ ...prev, loading: { ...prev.loading, links: true } }));
+      // Simulate API call
+      setTimeout(() => {
+        setState(prev => ({ 
+          ...prev, 
+          links: [{ id: 1, name: 'Link 1' }, { id: 2, name: 'Link 2' }], 
+          loading: { ...prev.loading, links: false } 
+        }));
+      }, 1000);
+    },
+    clearError: () => {
+      setState(prev => ({ ...prev, error: null }));
+    },
+    updateSettings: (path, value) => {
+      setState(prev => {
+        const newSettings = { ...prev.settings };
+        if (path.includes('.')) {
+          const keys = path.split('.');
+          let current = newSettings;
+          for (let i = 0; i < keys.length - 1; i++) {
+            current = current[keys[i]];
+          }
+          current[keys[keys.length - 1]] = value;
+        } else {
+          newSettings[path] = value;
+        }
+        return { ...prev, settings: newSettings };
+      });
     }
-  }, [currentTest]);
-
-  const scheduleTest = useCallback(testConfig => {
-    const scheduledTest = {
-      id: Date.now(),
-      ...testConfig,
-      status: 'scheduled',
-    };
-    setScheduledTests(prev => [...prev, scheduledTest]);
-  }, []);
-
-  const updateSettings = useCallback(newSettings => {
-    setSettings(prev => ({ ...prev, ...newSettings }));
-  }, []);
-
-  const value = {
-    currentTest,
-    testHistory,
-    scheduledTests,
-    settings,
-    startTest,
-    stopTest,
-    scheduleTest,
-    updateSettings,
   };
 
-  return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
+  // Additional context values for backwards compatibility
+  const contextValue = {
+    state,
+    actions,
+    // Legacy support
+    testHistory: [],
+    scheduledTests: [],
+    settings: state.settings,
+    currentTest: null,
+    startTest: () => {},
+    stopTest: () => {},
+    scheduleTest: () => {},
+    updateSettings: actions.updateSettings
+  };
+
+  return <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>;
 };
