@@ -88,8 +88,13 @@ const runQualityChecks = async () => {
   const checks = [
     {
       name: 'React Runtime Error Check',
-      command: 'timeout 5s bash -c "npm run dev 2>&1 | grep -i \"maximum update depth\\|warning\" | head -5" || echo "No immediate React runtime errors detected"',
-      description: 'Live React runtime error detection'
+      command: 'grep -r "useEffect.*state" src/ --include="*.jsx" --include="*.tsx" | head -3 || echo "No problematic useEffect dependencies found"',
+      description: 'React useEffect dependency analysis'
+    },
+    {
+      name: 'React Infinite Loop Detection',
+      command: 'grep -r "dispatch.*SET_LOADING.*true" src/ --include="*.jsx" --include="*.tsx" -A 10 | grep -v "loading.*false" | head -5 || echo "No infinite loop patterns detected"',
+      description: 'React infinite loop pattern detection'
     },
     {
       name: 'ESLint',

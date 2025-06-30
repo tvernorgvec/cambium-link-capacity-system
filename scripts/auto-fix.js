@@ -100,6 +100,81 @@ const autoFixIssues = async () => {
       let modified = false;
       let fixedContent = content;
       
+      // Check for useEffect with state dependencies that can cause infinite loops
+      if (content.includes('useEffect') && content.includes('dispatch')) {
+        const useEffectRegex = /useEffect\(\s*\(\)\s*=>\s*{[\s\S]*?},\s*\[[^\]]*state[^\]]*\]/g;
+        if (useEffectRegex.test(content)) {
+          fixedContent = fixedContent.replace(useEffectRegex, (match) => {
+            return match.replace(/,\s*\[[^\]]*state[^\]]*\]/, ', []');
+          });
+          modified = true;
+          loopFixed++;
+        }
+      }
+      
+      // Check for conditional loading that can cause loops
+      if (content.includes('if (state.data.linkCapacity.length === 0') && 
+          content.includes('loadInitialData();')) {
+        fixedContent = fixedContent.replace(
+          /\/\/ Only load data if we don't already have it\s*\n\s*if \(state\.data\.linkCapacity\.length === 0[^}]*loadInitialData\(\);[^}]*}/g,
+          'loadInitialData();'
+        );
+        modified = true;
+        loopFixed++;
+      }
+      
+      // Check for missing loading state reset in dispatch calls
+      if (content.includes('dispatch') && content.includes('SET_LINK_CAPACITY') && 
+          !content.includes('loading: false') && content.includes('useReducer')) {
+        const lines = fixedContent.split('\n');
+        let inReducer = false;
+        let inSetCapacityCase = false;
+        
+        for (let i = 0; i < lines.length; i++) {
+          const line = lines[i];
+          
+          if (line.includes('function appReducer') || line.includes('const appReducer')) {
+            inReducer = true;
+          }
+          
+          if (inReducer && line.includes("case 'SET_LINK_CAPACITY':")) {
+            inSetCapacityCase = true;
+          }
+          
+          if (inSetCapacityCase && line.includes('return {') && 
+              !lines.slice(i, i + 5).some(nextLine => nextLine.includes('loading: false'))) {
+            // Find the closing brace of the return statement
+            let braceCount = 0;
+            let returnEndIndex = i;
+            for (let j = i; j < lines.length; j++) {
+              if (lines[j].includes('{')) braceCount++;
+              if (lines[j].includes('}')) {
+                braceCount--;
+                if (braceCount === 0) {
+                  returnEndIndex = j;
+                  break;
+                }
+              }
+            }
+            
+            // Insert loading: false before the closing brace
+            const beforeClosing = lines[returnEndIndex].replace(/(\s*})/, ',\n        loading: false,$1');
+            lines[returnEndIndex] = beforeClosing;
+            modified = true;
+            loopFixed++;
+            inSetCapacityCase = false;
+          }
+          
+          if (inReducer && line.includes('default:')) {
+            inReducer = false;
+          }
+        }
+        
+        if (modified) {
+          fixedContent = lines.join('\n');
+        }
+      }
+      
       // Check for setState in useEffect without proper dependencies
       if (content.includes('setState') && content.includes('useEffect') && content.includes('}, [state])')) {
         fixedContent = fixedContent.replace(/}, \[state\]\)/g, '}, [])');
