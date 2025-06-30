@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Search, Filter, Download, Eye } from "lucide-react";
+import { Search, Download, Trash2, Eye } from "lucide-react";
 import Card from "./Card";
 import Button from "./Button";
 import StatusBadge from "./StatusBadge";

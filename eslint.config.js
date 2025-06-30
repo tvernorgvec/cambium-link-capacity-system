@@ -31,7 +31,10 @@ export default [
         __filename: 'readonly',
         module: 'readonly',
         require: 'readonly',
-        exports: 'readonly'
+        exports: 'readonly',
+        setTimeout: 'readonly',
+        localStorage: 'readonly',
+        Blob: 'readonly'
       }
     },
     plugins: {
