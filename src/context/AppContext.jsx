@@ -68,7 +68,7 @@ export const AppProvider = ({ children }) => {
     }, 500);
 
     return () => clearTimeout(timeoutId);
-  }, [state, saveToStorage]);
+  }, [state]);
 
   const updateState = useCallback(updates => {
     setState(prevState => ({ ...prevState, ...updates }));
