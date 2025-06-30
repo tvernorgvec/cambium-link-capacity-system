@@ -4,66 +4,39 @@ import { AlertTriangle, RefreshCw } from 'lucide-react';
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { hasError: false, error: null, errorInfo: null };
+    this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError() {
+  static getDerivedStateFromError(error) {
     return { hasError: true };
   }
 
   componentDidCatch(error, errorInfo) {
-    this.setState({
-      error: error,
-      errorInfo: errorInfo,
-    });
-
-    // Log error in production, you might want to send to error reporting service
-    if (process.env.NODE_ENV === 'development') {
-      // Error logging would be handled by proper error reporting service
-    }
+    console.error('Error caught by boundary:', error, errorInfo);
   }
-
-  handleRefresh = () => {
-    window.location.reload();
-  };
 
   render() {
     if (this.state.hasError) {
       return (
         <div className="min-h-screen flex items-center justify-center bg-gray-50">
-          <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-6">
-            <div className="flex items-center justify-center w-12 h-12 mx-auto bg-red-100 rounded-full mb-4">
+          <div className="max-w-md w-full bg-white shadow-lg rounded-lg p-6">
+            <div className="flex items-center justify-center w-12 h-12 mx-auto bg-red-100 rounded-full">
               <AlertTriangle className="w-6 h-6 text-red-600" />
             </div>
-
-            <h1 className="text-xl font-semibold text-gray-900 text-center mb-2">
-              Something went wrong
-            </h1>
-
-            <p className="text-gray-600 text-center mb-6">
-              We're sorry, but something unexpected happened. Please try
-              refreshing the page.
-            </p>
-
-            <button
-              onClick={this.handleRefresh}
-              className="w-full flex items-center justify-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
-            >
-              <RefreshCw className="w-4 h-4 mr-2" />
-              Refresh Page
-            </button>
-
-            {import.meta.env.DEV && this.state.error && (
-              <details className="mt-4 p-3 bg-gray-100 rounded text-xs">
-                <summary className="cursor-pointer font-medium">
-                  Error Details (Development)
-                </summary>
-                <pre className="mt-2 text-red-600 whitespace-pre-wrap">
-                  {this.state.error.toString()}
-                  {this.state.errorInfo.componentStack}
-                </pre>
-              </details>
-            )}
+            <div className="mt-4 text-center">
+              <h3 className="text-lg font-medium text-gray-900">
+                Something went wrong
+              </h3>
+              <p className="mt-2 text-sm text-gray-500">
+                We're sorry for the inconvenience. Please refresh the page or try again later.
+              </p>
+              <button
+                onClick={() => this.setState({ hasError: false })}
+                className="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+              >
+                Try Again
+              </button>
+            </div>
           </div>
         </div>
       );
