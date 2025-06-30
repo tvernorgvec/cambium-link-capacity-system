@@ -1,3 +1,5 @@
+import React from 'react';
+
 const StatusBadge = ({ status, className = '' }) => {
   const getStatusStyles = (status) => {
     switch (status?.toLowerCase()) {
