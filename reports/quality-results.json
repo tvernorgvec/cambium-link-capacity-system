@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-06-30T22:14:05.315Z",
+  "timestamp": "2025-06-30T22:20:21.767Z",
   "tools": {
     "React Runtime Error Check": {
       "success": true,
@@ -8,7 +8,7 @@
     },
     "React Infinite Loop Detection": {
       "success": true,
-      "output": "src/context/AppContext.jsx:        dispatch({ type: 'SET_LOADING', payload: true });\nsrc/context/AppContext.jsx-\nsrc/context/AppContext.jsx-        // Simulate API calls\nsrc/context/AppContext.jsx-        await new Promise(resolve => setTimeout(resolve, 500));\nsrc/context/AppContext.jsx-\n",
+      "output": "No infinite loop patterns detected\n",
       "fixed": false
     },
     "ESLint": {
@@ -34,7 +34,7 @@
     },
     "Circular Dependencies": {
       "success": true,
-      "output": "Processed 20 files (1.2s) (1 warning)\n\n\n",
+      "output": "Processed 20 files (615ms) (1 warning)\n\n\n",
       "fixed": false
     },
     "Code Duplication": {

@@ -1,5 +1,10 @@
-
-import React, { createContext, useContext, useReducer, useEffect, useRef } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useReducer,
+  useEffect,
+  useRef,
+} from 'react';
 import { api } from '../services/api';
 
 const AppContext = createContext();
@@ -14,9 +19,9 @@ const initialState = {
     settings: {
       refreshInterval: 30000,
       autoRefresh: true,
-      theme: 'light'
-    }
-  }
+      theme: 'light',
+    },
+  },
 };
 
 const appReducer = (state, action) => {
@@ -26,30 +31,33 @@ const appReducer = (state, action) => {
     case 'SET_ERROR':
       return { ...state, error: action.payload, loading: false };
     case 'SET_LINK_CAPACITY':
-      return { 
-        ...state, 
+      return {
+        ...state,
         data: { ...state.data, linkCapacity: action.payload },
         loading: false,
-        error: null
+        error: null,
       };
     case 'SET_TEST_RESULTS':
-      return { 
-        ...state, 
+      return {
+        ...state,
         data: { ...state.data, testResults: action.payload },
         loading: false,
-        error: null
+        error: null,
       };
     case 'SET_SCHEDULED_TESTS':
-      return { 
-        ...state, 
+      return {
+        ...state,
         data: { ...state.data, scheduledTests: action.payload },
         loading: false,
-        error: null
+        error: null,
       };
     case 'UPDATE_SETTINGS':
-      return { 
-        ...state, 
-        data: { ...state.data, settings: { ...state.data.settings, ...action.payload }}
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          settings: { ...state.data.settings, ...action.payload },
+        },
       };
     default:
       return state;
@@ -67,7 +75,7 @@ export const AppProvider = ({ children }) => {
       const [linkCapacity, testResults, scheduledTests] = await Promise.all([
         api.getLinkCapacity(),
         api.getTestResults(),
-        api.getScheduledTests()
+        api.getScheduledTests(),
       ]);
 
       dispatch({ type: 'SET_LINK_CAPACITY', payload: linkCapacity });
@@ -95,11 +103,13 @@ export const AppProvider = ({ children }) => {
     if (state.data.settings.autoRefresh) {
       intervalRef.current = setInterval(async () => {
         try {
-          const [linkCapacity, testResults, scheduledTests] = await Promise.all([
-            api.getLinkCapacity(),
-            api.getTestResults(),
-            api.getScheduledTests()
-          ]);
+          const [linkCapacity, testResults, scheduledTests] = await Promise.all(
+            [
+              api.getLinkCapacity(),
+              api.getTestResults(),
+              api.getScheduledTests(),
+            ]
+          );
 
           dispatch({ type: 'SET_LINK_CAPACITY', payload: linkCapacity });
           dispatch({ type: 'SET_TEST_RESULTS', payload: testResults });
@@ -124,15 +134,12 @@ export const AppProvider = ({ children }) => {
     dispatch,
     actions: {
       refreshData: loadInitialData,
-      updateSettings: (settings) => dispatch({ type: 'UPDATE_SETTINGS', payload: settings })
-    }
+      updateSettings: settings =>
+        dispatch({ type: 'UPDATE_SETTINGS', payload: settings }),
+    },
   };
 
-  return (
-    <AppContext.Provider value={value}>
-      {children}
-    </AppContext.Provider>
-  );
+  return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
 
 export const useApp = () => {
