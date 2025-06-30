@@ -78,4 +78,7 @@ export const useApp = () => {
   return context;
 };
 
+// Export alias for useAppContext
+export const useAppContext = useApp;
+
 export default AppContext;

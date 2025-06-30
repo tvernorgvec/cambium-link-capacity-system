@@ -97,4 +97,6 @@ const DataTable = ({
   );
 };
 
+const DataTableComponent = DataTable;
+export { DataTableComponent as DataTable };
 export default DataTable;
