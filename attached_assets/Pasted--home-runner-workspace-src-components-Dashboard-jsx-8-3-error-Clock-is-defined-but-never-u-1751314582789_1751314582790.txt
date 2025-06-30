@@ -1,0 +1,40 @@
+
+/home/runner/workspace/src/components/Dashboard.jsx
+   8:3  error    'Clock' is defined but never used                                                                                                                  @typescript-eslint/no-unused-vars
+   9:3  error    'BarChart3' is defined but never used                                                                                                              @typescript-eslint/no-unused-vars
+  12:8  error    'StatusBadge' is defined but never used                                                                                                            @typescript-eslint/no-unused-vars
+  24:6  warning  React Hook useEffect has missing dependencies: 'actions', 'links.length', and 'loading.links'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+/home/runner/workspace/src/components/ErrorBoundary.jsx
+  11:35  error    'error' is defined but never used  @typescript-eslint/no-unused-vars
+  23:7   warning  Unexpected console statement       no-console
+
+/home/runner/workspace/src/components/History.jsx
+    3:18  error    'Filter' is defined but never used                                                                                @typescript-eslint/no-unused-vars
+   23:6   warning  React Hook useEffect has a missing dependency: 'filterHistory'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+   80:7   warning  Unexpected console statement                                                                                      no-console
+  164:22  error    'Blob' is not defined                                                                                             no-undef
+
+/home/runner/workspace/src/components/Scheduler.jsx
+   55:7  warning  Unexpected console statement  no-console
+   82:7  warning  Unexpected console statement  no-console
+  118:5  error    'setTimeout' is not defined   no-undef
+
+/home/runner/workspace/src/components/Settings.jsx
+  39:7   error    'setTimeout' is not defined        no-undef
+  43:7   warning  Unexpected console statement       no-console
+  52:38  error    'setTimeout' is not defined        no-undef
+  53:7   warning  Unexpected console statement       no-console
+  55:7   warning  Unexpected console statement       no-console
+  67:38  error    'setTimeout' is not defined        no-undef
+  69:14  error    'error' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/runner/workspace/src/context/AppContext.jsx
+  173:6  warning  React Hook useEffect has a missing dependency: 'actions'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+/home/runner/workspace/src/services/api.js
+  18:19  error  'localStorage' is not defined  no-undef
+  32:7   error  'localStorage' is not defined  no-undef
+
+✖ 23 problems (13 errors, 10 warnings)
+
