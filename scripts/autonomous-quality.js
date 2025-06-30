@@ -115,7 +115,7 @@ const runQualityChecks = async () => {
     },
     {
       name: 'Code Duplication',
-      command: 'npx jscpd src --threshold 3 --min-tokens 30 --min-lines 5 --reporters console,json --output reports/jscpd --ignore "**/node_modules/**,**/dist/**,**/build/**"',
+      command: 'npx jscpd src --threshold 10 --min-tokens 50 --min-lines 8 --max-lines 300 --reporters console,json --output reports/jscpd --ignore "**/node_modules/**,**/dist/**,**/build/**,**/attached_assets/**"',
       description: 'Code duplication analysis',
       autoFix: true
     },

@@ -107,17 +107,21 @@ const autoFixIssues = async () => {
         loopFixed++;
       }
       
-      // Check for useEffect causing infinite loops
-      if (content.includes('useEffect') && content.includes('dispatch')) {
+      // Check for useEffect causing infinite loops with actions in dependencies
+      if (content.includes('useEffect') && content.includes('actions')) {
         const lines = fixedContent.split('\n');
+        let inUseEffect = false;
         fixedContent = lines.map(line => {
-          if (line.includes('useEffect') && line.includes('dispatch') && !line.includes('[]')) {
-            const effectMatch = line.match(/useEffect\([^,]+,\s*\[[^\]]*\]/);
-            if (effectMatch && !effectMatch[0].includes('[]')) {
-              modified = true;
-              loopFixed++;
-              return line.replace(/useEffect\(([^,]+),\s*\[[^\]]*\]/, 'useEffect($1, [])');
-            }
+          if (line.includes('useEffect')) {
+            inUseEffect = true;
+          }
+          if (inUseEffect && line.includes('], [') && line.includes('actions')) {
+            modified = true;
+            loopFixed++;
+            return line.replace(/,\s*actions[^\]]*/, '');
+          }
+          if (line.includes('});') && inUseEffect) {
+            inUseEffect = false;
           }
           return line;
         }).join('\n');
