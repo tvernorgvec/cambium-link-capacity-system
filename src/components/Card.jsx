@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 const Card = ({ children, className = '', ...props }) => {
   return (
     <div
-      className={`bg-white rounded-lg shadow-md border border-gray-200 ${className}`}
+      className={`bg-white rounded-lg shadow-md border border-gray-200 p-6 ${className}`}
       {...props}
     >
       {children}
@@ -11,5 +11,5 @@ const Card = ({ children, className = '', ...props }) => {
   );
 };
 
-export { Card };
 export default Card;
+export { Card };
