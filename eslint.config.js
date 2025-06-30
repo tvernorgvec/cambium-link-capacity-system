@@ -1,3 +1,4 @@
+
 import js from '@eslint/js';
 import typescript from '@typescript-eslint/eslint-plugin';
 import typescriptParser from '@typescript-eslint/parser';
@@ -10,27 +11,28 @@ import sonarjs from 'eslint-plugin-sonarjs';
 export default [
   js.configs.recommended,
   {
-    files: ['**/*.{ts,tsx,js,jsx}'],
+    files: ['**/*.{js,jsx,ts,tsx}'],
     languageOptions: {
       parser: typescriptParser,
       parserOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',
-        ecmaFeatures: { jsx: true }
+        ecmaFeatures: {
+          jsx: true
+        }
       },
       globals: {
-        console: 'readonly', process: 'readonly', Buffer: 'readonly',
-        __dirname: 'readonly', __filename: 'readonly', global: 'readonly',
-        module: 'readonly', require: 'readonly', exports: 'readonly',
-        setTimeout: 'readonly', clearTimeout: 'readonly',
-        setInterval: 'readonly', clearInterval: 'readonly',
-        AbortController: 'readonly', AbortSignal: 'readonly',
-        HTMLElement: 'readonly', HTMLDivElement: 'readonly',
-        HTMLButtonElement: 'readonly', HTMLInputElement: 'readonly',
-        HTMLTextAreaElement: 'readonly', HTMLSelectElement: 'readonly',
-        HTMLFormElement: 'readonly', HTMLAnchorElement: 'readonly',
-        Event: 'readonly', MouseEvent: 'readonly', KeyboardEvent: 'readonly',
-        Document: 'readonly', Window: 'readonly', Location: 'readonly', Navigator: 'readonly'
+        window: 'readonly',
+        document: 'readonly',
+        console: 'readonly',
+        process: 'readonly',
+        Buffer: 'readonly',
+        global: 'readonly',
+        __dirname: 'readonly',
+        __filename: 'readonly',
+        module: 'readonly',
+        require: 'readonly',
+        exports: 'readonly'
       }
     },
     plugins: {
@@ -42,19 +44,37 @@ export default [
       'sonarjs': sonarjs
     },
     rules: {
+      // Base rules
+      'no-unused-vars': 'off',
+      'no-console': 'warn',
+      'no-debugger': 'error',
+      'no-alert': 'error',
+      'no-var': 'error',
+      'prefer-const': 'error',
+      'no-duplicate-imports': 'error',
+      
+      // React rules
+      'react/jsx-uses-react': 'error',
+      'react/jsx-uses-vars': 'error',
       'react/prop-types': 'off',
       'react/react-in-jsx-scope': 'off',
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
+      
+      // TypeScript rules
       '@typescript-eslint/no-unused-vars': 'error',
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/no-var-requires': 'error',
+      
+      // Import rules
       'import/order': ['error', { 
         groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
         'newlines-between': 'always'
       }],
       'import/no-duplicates': 'error',
       'import/no-unresolved': 'off',
+      
+      // Security rules
       'security/detect-object-injection': 'warn',
       'security/detect-non-literal-regexp': 'warn',
       'security/detect-unsafe-regex': 'error',
@@ -67,6 +87,8 @@ export default [
       'security/detect-non-literal-require': 'warn',
       'security/detect-possible-timing-attacks': 'warn',
       'security/detect-pseudoRandomBytes': 'error',
+      
+      // SonarJS rules
       'sonarjs/cognitive-complexity': ['error', 15],
       'sonarjs/no-duplicate-string': ['error', 3],
       'sonarjs/no-duplicated-branches': 'error',
@@ -76,14 +98,7 @@ export default [
       'sonarjs/no-useless-catch': 'error',
       'sonarjs/prefer-immediate-return': 'error',
       'sonarjs/prefer-object-literal': 'error',
-      'sonarjs/prefer-single-boolean-return': 'error',
-      'no-unused-vars': 'off',
-      'no-console': 'warn',
-      'no-debugger': 'error',
-      'no-alert': 'error',
-      'no-var': 'error',
-      'prefer-const': 'error',
-      'no-duplicate-imports': 'error'
+      'sonarjs/prefer-single-boolean-return': 'error'
     },
     settings: {
       react: { version: 'detect' }
