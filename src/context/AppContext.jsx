@@ -40,7 +40,10 @@ const appReducer = (state, action) => {
     case actionTypes.SET_LOADING:
       return {
         ...state,
-        loading: { ...state.loading, [action.payload.key]: action.payload.value },
+        loading: {
+          ...state.loading,
+          [action.payload.key]: action.payload.value,
+        },
       };
 
     case actionTypes.SET_ERROR:
@@ -58,7 +61,10 @@ const appReducer = (state, action) => {
     case actionTypes.SET_CAPACITY_DATA:
       return {
         ...state,
-        capacityData: { ...state.capacityData, [action.payload.linkId]: action.payload.data },
+        capacityData: {
+          ...state.capacityData,
+          [action.payload.linkId]: action.payload.data,
+        },
       };
 
     case actionTypes.SET_TEST_HISTORY:
@@ -76,7 +82,7 @@ const appReducer = (state, action) => {
     case actionTypes.UPDATE_LINK:
       return {
         ...state,
-        links: state.links.map((link) =>
+        links: state.links.map(link =>
           link.id === action.payload.id ? action.payload : link
         ),
       };
@@ -84,7 +90,7 @@ const appReducer = (state, action) => {
     case actionTypes.DELETE_LINK:
       return {
         ...state,
-        links: state.links.filter((link) => link.id !== action.payload),
+        links: state.links.filter(link => link.id !== action.payload),
       };
 
     default:
@@ -101,14 +107,13 @@ export const AppProvider = ({ children }) => {
 
   // Actions
   const actions = {
-    setLoading: (key, value) => 
+    setLoading: (key, value) =>
       dispatch({ type: actionTypes.SET_LOADING, payload: { key, value } }),
 
-    setError: (error) => 
+    setError: error =>
       dispatch({ type: actionTypes.SET_ERROR, payload: error }),
 
-    clearError: () => 
-      dispatch({ type: actionTypes.CLEAR_ERROR }),
+    clearError: () => dispatch({ type: actionTypes.CLEAR_ERROR }),
 
     fetchLinks: async () => {
       try {
@@ -122,16 +127,19 @@ export const AppProvider = ({ children }) => {
       }
     },
 
-    selectLink: (link) => 
+    selectLink: link =>
       dispatch({ type: actionTypes.SET_SELECTED_LINK, payload: link }),
 
     fetchCapacityData: async (linkId, timeRange) => {
       try {
         actions.setLoading('capacity', true);
-        const response = await linkCapacityApi.getCapacityData(linkId, timeRange);
-        dispatch({ 
-          type: actionTypes.SET_CAPACITY_DATA, 
-          payload: { linkId, data: response.data } 
+        const response = await linkCapacityApi.getCapacityData(
+          linkId,
+          timeRange
+        );
+        dispatch({
+          type: actionTypes.SET_CAPACITY_DATA,
+          payload: { linkId, data: response.data },
         });
       } catch (error) {
         actions.setError(error.message);
@@ -140,11 +148,14 @@ export const AppProvider = ({ children }) => {
       }
     },
 
-    fetchTestHistory: async (params) => {
+    fetchTestHistory: async params => {
       try {
         actions.setLoading('tests', true);
         const response = await linkCapacityApi.getTestHistory(params);
-        dispatch({ type: actionTypes.SET_TEST_HISTORY, payload: response.data });
+        dispatch({
+          type: actionTypes.SET_TEST_HISTORY,
+          payload: response.data,
+        });
       } catch (error) {
         actions.setError(error.message);
       } finally {
@@ -169,7 +180,7 @@ export const AppProvider = ({ children }) => {
   useEffect(() => {
     actions.fetchLinks();
     actions.fetchSettings();
-  }, [actions]);
+  }, []);
 
   return (
     <AppContext.Provider value={{ state, actions }}>
