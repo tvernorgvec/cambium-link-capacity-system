@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useReducer, useEffect } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useReducer,
+  useEffect,
+  useMemo,
+} from 'react';
 import { linkCapacityApi } from '../services/api';
 
 // Initial state
@@ -106,75 +112,78 @@ export const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(appReducer, initialState);
 
   // Actions
-  const actions = {
-    setLoading: (key, value) =>
-      dispatch({ type: actionTypes.SET_LOADING, payload: { key, value } }),
+  const actions = useMemo(
+    () => ({
+      setLoading: (key, value) =>
+        dispatch({ type: actionTypes.SET_LOADING, payload: { key, value } }),
 
-    setError: error =>
-      dispatch({ type: actionTypes.SET_ERROR, payload: error }),
+      setError: error =>
+        dispatch({ type: actionTypes.SET_ERROR, payload: error }),
 
-    clearError: () => dispatch({ type: actionTypes.CLEAR_ERROR }),
+      clearError: () => dispatch({ type: actionTypes.CLEAR_ERROR }),
 
-    fetchLinks: async () => {
-      try {
-        actions.setLoading('links', true);
-        const response = await linkCapacityApi.getLinks();
-        dispatch({ type: actionTypes.SET_LINKS, payload: response.data });
-      } catch (error) {
-        actions.setError(error.message);
-      } finally {
-        actions.setLoading('links', false);
-      }
-    },
+      fetchLinks: async () => {
+        try {
+          actions.setLoading('links', true);
+          const response = await linkCapacityApi.getLinks();
+          dispatch({ type: actionTypes.SET_LINKS, payload: response.data });
+        } catch (error) {
+          actions.setError(error.message);
+        } finally {
+          actions.setLoading('links', false);
+        }
+      },
 
-    selectLink: link =>
-      dispatch({ type: actionTypes.SET_SELECTED_LINK, payload: link }),
+      selectLink: link =>
+        dispatch({ type: actionTypes.SET_SELECTED_LINK, payload: link }),
 
-    fetchCapacityData: async (linkId, timeRange) => {
-      try {
-        actions.setLoading('capacity', true);
-        const response = await linkCapacityApi.getCapacityData(
-          linkId,
-          timeRange
-        );
-        dispatch({
-          type: actionTypes.SET_CAPACITY_DATA,
-          payload: { linkId, data: response.data },
-        });
-      } catch (error) {
-        actions.setError(error.message);
-      } finally {
-        actions.setLoading('capacity', false);
-      }
-    },
+      fetchCapacityData: async (linkId, timeRange) => {
+        try {
+          actions.setLoading('capacity', true);
+          const response = await linkCapacityApi.getCapacityData(
+            linkId,
+            timeRange
+          );
+          dispatch({
+            type: actionTypes.SET_CAPACITY_DATA,
+            payload: { linkId, data: response.data },
+          });
+        } catch (error) {
+          actions.setError(error.message);
+        } finally {
+          actions.setLoading('capacity', false);
+        }
+      },
 
-    fetchTestHistory: async params => {
-      try {
-        actions.setLoading('tests', true);
-        const response = await linkCapacityApi.getTestHistory(params);
-        dispatch({
-          type: actionTypes.SET_TEST_HISTORY,
-          payload: response.data,
-        });
-      } catch (error) {
-        actions.setError(error.message);
-      } finally {
-        actions.setLoading('tests', false);
-      }
-    },
+      fetchTestHistory: async params => {
+        try {
+          actions.setLoading('tests', true);
+          const response = await linkCapacityApi.getTestHistory(params);
+          dispatch({
+            type: actionTypes.SET_TEST_HISTORY,
+            payload: response.data,
+          });
+        } catch (error) {
+          actions.setError(error.message);
+        } finally {
+          actions.setLoading('tests', false);
+        }
+      },
 
-    fetchSettings: async () => {
-      try {
-        actions.setLoading('settings', true);
-        const response = await linkCapacityApi.getSettings();
-        dispatch({ type: actionTypes.SET_SETTINGS, payload: response.data });
-      } catch (error) {
-        actions.setError(error.message);
-      } finally {
-        actions.setLoading('settings', false);
-      }
-    },
-  };
+      fetchSettings: async () => {
+        try {
+          actions.setLoading('settings', true);
+          const response = await linkCapacityApi.getSettings();
+          dispatch({ type: actionTypes.SET_SETTINGS, payload: response.data });
+        } catch (error) {
+          actions.setError(error.message);
+        } finally {
+          actions.setLoading('settings', false);
+        }
+      },
+    }),
+    []
+  );
 
   // Load initial data
   useEffect(() => {

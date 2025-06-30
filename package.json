@@ -19,6 +19,8 @@
     "quality:validate": "node scripts/validate-quality-tools.js",
     "quality:inventory": "node scripts/inventory.js",
     "quality:check": "node scripts/autonomous-quality.js",
+    "quality:autofix": "node scripts/auto-fix.js",
+    "quality:full": "npm run quality:autofix && npm run quality:check && npm run quality:inventory",
     "prepare": "husky install",
     "commit": "cz"
   },
@@ -53,6 +55,7 @@
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-security": "^1.7.1",
     "eslint-plugin-sonarjs": "^1.0.4",
+    "glob": "^10.4.5",
     "husky": "^9.0.11",
     "jscpd": "^4.0.5",
     "license-checker": "^25.0.1",

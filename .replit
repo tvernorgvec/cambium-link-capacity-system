@@ -49,6 +49,23 @@ args = "npm run quality:inventory"
 task = "shell.exec"
 args = "npm run quality:check"
 
+[[workflows.workflow]]
+name = "Auto Quality Fix & Check"
+author = 40704979
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run quality:autofix"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run quality:check"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run quality:inventory"
+
 [[ports]]
 localPort = 5000
 externalPort = 80
