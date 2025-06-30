@@ -23,7 +23,10 @@
     "quality:full": "npm run quality:autofix && npm run quality:check && npm run quality:inventory",
     "quality:startup": "node scripts/startup-quality.js",
     "prepare": "husky install",
-    "commit": "cz"
+    "commit": "cz",
+    "quality:comprehensive": "node scripts/autonomous-quality.js",
+    "quality:fix-all": "node scripts/auto-fix.js",
+    "quality:scan-all": "echo 'Scanning entire codebase...' && find . -type f -not -path './node_modules/*' -not -path './.git/*' | wc -l && npm run quality:comprehensive"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "^1.2.1",
