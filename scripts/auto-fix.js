@@ -1,11 +1,10 @@
-
 import { execSync } from 'child_process';
 import { writeFileSync, readFileSync, existsSync } from 'fs';
 import { glob } from 'glob';
 
 const autoFixIssues = async () => {
   console.log('🔧 Running Automated Issue Fixes...\n');
-  
+
   const fixes = [];
 
   // 1. Remove unused imports
@@ -40,16 +39,16 @@ const autoFixIssues = async () => {
   try {
     const files = await glob('src/**/*.{js,jsx,ts,tsx}');
     let consoleFixed = 0;
-    
+
     files.forEach(file => {
       if (file.includes('ErrorBoundary') || file.includes('.test.') || file.includes('.spec.')) {
         return; // Skip test files and error boundaries
       }
-      
+
       const content = readFileSync(file, 'utf8');
       const lines = content.split('\n');
       let modified = false;
-      
+
       const cleanedLines = lines.map(line => {
         if (line.trim().startsWith('console.log(') || line.trim().startsWith('console.error(') || line.trim().startsWith('console.warn(')) {
           modified = true;
@@ -58,12 +57,12 @@ const autoFixIssues = async () => {
         }
         return line;
       });
-      
+
       if (modified) {
         writeFileSync(file, cleanedLines.join('\n'));
       }
     });
-    
+
     if (consoleFixed > 0) {
       fixes.push(`✅ Removed ${consoleFixed} console statements`);
     }
@@ -94,12 +93,12 @@ const autoFixIssues = async () => {
   try {
     const files = await glob('src/**/*.{js,jsx,ts,tsx}');
     let loopFixed = 0;
-    
+
     files.forEach(file => {
       const content = readFileSync(file, 'utf8');
       let modified = false;
       let fixedContent = content;
-      
+
       // Check for useEffect with state dependencies that can cause infinite loops
       if (content.includes('useEffect') && content.includes('dispatch')) {
         const useEffectRegex = /useEffect\(\s*\(\)\s*=>\s*{[\s\S]*?},\s*\[[^\]]*state[^\]]*\]/g;
@@ -111,7 +110,7 @@ const autoFixIssues = async () => {
           loopFixed++;
         }
       }
-      
+
       // Check for conditional loading that can cause loops
       if (content.includes('if (state.data.linkCapacity.length === 0') && 
           content.includes('loadInitialData();')) {
@@ -122,25 +121,25 @@ const autoFixIssues = async () => {
         modified = true;
         loopFixed++;
       }
-      
+
       // Check for missing loading state reset in dispatch calls
       if (content.includes('dispatch') && content.includes('SET_LINK_CAPACITY') && 
           !content.includes('loading: false') && content.includes('useReducer')) {
         const lines = fixedContent.split('\n');
         let inReducer = false;
         let inSetCapacityCase = false;
-        
+
         for (let i = 0; i < lines.length; i++) {
           const line = lines[i];
-          
+
           if (line.includes('function appReducer') || line.includes('const appReducer')) {
             inReducer = true;
           }
-          
+
           if (inReducer && line.includes("case 'SET_LINK_CAPACITY':")) {
             inSetCapacityCase = true;
           }
-          
+
           if (inSetCapacityCase && line.includes('return {') && 
               !lines.slice(i, i + 5).some(nextLine => nextLine.includes('loading: false'))) {
             // Find the closing brace of the return statement
@@ -156,7 +155,7 @@ const autoFixIssues = async () => {
                 }
               }
             }
-            
+
             // Insert loading: false before the closing brace
             const beforeClosing = lines[returnEndIndex].replace(/(\s*})/, ',\n        loading: false,$1');
             lines[returnEndIndex] = beforeClosing;
@@ -164,24 +163,24 @@ const autoFixIssues = async () => {
             loopFixed++;
             inSetCapacityCase = false;
           }
-          
+
           if (inReducer && line.includes('default:')) {
             inReducer = false;
           }
         }
-        
+
         if (modified) {
           fixedContent = lines.join('\n');
         }
       }
-      
+
       // Check for setState in useEffect without proper dependencies
       if (content.includes('setState') && content.includes('useEffect') && content.includes('}, [state])')) {
         fixedContent = fixedContent.replace(/}, \[state\]\)/g, '}, [])');
         modified = true;
         loopFixed++;
       }
-      
+
       // Check for useEffect causing infinite loops with actions in dependencies
       if (content.includes('useEffect') && content.includes('actions')) {
         const lines = fixedContent.split('\n');
@@ -201,25 +200,25 @@ const autoFixIssues = async () => {
           return line;
         }).join('\n');
       }
-      
+
       // Check for problematic useEffect patterns that cause infinite loops
       if (content.includes('useEffect') && content.includes('dispatch') && content.includes('SET_LOADING')) {
         const lines = fixedContent.split('\n');
         let inUseEffect = false;
         let useEffectStart = -1;
-        
+
         for (let i = 0; i < lines.length; i++) {
           const line = lines[i].trim();
-          
+
           if (line.includes('useEffect(')) {
             inUseEffect = true;
             useEffectStart = i;
           }
-          
+
           if (inUseEffect && line.includes('}, [') && line.includes('])')) {
             // Check if this useEffect has conditional data loading that might cause loops
             const useEffectBlock = lines.slice(useEffectStart, i + 1).join('\n');
-            
+
             if (useEffectBlock.includes('if (state.data.linkCapacity.length === 0') && 
                 useEffectBlock.includes('loadInitialData();')) {
               // Replace conditional loading with simple loading
@@ -227,7 +226,7 @@ const autoFixIssues = async () => {
                 /if \(state\.data\.linkCapacity\.length === 0[^}]*\n[^}]*loadInitialData\(\);[^}]*}/,
                 'loadInitialData();'
               );
-              
+
               if (newBlock !== useEffectBlock) {
                 // Replace the block in the lines array
                 const blockLines = newBlock.split('\n');
@@ -236,23 +235,23 @@ const autoFixIssues = async () => {
                 loopFixed++;
               }
             }
-            
+
             inUseEffect = false;
             useEffectStart = -1;
           }
         }
-        
+
         if (modified) {
           fixedContent = lines.join('\n');
         }
       }
-      
+
       // Check for dispatch calls without proper SET_LOADING handling
       if (content.includes('dispatch') && content.includes('SET_LOADING') && content.includes('useEffect')) {
         const lines = fixedContent.split('\n');
         let inUseEffect = false;
         let needsLoadingFix = false;
-        
+
         for (let i = 0; i < lines.length; i++) {
           const line = lines[i];
           if (line.includes('useEffect')) {
@@ -273,7 +272,7 @@ const autoFixIssues = async () => {
             inUseEffect = false;
           }
         }
-        
+
         if (needsLoadingFix) {
           // Add condition to prevent multiple data loading
           if (content.includes('dispatch({ type: \'SET_LOADING\', payload: true });') && 
@@ -290,7 +289,7 @@ const autoFixIssues = async () => {
           }
         }
       }
-      
+
       // Check for missing SET_LOADING false calls
       if (content.includes('SET_LOADING', true) && 
           content.includes('dispatch') && 
@@ -312,12 +311,12 @@ const autoFixIssues = async () => {
         }
         fixedContent = lines.join('\n');
       }
-      
+
       if (modified) {
         writeFileSync(file, fixedContent);
       }
     });
-    
+
     if (loopFixed > 0) {
       fixes.push(`✅ Fixed ${loopFixed} React infinite loop patterns`);
     } else {
@@ -332,14 +331,14 @@ const autoFixIssues = async () => {
   try {
     const files = await glob('src/**/*.{js,jsx,ts,tsx}');
     let duplicateImportsFixed = 0;
-    
+
     // First fix duplicate imports
     files.forEach(file => {
       const content = readFileSync(file, 'utf8');
       const lines = content.split('\n');
       const seenImports = new Set();
       let modified = false;
-      
+
       const cleanedLines = lines.filter(line => {
         const trimmedLine = line.trim();
         if (trimmedLine.startsWith('import ') && trimmedLine.includes('from ')) {
@@ -353,26 +352,26 @@ const autoFixIssues = async () => {
         }
         return true;
       });
-      
+
       if (modified) {
         writeFileSync(file, cleanedLines.join('\n'));
       }
     });
-    
+
     if (duplicateImportsFixed > 0) {
       fixes.push(`✅ Fixed ${duplicateImportsFixed} duplicate imports`);
     }
-    
+
     // Then run duplicate code detection
     execSync('npx jscpd src --threshold 5 --min-tokens 50 --min-lines 10 --reporters json --output reports/jscpd', { stdio: 'pipe' });
-    
+
     if (existsSync('reports/jscpd/jscpd-report.json')) {
       const duplicateReport = JSON.parse(readFileSync('reports/jscpd/jscpd-report.json', 'utf8'));
-      
+
       if (duplicateReport.duplicates && duplicateReport.duplicates.length > 0) {
         // Only report significant duplicates
         const significantDuplicates = duplicateReport.duplicates.filter(d => d.linesCount > 15);
-        
+
         if (significantDuplicates.length > 0) {
           fixes.push(`⚠️ Found ${significantDuplicates.length} significant code duplicates - consider refactoring`);
           await createUtilityFiles(significantDuplicates);
@@ -388,7 +387,7 @@ const autoFixIssues = async () => {
   } catch (error) {
     fixes.push('⚠️ Duplicate code extraction had issues');
   }
-  
+
   const createUtilityFiles = async (duplicates) => {
     // Create common styles utility if not exists
     if (!existsSync('src/utils/styles.js')) {
@@ -429,10 +428,97 @@ Run \`npm run quality:check\` to validate the fixes.
 `;
 
   writeFileSync('docs/AUTO_FIX_REPORT.md', report);
-  
+
   console.log('\n📋 Auto-fix Summary:');
   fixes.forEach(fix => console.log(`  ${fix}`));
   console.log('\n📄 Detailed report saved to docs/AUTO_FIX_REPORT.md');
+};
+
+const fixReactInfiniteLoops = async () => {
+  let loopFixed = 0;
+
+  try {
+    const files = execSync('find src -name "*.jsx" -o -name "*.tsx"', { encoding: 'utf8' }).trim().split('\n').filter(Boolean);
+
+    files.forEach(file => {
+      try {
+        let fixedContent = readFileSync(file, 'utf8');
+        let modified = false;
+
+        // Fix useEffect infinite loops
+        if (fixedContent.includes('useEffect') && fixedContent.includes('dispatch')) {
+          const lines = fixedContent.split('\n');
+          let inUseEffect = false;
+          let useEffectStart = -1;
+          let braceCount = 0;
+
+          for (let i = 0; i < lines.length; i++) {
+            const line = lines[i].trim();
+
+            if (line.includes('useEffect(')) {
+              inUseEffect = true;
+              useEffectStart = i;
+              braceCount = 0;
+            }
+
+            if (inUseEffect) {
+              // Count braces to find the end of useEffect
+              braceCount += (line.match(/\{/g) || []).length;
+              braceCount -= (line.match(/\}/g) || []).length;
+
+              if (line.includes('}, [') && braceCount === 0) {
+                // Check if this useEffect has state dependencies that cause infinite loops
+                const useEffectBlock = lines.slice(useEffectStart, i + 1).join('\n');
+
+                // Detect dangerous patterns
+                const hasDispatch = useEffectBlock.includes('dispatch');
+                const hasStateInDeps = /\[.*state.*\]/.test(useEffectBlock);
+                const hasConditionalDispatch = useEffectBlock.includes('if') && hasDispatch;
+
+                if (hasDispatch && hasStateInDeps && hasConditionalDispatch) {
+                  console.log(`🔧 Fixing infinite loop in ${file}`);
+
+                  // Replace with safe dependencies
+                  let newDeps = '[]'; // Default to empty array for initial data loading
+
+                  // Check for specific patterns
+                  if (useEffectBlock.includes('autoRefresh') || useEffectBlock.includes('refreshInterval')) {
+                    // Auto-refresh effects should depend on settings
+                    newDeps = '[state.data.settings.autoRefresh, state.data.settings.refreshInterval]';
+                  }
+
+                  const newBlock = useEffectBlock.replace(
+                    /\[.*\]/,
+                    newDeps
+                  );
+
+                  if (newBlock !== useEffectBlock) {
+                    const blockLines = newBlock.split('\n');
+                    lines.splice(useEffectStart, i - useEffectStart + 1, ...blockLines);
+                    modified = true;
+                    loopFixed++;
+                  }
+                }
+
+                inUseEffect = false;
+                useEffectStart = -1;
+              }
+            }
+          }
+
+          if (modified) {
+            writeFileSync(file, lines.join('\n'));
+          }
+        }
+      } catch (err) {
+        // Skip files that can't be processed
+      }
+    });
+  } catch (err) {
+    console.error('Error fixing React infinite loops:', err.message);
+  }
+
+  return { checked: true, fixed: loopFixed };
 };
 
 if (import.meta.url === `file://${process.argv[1]}`) {

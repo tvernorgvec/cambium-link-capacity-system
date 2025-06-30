@@ -93,7 +93,7 @@ const runQualityChecks = async () => {
     },
     {
       name: 'React Infinite Loop Detection',
-      command: 'grep -r "dispatch.*SET_LOADING.*true" src/ --include="*.jsx" --include="*.tsx" -A 10 | grep -v "loading.*false" | head -5 || echo "No infinite loop patterns detected"',
+      command: 'node -e "const fs=require(\'fs\');const path=require(\'path\');const glob=require(\'glob\');let issues=0;glob.sync(\'src/**/*.{jsx,tsx}\').forEach(file=>{const content=fs.readFileSync(file,\'utf8\');if(content.includes(\'useEffect\')&&content.includes(\'dispatch\')&&/useEffect\\([^}]*dispatch[^}]*\\}\\s*,\\s*\\[[^\\]]*state[^\\]]*\\]/.test(content.replace(/\\n/g,\' \'))){console.log(`⚠️ Potential infinite loop in ${file}`);issues++;}});if(issues===0)console.log(\'No infinite loop patterns detected\');process.exit(issues>0?1:0);"',
       description: 'React infinite loop pattern detection'
     },
     {
