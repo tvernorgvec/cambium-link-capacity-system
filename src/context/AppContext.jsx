@@ -1,4 +1,4 @@
-import {
+import React, {
   createContext,
   useContext,
   useState,
@@ -8,115 +8,203 @@ import {
 
 const AppContext = createContext();
 
-export const useApp = () => {
+export const useAppContext = () => {
   const context = useContext(AppContext);
   if (!context) {
-    throw new Error('useApp must be used within an AppProvider');
+    throw new Error('useAppContext must be used within an AppProvider');
   }
   return context;
 };
 
 export const AppProvider = ({ children }) => {
   const [state, setState] = useState({
+    tests: [],
     isLoading: false,
-    user: null,
-    theme: 'light',
-    notifications: [],
+    error: null,
+    currentView: 'dashboard',
     settings: {
+      theme: 'light',
+      notifications: true,
       autoRefresh: true,
       refreshInterval: 30000,
-      notifications: true,
-      theme: 'light',
+    },
+    history: [],
+    scheduler: {
+      schedules: [],
+      isRunning: false,
     },
   });
 
-  const updateState = useCallback(newState => {
-    setState(prevState => ({ ...prevState, ...newState }));
+  // Memoize the saveToStorage function to prevent re-creation on every render
+  const saveToStorage = useCallback(data => {
+    try {
+      localStorage.setItem('gvec-app-data', JSON.stringify(data));
+    } catch (error) {
+      console.error('Failed to save to localStorage:', error);
+    }
   }, []);
 
-  // Load settings from localStorage - only run once on mount
+  // Load data from localStorage on mount only
   useEffect(() => {
-    const savedSettings = localStorage.getItem('appSettings');
-    if (savedSettings) {
+    const loadFromStorage = () => {
       try {
-        const parsedSettings = JSON.parse(savedSettings);
-        setState(prevState => ({
-          ...prevState,
-          settings: { ...prevState.settings, ...parsedSettings },
-        }));
-      } catch (error) {
-        // Console statement removed by auto-fix
-      }
-    }
-  }, []); // Empty dependency array - only run once
-
-  // Save settings to localStorage when they change
-  useEffect(() => {
-    localStorage.setItem('appSettings', JSON.stringify(state.settings));
-  }, [state.settings]);
-
-  const value = {
-    ...state,
-    updateState,
-    setLoading: useCallback(
-      isLoading => updateState({ isLoading }),
-      [updateState]
-    ),
-    setUser: useCallback(user => updateState({ user }), [updateState]),
-    setTheme: useCallback(theme => updateState({ theme }), [updateState]),
-    addNotification: useCallback(notification => {
-      const newNotification = {
-        id: Date.now(),
-        timestamp: new Date().toISOString(),
-        ...notification,
-      };
-      setState(prevState => ({
-        ...prevState,
-        notifications: [...prevState.notifications, newNotification],
-      }));
-    }, []),
-    removeNotification: useCallback(id => {
-      setState(prevState => ({
-        ...prevState,
-        notifications: prevState.notifications.filter(n => n.id !== id),
-      }));
-    }, []),
-    updateSettings: useCallback(newSettings => {
-      setState(prevState => ({
-        ...prevState,
-        settings: { ...prevState.settings, ...newSettings },
-      }));
-    }, []),
-  };
-
-  useEffect(() => {
-    const handleStorageChange = () => {
-      const saved = localStorage.getItem('gvec-app-data');
-      if (saved) {
-        try {
+        const saved = localStorage.getItem('gvec-app-data');
+        if (saved) {
           const data = JSON.parse(saved);
           setState(prevState => ({ ...prevState, ...data }));
-        } catch (error) {
-          // Console statement removed by auto-fix
         }
+      } catch (error) {
+        console.error('Failed to load from localStorage:', error);
       }
     };
 
-    handleStorageChange();
-    window.addEventListener('storage', handleStorageChange);
-    return () => window.removeEventListener('storage', handleStorageChange);
+    loadFromStorage();
   }, []);
 
-  const saveToStorage = useCallback(newState => {
-    localStorage.setItem('gvec-app-data', JSON.stringify(newState));
-  }, []);
-
+  // Save to localStorage when state changes (with debounce)
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       saveToStorage(state);
-    }, 100);
+    }, 500);
+
     return () => clearTimeout(timeoutId);
   }, [state, saveToStorage]);
+
+  const updateState = useCallback(updates => {
+    setState(prevState => ({ ...prevState, ...updates }));
+  }, []);
+
+  const setCurrentView = useCallback(view => {
+    setState(prevState => ({ ...prevState, currentView: view }));
+  }, []);
+
+  const setLoading = useCallback(isLoading => {
+    setState(prevState => ({ ...prevState, isLoading }));
+  }, []);
+
+  const setError = useCallback(error => {
+    setState(prevState => ({ ...prevState, error }));
+  }, []);
+
+  const addTest = useCallback(test => {
+    setState(prevState => ({
+      ...prevState,
+      tests: [...prevState.tests, { ...test, id: Date.now() }],
+    }));
+  }, []);
+
+  const updateTest = useCallback((id, updates) => {
+    setState(prevState => ({
+      ...prevState,
+      tests: prevState.tests.map(test =>
+        test.id === id ? { ...test, ...updates } : test
+      ),
+    }));
+  }, []);
+
+  const deleteTest = useCallback(id => {
+    setState(prevState => ({
+      ...prevState,
+      tests: prevState.tests.filter(test => test.id !== id),
+    }));
+  }, []);
+
+  const addToHistory = useCallback(entry => {
+    setState(prevState => ({
+      ...prevState,
+      history: [
+        { ...entry, timestamp: new Date().toISOString() },
+        ...prevState.history,
+      ],
+    }));
+  }, []);
+
+  const updateSettings = useCallback(newSettings => {
+    setState(prevState => ({
+      ...prevState,
+      settings: { ...prevState.settings, ...newSettings },
+    }));
+  }, []);
+
+  const addSchedule = useCallback(schedule => {
+    setState(prevState => ({
+      ...prevState,
+      scheduler: {
+        ...prevState.scheduler,
+        schedules: [
+          ...prevState.scheduler.schedules,
+          { ...schedule, id: Date.now() },
+        ],
+      },
+    }));
+  }, []);
+
+  const updateSchedule = useCallback((id, updates) => {
+    setState(prevState => ({
+      ...prevState,
+      scheduler: {
+        ...prevState.scheduler,
+        schedules: prevState.scheduler.schedules.map(schedule =>
+          schedule.id === id ? { ...schedule, ...updates } : schedule
+        ),
+      },
+    }));
+  }, []);
+
+  const deleteSchedule = useCallback(id => {
+    setState(prevState => ({
+      ...prevState,
+      scheduler: {
+        ...prevState.scheduler,
+        schedules: prevState.scheduler.schedules.filter(
+          schedule => schedule.id !== id
+        ),
+      },
+    }));
+  }, []);
+
+  const setSchedulerRunning = useCallback(isRunning => {
+    setState(prevState => ({
+      ...prevState,
+      scheduler: { ...prevState.scheduler, isRunning },
+    }));
+  }, []);
+
+  // Memoize the context value to prevent unnecessary re-renders
+  const value = React.useMemo(
+    () => ({
+      ...state,
+      updateState,
+      setCurrentView,
+      setLoading,
+      setError,
+      addTest,
+      updateTest,
+      deleteTest,
+      addToHistory,
+      updateSettings,
+      addSchedule,
+      updateSchedule,
+      deleteSchedule,
+      setSchedulerRunning,
+    }),
+    [
+      state,
+      updateState,
+      setCurrentView,
+      setLoading,
+      setError,
+      addTest,
+      updateTest,
+      deleteTest,
+      addToHistory,
+      updateSettings,
+      addSchedule,
+      updateSchedule,
+      deleteSchedule,
+      setSchedulerRunning,
+    ]
+  );
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
