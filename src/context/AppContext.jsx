@@ -4,6 +4,7 @@ import React, {
   useState,
   useEffect,
   useCallback,
+  useRef,
 } from 'react';
 
 const AppContext = createContext();
@@ -37,6 +38,8 @@ export const AppProvider = ({ children }) => {
     },
   });
 
+  const hasLoadedFromStorage = useRef(false);
+
   // Load data from localStorage only once on mount
   useEffect(() => {
     try {
@@ -45,20 +48,17 @@ export const AppProvider = ({ children }) => {
         const parsedData = JSON.parse(savedData);
         setState(prevState => ({ ...prevState, ...parsedData }));
       }
+      hasLoadedFromStorage.current = true;
     } catch (error) {
+      hasLoadedFromStorage.current = true;
       // Console statement removed by auto-fix
     }
   }, []); // Empty dependency array - runs only on mount
 
   // Save to localStorage when state changes (with debounce)
   useEffect(() => {
-    // Skip saving on initial render
-    const isInitialRender =
-      state.testResults.length === 0 &&
-      state.currentTest === null &&
-      !state.isTestRunning;
-
-    if (isInitialRender) {
+    // Skip saving if we haven't loaded from storage yet
+    if (!hasLoadedFromStorage.current) {
       return;
     }
 
