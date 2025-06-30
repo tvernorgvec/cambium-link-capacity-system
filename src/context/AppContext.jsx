@@ -1,79 +1,53 @@
-import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import React, { createContext, useContext, useState, useCallback } from 'react';
 
 const AppContext = createContext();
 
-export const useApp = () => {
+export const useAppContext = () => {
   const context = useContext(AppContext);
   if (!context) {
-    throw new Error('useApp must be used within an AppProvider');
+    throw new Error('useAppContext must be used within an AppProvider');
   }
   return context;
 };
 
-const defaultState = {
-  currentTest: null,
-  testResults: [],
-  isTestRunning: false,
-  settings: {
+export const AppProvider = ({ children }) => {
+  const [currentTest, setCurrentTest] = useState(null);
+  const [testResults, setTestResults] = useState([]);
+  const [isTestRunning, setIsTestRunning] = useState(false);
+  const [settings, setSettings] = useState({
     autoSave: true,
     darkMode: false,
     notifications: true,
-    testInterval: 300000, // 5 minutes
+    testInterval: 300000,
     maxRetries: 3,
-    timeout: 30000, // 30 seconds
-  },
-  user: {
-    preferences: {
-      dashboard: {
-        refreshInterval: 30000,
-        showAdvanced: false,
-      },
-    },
-  },
-  ui: {
-    sidebarCollapsed: false,
-    activeTab: 'dashboard',
-  },
-};
-
-export const AppProvider = ({ children }) => {
-  const [state, setState] = useState(() => {
-    try {
-      const saved = localStorage.getItem('appState');
-      return saved ? { ...defaultState, ...JSON.parse(saved) } : defaultState;
-    } catch (error) {
-      console.warn('Failed to load state from localStorage:', error);
-      return defaultState;
-    }
+    timeout: 30000,
   });
 
-  // Save to localStorage when specific parts of state change
-  useEffect(() => {
-    const saveState = () => {
-      try {
-        const stateToSave = {
-          settings: state.settings,
-          user: state.user,
-          ui: state.ui,
-        };
-        localStorage.setItem('appState', JSON.stringify(stateToSave));
-      } catch (error) {
-        console.warn('Failed to save state to localStorage:', error);
-      }
-    };
+  const addTestResult = useCallback(result => {
+    setTestResults(prev => [...prev, { ...result, id: Date.now() }]);
+  }, []);
 
-    const timeoutId = setTimeout(saveState, 500);
-    return () => clearTimeout(timeoutId);
-  }, [state.settings, state.user, state.ui]); // Only watch specific parts
+  const clearTestResults = useCallback(() => {
+    setTestResults([]);
+  }, []);
 
-  const updateState = useCallback((updates) => {
-    setState(prevState => ({ ...prevState, ...updates }));
+  const updateSettings = useCallback(newSettings => {
+    setSettings(prev => ({ ...prev, ...newSettings }));
   }, []);
 
   const value = {
-    ...state,
-    updateState,
+    currentTest,
+    setCurrentTest,
+    testResults,
+    addTestResult,
+    clearTestResults,
+    isTestRunning,
+    setIsTestRunning,
+    settings,
+    updateSettings,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
+
+export default AppContext;
