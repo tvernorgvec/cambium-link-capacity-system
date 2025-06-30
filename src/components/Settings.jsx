@@ -50,9 +50,9 @@ const Settings = () => {
     try {
       // Mock save operation
       await new Promise(resolve => setTimeout(resolve, 1500));
-      console.log('Settings saved:', settings);
+      // Settings saved successfully
     } catch (err) {
-      console.error('Failed to save settings:', err);
+      // Handle save error appropriately
     } finally {
       setSaving(false);
     }

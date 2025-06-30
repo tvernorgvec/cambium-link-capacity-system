@@ -180,7 +180,7 @@ export const AppProvider = ({ children }) => {
   useEffect(() => {
     actions.fetchLinks();
     actions.fetchSettings();
-  }, []);
+  }, [actions]);
 
   return (
     <AppContext.Provider value={{ state, actions }}>

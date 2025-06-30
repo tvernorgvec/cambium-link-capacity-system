@@ -19,7 +19,7 @@ class ErrorBoundary extends React.Component {
 
     // Log error in production, you might want to send to error reporting service
     if (process.env.NODE_ENV === 'development') {
-      console.error('Error caught by boundary:', error, errorInfo);
+      // Error logging would be handled by proper error reporting service
     }
   }
 

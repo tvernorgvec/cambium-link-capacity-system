@@ -100,10 +100,14 @@ const Scheduler = () => {
 
     setScheduledTests(prev => [...prev, newTest]);
     setSelectedAP('');
+
+    // Test scheduling logic would be implemented here
   };
 
   const handleDeleteTest = testId => {
     setScheduledTests(prev => prev.filter(test => test.id !== testId));
+
+    // Remove scheduled test logic would be implemented here
   };
 
   const handleRunTest = async testId => {

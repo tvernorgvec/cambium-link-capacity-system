@@ -1,0 +1,113 @@
+{
+  "timestamp": "2025-06-30T20:26:31.375Z",
+  "project": {
+    "name": "gvec-link-capacity-web-app",
+    "version": "1.0.0",
+    "description": "GVEC Link Capacity Web Application with comprehensive autonomous code quality tools",
+    "dependencies": 12,
+    "devDependencies": 25,
+    "scripts": 17
+  },
+  "git": {
+    "branch": "main",
+    "commit": "3dda014",
+    "hasUncommittedChanges": true,
+    "uncommittedFiles": 6
+  },
+  "runtime": {
+    "node": "v20.18.1",
+    "npm": "10.8.2"
+  },
+  "frontend": {
+    "framework": "React 18.2.0",
+    "language": "TypeScript/JavaScript",
+    "styling": "Tailwind CSS",
+    "animation": "Framer Motion",
+    "routing": "React Router DOM",
+    "bundler": "Vite"
+  },
+  "qualityTools": {
+    "ESLint": "9.29.0",
+    "Prettier": "3.6.1",
+    "TypeScript Prune": "0.10.3",
+    "JSCPD": "4.0.5",
+    "Madge": "8.0.0",
+    "Husky": "9.0.11",
+    "Lint-Staged": "15.2.10",
+    "Commitlint": "19.5.0",
+    "Commitizen": "4.3.1",
+    "Depcheck": "1.4.7",
+    "npm-check-updates": "17.1.10",
+    "License Checker": "25.0.1",
+    "Audit CI": "7.1.0"
+  },
+  "structure": {
+    "totalSize": 268878044,
+    "files": {
+      ".js": [
+        "src/config/environment.js",
+        "src/services/api.js",
+        "src/types/index.js",
+        "src/utils/motion.js"
+      ],
+      ".jsx": [
+        "src/App.jsx",
+        "src/components/Button.jsx",
+        "src/components/Card.jsx",
+        "src/components/Dashboard.jsx",
+        "src/components/ErrorBoundary.jsx",
+        "src/components/History.jsx",
+        "src/components/Layout.jsx",
+        "src/components/LoadingSpinner.jsx",
+        "src/components/Scheduler.jsx",
+        "src/components/Settings.jsx",
+        "src/components/StatusBadge.jsx",
+        "src/context/AppContext.jsx",
+        "src/index.jsx",
+        "src/main.jsx"
+      ],
+      ".ts": [],
+      ".tsx": [],
+      ".css": [
+        "src/App.css",
+        "src/index.css"
+      ],
+      ".json": []
+    },
+    "directories": [
+      "assets",
+      "components",
+      "config",
+      "context",
+      "services",
+      "types",
+      "utils"
+    ],
+    "fileCounts": {
+      ".js": 4,
+      ".jsx": 14,
+      ".ts": 0,
+      ".tsx": 0,
+      ".css": 2,
+      ".json": 0
+    }
+  },
+  "routes": {
+    "frontend": [
+      "/linktest/",
+      "/linktest/dashboard",
+      "/linktest/scheduler",
+      "/linktest/history",
+      "/linktest/settings"
+    ]
+  },
+  "configurations": [
+    "eslint.config.js",
+    ".prettierrc",
+    ".jscpd.json",
+    ".lintstagedrc.json",
+    "commitlint.config.js",
+    ".czrc",
+    "tsconfig.json"
+  ]
+}

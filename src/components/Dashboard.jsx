@@ -13,7 +13,7 @@ const Dashboard = () => {
     if (links.length === 0 && !loading.links) {
       actions.fetchLinks();
     }
-  }, []);
+  }, [actions, links.length, loading.links]);
 
   if (loading.links) {
     return (
