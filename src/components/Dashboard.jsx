@@ -1,15 +1,7 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import {
-  Activity,
-  TrendingUp,
-  AlertTriangle,
-  Wifi,
-  Clock,
-  BarChart3,
-} from 'lucide-react';
+import { Activity, TrendingUp, AlertTriangle, Wifi } from 'lucide-react';
 import Card from './Card';
-import StatusBadge from './StatusBadge';
 import LoadingSpinner from './LoadingSpinner';
 import { useApp } from '../context/AppContext';
 
