@@ -1,6 +1,6 @@
 {
   "statistics": {
-    "detectionDate": "2025-06-30T22:20:31.393Z",
+    "detectionDate": "2025-06-30T22:34:50.438Z",
     "formats": {
       "javascript": {
         "sources": {
@@ -201,8 +201,8 @@
       "jsx": {
         "sources": {
           "/home/runner/workspace/src/context/AppContext.jsx": {
-            "lines": 151,
-            "tokens": 1248,
+            "lines": 185,
+            "tokens": 1419,
             "sources": 1,
             "clones": 0,
             "duplicatedLines": 0,
@@ -358,28 +358,28 @@
           }
         },
         "total": {
-          "lines": 1028,
-          "tokens": 7964,
+          "lines": 1062,
+          "tokens": 8135,
           "sources": 13,
           "clones": 2,
           "duplicatedLines": 27,
           "duplicatedTokens": 205,
-          "percentage": 2.63,
-          "percentageTokens": 2.57,
+          "percentage": 2.54,
+          "percentageTokens": 2.52,
           "newDuplicatedLines": 0,
           "newClones": 0
         }
       }
     },
     "total": {
-      "lines": 1670,
-      "tokens": 13175,
+      "lines": 1704,
+      "tokens": 13346,
       "sources": 28,
       "clones": 2,
       "duplicatedLines": 27,
       "duplicatedTokens": 205,
-      "percentage": 1.62,
-      "percentageTokens": 1.56,
+      "percentage": 1.58,
+      "percentageTokens": 1.54,
       "newDuplicatedLines": 0,
       "newClones": 0
     }

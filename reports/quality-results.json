@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-06-30T22:20:21.767Z",
+  "timestamp": "2025-06-30T22:34:36.458Z",
   "tools": {
     "React Runtime Error Check": {
       "success": true,
@@ -15,7 +15,7 @@
       "success": true,
       "output": "",
       "fixed": true,
-      "warnings": "\nOops! Something went wrong! :(\n\nESLint: 9.30.0\n\nTypeError: context.getScope is not a function\nOccurred while linting /home/runner/workspace/dist/assets/index-LK7OlPv2.js:49\nRule: \"security/detect-non"
+      "warnings": "\nOops! Something went wrong! :(\n\nESLint: 9.30.0\n\nTypeError: context.getScope is not a function\nOccurred while linting /home/runner/workspace/vite.preview.config.js:123\nRule: \"security/detect-non-liter"
     },
     "Prettier": {
       "success": true,
@@ -34,7 +34,7 @@
     },
     "Circular Dependencies": {
       "success": true,
-      "output": "Processed 20 files (615ms) (1 warning)\n\n\n",
+      "output": "Processed 20 files (1.7s) (1 warning)\n\n\n",
       "fixed": false
     },
     "Code Duplication": {
