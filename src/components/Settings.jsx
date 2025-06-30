@@ -40,7 +40,7 @@ const Settings = () => {
         setLoading(false);
       }, 1000);
     } catch (error) {
-      console.error('Error fetching settings:', error);
+      // Console statement removed by auto-fix
       setLoading(false);
     }
   };

@@ -52,7 +52,7 @@ const Scheduler = () => {
       ]);
       setLoading(false);
     } catch (error) {
-      console.error('Error fetching access points:', error);
+      // Console statement removed by auto-fix
       setLoading(false);
     }
   };
@@ -79,15 +79,19 @@ const Scheduler = () => {
         },
       ]);
     } catch (error) {
-      console.error('Error fetching scheduled tests:', error);
+      // Console statement removed by auto-fix
     }
   };
 
   const handleScheduleTest = async () => {
-    if (!selectedAP) return;
+    if (!selectedAP) {
+      return;
+    }
 
     const ap = accessPoints.find(ap => ap.mac === selectedAP);
-    if (!ap) return;
+    if (!ap) {
+      return;
+    }
 
     const newTest = {
       id: Date.now(),

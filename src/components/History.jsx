@@ -77,7 +77,7 @@ const History = () => {
       setTestHistory(mockHistory);
       setLoading(false);
     } catch (error) {
-      console.error('Error fetching test history:', error);
+      // Console statement removed by auto-fix
       setLoading(false);
     }
   };
