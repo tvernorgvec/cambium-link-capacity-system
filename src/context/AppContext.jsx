@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useReducer, useEffect } from 'react';
+
+import React, { createContext, useContext, useReducer, useEffect, useRef } from 'react';
 import { api } from '../services/api';
 
 const AppContext = createContext();
@@ -57,6 +58,7 @@ const appReducer = (state, action) => {
 
 export const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(appReducer, initialState);
+  const intervalRef = useRef(null);
 
   const loadInitialData = async () => {
     try {
@@ -76,32 +78,45 @@ export const AppProvider = ({ children }) => {
     }
   };
 
-  // Load initial data only once when component mounts
+  // Load initial data only once
   useEffect(() => {
     loadInitialData();
-  }, []); // Empty dependency array - run only once
+  }, []);
 
-  // Auto-refresh functionality
+  // Handle auto-refresh with proper cleanup
   useEffect(() => {
-    if (!state.data.settings.autoRefresh) return;
+    // Clear any existing interval
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
 
-    const interval = setInterval(async () => {
-      try {
-        const [linkCapacity, testResults, scheduledTests] = await Promise.all([
-          api.getLinkCapacity(),
-          api.getTestResults(),
-          api.getScheduledTests()
-        ]);
+    // Only set up auto-refresh if enabled
+    if (state.data.settings.autoRefresh) {
+      intervalRef.current = setInterval(async () => {
+        try {
+          const [linkCapacity, testResults, scheduledTests] = await Promise.all([
+            api.getLinkCapacity(),
+            api.getTestResults(),
+            api.getScheduledTests()
+          ]);
 
-        dispatch({ type: 'SET_LINK_CAPACITY', payload: linkCapacity });
-        dispatch({ type: 'SET_TEST_RESULTS', payload: testResults });
-        dispatch({ type: 'SET_SCHEDULED_TESTS', payload: scheduledTests });
-      } catch (error) {
-        dispatch({ type: 'SET_ERROR', payload: error.message });
+          dispatch({ type: 'SET_LINK_CAPACITY', payload: linkCapacity });
+          dispatch({ type: 'SET_TEST_RESULTS', payload: testResults });
+          dispatch({ type: 'SET_SCHEDULED_TESTS', payload: scheduledTests });
+        } catch (error) {
+          dispatch({ type: 'SET_ERROR', payload: error.message });
+        }
+      }, state.data.settings.refreshInterval);
+    }
+
+    // Cleanup function
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
       }
-    }, state.data.settings.refreshInterval);
-
-    return () => clearInterval(interval);
+    };
   }, [state.data.settings.autoRefresh, state.data.settings.refreshInterval]);
 
   const value = {
