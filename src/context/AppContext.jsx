@@ -1,11 +1,4 @@
-import React, {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  useCallback,
-  useRef,
-} from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 
 const AppContext = createContext();
 
@@ -17,114 +10,70 @@ export const useApp = () => {
   return context;
 };
 
+const defaultState = {
+  currentTest: null,
+  testResults: [],
+  isTestRunning: false,
+  settings: {
+    autoSave: true,
+    darkMode: false,
+    notifications: true,
+    testInterval: 300000, // 5 minutes
+    maxRetries: 3,
+    timeout: 30000, // 30 seconds
+  },
+  user: {
+    preferences: {
+      dashboard: {
+        refreshInterval: 30000,
+        showAdvanced: false,
+      },
+    },
+  },
+  ui: {
+    sidebarCollapsed: false,
+    activeTab: 'dashboard',
+  },
+};
+
 export const AppProvider = ({ children }) => {
-  const [state, setState] = useState({
-    testResults: [],
-    currentTest: null,
-    isTestRunning: false,
-    settings: {
-      testDuration: 60,
-      testInterval: 5,
-      maxRetries: 3,
-      timeout: 30,
-      serverUrl: 'https://speedtest.gvec.coop',
-      enableNotifications: true,
-      autoSave: true,
-    },
-    theme: 'light',
-    user: {
-      name: 'User',
-      preferences: {},
-    },
+  const [state, setState] = useState(() => {
+    try {
+      const saved = localStorage.getItem('appState');
+      return saved ? { ...defaultState, ...JSON.parse(saved) } : defaultState;
+    } catch (error) {
+      console.warn('Failed to load state from localStorage:', error);
+      return defaultState;
+    }
   });
 
-  const hasLoadedFromStorage = useRef(false);
-
-  // Load data from localStorage only once on mount
+  // Save to localStorage when specific parts of state change
   useEffect(() => {
-    try {
-      const savedData = localStorage.getItem('gvec-app-data');
-      if (savedData) {
-        const parsedData = JSON.parse(savedData);
-        setState(prevState => ({ ...prevState, ...parsedData }));
-      }
-      hasLoadedFromStorage.current = true;
-    } catch (error) {
-      hasLoadedFromStorage.current = true;
-      // Console statement removed by auto-fix
-    }
-  }, []); // Empty dependency array - runs only on mount
-
-  // Save to localStorage when state changes (with debounce)
-  useEffect(() => {
-    // Skip saving if we haven't loaded from storage yet
-    if (!hasLoadedFromStorage.current) {
-      return;
-    }
-
-    const timeoutId = setTimeout(() => {
+    const saveState = () => {
       try {
-        localStorage.setItem('gvec-app-data', JSON.stringify(state));
+        const stateToSave = {
+          settings: state.settings,
+          user: state.user,
+          ui: state.ui,
+        };
+        localStorage.setItem('appState', JSON.stringify(stateToSave));
       } catch (error) {
-        // Console statement removed by auto-fix
+        console.warn('Failed to save state to localStorage:', error);
       }
-    }, 500);
+    };
 
+    const timeoutId = setTimeout(saveState, 500);
     return () => clearTimeout(timeoutId);
-  }, [state.testResults, state.currentTest, state.isTestRunning, state.settings]); // Only depend on specific state properties
+  }, [state.settings, state.user, state.ui]); // Only watch specific parts
 
-  const updateState = useCallback(updates => {
+  const updateState = useCallback((updates) => {
     setState(prevState => ({ ...prevState, ...updates }));
   }, []);
 
-  const addTestResult = useCallback(result => {
-    setState(prevState => ({
-      ...prevState,
-      testResults: [...prevState.testResults, { ...result, id: Date.now() }],
-    }));
-  }, []);
-
-  const clearTestResults = useCallback(() => {
-    setState(prevState => ({
-      ...prevState,
-      testResults: [],
-    }));
-  }, []);
-
-  const updateSettings = useCallback(newSettings => {
-    setState(prevState => ({
-      ...prevState,
-      settings: { ...prevState.settings, ...newSettings },
-    }));
-  }, []);
-
-  const setCurrentTest = useCallback(test => {
-    setState(prevState => ({
-      ...prevState,
-      currentTest: test,
-    }));
-  }, []);
-
-  const setTestRunning = useCallback(isRunning => {
-    setState(prevState => ({
-      ...prevState,
-      isTestRunning: isRunning,
-    }));
-  }, []);
-
-  const contextValue = {
+  const value = {
     ...state,
     updateState,
-    addTestResult,
-    clearTestResults,
-    updateSettings,
-    setCurrentTest,
-    setTestRunning,
   };
 
-  return (
-    <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>
-  );
+  return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
-
-export default AppContext;
