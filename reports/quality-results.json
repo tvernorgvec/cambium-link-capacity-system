@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-06-30T20:57:23.952Z",
+  "timestamp": "2025-06-30T20:58:43.946Z",
   "tools": {
     "ESLint": {
       "success": true,
@@ -24,14 +24,14 @@
     },
     "Circular Dependencies": {
       "success": true,
-      "output": "Processed 19 files (1s) (1 warning)\n\n\n",
+      "output": "Processed 19 files (664ms) (1 warning)\n\n\n",
       "fixed": false
     },
     "Code Duplication": {
       "success": true,
       "output": "Clone found (javascript):\n - \u001b[1m\u001b[32m/home/runner/workspace/src/components/History.jsx\u001b[39m\u001b[22m [237:13 - 325:5] (88 lines, 644 tokens)\n   \u001b[1m\u001b[32m/home/runner/workspace/src/components/Scheduler.jsx\u001b[39m\u001b[22m [191:11 - 255:74]\n\n\u001b[90m┌────────────\u001b[39m\u001b[90m┬────────────────\u001b[39m\u001b[90m┬─────────────\u001b[39m\u001b[90m┬──────────────\u001b[39m\u001b[90m┬──────────────\u001b[39m\u001b[90m┬──────────────────\u001b[39m\u001b[90m┬───────────────────┐\u001b[39m\n\u001b[90m│\u001b[39m\u001b[31m Format     \u001b[39m\u001b[90m│\u001b[39m\u001b[31m Files analyzed \u001b[39m\u001b[90m│\u001b[39m\u001b[3",
       "fixed": true,
-      "warnings": "\u001b[31mERROR: jscpd found too many duplicates (3.14%) over threshold (3%)\u001b[39m\n"
+      "warnings": "\u001b[31mERROR: jscpd found too many duplicates (3.13%) over threshold (3%)\u001b[39m\n"
     },
     "Dependencies": {
       "success": true,

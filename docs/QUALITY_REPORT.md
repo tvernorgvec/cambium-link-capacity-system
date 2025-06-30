@@ -1,6 +1,6 @@
 # Comprehensive Quality Report
 
-Generated: 2025-06-30T20:57:23.952Z
+Generated: 2025-06-30T20:58:43.946Z
 
 ## Summary
 - **Total Checks**: 9
@@ -40,7 +40,7 @@ Checking formatting...
 
 ### Circular Dependencies ✅
 ```
-Processed 19 files (1s) (1 warning)
+Processed 19 files (664ms) (1 warning)
 
 
 
@@ -56,7 +56,7 @@ Clone found (javascript):
 [90m┌────────────[39m[90m┬────────────────[39m[90m┬─────────────[39m[90m┬──────────────[39m[90m┬──────────────[39m[90m┬──────────────────[39m[90m┬───────────────────┐[39m
 [90m│[39m[31m Format     [39m[90m│[39m[31m Files analyzed [39m[90m│[39m[3
 ```
-⚠️ Warnings: [31mERROR: jscpd found too many duplicates (3.14%) over threshold (3%)[39m
+⚠️ Warnings: [31mERROR: jscpd found too many duplicates (3.13%) over threshold (3%)[39m
 
 
 

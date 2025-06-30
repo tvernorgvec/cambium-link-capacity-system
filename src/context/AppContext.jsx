@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, useCallback } from 'react';
 
 const AppContext = createContext();
@@ -22,7 +21,7 @@ export const AppProvider = ({ children }) => {
     theme: 'light',
   });
 
-  const startTest = useCallback((testConfig) => {
+  const startTest = useCallback(testConfig => {
     const test = {
       id: Date.now(),
       ...testConfig,
@@ -44,7 +43,7 @@ export const AppProvider = ({ children }) => {
     }
   }, [currentTest]);
 
-  const scheduleTest = useCallback((testConfig) => {
+  const scheduleTest = useCallback(testConfig => {
     const scheduledTest = {
       id: Date.now(),
       ...testConfig,
@@ -53,7 +52,7 @@ export const AppProvider = ({ children }) => {
     setScheduledTests(prev => [...prev, scheduledTest]);
   }, []);
 
-  const updateSettings = useCallback((newSettings) => {
+  const updateSettings = useCallback(newSettings => {
     setSettings(prev => ({ ...prev, ...newSettings }));
   }, []);
 
