@@ -66,6 +66,23 @@ args = "npm run quality:check"
 task = "shell.exec"
 args = "npm run quality:inventory"
 
+[[workflows.workflow]]
+name = "Fix React Loop & Validate"
+author = 40704979
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run quality:autofix"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run quality:check"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run dev"
+
 [[ports]]
 localPort = 5000
 externalPort = 80
