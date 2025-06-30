@@ -1,16 +1,17 @@
 {
-  "timestamp": "2025-06-30T20:58:43.946Z",
+  "timestamp": "2025-06-30T21:01:11.140Z",
   "tools": {
     "ESLint": {
       "success": true,
       "output": "",
       "fixed": true,
-      "warnings": "\nOops! Something went wrong! :(\n\nESLint: 9.30.0\n\nTypeError: context.getScope is not a function\nOccurred while linting /home/runner/workspace/vite.preview.config.js:123\nRule: \"security/detect-non-liter"
+      "warnings": "\nOops! Something went wrong! :(\n\nESLint: 9.30.0\n\nTypeError: context.getScope is not a function\nOccurred while linting /home/runner/workspace/dist/assets/index-LK7OlPv2.js:49\nRule: \"security/detect-non"
     },
     "Prettier": {
       "success": true,
-      "output": "Checking formatting...\n",
-      "fixed": true
+      "output": "Checking formatting...\nError occurred when checking code style in the above file.\n",
+      "fixed": true,
+      "warnings": "[error] src/components/Dashboard.jsx: SyntaxError: Missing semicolon. (289:4)\n[error]   287 | ```\n[error]   288 |\n[error] > 289 | ```jsx\n[error]       |    ^\n[error]   290 | import React from 'react';"
     },
     "TypeScript": {
       "success": true,
@@ -24,14 +25,13 @@
     },
     "Circular Dependencies": {
       "success": true,
-      "output": "Processed 19 files (664ms) (1 warning)\n\n\n",
+      "output": "Processed 19 files (688ms) (1 warning)\n\n\n",
       "fixed": false
     },
     "Code Duplication": {
       "success": true,
-      "output": "Clone found (javascript):\n - \u001b[1m\u001b[32m/home/runner/workspace/src/components/History.jsx\u001b[39m\u001b[22m [237:13 - 325:5] (88 lines, 644 tokens)\n   \u001b[1m\u001b[32m/home/runner/workspace/src/components/Scheduler.jsx\u001b[39m\u001b[22m [191:11 - 255:74]\n\n\u001b[90m┌────────────\u001b[39m\u001b[90m┬────────────────\u001b[39m\u001b[90m┬─────────────\u001b[39m\u001b[90m┬──────────────\u001b[39m\u001b[90m┬──────────────\u001b[39m\u001b[90m┬──────────────────\u001b[39m\u001b[90m┬───────────────────┐\u001b[39m\n\u001b[90m│\u001b[39m\u001b[31m Format     \u001b[39m\u001b[90m│\u001b[39m\u001b[31m Files analyzed \u001b[39m\u001b[90m│\u001b[39m\u001b[3",
-      "fixed": true,
-      "warnings": "\u001b[31mERROR: jscpd found too many duplicates (3.13%) over threshold (3%)\u001b[39m\n"
+      "output": "Clone found (javascript):\n - \u001b[1m\u001b[32m/home/runner/workspace/src/components/History.jsx\u001b[39m\u001b[22m [178:13 - 266:5] (88 lines, 644 tokens)\n   \u001b[1m\u001b[32m/home/runner/workspace/src/components/Scheduler.jsx\u001b[39m\u001b[22m [193:11 - 257:74]\n\n\u001b[90m┌────────────\u001b[39m\u001b[90m┬────────────────\u001b[39m\u001b[90m┬─────────────\u001b[39m\u001b[90m┬──────────────\u001b[39m\u001b[90m┬──────────────\u001b[39m\u001b[90m┬──────────────────\u001b[39m\u001b[90m┬───────────────────┐\u001b[39m\n\u001b[90m│\u001b[39m\u001b[31m Format     \u001b[39m\u001b[90m│\u001b[39m\u001b[31m Files analyzed \u001b[39m\u001b[90m│\u001b[39m\u001b[3",
+      "fixed": false
     },
     "Dependencies": {
       "success": true,
@@ -53,6 +53,6 @@
     "passed": 9,
     "failed": 0,
     "total": 9,
-    "fixed": 4
+    "fixed": 3
   }
 }
