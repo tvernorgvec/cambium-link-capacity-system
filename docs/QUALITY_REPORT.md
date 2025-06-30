@@ -1,6 +1,6 @@
 # Comprehensive Quality Report
 
-Generated: 2025-06-30T21:01:11.140Z
+Generated: 2025-06-30T21:06:58.782Z
 
 ## Summary
 - **Total Checks**: 9
@@ -29,12 +29,12 @@ Checking formatting...
 Error occurred when checking code style in the above file.
 
 ```
-⚠️ Warnings: [error] src/components/Dashboard.jsx: SyntaxError: Missing semicolon. (289:4)
-[error]   287 | ```
-[error]   288 |
-[error] > 289 | ```jsx
+⚠️ Warnings: [error] src/components/Dashboard.jsx: SyntaxError: Missing semicolon. (165:4)
+[error]   163 | ```
+[error]   164 |
+[error] > 165 | ```jsx
 [error]       |    ^
-[error]   290 | import React from 'react';
+[error]   166 | import React, { createCont
 
 
 ### TypeScript ✅
@@ -47,7 +47,7 @@ Error occurred when checking code style in the above file.
 
 ### Circular Dependencies ✅
 ```
-Processed 19 files (688ms) (1 warning)
+Processed 20 files (733ms) (1 warning)
 
 
 
@@ -56,12 +56,12 @@ Processed 19 files (688ms) (1 warning)
 
 ### Code Duplication ✅
 ```
-Clone found (javascript):
- - [1m[32m/home/runner/workspace/src/components/History.jsx[39m[22m [178:13 - 266:5] (88 lines, 644 tokens)
-   [1m[32m/home/runner/workspace/src/components/Scheduler.jsx[39m[22m [193:11 - 257:74]
-
-[90m┌────────────[39m[90m┬────────────────[39m[90m┬─────────────[39m[90m┬──────────────[39m[90m┬──────────────[39m[90m┬──────────────────[39m[90m┬───────────────────┐[39m
-[90m│[39m[31m Format     [39m[90m│[39m[31m Files analyzed [39m[90m│[39m[3
+File /home/runner/workspace/src/App.css skipped! Format "css" does not included to supported formats.
+File /home/runner/workspace/src/index.css skipped! Format "css" does not included to supported formats.
+File /home/runner/workspace/src/assets/react.svg skipped! Format "markup" does not included to supported formats.
+[90mFile /home/runner/workspace/src/components/Dashboard.jsx skipped! Code lines=884 not in limits (10:500)[39m
+[33mSTART_DETECTION[39m
+[90mStart detection for source id=/home
 ```
 
 

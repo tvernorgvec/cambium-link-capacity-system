@@ -120,191 +120,186 @@ const History = () => {
     );
   }
 
-    const columns = [
-        {
-            key: 'apName',
-            label: 'Access Point',
-            render: (test) => (
-                <div>
-                    <div className="text-sm font-medium text-gray-900">
-                        {test.apName}
-                    </div>
-                    <div className="text-sm text-gray-500">
-                        {test.apMac}
-                    </div>
-                </div>
-            ),
-        },
-        {
-            key: 'smMac',
-            label: 'SM MAC',
-        },
-        {
-            key: 'testType',
-            label: 'Type',
-            render: (test) => (
-                <span
-                    className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${test.testType === 'flood'
-                        ? 'bg-purple-100 text-purple-800'
-                        : 'bg-blue-100 text-blue-800'
-                        }`}
-                >
-                    {test.testType === 'flood' ? 'Flood' : 'Individual'}
-                </span>
-            ),
-        },
-        {
-            key: 'status',
-            label: 'Status',
-            render: (test) => <StatusBadge status={test.status} />,
-        },
-        {
-            key: 'throughput',
-            label: 'Throughput',
-            render: (test) => (
-                test.uplinkMbps && test.downlinkMbps ? (
-                    <div>
-                        <div>↑ {test.uplinkMbps} Mbps</div>
-                        <div>↓ {test.downlinkMbps} Mbps</div>
-                    </div>
-                ) : (
-                    <span className="text-gray-400">N/A</span>
-                )
-            ),
-        },
-        {
-            key: 'snr',
-            label: 'SNR',
-            render: (test) => (
-                test.snrDl && test.snrUl ? (
-                    <div>
-                        <div>DL: {test.snrDl} dB</div>
-                        <div>UL: {test.snrUl} dB</div>
-                    </div>
-                ) : (
-                    <span className="text-gray-400">N/A</span>
-                )
-            ),
-        },
-        {
-            key: 'startTime',
-            label: 'Date',
-            render: (test) => (
-                <>
-                    {new Date(test.startTime).toLocaleDateString()}
-                    <div className="text-xs text-gray-500">
-                        {new Date(test.startTime).toLocaleTimeString()}
-                    </div>
-                </>
-            ),
-        },
-        {
-            key: 'actions',
-            label: 'Actions',
-            render: () => (
-                <Button size="sm" variant="outline">
-                    <Eye className="w-4 h-4" />
-                </Button>
-            ),
-        },
-    ];
-
-    return (
-        <div className="space-y-6">
-            {/* Filters */}
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-            >
-                <Card>
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">
-                                Search
-                            </label>
-                            <div className="relative">
-                                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-                                <input
-                                    type="text"
-                                    value={searchTerm}
-                                    onChange={e => setSearchTerm(e.target.value)}
-                                    placeholder="Search AP name, MAC..."
-                                    className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                />
-                            </div>
-                        </div>
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">
-                                Status
-                            </label>
-                            <select
-                                value={statusFilter}
-                                onChange={e => setStatusFilter(e.target.value)}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            >
-                                <option value="all">All Status</option>
-                                <option value="success">Success</option>
-                                <option value="failed">Failed</option>
-                                <option value="running">Running</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">
-                                Date Range
-                            </label>
-                            <select
-                                value={dateFilter}
-                                onChange={e => setDateFilter(e.target.value)}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            >
-                                <option value="all">All Time</option>
-                                <option value="today">Today</option>
-                                <option value="week">Last Week</option>
-                                <option value="month">Last Month</option>
-                            </select>
-                        </div>
-                        <div className="flex items-end">
-                            <Button
-                                onClick={handleExport}
-                                variant="outline"
-                                className="w-full"
-                            >
-                                <Download className="w-4 h-4 mr-2" />
-                                Export CSV
-                            </Button>
-                        </div>
-                    </div>
-                </Card>
-            </motion.div>
-
-            {/* Results */}
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-            >
-                <Card>
-                    <div className="flex items-center justify-between mb-4">
-                        <h3 className="text-lg font-medium text-gray-900">
-                            Test History ({filteredHistory.length} results)
-                        </h3>
-                    </div>
-
-                    {testHistory.length === 0 ? (
-                        <div className="text-center py-8 text-gray-500">
-                            No test results found
-                        </div>
-                    ) : (
-                        <DataTable
-                            columns={columns}
-                            data={filteredHistory}
-                            emptyMessage="No test results found."
-                        />
-                    )}
-                </Card>
-            </motion.div>
+  const columns = [
+    {
+      key: 'apName',
+      label: 'Access Point',
+      render: test => (
+        <div>
+          <div className="text-sm font-medium text-gray-900">{test.apName}</div>
+          <div className="text-sm text-gray-500">{test.apMac}</div>
         </div>
-    );
+      ),
+    },
+    {
+      key: 'smMac',
+      label: 'SM MAC',
+    },
+    {
+      key: 'testType',
+      label: 'Type',
+      render: test => (
+        <span
+          className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+            test.testType === 'flood'
+              ? 'bg-purple-100 text-purple-800'
+              : 'bg-blue-100 text-blue-800'
+          }`}
+        >
+          {test.testType === 'flood' ? 'Flood' : 'Individual'}
+        </span>
+      ),
+    },
+    {
+      key: 'status',
+      label: 'Status',
+      render: test => <StatusBadge status={test.status} />,
+    },
+    {
+      key: 'throughput',
+      label: 'Throughput',
+      render: test =>
+        test.uplinkMbps && test.downlinkMbps ? (
+          <div>
+            <div>↑ {test.uplinkMbps} Mbps</div>
+            <div>↓ {test.downlinkMbps} Mbps</div>
+          </div>
+        ) : (
+          <span className="text-gray-400">N/A</span>
+        ),
+    },
+    {
+      key: 'snr',
+      label: 'SNR',
+      render: test =>
+        test.snrDl && test.snrUl ? (
+          <div>
+            <div>DL: {test.snrDl} dB</div>
+            <div>UL: {test.snrUl} dB</div>
+          </div>
+        ) : (
+          <span className="text-gray-400">N/A</span>
+        ),
+    },
+    {
+      key: 'startTime',
+      label: 'Date',
+      render: test => (
+        <>
+          {new Date(test.startTime).toLocaleDateString()}
+          <div className="text-xs text-gray-500">
+            {new Date(test.startTime).toLocaleTimeString()}
+          </div>
+        </>
+      ),
+    },
+    {
+      key: 'actions',
+      label: 'Actions',
+      render: () => (
+        <Button size="sm" variant="outline">
+          <Eye className="w-4 h-4" />
+        </Button>
+      ),
+    },
+  ];
+
+  return (
+    <div className="space-y-6">
+      {/* Filters */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+      >
+        <Card>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Search
+              </label>
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                <input
+                  type="text"
+                  value={searchTerm}
+                  onChange={e => setSearchTerm(e.target.value)}
+                  placeholder="Search AP name, MAC..."
+                  className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Status
+              </label>
+              <select
+                value={statusFilter}
+                onChange={e => setStatusFilter(e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="all">All Status</option>
+                <option value="success">Success</option>
+                <option value="failed">Failed</option>
+                <option value="running">Running</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Date Range
+              </label>
+              <select
+                value={dateFilter}
+                onChange={e => setDateFilter(e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="all">All Time</option>
+                <option value="today">Today</option>
+                <option value="week">Last Week</option>
+                <option value="month">Last Month</option>
+              </select>
+            </div>
+            <div className="flex items-end">
+              <Button
+                onClick={handleExport}
+                variant="outline"
+                className="w-full"
+              >
+                <Download className="w-4 h-4 mr-2" />
+                Export CSV
+              </Button>
+            </div>
+          </div>
+        </Card>
+      </motion.div>
+
+      {/* Results */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2 }}
+      >
+        <Card>
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-medium text-gray-900">
+              Test History ({filteredHistory.length} results)
+            </h3>
+          </div>
+
+          {testHistory.length === 0 ? (
+            <div className="text-center py-8 text-gray-500">
+              No test results found
+            </div>
+          ) : (
+            <DataTable
+              columns={columns}
+              data={filteredHistory}
+              emptyMessage="No test results found."
+            />
+          )}
+        </Card>
+      </motion.div>
+    </div>
+  );
 };
 
 export default History;

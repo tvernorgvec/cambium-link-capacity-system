@@ -1,0 +1,521 @@
+{
+  "statistics": {
+    "detectionDate": "2025-06-30T21:07:08.857Z",
+    "formats": {
+      "javascript": {
+        "sources": {
+          "/home/runner/workspace/src/utils/motion.js": {
+            "lines": 40,
+            "tokens": 429,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/home/runner/workspace/src/types/index.js": {
+            "lines": 154,
+            "tokens": 1058,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/home/runner/workspace/src/services/api.js": {
+            "lines": 73,
+            "tokens": 527,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/home/runner/workspace/src/context/AppContext.jsx": {
+            "lines": 0,
+            "tokens": 3,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/home/runner/workspace/src/config/environment.js": {
+            "lines": 37,
+            "tokens": 298,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/home/runner/workspace/src/components/StatusBadge.jsx": {
+            "lines": 0,
+            "tokens": 9,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/home/runner/workspace/src/components/Settings.jsx": {
+            "lines": 289,
+            "tokens": 1899,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/home/runner/workspace/src/components/Scheduler.jsx": {
+            "lines": 88,
+            "tokens": 731,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/home/runner/workspace/src/components/LoadingSpinner.jsx": {
+            "lines": 2,
+            "tokens": 48,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/home/runner/workspace/src/components/Layout.jsx": {
+            "lines": 65,
+            "tokens": 527,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/home/runner/workspace/src/components/History.jsx": {
+            "lines": 152,
+            "tokens": 1195,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/home/runner/workspace/src/components/ErrorBoundary.jsx": {
+            "lines": 0,
+            "tokens": 19,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/home/runner/workspace/src/components/DataTable.jsx": {
+            "lines": 64,
+            "tokens": 502,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/home/runner/workspace/src/components/Card.jsx": {
+            "lines": 3,
+            "tokens": 49,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/home/runner/workspace/src/components/Button.jsx": {
+            "lines": 4,
+            "tokens": 51,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/home/runner/workspace/src/App.jsx": {
+            "lines": 4,
+            "tokens": 98,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "total": {
+          "lines": 975,
+          "tokens": 7443,
+          "sources": 16,
+          "clones": 0,
+          "duplicatedLines": 0,
+          "duplicatedTokens": 0,
+          "percentage": 0,
+          "percentageTokens": 0,
+          "newDuplicatedLines": 0,
+          "newClones": 0
+        }
+      },
+      "jsx": {
+        "sources": {
+          "/home/runner/workspace/src/context/AppContext.jsx": {
+            "lines": 154,
+            "tokens": 1298,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/home/runner/workspace/src/components/StatusBadge.jsx": {
+            "lines": 24,
+            "tokens": 149,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/home/runner/workspace/src/components/Settings.jsx": {
+            "lines": 379,
+            "tokens": 2603,
+            "sources": 1,
+            "clones": 4,
+            "duplicatedLines": 56,
+            "duplicatedTokens": 284,
+            "percentage": 14.78,
+            "percentageTokens": 10.91,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/home/runner/workspace/src/components/Scheduler.jsx": {
+            "lines": 267,
+            "tokens": 2046,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 11,
+            "duplicatedTokens": 53,
+            "percentage": 4.12,
+            "percentageTokens": 2.59,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/home/runner/workspace/src/components/LoadingSpinner.jsx": {
+            "lines": 39,
+            "tokens": 254,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/home/runner/workspace/src/components/Layout.jsx": {
+            "lines": 101,
+            "tokens": 871,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/home/runner/workspace/src/components/History.jsx": {
+            "lines": 305,
+            "tokens": 2414,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 11,
+            "duplicatedTokens": 55,
+            "percentage": 3.61,
+            "percentageTokens": 2.28,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/home/runner/workspace/src/components/ErrorBoundary.jsx": {
+            "lines": 51,
+            "tokens": 381,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/home/runner/workspace/src/components/DataTable.jsx": {
+            "lines": 103,
+            "tokens": 757,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/home/runner/workspace/src/components/Card.jsx": {
+            "lines": 24,
+            "tokens": 196,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/home/runner/workspace/src/components/Button.jsx": {
+            "lines": 48,
+            "tokens": 294,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/home/runner/workspace/src/main.jsx": {
+            "lines": 10,
+            "tokens": 72,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/home/runner/workspace/src/index.jsx": {
+            "lines": 11,
+            "tokens": 75,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/home/runner/workspace/src/App.jsx": {
+            "lines": 36,
+            "tokens": 309,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "total": {
+          "lines": 1552,
+          "tokens": 11719,
+          "sources": 14,
+          "clones": 3,
+          "duplicatedLines": 39,
+          "duplicatedTokens": 196,
+          "percentage": 2.51,
+          "percentageTokens": 1.67,
+          "newDuplicatedLines": 0,
+          "newClones": 0
+        }
+      }
+    },
+    "total": {
+      "lines": 2527,
+      "tokens": 19162,
+      "sources": 30,
+      "clones": 3,
+      "duplicatedLines": 39,
+      "duplicatedTokens": 196,
+      "percentage": 1.54,
+      "percentageTokens": 1.02,
+      "newDuplicatedLines": 0,
+      "newClones": 0
+    }
+  },
+  "duplicates": [
+    {
+      "format": "jsx",
+      "lines": 18,
+      "fragment": ")\n              </label>\n              <input\n                type=\"number\"\n                min=\"1\"\n                value={settings.alertThresholds.lowSNR}\n                onChange={e =>\n                  updateSetting(\n                    'alertThresholds.lowSNR',\n                    parseInt(e.target.value)\n                  )\n                }\n                className=\"w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500\"\n              />\n            </div>\n            <div>\n              <label className=\"block text-sm font-medium text-gray-700 mb-2\">\n                High",
+      "tokens": 0,
+      "firstFile": {
+        "name": "/home/runner/workspace/src/components/Settings.jsx",
+        "start": 211,
+        "end": 228,
+        "startLoc": {
+          "line": 211,
+          "column": 3,
+          "position": 1560
+        },
+        "endLoc": {
+          "line": 228,
+          "column": 5,
+          "position": 1648
+        }
+      },
+      "secondFile": {
+        "name": "/home/runner/workspace/src/components/Settings.jsx",
+        "start": 194,
+        "end": 211,
+        "startLoc": {
+          "line": 194,
+          "column": 5,
+          "position": 1466
+        },
+        "endLoc": {
+          "line": 211,
+          "column": 4,
+          "position": 1554
+        }
+      }
+    },
+    {
+      "format": "jsx",
+      "lines": 12,
+      "fragment": ");\n  };\n\n  if (loading) {\n    return (\n      <div className=\"flex items-center justify-center h-64\">\n        <LoadingSpinner />\n      </div>\n    );\n  }\n\n  const",
+      "tokens": 0,
+      "firstFile": {
+        "name": "/home/runner/workspace/src/components/Scheduler.jsx",
+        "start": 136,
+        "end": 147,
+        "startLoc": {
+          "line": 136,
+          "column": 5,
+          "position": 1042
+        },
+        "endLoc": {
+          "line": 147,
+          "column": 6,
+          "position": 1095
+        }
+      },
+      "secondFile": {
+        "name": "/home/runner/workspace/src/components/Settings.jsx",
+        "start": 61,
+        "end": 72,
+        "startLoc": {
+          "line": 61,
+          "column": 6,
+          "position": 527
+        },
+        "endLoc": {
+          "line": 72,
+          "column": 7,
+          "position": 580
+        }
+      }
+    },
+    {
+      "format": "jsx",
+      "lines": 12,
+      "fragment": ");\n  };\n\n  if (loading) {\n    return (\n      <div className=\"flex items-center justify-center h-64\">\n        <LoadingSpinner />\n      </div>\n    );\n  }\n\n  const columns",
+      "tokens": 0,
+      "firstFile": {
+        "name": "/home/runner/workspace/src/components/History.jsx",
+        "start": 112,
+        "end": 123,
+        "startLoc": {
+          "line": 112,
+          "column": 4,
+          "position": 979
+        },
+        "endLoc": {
+          "line": 123,
+          "column": 8,
+          "position": 1034
+        }
+      },
+      "secondFile": {
+        "name": "/home/runner/workspace/src/components/Settings.jsx",
+        "start": 61,
+        "end": 147,
+        "startLoc": {
+          "line": 61,
+          "column": 6,
+          "position": 527
+        },
+        "endLoc": {
+          "line": 147,
+          "column": 14,
+          "position": 1097
+        }
+      }
+    }
+  ]
+}

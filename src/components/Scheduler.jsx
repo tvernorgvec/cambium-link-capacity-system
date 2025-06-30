@@ -154,14 +154,13 @@ const Scheduler = () => {
     testType: test.testType,
   }));
 
-  const handleEdit = (task) => {
-    console.log("Edit task:", task);
+  const handleEdit = task => {
+    console.log('Edit task:', task);
   };
 
-  const handleDelete = (taskId) => {
+  const handleDelete = taskId => {
     handleDeleteTest(taskId);
   };
-
 
   return (
     <div className="space-y-6">
@@ -252,7 +251,7 @@ const Scheduler = () => {
                 { key: 'name', label: 'Name' },
                 { key: 'schedule', label: 'Schedule' },
                 { key: 'status', label: 'Status', type: 'status' },
-                { key: 'lastRun', label: 'Last Run', type: 'datetime' }
+                { key: 'lastRun', label: 'Last Run', type: 'datetime' },
               ]}
               onEdit={handleEdit}
               onDelete={handleDelete}
