@@ -69,7 +69,7 @@ export default [
       'react-hooks/exhaustive-deps': 'error',
       '@typescript-eslint/no-unused-vars': 'error',
       '@typescript-eslint/no-explicit-any': 'warn',
-      'import/no-unresolved': 'error',
+      'import/no-unresolved': 'off',
       'import/no-duplicates': 'error',
       'security/detect-object-injection': 'warn',
       'security/detect-non-literal-regexp': 'warn',

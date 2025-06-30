@@ -4,6 +4,7 @@ import React, {
   useReducer,
   useEffect,
   useMemo,
+  useCallback,
 } from 'react';
 import { linkCapacityApi } from '../services/api';
 
@@ -122,7 +123,7 @@ export const AppProvider = ({ children }) => {
 
       clearError: () => dispatch({ type: actionTypes.CLEAR_ERROR }),
 
-      fetchLinks: async () => {
+      fetchLinks: useCallback(async () => {
         try {
           actions.setLoading('links', true);
           const response = await linkCapacityApi.getLinks();
@@ -132,7 +133,7 @@ export const AppProvider = ({ children }) => {
         } finally {
           actions.setLoading('links', false);
         }
-      },
+      }, [actions]),
 
       selectLink: link =>
         dispatch({ type: actionTypes.SET_SELECTED_LINK, payload: link }),
@@ -170,7 +171,7 @@ export const AppProvider = ({ children }) => {
         }
       },
 
-      fetchSettings: async () => {
+      fetchSettings: useCallback(async () => {
         try {
           actions.setLoading('settings', true);
           const response = await linkCapacityApi.getSettings();
@@ -180,16 +181,16 @@ export const AppProvider = ({ children }) => {
         } finally {
           actions.setLoading('settings', false);
         }
-      },
+      }, [actions]),
     }),
-    []
+    [dispatch]
   );
 
   // Load initial data
   useEffect(() => {
     actions.fetchLinks();
     actions.fetchSettings();
-  }, [actions]);
+  }, [actions.fetchLinks, actions.fetchSettings]);
 
   return (
     <AppContext.Provider value={{ state, actions }}>
