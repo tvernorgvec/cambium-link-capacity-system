@@ -7,3 +7,10 @@
   "minTokens": 50,
   "output": "./reports/jscpd"
 }
+{
+  "threshold": 0.1,
+  "reporters": ["html", "console"],
+  "ignore": ["**/node_modules/**", "**/dist/**", "**/build/**"],
+  "absolute": true,
+  "gitignore": true
+}
