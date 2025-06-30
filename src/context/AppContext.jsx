@@ -85,8 +85,20 @@ export const AppProvider = ({ children }) => {
   useEffect(() => {
     if (!state.data.settings.autoRefresh) return;
 
-    const interval = setInterval(() => {
-      loadInitialData();
+    const interval = setInterval(async () => {
+      try {
+        const [linkCapacity, testResults, scheduledTests] = await Promise.all([
+          api.getLinkCapacity(),
+          api.getTestResults(),
+          api.getScheduledTests()
+        ]);
+
+        dispatch({ type: 'SET_LINK_CAPACITY', payload: linkCapacity });
+        dispatch({ type: 'SET_TEST_RESULTS', payload: testResults });
+        dispatch({ type: 'SET_SCHEDULED_TESTS', payload: scheduledTests });
+      } catch (error) {
+        dispatch({ type: 'SET_ERROR', payload: error.message });
+      }
     }, state.data.settings.refreshInterval);
 
     return () => clearInterval(interval);
