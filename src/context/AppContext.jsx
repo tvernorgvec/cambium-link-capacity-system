@@ -1,59 +1,58 @@
-import React, {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  useCallback,
-} from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 
 const AppContext = createContext();
 
-export const useAppContext = () => {
+export const useApp = () => {
   const context = useContext(AppContext);
   if (!context) {
-    throw new Error('useAppContext must be used within an AppProvider');
+    throw new Error('useApp must be used within an AppProvider');
   }
   return context;
 };
 
 export const AppProvider = ({ children }) => {
   const [state, setState] = useState({
-    tests: [],
-    isLoading: false,
-    error: null,
-    currentView: 'dashboard',
+    testResults: [],
+    currentTest: null,
+    isTestRunning: false,
     settings: {
-      theme: 'light',
-      notifications: true,
-      autoRefresh: true,
-      refreshInterval: 30000,
+      testDuration: 60,
+      testInterval: 5,
+      maxRetries: 3,
+      timeout: 30,
+      serverUrl: 'https://speedtest.gvec.coop',
+      enableNotifications: true,
+      autoSave: true,
     },
-    history: [],
-    scheduler: {
-      schedules: [],
-      isRunning: false,
+    theme: 'light',
+    user: {
+      name: 'User',
+      preferences: {},
     },
   });
 
-  // Load data from localStorage on mount only
+  // Load data from localStorage only once on mount
   useEffect(() => {
-    const loadFromStorage = () => {
-      try {
-        const saved = localStorage.getItem('gvec-app-data');
-        if (saved) {
-          const data = JSON.parse(saved);
-          setState(prevState => ({ ...prevState, ...data }));
-        }
-      } catch (error) {
-        console.error('Failed to load from localStorage:', error);
+    try {
+      const savedData = localStorage.getItem('gvec-app-data');
+      if (savedData) {
+        const parsedData = JSON.parse(savedData);
+        setState(prevState => ({ ...prevState, ...parsedData }));
       }
-    };
-
-    loadFromStorage();
-  }, []);
+    } catch (error) {
+      console.error('Failed to load from localStorage:', error);
+    }
+  }, []); // Empty dependency array - runs only on mount
 
   // Save to localStorage when state changes (with debounce)
   useEffect(() => {
+    // Skip saving on initial render
+    const isInitialRender = state.testResults.length === 0 && 
+                           state.currentTest === null && 
+                           !state.isTestRunning;
+
+    if (isInitialRender) return;
+
     const timeoutId = setTimeout(() => {
       try {
         localStorage.setItem('gvec-app-data', JSON.stringify(state));
@@ -63,143 +62,62 @@ export const AppProvider = ({ children }) => {
     }, 500);
 
     return () => clearTimeout(timeoutId);
-  }, [state]);
+  }, [state]); // Only depend on state
 
   const updateState = useCallback(updates => {
     setState(prevState => ({ ...prevState, ...updates }));
   }, []);
 
-  const setCurrentView = useCallback(view => {
-    setState(prevState => ({ ...prevState, currentView: view }));
-  }, []);
-
-  const setLoading = useCallback(isLoading => {
-    setState(prevState => ({ ...prevState, isLoading }));
-  }, []);
-
-  const setError = useCallback(error => {
-    setState(prevState => ({ ...prevState, error }));
-  }, []);
-
-  const addTest = useCallback(test => {
+  const addTestResult = useCallback((result) => {
     setState(prevState => ({
       ...prevState,
-      tests: [...prevState.tests, { ...test, id: Date.now() }],
+      testResults: [...prevState.testResults, { ...result, id: Date.now() }],
     }));
   }, []);
 
-  const updateTest = useCallback((id, updates) => {
+  const clearTestResults = useCallback(() => {
     setState(prevState => ({
       ...prevState,
-      tests: prevState.tests.map(test =>
-        test.id === id ? { ...test, ...updates } : test
-      ),
+      testResults: [],
     }));
   }, []);
 
-  const deleteTest = useCallback(id => {
-    setState(prevState => ({
-      ...prevState,
-      tests: prevState.tests.filter(test => test.id !== id),
-    }));
-  }, []);
-
-  const addToHistory = useCallback(entry => {
-    setState(prevState => ({
-      ...prevState,
-      history: [
-        { ...entry, timestamp: new Date().toISOString() },
-        ...prevState.history,
-      ],
-    }));
-  }, []);
-
-  const updateSettings = useCallback(newSettings => {
+  const updateSettings = useCallback((newSettings) => {
     setState(prevState => ({
       ...prevState,
       settings: { ...prevState.settings, ...newSettings },
     }));
   }, []);
 
-  const addSchedule = useCallback(schedule => {
+  const setCurrentTest = useCallback((test) => {
     setState(prevState => ({
       ...prevState,
-      scheduler: {
-        ...prevState.scheduler,
-        schedules: [
-          ...prevState.scheduler.schedules,
-          { ...schedule, id: Date.now() },
-        ],
-      },
+      currentTest: test,
     }));
   }, []);
 
-  const updateSchedule = useCallback((id, updates) => {
+  const setTestRunning = useCallback((isRunning) => {
     setState(prevState => ({
       ...prevState,
-      scheduler: {
-        ...prevState.scheduler,
-        schedules: prevState.scheduler.schedules.map(schedule =>
-          schedule.id === id ? { ...schedule, ...updates } : schedule
-        ),
-      },
+      isTestRunning: isRunning,
     }));
   }, []);
 
-  const deleteSchedule = useCallback(id => {
-    setState(prevState => ({
-      ...prevState,
-      scheduler: {
-        ...prevState.scheduler,
-        schedules: prevState.scheduler.schedules.filter(
-          schedule => schedule.id !== id
-        ),
-      },
-    }));
-  }, []);
+  const contextValue = {
+    ...state,
+    updateState,
+    addTestResult,
+    clearTestResults,
+    updateSettings,
+    setCurrentTest,
+    setTestRunning,
+  };
 
-  const setSchedulerRunning = useCallback(isRunning => {
-    setState(prevState => ({
-      ...prevState,
-      scheduler: { ...prevState.scheduler, isRunning },
-    }));
-  }, []);
-
-  // Memoize the context value to prevent unnecessary re-renders
-  const value = React.useMemo(
-    () => ({
-      ...state,
-      updateState,
-      setCurrentView,
-      setLoading,
-      setError,
-      addTest,
-      updateTest,
-      deleteTest,
-      addToHistory,
-      updateSettings,
-      addSchedule,
-      updateSchedule,
-      deleteSchedule,
-      setSchedulerRunning,
-    }),
-    [
-      state,
-      updateState,
-      setCurrentView,
-      setLoading,
-      setError,
-      addTest,
-      updateTest,
-      deleteTest,
-      addToHistory,
-      updateSettings,
-      addSchedule,
-      updateSchedule,
-      deleteSchedule,
-      setSchedulerRunning,
-    ]
+  return (
+    <AppContext.Provider value={contextValue}>
+      {children}
+    </AppContext.Provider>
   );
-
-  return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
+
+export default AppContext;
