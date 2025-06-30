@@ -1,6 +1,6 @@
 # Comprehensive Quality Report
 
-Generated: 2025-06-30T22:38:25.998Z
+Generated: 2025-06-30T22:41:18.801Z
 
 ## Summary
 - **Total Checks**: 11
@@ -30,14 +30,13 @@ Oops! Something went wrong! :(
 ESLint: 9.30.0
 
 TypeError: context.getScope is not a function
-Occurred while linting /home/runner/workspace/vite.preview.config.js:123
-Rule: "security/detect-non-liter
+Occurred while linting /home/runner/workspace/dist/assets/index-LK7OlPv2.js:49
+Rule: "security/detect-non
 
 
 ### Prettier ✅ (Auto-Fixed)
 ```
 Checking formatting...
-All matched files use Prettier code style!
 
 ```
 
@@ -52,7 +51,7 @@ All matched files use Prettier code style!
 
 ### Circular Dependencies ✅
 ```
-Processed 20 files (751ms) (1 warning)
+Processed 20 files (654ms) (1 warning)
 
 
 

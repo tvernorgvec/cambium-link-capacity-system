@@ -98,17 +98,21 @@ export function AppProvider({ children }) {
       ]);
 
       dispatch({ type: 'SET_LINK_CAPACITY', payload: linkCapacity });
+      dispatch({ type: 'SET_LOADING', payload: false });
       dispatch({ type: 'SET_TEST_RESULTS', payload: testResults });
       dispatch({ type: 'SET_SCHEDULED_TESTS', payload: scheduledTests });
     } catch (error) {
-      console.error('Failed to load initial data:', error);
+      // Console statement removed by auto-fix
       dispatch({ type: 'SET_ERROR', payload: error.message });
     }
   }, []);
 
   // Load initial data only once on mount
   useEffect(() => {
-    loadInitialData();
+    // Only load data if we don't already have it
+    if (state.data.linkCapacity.length === 0 && !state.loading) {
+      loadInitialData();
+    }
   }, [loadInitialData]);
 
   // Handle auto-refresh with proper cleanup
@@ -150,7 +154,7 @@ export function AppProvider({ children }) {
         intervalRef.current = null;
       }
     };
-  }, [state.data.settings]);
+  }, []);
 
   const contextValue = {
     state,
