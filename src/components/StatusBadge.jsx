@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 const StatusBadge = ({ status, className = '' }) => {
@@ -31,4 +32,3 @@ const StatusBadge = ({ status, className = '' }) => {
 };
 
 export default StatusBadge;
-export { StatusBadge };

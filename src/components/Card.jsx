@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 const Card = ({ children, className = '', ...props }) => {
@@ -12,4 +13,3 @@ const Card = ({ children, className = '', ...props }) => {
 };
 
 export default Card;
-export { Card };

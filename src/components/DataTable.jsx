@@ -1,117 +1,100 @@
-
-import React, { useState, useMemo } from 'react';
-import { ChevronUp, ChevronDown, Search } from 'lucide-react';
+import React from 'react';
+import { ChevronUp, ChevronDown, Search, Filter } from 'lucide-react';
+import Card from './Card';
+import StatusBadge from './StatusBadge';
 
 const DataTable = ({ 
   data = [], 
   columns = [], 
-  searchable = false,
-  sortable = false,
-  className = ''
+  loading = false,
+  onSort,
+  onFilter,
+  searchTerm = '',
+  onSearchChange
 }) => {
-  const [sortConfig, setSortConfig] = useState({ key: null, direction: 'asc' });
-  const [searchTerm, setSearchTerm] = useState('');
-
-  const filteredData = useMemo(() => {
-    if (!searchable || !searchTerm) return data;
-    
-    return data.filter(row =>
-      Object.values(row).some(value =>
-        String(value).toLowerCase().includes(searchTerm.toLowerCase())
-      )
-    );
-  }, [data, searchTerm, searchable]);
-
-  const sortedData = useMemo(() => {
-    if (!sortable || !sortConfig.key) return filteredData;
-
-    return [...filteredData].sort((a, b) => {
-      const aValue = a[sortConfig.key];
-      const bValue = b[sortConfig.key];
-
-      if (aValue < bValue) {
-        return sortConfig.direction === 'asc' ? -1 : 1;
-      }
-      if (aValue > bValue) {
-        return sortConfig.direction === 'asc' ? 1 : -1;
-      }
-      return 0;
-    });
-  }, [filteredData, sortConfig, sortable]);
-
-  const handleSort = (key) => {
-    if (!sortable) return;
-    
-    setSortConfig(current => ({
-      key,
-      direction: current.key === key && current.direction === 'asc' ? 'desc' : 'asc'
-    }));
-  };
-
-  const getSortIcon = (columnKey) => {
-    if (!sortable || sortConfig.key !== columnKey) return null;
-    return sortConfig.direction === 'asc' ? <ChevronUp size={16} /> : <ChevronDown size={16} />;
-  };
-
-  return (
-    <div className={`bg-white rounded-lg shadow overflow-hidden ${className}`}>
-      {searchable && (
-        <div className="p-4 border-b border-gray-200">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={16} />
-            <input
-              type="text"
-              placeholder="Search..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            />
+  if (loading) {
+    return (
+      <Card className="p-6">
+        <div className="animate-pulse">
+          <div className="h-4 bg-gray-200 rounded w-1/4 mb-4"></div>
+          <div className="space-y-3">
+            {[...Array(5)].map((_, i) => (
+              <div key={i} className="h-4 bg-gray-200 rounded"></div>
+            ))}
           </div>
         </div>
-      )}
-      
+      </Card>
+    );
+  }
+
+  return (
+    <Card className="overflow-hidden">
+      <div className="p-4 border-b border-gray-200">
+        <div className="flex items-center justify-between">
+          <h3 className="text-lg font-medium text-gray-900">Data Table</h3>
+          <div className="flex items-center space-x-2">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+              <input
+                type="text"
+                placeholder="Search..."
+                value={searchTerm}
+                onChange={(e) => onSearchChange?.(e.target.value)}
+                className="pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            </div>
+            <button
+              onClick={() => onFilter?.()}
+              className="p-2 text-gray-400 hover:text-gray-600 border border-gray-300 rounded-md hover:bg-gray-50"
+            >
+              <Filter className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+      </div>
+
       <div className="overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              {columns.map((column) => (
+              {columns.map((column, index) => (
                 <th
-                  key={column.key}
-                  onClick={() => handleSort(column.key)}
-                  className={`px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider ${
-                    sortable ? 'cursor-pointer hover:bg-gray-100' : ''
-                  }`}
+                  key={index}
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
+                  onClick={() => onSort?.(column.key)}
                 >
                   <div className="flex items-center space-x-1">
-                    <span>{column.label}</span>
-                    {getSortIcon(column.key)}
+                    <span>{column.header}</span>
+                    {column.sortable && (
+                      <div className="flex flex-col">
+                        <ChevronUp className="w-3 h-3 text-gray-400" />
+                        <ChevronDown className="w-3 h-3 text-gray-400 -mt-1" />
+                      </div>
+                    )}
                   </div>
                 </th>
               ))}
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {sortedData.map((row, index) => (
-              <tr key={index} className="hover:bg-gray-50">
-                {columns.map((column) => (
-                  <td key={column.key} className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    {column.render ? column.render(row[column.key], row) : row[column.key]}
+            {data.map((row, rowIndex) => (
+              <tr key={rowIndex} className="hover:bg-gray-50">
+                {columns.map((column, colIndex) => (
+                  <td key={colIndex} className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    {column.key === 'status' ? (
+                      <StatusBadge status={row[column.key]} />
+                    ) : (
+                      row[column.key] || '-'
+                    )}
                   </td>
                 ))}
               </tr>
             ))}
           </tbody>
         </table>
-        
-        {sortedData.length === 0 && (
-          <div className="text-center py-8 text-gray-500">
-            {searchTerm ? 'No matching results found' : 'No data available'}
-          </div>
-        )}
       </div>
-    </div>
+    </Card>
   );
 };
 
 export default DataTable;
-export { DataTable };

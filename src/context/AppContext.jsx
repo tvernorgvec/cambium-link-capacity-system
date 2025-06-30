@@ -1,189 +1,81 @@
-import React, {
-  createContext,
-  useContext,
-  useReducer,
-  useEffect,
-  useCallback,
-  useRef,
-} from 'react';
-import * as api from '../services/api.js';
+import React, { createContext, useContext, useReducer, useEffect } from 'react';
 
 const AppContext = createContext();
 
 const initialState = {
-  data: {
-    linkCapacity: [],
-    testResults: [],
-    scheduledTests: [],
-    settings: {
-      autoRefresh: true,
-      refreshInterval: 30000,
-      alertThreshold: 80,
-      darkMode: false,
-    },
+  devices: [],
+  tests: [],
+  settings: {
+    autoRefresh: true,
+    refreshInterval: 30000,
+    enableNotifications: true,
   },
   loading: false,
   error: null,
 };
 
-function appReducer(state, action) {
+const appReducer = (state, action) => {
   switch (action.type) {
     case 'SET_LOADING':
-      return {
-        ...state,
-        loading: action.payload,
-        error: null,
-      };
+      return { ...state, loading: action.payload };
     case 'SET_ERROR':
-      return {
-        ...state,
-        loading: false,
-        error: action.payload,
-      };
-    case 'SET_LINK_CAPACITY':
-      return {
-        ...state,
-        data: {
-          ...state.data,
-          linkCapacity: action.payload,
-        },
-        loading: false,
-      };
-    case 'SET_TEST_RESULTS':
-      return {
-        ...state,
-        data: {
-          ...state.data,
-          testResults: action.payload,
-        },
-        loading: false,
-      };
-    case 'SET_SCHEDULED_TESTS':
-      return {
-        ...state,
-        data: {
-          ...state.data,
-          scheduledTests: action.payload,
-        },
-        loading: false,
-      };
+      return { ...state, error: action.payload };
+    case 'SET_DEVICES':
+      return { ...state, devices: action.payload };
+    case 'SET_TESTS':
+      return { ...state, tests: action.payload };
     case 'UPDATE_SETTINGS':
-      return {
-        ...state,
-        data: {
-          ...state.data,
-          settings: {
-            ...state.data.settings,
-            ...action.payload,
-          },
-        },
-      };
+      return { ...state, settings: { ...state.settings, ...action.payload } };
+    case 'ADD_TEST':
+      return { ...state, tests: [...state.tests, action.payload] };
     default:
       return state;
   }
-}
+};
 
-export function AppProvider({ children }) {
+export const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(appReducer, initialState);
-  const intervalRef = useRef(null);
 
-  const loadInitialData = useCallback(async () => {
-    try {
+  useEffect(() => {
+    // Load initial data
+    const loadInitialData = async () => {
       dispatch({ type: 'SET_LOADING', payload: true });
-
-      const [linkCapacity, testResults, scheduledTests] = await Promise.all([
-        api.getLinkCapacity(),
-        api.getTestResults(),
-        api.getScheduledTests(),
-      ]);
-
-      dispatch({ type: 'SET_LINK_CAPACITY', payload: linkCapacity });
-      dispatch({ type: 'SET_LOADING', payload: false });
-      dispatch({ type: 'SET_TEST_RESULTS', payload: testResults });
-      dispatch({ type: 'SET_SCHEDULED_TESTS', payload: scheduledTests });
-    } catch (error) {
-      // Console statement removed by auto-fix
-      dispatch({ type: 'SET_ERROR', payload: error.message });
-    }
-  }, []);
-
-  // Load initial data only once on mount
-  useEffect(() => {
-    // Only load data if we don't already have it
-    if (state.data.linkCapacity.length === 0 && !state.loading) {
-      loadInitialData();
-    }
-  }, [loadInitialData]);
-
-  // Handle auto-refresh with proper cleanup
-  useEffect(() => {
-    // Clear any existing interval
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-      intervalRef.current = null;
-    }
-
-    // Extract settings to avoid object reference issues
-    const { autoRefresh, refreshInterval } = state.data.settings;
-
-    // Only set up auto-refresh if enabled
-    if (autoRefresh) {
-      intervalRef.current = setInterval(async () => {
-        try {
-          const [linkCapacity, testResults, scheduledTests] = await Promise.all(
-            [
-              api.getLinkCapacity(),
-              api.getTestResults(),
-              api.getScheduledTests(),
-            ]
-          );
-
-          dispatch({ type: 'SET_LINK_CAPACITY', payload: linkCapacity });
-          dispatch({ type: 'SET_TEST_RESULTS', payload: testResults });
-          dispatch({ type: 'SET_SCHEDULED_TESTS', payload: scheduledTests });
-        } catch (error) {
-          dispatch({ type: 'SET_ERROR', payload: error.message });
-        }
-      }, refreshInterval);
-    }
-
-    // Cleanup function
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-        intervalRef.current = null;
+      try {
+        // This would typically make API calls
+        // For now, just simulate loading
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        dispatch({ type: 'SET_LOADING', payload: false });
+      } catch (error) {
+        dispatch({ type: 'SET_ERROR', payload: error.message });
+        dispatch({ type: 'SET_LOADING', payload: false });
       }
     };
+
+    loadInitialData();
   }, []);
 
-  const contextValue = {
-    state,
+  const value = {
+    ...state,
     dispatch,
     actions: {
-      setLoading: loading =>
-        dispatch({ type: 'SET_LOADING', payload: loading }),
-      setError: error => dispatch({ type: 'SET_ERROR', payload: error }),
-      setLinkCapacity: data =>
-        dispatch({ type: 'SET_LINK_CAPACITY', payload: data }),
-      setTestResults: data =>
-        dispatch({ type: 'SET_TEST_RESULTS', payload: data }),
-      setScheduledTests: data =>
-        dispatch({ type: 'SET_SCHEDULED_TESTS', payload: data }),
-      updateSettings: settings =>
-        dispatch({ type: 'UPDATE_SETTINGS', payload: settings }),
-      refreshData: loadInitialData,
+      setLoading: (loading) => dispatch({ type: 'SET_LOADING', payload: loading }),
+      setError: (error) => dispatch({ type: 'SET_ERROR', payload: error }),
+      setDevices: (devices) => dispatch({ type: 'SET_DEVICES', payload: devices }),
+      setTests: (tests) => dispatch({ type: 'SET_TESTS', payload: tests }),
+      updateSettings: (settings) => dispatch({ type: 'UPDATE_SETTINGS', payload: settings }),
+      addTest: (test) => dispatch({ type: 'ADD_TEST', payload: test }),
     },
   };
 
-  return (
-    <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>
-  );
-}
+  return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
+};
 
-export function useAppContext() {
+export const useApp = () => {
   const context = useContext(AppContext);
   if (!context) {
-    throw new Error('useAppContext must be used within an AppProvider');
+    throw new Error('useApp must be used within an AppProvider');
   }
   return context;
-}
+};
+
+export default AppContext;
