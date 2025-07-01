@@ -1,14 +1,8 @@
-import { createRoot } from 'react-dom/client';
 
-const App = () => {
-  return (
-    <div style={{ padding: '2rem', textAlign: 'center' }}>
-      <h1>GVEC Link Capacity System</h1>
-      <p>Frontend rebuilding in progress...</p>
-      <p>Backend API running on port 5000</p>
-    </div>
-  );
-};
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import App from './App';
+import './index.css';
 
 const root = createRoot(document.getElementById('root'));
 root.render(<App />);
