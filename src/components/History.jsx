@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useApp } from '../context/AppContext';
@@ -54,13 +53,15 @@ const History = () => {
     },
   ];
 
-  const filteredData = historyData.filter((item) => {
-    if (filter === 'all') return true;
+  const filteredData = historyData.filter(item => {
+    if (filter === 'all') {
+      return true;
+    }
     return item.status === filter;
   });
 
   const handleExport = () => {
-    console.log('Exporting history data...');
+    // Console statement removed by auto-fix
   };
 
   return (
@@ -89,7 +90,7 @@ const History = () => {
             </label>
             <select
               value={dateRange}
-              onChange={(e) => setDateRange(e.target.value)}
+              onChange={e => setDateRange(e.target.value)}
               className="px-3 py-1 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="1">Last 24 hours</option>
@@ -100,12 +101,10 @@ const History = () => {
           </div>
           <div className="flex items-center space-x-2">
             <Filter className="h-4 w-4 text-gray-500" />
-            <label className="text-sm font-medium text-gray-700">
-              Status:
-            </label>
+            <label className="text-sm font-medium text-gray-700">Status:</label>
             <select
               value={filter}
-              onChange={(e) => setFilter(e.target.value)}
+              onChange={e => setFilter(e.target.value)}
               className="px-3 py-1 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="all">All</option>
@@ -150,7 +149,7 @@ const History = () => {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {filteredData.map((item) => (
+              {filteredData.map(item => (
                 <motion.tr
                   key={item.id}
                   initial={{ opacity: 0 }}

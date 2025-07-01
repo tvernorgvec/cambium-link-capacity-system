@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useApp } from '../context/AppContext';
@@ -43,7 +42,7 @@ const Scheduler = () => {
   ];
 
   const handleCreateSchedule = () => {
-    console.log('Creating schedule:', newSchedule);
+    // Console statement removed by auto-fix
     setNewSchedule({
       name: '',
       schedule: 'daily',
@@ -71,14 +70,14 @@ const Scheduler = () => {
             type="text"
             placeholder="Schedule name"
             value={newSchedule.name}
-            onChange={(e) =>
+            onChange={e =>
               setNewSchedule({ ...newSchedule, name: e.target.value })
             }
             className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <select
             value={newSchedule.schedule}
-            onChange={(e) =>
+            onChange={e =>
               setNewSchedule({ ...newSchedule, schedule: e.target.value })
             }
             className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -90,7 +89,7 @@ const Scheduler = () => {
           <input
             type="time"
             value={newSchedule.time}
-            onChange={(e) =>
+            onChange={e =>
               setNewSchedule({ ...newSchedule, time: e.target.value })
             }
             className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -111,7 +110,7 @@ const Scheduler = () => {
           Scheduled Tasks
         </h2>
         <div className="space-y-4">
-          {schedules.map((schedule) => (
+          {schedules.map(schedule => (
             <motion.div
               key={schedule.id}
               initial={{ opacity: 0, y: 20 }}

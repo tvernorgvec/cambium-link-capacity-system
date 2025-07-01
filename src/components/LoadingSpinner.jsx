@@ -1,8 +1,7 @@
-
 import React from 'react';
 
 const LoadingSpinner = ({ size = 'medium', text = 'Loading...' }) => {
-  const getSizeStyles = (size) => {
+  const getSizeStyles = size => {
     switch (size) {
       case 'small':
         return 'h-4 w-4';

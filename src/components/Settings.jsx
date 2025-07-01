@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useApp } from '../context/AppContext';
@@ -21,20 +20,20 @@ const Settings = () => {
     cnMaestroUrl: 'https://cnmaestro.gvec.net/api/v2/',
     cnMaestroApiKey: '',
     refreshInterval: 300,
-    
+
     // Database Settings
     postgresHost: 'localhost',
     postgresPort: 5432,
     postgresDatabase: 'gvec_linktest',
     influxDbUrl: 'http://localhost:8086',
     influxDbDatabase: 'link_capacity',
-    
+
     // Test Settings
     testDuration: 30,
     testPacketLength: 1518,
     testDirection: 'downlink',
     parallelTests: 10,
-    
+
     // Notifications
     enableEmailAlerts: true,
     alertThreshold: 70,
@@ -44,7 +43,7 @@ const Settings = () => {
   const [saved, setSaved] = useState(false);
 
   const handleSave = () => {
-    console.log('Saving settings:', settings);
+    // Console statement removed by auto-fix
     setSaved(true);
     setTimeout(() => setSaved(false), 3000);
   };
@@ -52,12 +51,12 @@ const Settings = () => {
   const handleInputChange = (section, key, value) => {
     setSettings(prev => ({
       ...prev,
-      [key]: value
+      [key]: value,
     }));
   };
 
-  const testConnection = async (type) => {
-    console.log(`Testing ${type} connection...`);
+  const testConnection = async type => {
+    // Console statement removed by auto-fix
   };
 
   return (
@@ -80,7 +79,9 @@ const Settings = () => {
       <Card>
         <div className="flex items-center space-x-2 mb-4">
           <Network className="h-5 w-5 text-blue-600" />
-          <h2 className="text-lg font-semibold text-gray-900">API Configuration</h2>
+          <h2 className="text-lg font-semibold text-gray-900">
+            API Configuration
+          </h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
@@ -90,7 +91,9 @@ const Settings = () => {
             <input
               type="url"
               value={settings.cnMaestroUrl}
-              onChange={(e) => handleInputChange('api', 'cnMaestroUrl', e.target.value)}
+              onChange={e =>
+                handleInputChange('api', 'cnMaestroUrl', e.target.value)
+              }
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
@@ -101,7 +104,9 @@ const Settings = () => {
             <input
               type="password"
               value={settings.cnMaestroApiKey}
-              onChange={(e) => handleInputChange('api', 'cnMaestroApiKey', e.target.value)}
+              onChange={e =>
+                handleInputChange('api', 'cnMaestroApiKey', e.target.value)
+              }
               placeholder="Enter API key"
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
@@ -113,7 +118,13 @@ const Settings = () => {
             <input
               type="number"
               value={settings.refreshInterval}
-              onChange={(e) => handleInputChange('api', 'refreshInterval', parseInt(e.target.value))}
+              onChange={e =>
+                handleInputChange(
+                  'api',
+                  'refreshInterval',
+                  parseInt(e.target.value)
+                )
+              }
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
@@ -133,7 +144,9 @@ const Settings = () => {
       <Card>
         <div className="flex items-center space-x-2 mb-4">
           <Database className="h-5 w-5 text-green-600" />
-          <h2 className="text-lg font-semibold text-gray-900">Database Configuration</h2>
+          <h2 className="text-lg font-semibold text-gray-900">
+            Database Configuration
+          </h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
@@ -143,7 +156,9 @@ const Settings = () => {
             <input
               type="text"
               value={settings.postgresHost}
-              onChange={(e) => handleInputChange('db', 'postgresHost', e.target.value)}
+              onChange={e =>
+                handleInputChange('db', 'postgresHost', e.target.value)
+              }
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
@@ -154,7 +169,13 @@ const Settings = () => {
             <input
               type="number"
               value={settings.postgresPort}
-              onChange={(e) => handleInputChange('db', 'postgresPort', parseInt(e.target.value))}
+              onChange={e =>
+                handleInputChange(
+                  'db',
+                  'postgresPort',
+                  parseInt(e.target.value)
+                )
+              }
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
@@ -165,7 +186,9 @@ const Settings = () => {
             <input
               type="text"
               value={settings.postgresDatabase}
-              onChange={(e) => handleInputChange('db', 'postgresDatabase', e.target.value)}
+              onChange={e =>
+                handleInputChange('db', 'postgresDatabase', e.target.value)
+              }
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
@@ -176,7 +199,9 @@ const Settings = () => {
             <input
               type="url"
               value={settings.influxDbUrl}
-              onChange={(e) => handleInputChange('db', 'influxDbUrl', e.target.value)}
+              onChange={e =>
+                handleInputChange('db', 'influxDbUrl', e.target.value)
+              }
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
@@ -187,7 +212,9 @@ const Settings = () => {
       <Card>
         <div className="flex items-center space-x-2 mb-4">
           <Shield className="h-5 w-5 text-purple-600" />
-          <h2 className="text-lg font-semibold text-gray-900">Test Configuration</h2>
+          <h2 className="text-lg font-semibold text-gray-900">
+            Test Configuration
+          </h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
@@ -197,7 +224,13 @@ const Settings = () => {
             <input
               type="number"
               value={settings.testDuration}
-              onChange={(e) => handleInputChange('test', 'testDuration', parseInt(e.target.value))}
+              onChange={e =>
+                handleInputChange(
+                  'test',
+                  'testDuration',
+                  parseInt(e.target.value)
+                )
+              }
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
@@ -208,7 +241,13 @@ const Settings = () => {
             <input
               type="number"
               value={settings.testPacketLength}
-              onChange={(e) => handleInputChange('test', 'testPacketLength', parseInt(e.target.value))}
+              onChange={e =>
+                handleInputChange(
+                  'test',
+                  'testPacketLength',
+                  parseInt(e.target.value)
+                )
+              }
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
@@ -218,7 +257,9 @@ const Settings = () => {
             </label>
             <select
               value={settings.testDirection}
-              onChange={(e) => handleInputChange('test', 'testDirection', e.target.value)}
+              onChange={e =>
+                handleInputChange('test', 'testDirection', e.target.value)
+              }
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="downlink">Downlink</option>
@@ -233,7 +274,13 @@ const Settings = () => {
             <input
               type="number"
               value={settings.parallelTests}
-              onChange={(e) => handleInputChange('test', 'parallelTests', parseInt(e.target.value))}
+              onChange={e =>
+                handleInputChange(
+                  'test',
+                  'parallelTests',
+                  parseInt(e.target.value)
+                )
+              }
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
@@ -251,7 +298,13 @@ const Settings = () => {
             <input
               type="checkbox"
               checked={settings.enableEmailAlerts}
-              onChange={(e) => handleInputChange('notifications', 'enableEmailAlerts', e.target.checked)}
+              onChange={e =>
+                handleInputChange(
+                  'notifications',
+                  'enableEmailAlerts',
+                  e.target.checked
+                )
+              }
               className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
             />
             <label className="text-sm font-medium text-gray-700">
@@ -266,7 +319,13 @@ const Settings = () => {
               <input
                 type="number"
                 value={settings.alertThreshold}
-                onChange={(e) => handleInputChange('notifications', 'alertThreshold', parseInt(e.target.value))}
+                onChange={e =>
+                  handleInputChange(
+                    'notifications',
+                    'alertThreshold',
+                    parseInt(e.target.value)
+                  )
+                }
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
@@ -277,7 +336,13 @@ const Settings = () => {
               <input
                 type="email"
                 value={settings.emailRecipients}
-                onChange={(e) => handleInputChange('notifications', 'emailRecipients', e.target.value)}
+                onChange={e =>
+                  handleInputChange(
+                    'notifications',
+                    'emailRecipients',
+                    e.target.value
+                  )
+                }
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
