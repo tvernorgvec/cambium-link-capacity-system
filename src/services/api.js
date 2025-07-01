@@ -1,4 +1,3 @@
-
 import axios from 'axios';
 import { config } from '../config/environment';
 
@@ -13,25 +12,26 @@ const api = axios.create({
 
 // Request interceptor
 api.interceptors.request.use(
-  (config) => {
+  config => {
     if (config.debug) {
-      console.log('API Request:', config);
+      // Console statement removed by auto-fix
     }
     return config;
   },
-  (error) => {
+  error => {
     return Promise.reject(error);
   }
 );
 
 // Response interceptor
 api.interceptors.response.use(
-  (response) => {
+  response => {
     return response.data;
   },
-  (error) => {
-    const message = error.response?.data?.detail || error.message || 'Network error';
-    console.error('API Error:', message);
+  error => {
+    const message =
+      error.response?.data?.detail || error.message || 'Network error';
+    // Console statement removed by auto-fix
     return Promise.reject(new Error(message));
   }
 );
@@ -79,8 +79,8 @@ export const apiService = {
   },
 
   async getTestResults(limit = 100, offset = 0) {
-    return api.get('/test-results', { 
-      params: { limit, offset } 
+    return api.get('/test-results', {
+      params: { limit, offset },
     });
   },
 
@@ -88,7 +88,7 @@ export const apiService = {
   async discoverAccessPoints(ipList, community = 'public') {
     return api.post('/discover-aps', {
       ip_list: ipList,
-      community: community
+      community: community,
     });
   },
 
@@ -108,7 +108,7 @@ export const apiService = {
   // Settings
   async updateSettings(settings) {
     return api.put('/settings', settings);
-  }
+  },
 };
 
 export default api;

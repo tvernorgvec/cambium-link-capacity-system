@@ -1,19 +1,18 @@
-
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { 
-  BarChart3, 
-  Calendar, 
-  History, 
-  Settings, 
+import {
+  BarChart3,
+  Calendar,
+  History,
+  Settings,
   Activity,
-  Wifi
+  Wifi,
 } from 'lucide-react';
 
 const Layout = ({ children }) => {
   const location = useLocation();
-  
+
   const navigation = [
     { name: 'Dashboard', href: '/dashboard', icon: BarChart3 },
     { name: 'Scheduler', href: '/scheduler', icon: Calendar },
@@ -21,7 +20,7 @@ const Layout = ({ children }) => {
     { name: 'Settings', href: '/settings', icon: Settings },
   ];
 
-  const isActive = (path) => location.pathname === path;
+  const isActive = path => location.pathname === path;
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -57,7 +56,7 @@ const Layout = ({ children }) => {
         <nav className="w-64 bg-white shadow-sm min-h-screen">
           <div className="p-4">
             <div className="space-y-2">
-              {navigation.map((item) => {
+              {navigation.map(item => {
                 const Icon = item.icon;
                 return (
                   <Link
@@ -65,9 +64,10 @@ const Layout = ({ children }) => {
                     to={item.href}
                     className={`
                       flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium transition-colors
-                      ${isActive(item.href)
-                        ? 'bg-blue-900 text-white'
-                        : 'text-gray-700 hover:bg-gray-100'
+                      ${
+                        isActive(item.href)
+                          ? 'bg-blue-900 text-white'
+                          : 'text-gray-700 hover:bg-gray-100'
                       }
                     `}
                   >

@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
 import { apiService } from '../services/api';
 
@@ -18,8 +17,8 @@ const initialState = {
     snmpCommunity: 'public',
     testDuration: 10,
     autoRefresh: true,
-    refreshInterval: 30
-  }
+    refreshInterval: 30,
+  },
 };
 
 const appReducer = (state, action) => {
@@ -41,9 +40,9 @@ const appReducer = (state, action) => {
     case 'UPDATE_SETTINGS':
       return { ...state, settings: { ...state.settings, ...action.payload } };
     case 'ADD_TEST_RESULT':
-      return { 
-        ...state, 
-        testResults: [action.payload, ...state.testResults].slice(0, 1000) 
+      return {
+        ...state,
+        testResults: [action.payload, ...state.testResults].slice(0, 1000),
       };
     default:
       return state;
@@ -54,9 +53,9 @@ export const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(appReducer, initialState);
 
   const actions = {
-    setLoading: (loading) => dispatch({ type: 'SET_LOADING', payload: loading }),
-    setError: (error) => dispatch({ type: 'SET_ERROR', payload: error }),
-    
+    setLoading: loading => dispatch({ type: 'SET_LOADING', payload: loading }),
+    setError: error => dispatch({ type: 'SET_ERROR', payload: error }),
+
     async fetchLinkCapacity() {
       dispatch({ type: 'SET_LOADING', payload: true });
       try {
@@ -104,9 +103,9 @@ export const AppProvider = ({ children }) => {
       }
     },
 
-    updateSettings: (settings) => {
+    updateSettings: settings => {
       dispatch({ type: 'UPDATE_SETTINGS', payload: settings });
-    }
+    },
   };
 
   // Auto-refresh data

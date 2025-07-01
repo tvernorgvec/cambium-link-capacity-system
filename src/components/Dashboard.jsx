@@ -1,15 +1,14 @@
-
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useApp } from '../context/AppContext';
-import { 
-  Activity, 
-  Wifi, 
-  TrendingUp, 
+import {
+  Activity,
+  Wifi,
+  TrendingUp,
   AlertTriangle,
   RefreshCw,
   Server,
-  Radio
+  Radio,
 } from 'lucide-react';
 import Card from './Card';
 import StatusBadge from './StatusBadge';
@@ -30,7 +29,7 @@ const Dashboard = () => {
     try {
       await Promise.all([
         actions.fetchLinkCapacity(),
-        actions.fetchAccessPoints()
+        actions.fetchAccessPoints(),
       ]);
     } finally {
       setRefreshing(false);
@@ -53,7 +52,7 @@ const Dashboard = () => {
           <h3 className="text-red-800 font-medium">Error Loading Dashboard</h3>
         </div>
         <p className="text-red-700 mt-2">{error}</p>
-        <button 
+        <button
           onClick={handleRefresh}
           className="mt-4 px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
         >
@@ -65,11 +64,20 @@ const Dashboard = () => {
 
   // Calculate statistics
   const totalLinks = linkCapacity.length;
-  const activeLinks = linkCapacity.filter(link => link.status === 'active').length;
-  const totalCapacity = linkCapacity.reduce((sum, link) => sum + (link.downlink_mbps || 0), 0);
-  const averageEfficiency = linkCapacity.length > 0 
-    ? linkCapacity.reduce((sum, link) => sum + (link.downlink_efficiency || 0), 0) / linkCapacity.length
-    : 0;
+  const activeLinks = linkCapacity.filter(
+    link => link.status === 'active'
+  ).length;
+  const totalCapacity = linkCapacity.reduce(
+    (sum, link) => sum + (link.downlink_mbps || 0),
+    0
+  );
+  const averageEfficiency =
+    linkCapacity.length > 0
+      ? linkCapacity.reduce(
+          (sum, link) => sum + (link.downlink_efficiency || 0),
+          0
+        ) / linkCapacity.length
+      : 0;
 
   const stats = [
     {
@@ -78,29 +86,29 @@ const Dashboard = () => {
       total: totalLinks,
       icon: Wifi,
       color: 'text-green-600',
-      bgColor: 'bg-green-100'
+      bgColor: 'bg-green-100',
     },
     {
       name: 'Total Capacity',
       value: `${totalCapacity.toFixed(1)} Mbps`,
       icon: TrendingUp,
       color: 'text-blue-600',
-      bgColor: 'bg-blue-100'
+      bgColor: 'bg-blue-100',
     },
     {
       name: 'Avg Efficiency',
       value: `${averageEfficiency.toFixed(1)}%`,
       icon: Activity,
       color: 'text-purple-600',
-      bgColor: 'bg-purple-100'
+      bgColor: 'bg-purple-100',
     },
     {
       name: 'Access Points',
       value: accessPoints.length,
       icon: Server,
       color: 'text-orange-600',
-      bgColor: 'bg-orange-100'
-    }
+      bgColor: 'bg-orange-100',
+    },
   ];
 
   return (
@@ -116,7 +124,9 @@ const Dashboard = () => {
           disabled={refreshing}
           className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 transition-colors"
         >
-          <RefreshCw className={`h-4 w-4 ${refreshing ? 'animate-spin' : ''}`} />
+          <RefreshCw
+            className={`h-4 w-4 ${refreshing ? 'animate-spin' : ''}`}
+          />
           <span>Refresh</span>
         </button>
       </div>
@@ -136,9 +146,13 @@ const Dashboard = () => {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm text-gray-600">{stat.name}</p>
-                    <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
+                    <p className="text-2xl font-bold text-gray-900">
+                      {stat.value}
+                    </p>
                     {stat.total && (
-                      <p className="text-sm text-gray-500">of {stat.total} total</p>
+                      <p className="text-sm text-gray-500">
+                        of {stat.total} total
+                      </p>
                     )}
                   </div>
                   <div className={`p-3 rounded-full ${stat.bgColor}`}>
@@ -154,7 +168,9 @@ const Dashboard = () => {
       {/* Link Capacity Table */}
       <Card>
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-lg font-semibold text-gray-900">Link Capacity Status</h2>
+          <h2 className="text-lg font-semibold text-gray-900">
+            Link Capacity Status
+          </h2>
           <StatusBadge
             status={activeLinks > 0 ? 'success' : 'error'}
             text={`${activeLinks} Active Links`}
@@ -164,8 +180,12 @@ const Dashboard = () => {
         {linkCapacity.length === 0 ? (
           <div className="text-center py-12">
             <Radio className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-lg font-medium text-gray-900 mb-2">No Links Found</h3>
-            <p className="text-gray-600">No link capacity data available. Check your AP connections.</p>
+            <h3 className="text-lg font-medium text-gray-900 mb-2">
+              No Links Found
+            </h3>
+            <p className="text-gray-600">
+              No link capacity data available. Check your AP connections.
+            </p>
           </div>
         ) : (
           <div className="overflow-x-auto">
@@ -196,7 +216,7 @@ const Dashboard = () => {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {linkCapacity.map((link) => (
+                {linkCapacity.map(link => (
                   <motion.tr
                     key={link.id}
                     initial={{ opacity: 0 }}
@@ -225,16 +245,22 @@ const Dashboard = () => {
                       />
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                      {link.downlink_mbps ? `${link.downlink_mbps.toFixed(1)} Mbps` : 'N/A'}
+                      {link.downlink_mbps
+                        ? `${link.downlink_mbps.toFixed(1)} Mbps`
+                        : 'N/A'}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                      {link.uplink_mbps ? `${link.uplink_mbps.toFixed(1)} Mbps` : 'N/A'}
+                      {link.uplink_mbps
+                        ? `${link.uplink_mbps.toFixed(1)} Mbps`
+                        : 'N/A'}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                       {link.snr_dl ? `${link.snr_dl.toFixed(1)} dB` : 'N/A'}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {link.last_test ? new Date(link.last_test).toLocaleString() : 'Never'}
+                      {link.last_test
+                        ? new Date(link.last_test).toLocaleString()
+                        : 'Never'}
                     </td>
                   </motion.tr>
                 ))}
