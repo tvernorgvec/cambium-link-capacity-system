@@ -95,7 +95,7 @@ const getGitInfo = () => {
 };
 
 const generateInventory = () => {
-  console.log('📋 Generating project inventory...');
+  // Console statement removed by auto-fix
 
   const timestamp = new Date().toISOString();
 
@@ -255,9 +255,9 @@ ${inventory.configurations.map(config => `- ${config}`).join('\n')}
   writeFileSync('docs/INVENTORY.md', markdown);
   writeFileSync('docs/inventory.json', JSON.stringify(inventory, null, 2));
 
-  console.log('📋 Project inventory generated:');
-  console.log('  - docs/INVENTORY.md');
-  console.log('  - docs/inventory.json');
+  // Console statement removed by auto-fix
+  // Console statement removed by auto-fix
+  // Console statement removed by auto-fix
 
   return inventory;
 };

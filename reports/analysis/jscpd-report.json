@@ -1,12 +1,48 @@
 {
   "statistics": {
-    "detectionDate": "2025-06-30T23:10:49.331Z",
+    "detectionDate": "2025-06-30T23:12:00.758Z",
     "formats": {
       "javascript": {
         "sources": {
+          "/home/runner/workspace/src/utils/globalStyles.js": {
+            "lines": 42,
+            "tokens": 200,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/home/runner/workspace/src/utils/constants.js": {
+            "lines": 31,
+            "tokens": 199,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
           "/home/runner/workspace/src/config/environment.js": {
             "lines": 37,
             "tokens": 298,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/home/runner/workspace/src/main.jsx": {
+            "lines": 0,
+            "tokens": 14,
             "sources": 1,
             "clones": 0,
             "duplicatedLines": 0,
@@ -126,28 +162,56 @@
           }
         },
         "total": {
-          "lines": 1019,
-          "tokens": 7863,
-          "sources": 10,
+          "lines": 1092,
+          "tokens": 8276,
+          "sources": 13,
           "clones": 5,
           "duplicatedLines": 36,
           "duplicatedTokens": 240,
-          "percentage": 3.53,
-          "percentageTokens": 3.05,
+          "percentage": 3.3,
+          "percentageTokens": 2.9,
+          "newDuplicatedLines": 0,
+          "newClones": 0
+        }
+      },
+      "jsx": {
+        "sources": {
+          "/home/runner/workspace/src/main.jsx": {
+            "lines": 14,
+            "tokens": 144,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "total": {
+          "lines": 14,
+          "tokens": 144,
+          "sources": 1,
+          "clones": 0,
+          "duplicatedLines": 0,
+          "duplicatedTokens": 0,
+          "percentage": 0,
+          "percentageTokens": 0,
           "newDuplicatedLines": 0,
           "newClones": 0
         }
       }
     },
     "total": {
-      "lines": 1019,
-      "tokens": 7863,
-      "sources": 10,
+      "lines": 1106,
+      "tokens": 8420,
+      "sources": 14,
       "clones": 5,
       "duplicatedLines": 36,
       "duplicatedTokens": 240,
-      "percentage": 3.53,
-      "percentageTokens": 3.05,
+      "percentage": 3.25,
+      "percentageTokens": 2.85,
       "newDuplicatedLines": 0,
       "newClones": 0
     }

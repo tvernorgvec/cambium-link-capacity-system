@@ -24,23 +24,33 @@ const __publicField = (obj, key, value) =>
         continue;
       }
       for (const node of mutation.addedNodes) {
-        if (node.tagName === 'LINK' && node.rel === 'modulepreload')
+        if (node.tagName === 'LINK' && node.rel === 'modulepreload') {
           processPreload(node);
+        }
       }
     }
   }).observe(document, { childList: true, subtree: true });
   function getFetchOpts(link) {
     const fetchOpts = {};
-    if (link.integrity) fetchOpts.integrity = link.integrity;
-    if (link.referrerPolicy) fetchOpts.referrerPolicy = link.referrerPolicy;
-    if (link.crossOrigin === 'use-credentials')
+    if (link.integrity) {
+      fetchOpts.integrity = link.integrity;
+    }
+    if (link.referrerPolicy) {
+      fetchOpts.referrerPolicy = link.referrerPolicy;
+    }
+    if (link.crossOrigin === 'use-credentials') {
       fetchOpts.credentials = 'include';
-    else if (link.crossOrigin === 'anonymous') fetchOpts.credentials = 'omit';
-    else fetchOpts.credentials = 'same-origin';
+    } else if (link.crossOrigin === 'anonymous') {
+      fetchOpts.credentials = 'omit';
+    } else {
+      fetchOpts.credentials = 'same-origin';
+    }
     return fetchOpts;
   }
   function processPreload(link) {
-    if (link.ep) return;
+    if (link.ep) {
+      return;
+    }
     link.ep = true;
     const fetchOpts = getFetchOpts(link);
     fetch(link.href, fetchOpts);
@@ -74,9 +84,11 @@ function getDefaultExportFromNamespaceIfNotNamed(n) {
     : n;
 }
 function getAugmentedNamespace(n) {
-  if (n.__esModule) return n;
+  if (n.__esModule) {
+    return n;
+  }
   const f = n.default;
-  if (typeof f == 'function') {
+  if (typeof f === 'function') {
     var a = function a2() {
       if (this instanceof a2) {
         return Reflect.construct(f, arguments, this.constructor);
@@ -84,7 +96,9 @@ function getAugmentedNamespace(n) {
       return f.apply(this, arguments);
     };
     a.prototype = f.prototype;
-  } else a = {};
+  } else {
+    a = {};
+  }
   Object.defineProperty(a, '__esModule', { value: true });
   Object.keys(n).forEach(function (k) {
     const d = Object.getOwnPropertyDescriptor(n, k);
@@ -109,7 +123,9 @@ const react$1 = { exports: {} };
 const react_production_min = {};
 let hasRequiredReact_production_min;
 function requireReact_production_min() {
-  if (hasRequiredReact_production_min) return react_production_min;
+  if (hasRequiredReact_production_min) {
+    return react_production_min;
+  }
   hasRequiredReact_production_min = 1;
   ('use strict');
   const l = Symbol.for('react.element'),
@@ -125,7 +141,9 @@ function requireReact_production_min() {
     y = Symbol.for('react.lazy'),
     z = Symbol.iterator;
   function A(a) {
-    if (null === a || 'object' !== typeof a) return null;
+    if (null === a || 'object' !== typeof a) {
+      return null;
+    }
     a = (z && a[z]) || a['@@iterator'];
     return 'function' === typeof a ? a : null;
   }
@@ -147,10 +165,11 @@ function requireReact_production_min() {
   }
   E.prototype.isReactComponent = {};
   E.prototype.setState = function (a, b) {
-    if ('object' !== typeof a && 'function' !== typeof a && null != a)
+    if ('object' !== typeof a && 'function' !== typeof a && null != a) {
       throw Error(
         'setState(...): takes an object of state variables to update or a function which returns an object of state variables.'
       );
+    }
     this.updater.enqueueSetState(this, a, b, 'setState');
   };
   E.prototype.forceUpdate = function (a) {
@@ -177,19 +196,27 @@ function requireReact_production_min() {
       c = {},
       k = null,
       h = null;
-    if (null != b)
+    if (null != b) {
       for (d in (void 0 !== b.ref && (h = b.ref),
       void 0 !== b.key && (k = '' + b.key),
-      b))
+      b)) {
         J.call(b, d) && !L.hasOwnProperty(d) && (c[d] = b[d]);
+      }
+    }
     let g = arguments.length - 2;
-    if (1 === g) c.children = e;
-    else if (1 < g) {
-      for (var f = Array(g), m2 = 0; m2 < g; m2++) f[m2] = arguments[m2 + 2];
+    if (1 === g) {
+      c.children = e;
+    } else if (1 < g) {
+      for (var f = Array(g), m2 = 0; m2 < g; m2++) {
+        f[m2] = arguments[m2 + 2];
+      }
       c.children = f;
     }
-    if (a && a.defaultProps)
-      for (d in ((g = a.defaultProps), g)) void 0 === c[d] && (c[d] = g[d]);
+    if (a && a.defaultProps) {
+      for (d in ((g = a.defaultProps), g)) {
+        void 0 === c[d] && (c[d] = g[d]);
+      }
+    }
     return {
       $$typeof: l,
       type: a,
@@ -229,10 +256,13 @@ function requireReact_production_min() {
   }
   function R(a, b, e, d, c) {
     let k = typeof a;
-    if ('undefined' === k || 'boolean' === k) a = null;
+    if ('undefined' === k || 'boolean' === k) {
+      a = null;
+    }
     let h = false;
-    if (null === a) h = true;
-    else
+    if (null === a) {
+      h = true;
+    } else {
       switch (k) {
         case 'string':
         case 'number':
@@ -245,7 +275,8 @@ function requireReact_production_min() {
               h = true;
           }
       }
-    if (h)
+    }
+    if (h) {
       return (
         (h = a),
         (c = c(h)),
@@ -269,18 +300,20 @@ function requireReact_production_min() {
             b.push(c)),
         1
       );
+    }
     h = 0;
     d = '' === d ? '.' : d + ':';
-    if (I(a))
+    if (I(a)) {
       for (var g = 0; g < a.length; g++) {
         k = a[g];
         var f = d + Q(k, g);
         h += R(k, b, e, f, c);
       }
-    else if (((f = A(a)), 'function' === typeof f))
-      for (a = f.call(a), g = 0; !(k = a.next()).done; )
+    } else if (((f = A(a)), 'function' === typeof f)) {
+      for (a = f.call(a), g = 0; !(k = a.next()).done; ) {
         ((k = k.value), (f = d + Q(k, g++)), (h += R(k, b, e, f, c)));
-    else if ('object' === k)
+      }
+    } else if ('object' === k) {
       throw (
         (b = String(a)),
         Error(
@@ -291,10 +324,13 @@ function requireReact_production_min() {
             '). If you meant to render a collection of children, use an array instead.'
         )
       );
+    }
     return h;
   }
   function S(a, b, e) {
-    if (null == a) return a;
+    if (null == a) {
+      return a;
+    }
     let d = [],
       c = 0;
     R(a, d, '', '', function (a2) {
@@ -308,17 +344,21 @@ function requireReact_production_min() {
       b = b();
       b.then(
         function (b2) {
-          if (0 === a._status || -1 === a._status)
+          if (0 === a._status || -1 === a._status) {
             ((a._status = 1), (a._result = b2));
+          }
         },
         function (b2) {
-          if (0 === a._status || -1 === a._status)
+          if (0 === a._status || -1 === a._status) {
             ((a._status = 2), (a._result = b2));
+          }
         }
       );
       -1 === a._status && ((a._status = 0), (a._result = b));
     }
-    if (1 === a._status) return a._result.default;
+    if (1 === a._status) {
+      return a._result.default;
+    }
     throw a._result;
   }
   const U = { current: null },
@@ -357,10 +397,11 @@ function requireReact_production_min() {
       );
     },
     only: function (a) {
-      if (!O(a))
+      if (!O(a)) {
         throw Error(
           'React.Children.only expected to receive a single React element child.'
         );
+      }
       return a;
     },
   };
@@ -373,12 +414,13 @@ function requireReact_production_min() {
   react_production_min.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = W;
   react_production_min.act = X2;
   react_production_min.cloneElement = function (a, b, e) {
-    if (null === a || void 0 === a)
+    if (null === a || void 0 === a) {
       throw Error(
         'React.cloneElement(...): The argument must be a React element, but you passed ' +
           a +
           '.'
       );
+    }
     let d = C({}, a.props),
       c = a.key,
       k = a.ref,
@@ -386,17 +428,23 @@ function requireReact_production_min() {
     if (null != b) {
       void 0 !== b.ref && ((k = b.ref), (h = K.current));
       void 0 !== b.key && (c = '' + b.key);
-      if (a.type && a.type.defaultProps) var g = a.type.defaultProps;
-      for (f in b)
+      if (a.type && a.type.defaultProps) {
+        var g = a.type.defaultProps;
+      }
+      for (f in b) {
         J.call(b, f) &&
           !L.hasOwnProperty(f) &&
           (d[f] = void 0 === b[f] && void 0 !== g ? g[f] : b[f]);
+      }
     }
     var f = arguments.length - 2;
-    if (1 === f) d.children = e;
-    else if (1 < f) {
+    if (1 === f) {
+      d.children = e;
+    } else if (1 < f) {
       g = Array(f);
-      for (let m2 = 0; m2 < f; m2++) g[m2] = arguments[m2 + 2];
+      for (let m2 = 0; m2 < f; m2++) {
+        g[m2] = arguments[m2 + 2];
+      }
       d.children = g;
     }
     return { $$typeof: l, type: a.type, key: c, ref: k, props: d, _owner: h };
@@ -493,7 +541,9 @@ function requireReact_production_min() {
 const react = react$1.exports;
 let hasRequiredReact;
 function requireReact() {
-  if (hasRequiredReact) return react$1.exports;
+  if (hasRequiredReact) {
+    return react$1.exports;
+  }
   hasRequiredReact = 1;
   ('use strict');
   if (true) {
@@ -505,8 +555,9 @@ function requireReact() {
 }
 let hasRequiredReactJsxRuntime_production_min;
 function requireReactJsxRuntime_production_min() {
-  if (hasRequiredReactJsxRuntime_production_min)
+  if (hasRequiredReactJsxRuntime_production_min) {
     return reactJsxRuntime_production_min;
+  }
   hasRequiredReactJsxRuntime_production_min = 1;
   ('use strict');
   const f = requireReact(),
@@ -523,9 +574,14 @@ function requireReactJsxRuntime_production_min() {
     void 0 !== g && (e = '' + g);
     void 0 !== a.key && (e = '' + a.key);
     void 0 !== a.ref && (h = a.ref);
-    for (b in a) m2.call(a, b) && !p.hasOwnProperty(b) && (d[b] = a[b]);
-    if (c && c.defaultProps)
-      for (b in ((a = c.defaultProps), a)) void 0 === d[b] && (d[b] = a[b]);
+    for (b in a) {
+      m2.call(a, b) && !p.hasOwnProperty(b) && (d[b] = a[b]);
+    }
+    if (c && c.defaultProps) {
+      for (b in ((a = c.defaultProps), a)) {
+        void 0 === d[b] && (d[b] = a[b]);
+      }
+    }
     return {
       $$typeof: k,
       type: c,
@@ -543,7 +599,9 @@ function requireReactJsxRuntime_production_min() {
 const jsxRuntime$1 = jsxRuntime$2.exports;
 let hasRequiredJsxRuntime;
 function requireJsxRuntime() {
-  if (hasRequiredJsxRuntime) return jsxRuntime$2.exports;
+  if (hasRequiredJsxRuntime) {
+    return jsxRuntime$2.exports;
+  }
   hasRequiredJsxRuntime = 1;
   ('use strict');
   if (true) {
@@ -564,7 +622,9 @@ const scheduler$1 = { exports: {} };
 const scheduler_production_min = {};
 let hasRequiredScheduler_production_min;
 function requireScheduler_production_min() {
-  if (hasRequiredScheduler_production_min) return scheduler_production_min;
+  if (hasRequiredScheduler_production_min) {
+    return scheduler_production_min;
+  }
   hasRequiredScheduler_production_min = 1;
   (function (exports) {
     'use strict';
@@ -574,15 +634,20 @@ function requireScheduler_production_min() {
       a: for (; 0 < c; ) {
         const d = (c - 1) >>> 1,
           e = a[d];
-        if (0 < g(e, b)) ((a[d] = b), (a[c] = e), (c = d));
-        else break a;
+        if (0 < g(e, b)) {
+          ((a[d] = b), (a[c] = e), (c = d));
+        } else {
+          break a;
+        }
       }
     }
     function h(a) {
       return 0 === a.length ? null : a[0];
     }
     function k(a) {
-      if (0 === a.length) return null;
+      if (0 === a.length) {
+        return null;
+      }
       const b = a[0],
         c = a.pop();
       if (c !== b) {
@@ -592,12 +657,15 @@ function requireScheduler_production_min() {
             C = a[m2],
             n = m2 + 1,
             x = a[n];
-          if (0 > g(C, c))
+          if (0 > g(C, c)) {
             n < e && 0 > g(x, C)
               ? ((a[d] = x), (a[n] = c), (d = n))
               : ((a[d] = C), (a[m2] = c), (d = m2));
-          else if (n < e && 0 > g(x, c)) ((a[d] = x), (a[n] = c), (d = n));
-          else break a;
+          } else if (n < e && 0 > g(x, c)) {
+            ((a[d] = x), (a[n] = c), (d = n));
+          } else {
+            break a;
+          }
         }
       }
       return b;
@@ -638,22 +706,27 @@ function requireScheduler_production_min() {
       navigator.scheduling.isInputPending.bind(navigator.scheduling);
     function G(a) {
       for (let b = h(t); null !== b; ) {
-        if (null === b.callback) k(t);
-        else if (b.startTime <= a)
+        if (null === b.callback) {
+          k(t);
+        } else if (b.startTime <= a) {
           (k(t), (b.sortIndex = b.expirationTime), f(r, b));
-        else break;
+        } else {
+          break;
+        }
         b = h(t);
       }
     }
     function H(a) {
       B = false;
       G(a);
-      if (!A)
-        if (null !== h(r)) ((A = true), I(J));
-        else {
+      if (!A) {
+        if (null !== h(r)) {
+          ((A = true), I(J));
+        } else {
           const b = h(t);
           null !== b && K(H, b.startTime - a);
         }
+      }
     }
     function J(a, b) {
       A = false;
@@ -675,11 +748,14 @@ function requireScheduler_production_min() {
             b = exports.unstable_now();
             'function' === typeof e ? (v.callback = e) : v === h(r) && k(r);
             G(b);
-          } else k(r);
+          } else {
+            k(r);
+          }
           v = h(r);
         }
-        if (null !== v) var w = true;
-        else {
+        if (null !== v) {
+          var w = true;
+        } else {
           const m2 = h(t);
           null !== m2 && K(H, m2.startTime - b);
           w = false;
@@ -707,24 +783,27 @@ function requireScheduler_production_min() {
         } finally {
           b ? S() : ((N = false), (O = null));
         }
-      } else N = false;
+      } else {
+        N = false;
+      }
     }
     let S;
-    if ('function' === typeof F)
+    if ('function' === typeof F) {
       S = function () {
         F(R);
       };
-    else if ('undefined' !== typeof MessageChannel) {
+    } else if ('undefined' !== typeof MessageChannel) {
       const T = new MessageChannel(),
         U = T.port2;
       T.port1.onmessage = R;
       S = function () {
         U.postMessage(null);
       };
-    } else
+    } else {
       S = function () {
         D(R, 0);
       };
+    }
     function I(a) {
       O = a;
       N || ((N = true), S());
@@ -856,7 +935,9 @@ function requireScheduler_production_min() {
 const scheduler = scheduler$1.exports;
 let hasRequiredScheduler;
 function requireScheduler() {
-  if (hasRequiredScheduler) return scheduler$1.exports;
+  if (hasRequiredScheduler) {
+    return scheduler$1.exports;
+  }
   hasRequiredScheduler = 1;
   ('use strict');
   if (true) {
@@ -868,7 +949,9 @@ function requireScheduler() {
 }
 let hasRequiredReactDom_production_min;
 function requireReactDom_production_min() {
-  if (hasRequiredReactDom_production_min) return reactDom_production_min;
+  if (hasRequiredReactDom_production_min) {
+    return reactDom_production_min;
+  }
   hasRequiredReactDom_production_min = 1;
   ('use strict');
   const aa = requireReact(),
@@ -879,8 +962,9 @@ function requireReactDom_production_min() {
         c = 1;
       c < arguments.length;
       c++
-    )
+    ) {
       b += '&args[]=' + encodeURIComponent(arguments[c]);
+    }
     return (
       'Minified React error #' +
       a +
@@ -897,7 +981,9 @@ function requireReactDom_production_min() {
   }
   function ha(a, b) {
     ea[a] = b;
-    for (a = 0; a < b.length; a++) da.add(b[a]);
+    for (a = 0; a < b.length; a++) {
+      da.add(b[a]);
+    }
   }
   const ia = !(
       'undefined' === typeof window ||
@@ -910,21 +996,33 @@ function requireReactDom_production_min() {
     la = {},
     ma = {};
   function oa(a) {
-    if (ja.call(ma, a)) return true;
-    if (ja.call(la, a)) return false;
-    if (ka.test(a)) return (ma[a] = true);
+    if (ja.call(ma, a)) {
+      return true;
+    }
+    if (ja.call(la, a)) {
+      return false;
+    }
+    if (ka.test(a)) {
+      return (ma[a] = true);
+    }
     la[a] = true;
     return false;
   }
   function pa(a, b, c, d) {
-    if (null !== c && 0 === c.type) return false;
+    if (null !== c && 0 === c.type) {
+      return false;
+    }
     switch (typeof b) {
       case 'function':
       case 'symbol':
         return true;
       case 'boolean':
-        if (d) return false;
-        if (null !== c) return !c.acceptsBooleans;
+        if (d) {
+          return false;
+        }
+        if (null !== c) {
+          return !c.acceptsBooleans;
+        }
         a = a.toLowerCase().slice(0, 5);
         return 'data-' !== a && 'aria-' !== a;
       default:
@@ -932,9 +1030,13 @@ function requireReactDom_production_min() {
     }
   }
   function qa(a, b, c, d) {
-    if (null === b || 'undefined' === typeof b || pa(a, b, c, d)) return true;
-    if (d) return false;
-    if (null !== c)
+    if (null === b || 'undefined' === typeof b || pa(a, b, c, d)) {
+      return true;
+    }
+    if (d) {
+      return false;
+    }
+    if (null !== c) {
       switch (c.type) {
         case 3:
           return !b;
@@ -945,6 +1047,7 @@ function requireReactDom_production_min() {
         case 6:
           return isNaN(b) || 1 > b;
       }
+    }
     return false;
   }
   function v(a, b, c, d, e, f, g) {
@@ -1060,7 +1163,7 @@ function requireReactDom_production_min() {
           !(2 < b.length) ||
           ('o' !== b[0] && 'O' !== b[0]) ||
           ('n' !== b[1] && 'N' !== b[1])
-    )
+    ) {
       (qa(b, c, e, d) && (c = null),
         d || null === e
           ? oa(b) &&
@@ -1074,6 +1177,7 @@ function requireReactDom_production_min() {
                 : ((e = e.type),
                   (c = 3 === e || (4 === e && true === c) ? '' : '' + c),
                   d ? a.setAttributeNS(d, b, c) : a.setAttribute(b, c))));
+    }
   }
   const ua = aa.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED,
     va = Symbol.for('react.element'),
@@ -1096,30 +1200,35 @@ function requireReactDom_production_min() {
   Symbol.for('react.tracing_marker');
   const Ja = Symbol.iterator;
   function Ka(a) {
-    if (null === a || 'object' !== typeof a) return null;
+    if (null === a || 'object' !== typeof a) {
+      return null;
+    }
     a = (Ja && a[Ja]) || a['@@iterator'];
     return 'function' === typeof a ? a : null;
   }
   let A = Object.assign,
     La;
   function Ma(a) {
-    if (void 0 === La)
+    if (void 0 === La) {
       try {
         throw Error();
       } catch (c) {
         const b = c.stack.trim().match(/\n( *(at )?)/);
         La = (b && b[1]) || '';
       }
+    }
     return '\n' + La + a;
   }
   let Na = false;
   function Oa(a, b) {
-    if (!a || Na) return '';
+    if (!a || Na) {
+      return '';
+    }
     Na = true;
     const c = Error.prepareStackTrace;
     Error.prepareStackTrace = void 0;
     try {
-      if (b)
+      if (b) {
         if (
           ((b = function () {
             throw Error();
@@ -1145,7 +1254,7 @@ function requireReactDom_production_min() {
           }
           a.call(b.prototype);
         }
-      else {
+      } else {
         try {
           throw Error();
         } catch (l) {
@@ -1162,12 +1271,13 @@ function requireReactDom_production_min() {
             h = f.length - 1;
           1 <= g && 0 <= h && e[g] !== f[h];
 
-        )
+        ) {
           h--;
-        for (; 1 <= g && 0 <= h; g--, h--)
+        }
+        for (; 1 <= g && 0 <= h; g--, h--) {
           if (e[g] !== f[h]) {
             if (1 !== g || 1 !== h) {
-              do
+              do {
                 if ((g--, h--, 0 > h || e[g] !== f[h])) {
                   let k = '\n' + e[g].replace(' at new ', ' at ');
                   a.displayName &&
@@ -1175,10 +1285,11 @@ function requireReactDom_production_min() {
                     (k = k.replace('<anonymous>', a.displayName));
                   return k;
                 }
-              while (1 <= g && 0 <= h);
+              } while (1 <= g && 0 <= h);
             }
             break;
           }
+        }
       }
     } finally {
       ((Na = false), (Error.prepareStackTrace = c));
@@ -1208,9 +1319,15 @@ function requireReactDom_production_min() {
     }
   }
   function Qa(a) {
-    if (null == a) return null;
-    if ('function' === typeof a) return a.displayName || a.name || null;
-    if ('string' === typeof a) return a;
+    if (null == a) {
+      return null;
+    }
+    if ('function' === typeof a) {
+      return a.displayName || a.name || null;
+    }
+    if ('string' === typeof a) {
+      return a;
+    }
     switch (a) {
       case ya:
         return 'Fragment';
@@ -1225,7 +1342,7 @@ function requireReactDom_production_min() {
       case Fa:
         return 'SuspenseList';
     }
-    if ('object' === typeof a)
+    if ('object' === typeof a) {
       switch (a.$$typeof) {
         case Ca:
           return (a.displayName || 'Context') + '.Consumer';
@@ -1250,6 +1367,7 @@ function requireReactDom_production_min() {
             return Qa(a(b));
           } catch (c) {}
       }
+    }
     return null;
   }
   function Ra(a) {
@@ -1301,8 +1419,12 @@ function requireReactDom_production_min() {
       case 2:
       case 14:
       case 15:
-        if ('function' === typeof b) return b.displayName || b.name || null;
-        if ('string' === typeof b) return b;
+        if ('function' === typeof b) {
+          return b.displayName || b.name || null;
+        }
+        if ('string' === typeof b) {
+          return b;
+        }
     }
     return null;
   }
@@ -1368,9 +1490,13 @@ function requireReactDom_production_min() {
     a._valueTracker || (a._valueTracker = Ua(a));
   }
   function Wa(a) {
-    if (!a) return false;
+    if (!a) {
+      return false;
+    }
     const b = a._valueTracker;
-    if (!b) return true;
+    if (!b) {
+      return true;
+    }
     const c = b.getValue();
     let d = '';
     a && (d = Ta(a) ? (a.checked ? 'true' : 'false') : a.value);
@@ -1379,7 +1505,9 @@ function requireReactDom_production_min() {
   }
   function Xa(a) {
     a = a || ('undefined' !== typeof document ? document : void 0);
-    if ('undefined' === typeof a) return null;
+    if ('undefined' === typeof a) {
+      return null;
+    }
     try {
       return a.activeElement || a.body;
     } catch (b) {
@@ -1416,11 +1544,15 @@ function requireReactDom_production_min() {
     ab(a, b);
     const c = Sa(b.value),
       d = b.type;
-    if (null != c)
+    if (null != c) {
       if ('number' === d) {
-        if ((0 === c && '' === a.value) || a.value != c) a.value = '' + c;
-      } else a.value !== '' + c && (a.value = '' + c);
-    else if ('submit' === d || 'reset' === d) {
+        if ((0 === c && '' === a.value) || a.value != c) {
+          a.value = '' + c;
+        }
+      } else {
+        a.value !== '' + c && (a.value = '' + c);
+      }
+    } else if ('submit' === d || 'reset' === d) {
       a.removeAttribute('value');
       return;
     }
@@ -1439,8 +1571,9 @@ function requireReactDom_production_min() {
           ('submit' !== d && 'reset' !== d) ||
           (void 0 !== b.value && null !== b.value)
         )
-      )
+      ) {
         return;
+      }
       b = '' + a._wrapperState.initialValue;
       c || b === a.value || (a.value = b);
       a.defaultValue = b;
@@ -1451,21 +1584,25 @@ function requireReactDom_production_min() {
     '' !== c && (a.name = c);
   }
   function cb(a, b, c) {
-    if ('number' !== b || Xa(a.ownerDocument) !== a)
+    if ('number' !== b || Xa(a.ownerDocument) !== a) {
       null == c
         ? (a.defaultValue = '' + a._wrapperState.initialValue)
         : a.defaultValue !== '' + c && (a.defaultValue = '' + c);
+    }
   }
   const eb = Array.isArray;
   function fb(a, b, c, d) {
     a = a.options;
     if (b) {
       b = {};
-      for (var e = 0; e < c.length; e++) b['$' + c[e]] = true;
-      for (c = 0; c < a.length; c++)
+      for (var e = 0; e < c.length; e++) {
+        b['$' + c[e]] = true;
+      }
+      for (c = 0; c < a.length; c++) {
         ((e = b.hasOwnProperty('$' + a[c].value)),
           a[c].selected !== e && (a[c].selected = e),
           e && d && (a[c].defaultSelected = true));
+      }
     } else {
       c = '' + Sa(c);
       b = null;
@@ -1481,7 +1618,9 @@ function requireReactDom_production_min() {
     }
   }
   function gb(a, b) {
-    if (null != b.dangerouslySetInnerHTML) throw Error(p(91));
+    if (null != b.dangerouslySetInnerHTML) {
+      throw Error(p(91));
+    }
     return A({}, b, {
       value: void 0,
       defaultValue: void 0,
@@ -1494,9 +1633,13 @@ function requireReactDom_production_min() {
       c = b.children;
       b = b.defaultValue;
       if (null != c) {
-        if (null != b) throw Error(p(92));
+        if (null != b) {
+          throw Error(p(92));
+        }
         if (eb(c)) {
-          if (1 < c.length) throw Error(p(93));
+          if (1 < c.length) {
+            throw Error(p(93));
+          }
           c = c[0];
         }
         b = c;
@@ -1549,13 +1692,17 @@ function requireReactDom_production_min() {
           }
         : a;
     })(function (a, b) {
-      if ('http://www.w3.org/2000/svg' !== a.namespaceURI || 'innerHTML' in a)
+      if ('http://www.w3.org/2000/svg' !== a.namespaceURI || 'innerHTML' in a) {
         a.innerHTML = b;
-      else {
+      } else {
         mb = mb || document.createElement('div');
         mb.innerHTML = '<svg>' + b.valueOf().toString() + '</svg>';
-        for (b = mb.firstChild; a.firstChild; ) a.removeChild(a.firstChild);
-        for (; b.firstChild; ) a.appendChild(b.firstChild);
+        for (b = mb.firstChild; a.firstChild; ) {
+          a.removeChild(a.firstChild);
+        }
+        for (; b.firstChild; ) {
+          a.appendChild(b.firstChild);
+        }
       }
     });
   function ob(a, b) {
@@ -1629,13 +1776,14 @@ function requireReactDom_production_min() {
   }
   function sb(a, b) {
     a = a.style;
-    for (let c in b)
+    for (let c in b) {
       if (b.hasOwnProperty(c)) {
         const d = 0 === c.indexOf('--'),
           e = rb(c, b[c], d);
         'float' === c && (c = 'cssFloat');
         d ? a.setProperty(c, e) : (a[c] = e);
       }
+    }
   }
   const tb = A(
     { menuitem: true },
@@ -1659,21 +1807,29 @@ function requireReactDom_production_min() {
   );
   function ub(a, b) {
     if (b) {
-      if (tb[a] && (null != b.children || null != b.dangerouslySetInnerHTML))
+      if (tb[a] && (null != b.children || null != b.dangerouslySetInnerHTML)) {
         throw Error(p(137, a));
+      }
       if (null != b.dangerouslySetInnerHTML) {
-        if (null != b.children) throw Error(p(60));
+        if (null != b.children) {
+          throw Error(p(60));
+        }
         if (
           'object' !== typeof b.dangerouslySetInnerHTML ||
           !('__html' in b.dangerouslySetInnerHTML)
-        )
+        ) {
           throw Error(p(61));
+        }
       }
-      if (null != b.style && 'object' !== typeof b.style) throw Error(p(62));
+      if (null != b.style && 'object' !== typeof b.style) {
+        throw Error(p(62));
+      }
     }
   }
   function vb(a, b) {
-    if (-1 === a.indexOf('-')) return 'string' === typeof b.is;
+    if (-1 === a.indexOf('-')) {
+      return 'string' === typeof b.is;
+    }
     switch (a) {
       case 'annotation-xml':
       case 'color-profile':
@@ -1699,7 +1855,9 @@ function requireReactDom_production_min() {
     Ab = null;
   function Bb(a) {
     if ((a = Cb(a))) {
-      if ('function' !== typeof yb) throw Error(p(280));
+      if ('function' !== typeof yb) {
+        throw Error(p(280));
+      }
       let b = a.stateNode;
       b && ((b = Db(b)), yb(a.stateNode, a.type, b));
     }
@@ -1713,7 +1871,11 @@ function requireReactDom_production_min() {
         b = Ab;
       Ab = zb = null;
       Bb(a);
-      if (b) for (a = 0; a < b.length; a++) Bb(b[a]);
+      if (b) {
+        for (a = 0; a < b.length; a++) {
+          Bb(b[a]);
+        }
+      }
     }
   }
   function Gb(a, b) {
@@ -1722,19 +1884,27 @@ function requireReactDom_production_min() {
   function Hb() {}
   let Ib = false;
   function Jb(a, b, c) {
-    if (Ib) return a(b, c);
+    if (Ib) {
+      return a(b, c);
+    }
     Ib = true;
     try {
       return Gb(a, b, c);
     } finally {
-      if (((Ib = false), null !== zb || null !== Ab)) (Hb(), Fb());
+      if (((Ib = false), null !== zb || null !== Ab)) {
+        (Hb(), Fb());
+      }
     }
   }
   function Kb(a, b) {
     let c = a.stateNode;
-    if (null === c) return null;
+    if (null === c) {
+      return null;
+    }
     let d = Db(c);
-    if (null === d) return null;
+    if (null === d) {
+      return null;
+    }
     c = d[b];
     a: switch (b) {
       case 'onClick':
@@ -1761,12 +1931,16 @@ function requireReactDom_production_min() {
       default:
         a = false;
     }
-    if (a) return null;
-    if (c && 'function' !== typeof c) throw Error(p(231, b, typeof c));
+    if (a) {
+      return null;
+    }
+    if (c && 'function' !== typeof c) {
+      throw Error(p(231, b, typeof c));
+    }
     return c;
   }
   let Lb = false;
-  if (ia)
+  if (ia) {
     try {
       const Mb = {};
       Object.defineProperty(Mb, 'passive', {
@@ -1779,6 +1953,7 @@ function requireReactDom_production_min() {
     } catch (a) {
       Lb = false;
     }
+  }
   function Nb(a, b, c, d, e, f, g, h, k) {
     const l = Array.prototype.slice.call(arguments, 3);
     try {
@@ -1809,18 +1984,24 @@ function requireReactDom_production_min() {
         var l = Pb;
         Ob = false;
         Pb = null;
-      } else throw Error(p(198));
+      } else {
+        throw Error(p(198));
+      }
       Qb || ((Qb = true), (Rb = l));
     }
   }
   function Vb(a) {
     let b = a,
       c = a;
-    if (a.alternate) for (; b.return; ) b = b.return;
-    else {
+    if (a.alternate) {
+      for (; b.return; ) {
+        b = b.return;
+      }
+    } else {
       a = b;
-      do ((b = a), 0 !== (b.flags & 4098) && (c = b.return), (a = b.return));
-      while (a);
+      do {
+        ((b = a), 0 !== (b.flags & 4098) && (c = b.return), (a = b.return));
+      } while (a);
     }
     return 3 === b.tag ? c : null;
   }
@@ -1828,23 +2009,31 @@ function requireReactDom_production_min() {
     if (13 === a.tag) {
       let b = a.memoizedState;
       null === b && ((a = a.alternate), null !== a && (b = a.memoizedState));
-      if (null !== b) return b.dehydrated;
+      if (null !== b) {
+        return b.dehydrated;
+      }
     }
     return null;
   }
   function Xb(a) {
-    if (Vb(a) !== a) throw Error(p(188));
+    if (Vb(a) !== a) {
+      throw Error(p(188));
+    }
   }
   function Yb(a) {
     let b = a.alternate;
     if (!b) {
       b = Vb(a);
-      if (null === b) throw Error(p(188));
+      if (null === b) {
+        throw Error(p(188));
+      }
       return b !== a ? null : a;
     }
     for (var c = a, d = b; ; ) {
       const e = c.return;
-      if (null === e) break;
+      if (null === e) {
+        break;
+      }
       let f = e.alternate;
       if (null === f) {
         d = e.return;
@@ -1856,14 +2045,19 @@ function requireReactDom_production_min() {
       }
       if (e.child === f.child) {
         for (f = e.child; f; ) {
-          if (f === c) return (Xb(e), a);
-          if (f === d) return (Xb(e), b);
+          if (f === c) {
+            return (Xb(e), a);
+          }
+          if (f === d) {
+            return (Xb(e), b);
+          }
           f = f.sibling;
         }
         throw Error(p(188));
       }
-      if (c.return !== d.return) ((c = e), (d = f));
-      else {
+      if (c.return !== d.return) {
+        ((c = e), (d = f));
+      } else {
         for (var g = false, h = e.child; h; ) {
           if (h === c) {
             g = true;
@@ -1895,12 +2089,18 @@ function requireReactDom_production_min() {
             }
             h = h.sibling;
           }
-          if (!g) throw Error(p(189));
+          if (!g) {
+            throw Error(p(189));
+          }
         }
       }
-      if (c.alternate !== d) throw Error(p(190));
+      if (c.alternate !== d) {
+        throw Error(p(190));
+      }
     }
-    if (3 !== c.tag) throw Error(p(188));
+    if (3 !== c.tag) {
+      throw Error(p(188));
+    }
     return c.stateNode.current === c ? a : b;
   }
   function Zb(a) {
@@ -1908,10 +2108,14 @@ function requireReactDom_production_min() {
     return null !== a ? $b(a) : null;
   }
   function $b(a) {
-    if (5 === a.tag || 6 === a.tag) return a;
+    if (5 === a.tag || 6 === a.tag) {
+      return a;
+    }
     for (a = a.child; null !== a; ) {
       const b = $b(a);
-      if (null !== b) return b;
+      if (null !== b) {
+        return b;
+      }
       a = a.sibling;
     }
     return null;
@@ -1930,10 +2134,11 @@ function requireReactDom_production_min() {
     kc = null,
     lc = null;
   function mc(a) {
-    if (lc && 'function' === typeof lc.onCommitFiberRoot)
+    if (lc && 'function' === typeof lc.onCommitFiberRoot) {
       try {
         lc.onCommitFiberRoot(kc, a, void 0, 128 === (a.current.flags & 128));
       } catch (b) {}
+    }
   }
   const oc = Math.clz32 ? Math.clz32 : nc,
     pc = Math.log,
@@ -1995,7 +2200,9 @@ function requireReactDom_production_min() {
   }
   function uc(a, b) {
     let c = a.pendingLanes;
-    if (0 === c) return 0;
+    if (0 === c) {
+      return 0;
+    }
     let d = 0,
       e = a.suspendedLanes,
       f = a.pingedLanes,
@@ -2003,20 +2210,27 @@ function requireReactDom_production_min() {
     if (0 !== g) {
       const h = g & ~e;
       0 !== h ? (d = tc(h)) : ((f &= g), 0 !== f && (d = tc(f)));
-    } else ((g = c & ~e), 0 !== g ? (d = tc(g)) : 0 !== f && (d = tc(f)));
-    if (0 === d) return 0;
+    } else {
+      ((g = c & ~e), 0 !== g ? (d = tc(g)) : 0 !== f && (d = tc(f)));
+    }
+    if (0 === d) {
+      return 0;
+    }
     if (
       0 !== b &&
       b !== d &&
       0 === (b & e) &&
       ((e = d & -d), (f = b & -b), e >= f || (16 === e && 0 !== (f & 4194240)))
-    )
+    ) {
       return b;
+    }
     0 !== (d & 4) && (d |= c & 16);
     b = a.entangledLanes;
-    if (0 !== b)
-      for (a = a.entanglements, b &= d; 0 < b; )
+    if (0 !== b) {
+      for (a = a.entanglements, b &= d; 0 < b; ) {
         ((c = 31 - oc(b)), (e = 1 << c), (d |= a[c]), (b &= ~e));
+      }
+    }
     return d;
   }
   function vc(a, b) {
@@ -2073,8 +2287,12 @@ function requireReactDom_production_min() {
         h = 1 << g,
         k = e[g];
       if (-1 === k) {
-        if (0 === (h & c) || 0 !== (h & d)) e[g] = vc(h, b);
-      } else k <= b && (a.expiredLanes |= h);
+        if (0 === (h & c) || 0 !== (h & d)) {
+          e[g] = vc(h, b);
+        }
+      } else {
+        k <= b && (a.expiredLanes |= h);
+      }
       f &= ~h;
     }
   }
@@ -2089,7 +2307,9 @@ function requireReactDom_production_min() {
     return a;
   }
   function zc(a) {
-    for (var b = [], c = 0; 31 > c; c++) b.push(a);
+    for (var b = [], c = 0; 31 > c; c++) {
+      b.push(a);
+    }
     return b;
   }
   function Ac(a, b, c) {
@@ -2173,7 +2393,7 @@ function requireReactDom_production_min() {
     }
   }
   function Tc(a, b, c, d, e, f) {
-    if (null === a || a.nativeEvent !== f)
+    if (null === a || a.nativeEvent !== f) {
       return (
         (a = {
           blockedOn: b,
@@ -2185,6 +2405,7 @@ function requireReactDom_production_min() {
         null !== b && ((b = Cb(b)), null !== b && Fc(b)),
         a
       );
+    }
     a.eventSystemFlags |= d;
     b = a.targetContainers;
     null !== e && -1 === b.indexOf(e) && b.push(e);
@@ -2233,7 +2454,9 @@ function requireReactDom_production_min() {
     a.blockedOn = null;
   }
   function Xc(a) {
-    if (null !== a.blockedOn) return false;
+    if (null !== a.blockedOn) {
+      return false;
+    }
     for (let b = a.targetContainers; 0 < b.length; ) {
       let c = Yc(a.domEventName, a.eventSystemFlags, b[0], a.nativeEvent);
       if (null === c) {
@@ -2242,8 +2465,9 @@ function requireReactDom_production_min() {
         wb = d;
         c.target.dispatchEvent(d);
         wb = null;
-      } else
+      } else {
         return ((b = Cb(c)), null !== b && Fc(b), (a.blockedOn = c), false);
+      }
       b.shift();
     }
     return true;
@@ -2282,10 +2506,12 @@ function requireReactDom_production_min() {
     null !== Nc && ad(Nc, a);
     Oc.forEach(b);
     Pc.forEach(b);
-    for (c = 0; c < Qc.length; c++)
+    for (c = 0; c < Qc.length; c++) {
       ((d = Qc[c]), d.blockedOn === a && (d.blockedOn = null));
-    for (; 0 < Qc.length && ((c = Qc[0]), null === c.blockedOn); )
+    }
+    for (; 0 < Qc.length && ((c = Qc[0]), null === c.blockedOn); ) {
       (Vc(c), null === c.blockedOn && Qc.shift());
+    }
   }
   let cd = ua.ReactCurrentBatchConfig,
     dd = true;
@@ -2312,19 +2538,25 @@ function requireReactDom_production_min() {
   function fd(a, b, c, d) {
     if (dd) {
       let e = Yc(a, b, c, d);
-      if (null === e) (hd(a, b, d, id2, c), Sc(a, d));
-      else if (Uc(e, a, b, c, d)) d.stopPropagation();
-      else if ((Sc(a, d), b & 4 && -1 < Rc.indexOf(a))) {
+      if (null === e) {
+        (hd(a, b, d, id2, c), Sc(a, d));
+      } else if (Uc(e, a, b, c, d)) {
+        d.stopPropagation();
+      } else if ((Sc(a, d), b & 4 && -1 < Rc.indexOf(a))) {
         for (; null !== e; ) {
           let f = Cb(e);
           null !== f && Ec(f);
           f = Yc(a, b, c, d);
           null === f && hd(a, b, d, id2, c);
-          if (f === e) break;
+          if (f === e) {
+            break;
+          }
           e = f;
         }
         null !== e && d.stopPropagation();
-      } else hd(a, b, d, null, c);
+      } else {
+        hd(a, b, d, null, c);
+      }
     }
   }
   var id2 = null;
@@ -2332,17 +2564,24 @@ function requireReactDom_production_min() {
     id2 = null;
     a = xb(d);
     a = Wc(a);
-    if (null !== a)
-      if (((b = Vb(a)), null === b)) a = null;
-      else if (((c = b.tag), 13 === c)) {
+    if (null !== a) {
+      if (((b = Vb(a)), null === b)) {
+        a = null;
+      } else if (((c = b.tag), 13 === c)) {
         a = Wb(b);
-        if (null !== a) return a;
+        if (null !== a) {
+          return a;
+        }
         a = null;
       } else if (3 === c) {
-        if (b.stateNode.current.memoizedState.isDehydrated)
+        if (b.stateNode.current.memoizedState.isDehydrated) {
           return 3 === b.tag ? b.stateNode.containerInfo : null;
+        }
         a = null;
-      } else b !== a && (a = null);
+      } else {
+        b !== a && (a = null);
+      }
+    }
     id2 = a;
     return null;
   }
@@ -2442,16 +2681,18 @@ function requireReactDom_production_min() {
     ld = null,
     md = null;
   function nd() {
-    if (md) return md;
+    if (md) {
+      return md;
+    }
     let a,
       b = ld,
       c = b.length,
       d,
       e = 'value' in kd ? kd.value : kd.textContent,
       f = e.length;
-    for (a = 0; a < c && b[a] === e[a]; a++);
+    for (a = 0; a < c && b[a] === e[a]; a++) {}
     const g = c - a;
-    for (d = 1; d <= g && b[c - d] === e[f - d]; d++);
+    for (d = 1; d <= g && b[c - d] === e[f - d]; d++) {}
     return (md = e.slice(a, 1 < d ? 1 - d : void 0));
   }
   function od(a) {
@@ -2476,8 +2717,9 @@ function requireReactDom_production_min() {
       this.nativeEvent = f;
       this.target = g;
       this.currentTarget = null;
-      for (const c in a)
+      for (const c in a) {
         a.hasOwnProperty(c) && ((b2 = a[c]), (this[c] = b2 ? b2(f) : f[c]));
+      }
       this.isDefaultPrevented = (
         null != f.defaultPrevented
           ? f.defaultPrevented
@@ -2549,7 +2791,9 @@ function requireReactDom_production_min() {
           : a.relatedTarget;
       },
       movementX: function (a) {
-        if ('movementX' in a) return a.movementX;
+        if ('movementX' in a) {
+          return a.movementX;
+        }
         a !== yd &&
           (yd && 'mousemove' === a.type
             ? ((wd = a.screenX - yd.screenX), (xd = a.screenY - yd.screenY))
@@ -2649,7 +2893,9 @@ function requireReactDom_production_min() {
       key: function (a) {
         if (a.key) {
           const b = Md[a.key] || a.key;
-          if ('Unidentified' !== b) return b;
+          if ('Unidentified' !== b) {
+            return b;
+          }
         }
         return 'keypress' === a.type
           ? ((a = od(a)), 13 === a ? 'Enter' : String.fromCharCode(a))
@@ -2760,7 +3006,9 @@ function requireReactDom_production_min() {
       case 'compositionend':
         return he(b);
       case 'keypress':
-        if (32 !== b.which) return null;
+        if (32 !== b.which) {
+          return null;
+        }
         fe = true;
         return ee;
       case 'textInput':
@@ -2770,17 +3018,22 @@ function requireReactDom_production_min() {
     }
   }
   function ke(a, b) {
-    if (ie)
+    if (ie) {
       return 'compositionend' === a || (!ae && ge(a, b))
         ? ((a = nd()), (md = ld = kd = null), (ie = false), a)
         : null;
+    }
     switch (a) {
       case 'paste':
         return null;
       case 'keypress':
         if (!(b.ctrlKey || b.altKey || b.metaKey) || (b.ctrlKey && b.altKey)) {
-          if (b.char && 1 < b.char.length) return b.char;
-          if (b.which) return String.fromCharCode(b.which);
+          if (b.char && 1 < b.char.length) {
+            return b.char;
+          }
+          if (b.which) {
+            return String.fromCharCode(b.which);
+          }
         }
         return null;
       case 'compositionend':
@@ -2824,10 +3077,14 @@ function requireReactDom_production_min() {
   }
   function te(a) {
     const b = ue(a);
-    if (Wa(b)) return a;
+    if (Wa(b)) {
+      return a;
+    }
   }
   function ve(a, b) {
-    if ('change' === a) return b;
+    if ('change' === a) {
+      return b;
+    }
   }
   let we = false;
   if (ia) {
@@ -2840,7 +3097,9 @@ function requireReactDom_production_min() {
         ye = 'function' === typeof ze.oninput;
       }
       xe = ye;
-    } else xe = false;
+    } else {
+      xe = false;
+    }
     we = xe && (!document.documentMode || 9 < document.documentMode);
   }
   function Ae() {
@@ -2859,39 +3118,53 @@ function requireReactDom_production_min() {
       : 'focusout' === a && Ae();
   }
   function De(a) {
-    if ('selectionchange' === a || 'keyup' === a || 'keydown' === a)
+    if ('selectionchange' === a || 'keyup' === a || 'keydown' === a) {
       return te(qe);
+    }
   }
   function Ee(a, b) {
-    if ('click' === a) return te(b);
+    if ('click' === a) {
+      return te(b);
+    }
   }
   function Fe(a, b) {
-    if ('input' === a || 'change' === a) return te(b);
+    if ('input' === a || 'change' === a) {
+      return te(b);
+    }
   }
   function Ge(a, b) {
     return (a === b && (0 !== a || 1 / a === 1 / b)) || (a !== a && b !== b);
   }
   const He = 'function' === typeof Object.is ? Object.is : Ge;
   function Ie(a, b) {
-    if (He(a, b)) return true;
+    if (He(a, b)) {
+      return true;
+    }
     if (
       'object' !== typeof a ||
       null === a ||
       'object' !== typeof b ||
       null === b
-    )
+    ) {
       return false;
+    }
     let c = Object.keys(a),
       d = Object.keys(b);
-    if (c.length !== d.length) return false;
+    if (c.length !== d.length) {
+      return false;
+    }
     for (d = 0; d < c.length; d++) {
       const e = c[d];
-      if (!ja.call(b, e) || !He(a[e], b[e])) return false;
+      if (!ja.call(b, e) || !He(a[e], b[e])) {
+        return false;
+      }
     }
     return true;
   }
   function Je(a) {
-    for (; a && a.firstChild; ) a = a.firstChild;
+    for (; a && a.firstChild; ) {
+      a = a.firstChild;
+    }
     return a;
   }
   function Ke(a, b) {
@@ -2900,7 +3173,9 @@ function requireReactDom_production_min() {
     for (var d; c; ) {
       if (3 === c.nodeType) {
         d = a + c.textContent.length;
-        if (a <= b && d >= b) return { node: c, offset: b - a };
+        if (a <= b && d >= b) {
+          return { node: c, offset: b - a };
+        }
         a = d;
       }
       a: {
@@ -2938,8 +3213,11 @@ function requireReactDom_production_min() {
       } catch (d) {
         c = false;
       }
-      if (c) a = b.contentWindow;
-      else break;
+      if (c) {
+        a = b.contentWindow;
+      } else {
+        break;
+      }
       b = Xa(a.document);
     }
     return b;
@@ -2974,10 +3252,10 @@ function requireReactDom_production_min() {
           (a = d.end),
           void 0 === a && (a = b),
           'selectionStart' in c)
-        )
+        ) {
           ((c.selectionStart = b),
             (c.selectionEnd = Math.min(a, c.value.length)));
-        else if (
+        } else if (
           ((a = ((b = c.ownerDocument || document) && b.defaultView) || window),
           a.getSelection)
         ) {
@@ -3004,14 +3282,16 @@ function requireReactDom_production_min() {
         }
       }
       b = [];
-      for (a = c; (a = a.parentNode); )
+      for (a = c; (a = a.parentNode); ) {
         1 === a.nodeType &&
           b.push({ element: a, left: a.scrollLeft, top: a.scrollTop });
+      }
       'function' === typeof c.focus && c.focus();
-      for (c = 0; c < b.length; c++)
+      for (c = 0; c < b.length; c++) {
         ((a = b[c]),
           (a.element.scrollLeft = a.left),
           (a.element.scrollTop = a.top));
+      }
     }
   }
   let Pe = ia && 'documentMode' in document && 11 >= document.documentMode,
@@ -3069,11 +3349,19 @@ function requireReactDom_production_min() {
       delete We.animationstart.animation),
     'TransitionEvent' in window || delete We.transitionend.transition);
   function Ze(a) {
-    if (Xe[a]) return Xe[a];
-    if (!We[a]) return a;
+    if (Xe[a]) {
+      return Xe[a];
+    }
+    if (!We[a]) {
+      return a;
+    }
     let b = We[a],
       c;
-    for (c in b) if (b.hasOwnProperty(c) && c in Ye) return (Xe[a] = b[c]);
+    for (c in b) {
+      if (b.hasOwnProperty(c) && c in Ye) {
+        return (Xe[a] = b[c]);
+      }
+    }
     return a;
   }
   const $e = Ze('animationend'),
@@ -3152,29 +3440,36 @@ function requireReactDom_production_min() {
       d = d.listeners;
       a: {
         let f = void 0;
-        if (b)
+        if (b) {
           for (var g = d.length - 1; 0 <= g; g--) {
             var h = d[g],
               k = h.instance,
               l = h.currentTarget;
             h = h.listener;
-            if (k !== f && e.isPropagationStopped()) break a;
+            if (k !== f && e.isPropagationStopped()) {
+              break a;
+            }
             nf(e, h, l);
             f = k;
           }
-        else
+        } else {
           for (g = 0; g < d.length; g++) {
             h = d[g];
             k = h.instance;
             l = h.currentTarget;
             h = h.listener;
-            if (k !== f && e.isPropagationStopped()) break a;
+            if (k !== f && e.isPropagationStopped()) {
+              break a;
+            }
             nf(e, h, l);
             f = k;
           }
+        }
       }
     }
-    if (Qb) throw ((a = Rb), (Qb = false), (Rb = null), a);
+    if (Qb) {
+      throw ((a = Rb), (Qb = false), (Rb = null), a);
+    }
   }
   function D(a, b) {
     let c = b[of];
@@ -3225,28 +3520,36 @@ function requireReactDom_production_min() {
   }
   function hd(a, b, c, d, e) {
     let f = d;
-    if (0 === (b & 1) && 0 === (b & 2) && null !== d)
+    if (0 === (b & 1) && 0 === (b & 2) && null !== d) {
       a: for (;;) {
-        if (null === d) return;
+        if (null === d) {
+          return;
+        }
         let g = d.tag;
         if (3 === g || 4 === g) {
           let h = d.stateNode.containerInfo;
-          if (h === e || (8 === h.nodeType && h.parentNode === e)) break;
-          if (4 === g)
+          if (h === e || (8 === h.nodeType && h.parentNode === e)) {
+            break;
+          }
+          if (4 === g) {
             for (g = d.return; null !== g; ) {
               var k = g.tag;
               if (3 === k || 4 === k) {
                 if (
                   ((k = g.stateNode.containerInfo),
                   k === e || (8 === k.nodeType && k.parentNode === e))
-                )
+                ) {
                   return;
+                }
               }
               g = g.return;
             }
+          }
           for (; null !== h; ) {
             g = Wc(h);
-            if (null === g) return;
+            if (null === g) {
+              return;
+            }
             k = g.tag;
             if (5 === k || 6 === k) {
               d = f = g;
@@ -3257,6 +3560,7 @@ function requireReactDom_production_min() {
         }
         d = d.return;
       }
+    }
     Jb(function () {
       let d2 = f,
         e2 = xb(c),
@@ -3268,7 +3572,9 @@ function requireReactDom_production_min() {
             n = a;
           switch (a) {
             case 'keypress':
-              if (0 === od(c)) break a;
+              if (0 === od(c)) {
+                break a;
+              }
             case 'keydown':
             case 'keyup':
               k2 = Rd;
@@ -3286,7 +3592,9 @@ function requireReactDom_production_min() {
               k2 = Fd;
               break;
             case 'click':
-              if (2 === c.button) break a;
+              if (2 === c.button) {
+                break a;
+              }
             case 'auxclick':
             case 'dblclick':
             case 'mousedown':
@@ -3353,7 +3661,9 @@ function requireReactDom_production_min() {
               null !== F &&
               ((u = F),
               null !== x && ((F = Kb(w, x)), null != F && t.push(tf(w, F, u))));
-            if (J) break;
+            if (J) {
+              break;
+            }
             w = w.return;
           }
           0 < t.length &&
@@ -3370,8 +3680,9 @@ function requireReactDom_production_min() {
             c !== wb &&
             (n = c.relatedTarget || c.fromElement) &&
             (Wc(n) || n[uf])
-          )
+          ) {
             break a;
+          }
           if (k2 || h2) {
             h2 =
               e2.window === e2
@@ -3386,19 +3697,23 @@ function requireReactDom_production_min() {
                 (n = n ? Wc(n) : null),
                 null !== n &&
                   ((J = Vb(n)), n !== J || (5 !== n.tag && 6 !== n.tag)))
-              )
+              ) {
                 n = null;
-            } else ((k2 = null), (n = d2));
+              }
+            } else {
+              ((k2 = null), (n = d2));
+            }
             if (k2 !== n) {
               t = Bd;
               F = 'onMouseLeave';
               x = 'onMouseEnter';
               w = 'mouse';
-              if ('pointerout' === a || 'pointerover' === a)
+              if ('pointerout' === a || 'pointerover' === a) {
                 ((t = Td),
                   (F = 'onPointerLeave'),
                   (x = 'onPointerEnter'),
                   (w = 'pointer'));
+              }
               J = null == k2 ? h2 : ue(k2);
               u = null == n ? h2 : ue(n);
               h2 = new t(F, w + 'leave', k2, c, e2);
@@ -3411,24 +3726,36 @@ function requireReactDom_production_min() {
                 (t.relatedTarget = J),
                 (F = t));
               J = F;
-              if (k2 && n)
+              if (k2 && n) {
                 b: {
                   t = k2;
                   x = n;
                   w = 0;
-                  for (u = t; u; u = vf(u)) w++;
+                  for (u = t; u; u = vf(u)) {
+                    w++;
+                  }
                   u = 0;
-                  for (F = x; F; F = vf(F)) u++;
-                  for (; 0 < w - u; ) ((t = vf(t)), w--);
-                  for (; 0 < u - w; ) ((x = vf(x)), u--);
+                  for (F = x; F; F = vf(F)) {
+                    u++;
+                  }
+                  for (; 0 < w - u; ) {
+                    ((t = vf(t)), w--);
+                  }
+                  for (; 0 < u - w; ) {
+                    ((x = vf(x)), u--);
+                  }
                   for (; w--; ) {
-                    if (t === x || (null !== x && t === x.alternate)) break b;
+                    if (t === x || (null !== x && t === x.alternate)) {
+                      break b;
+                    }
                     t = vf(t);
                     x = vf(x);
                   }
                   t = null;
                 }
-              else t = null;
+              } else {
+                t = null;
+              }
               null !== k2 && wf(g2, h2, k2, t, false);
               null !== n && null !== J && wf(g2, J, n, t, true);
             }
@@ -3437,19 +3764,21 @@ function requireReactDom_production_min() {
         a: {
           h2 = d2 ? ue(d2) : window;
           k2 = h2.nodeName && h2.nodeName.toLowerCase();
-          if ('select' === k2 || ('input' === k2 && 'file' === h2.type))
+          if ('select' === k2 || ('input' === k2 && 'file' === h2.type)) {
             var na = ve;
-          else if (me(h2))
-            if (we) na = Fe;
-            else {
+          } else if (me(h2)) {
+            if (we) {
+              na = Fe;
+            } else {
               na = De;
               var xa = Ce;
             }
-          else
+          } else {
             (k2 = h2.nodeName) &&
               'input' === k2.toLowerCase() &&
               ('checkbox' === h2.type || 'radio' === h2.type) &&
               (na = Ee);
+          }
           if (na && (na = na(a, d2))) {
             ne(g2, na, c, e2);
             break a;
@@ -3464,8 +3793,9 @@ function requireReactDom_production_min() {
         xa = d2 ? ue(d2) : window;
         switch (a) {
           case 'focusin':
-            if (me(xa) || 'true' === xa.contentEditable)
+            if (me(xa) || 'true' === xa.contentEditable) {
               ((Qe = xa), (Re = d2), (Se = null));
+            }
             break;
           case 'focusout':
             Se = Re = Qe = null;
@@ -3480,13 +3810,15 @@ function requireReactDom_production_min() {
             Ue(g2, c, e2);
             break;
           case 'selectionchange':
-            if (Pe) break;
+            if (Pe) {
+              break;
+            }
           case 'keydown':
           case 'keyup':
             Ue(g2, c, e2);
         }
         let $a;
-        if (ae)
+        if (ae) {
           b: {
             switch (a) {
               case 'compositionstart':
@@ -3501,12 +3833,13 @@ function requireReactDom_production_min() {
             }
             ba = void 0;
           }
-        else
+        } else {
           ie
             ? ge(a, c) && (ba = 'onCompositionEnd')
             : 'keydown' === a &&
               229 === c.keyCode &&
               (ba = 'onCompositionStart');
+        }
         ba &&
           (de &&
             'ko' !== c.locale &&
@@ -3522,12 +3855,13 @@ function requireReactDom_production_min() {
             $a
               ? (ba.data = $a)
               : (($a = he(c)), null !== $a && (ba.data = $a))));
-        if (($a = ce ? je(a, c) : ke(a, c)))
+        if (($a = ce ? je(a, c) : ke(a, c))) {
           ((d2 = oe(d2, 'onBeforeInput')),
             0 < d2.length &&
               ((e2 = new Ld('onBeforeInput', 'beforeinput', null, c, e2)),
               g2.push({ event: e2, listeners: d2 }),
               (e2.data = $a)));
+        }
       }
       se(g2, b);
     });
@@ -3551,9 +3885,12 @@ function requireReactDom_production_min() {
     return d;
   }
   function vf(a) {
-    if (null === a) return null;
-    do a = a.return;
-    while (a && 5 !== a.tag);
+    if (null === a) {
+      return null;
+    }
+    do {
+      a = a.return;
+    } while (a && 5 !== a.tag);
     return a ? a : null;
   }
   function wf(a, b, c, d, e) {
@@ -3561,7 +3898,9 @@ function requireReactDom_production_min() {
       let h = c,
         k = h.alternate,
         l = h.stateNode;
-      if (null !== k && k === d) break;
+      if (null !== k && k === d) {
+        break;
+      }
       5 === h.tag &&
         null !== l &&
         ((h = l),
@@ -3581,7 +3920,9 @@ function requireReactDom_production_min() {
   }
   function Af(a, b, c) {
     b = zf(b);
-    if (zf(a) !== b && c) throw Error(p(425));
+    if (zf(a) !== b && c) {
+      throw Error(p(425));
+    }
   }
   function Bf() {}
   let Cf = null,
@@ -3619,7 +3960,7 @@ function requireReactDom_production_min() {
     do {
       const e = c.nextSibling;
       a.removeChild(c);
-      if (e && 8 === e.nodeType)
+      if (e && 8 === e.nodeType) {
         if (((c = e.data), '/$' === c)) {
           if (0 === d) {
             a.removeChild(e);
@@ -3627,7 +3968,10 @@ function requireReactDom_production_min() {
             return;
           }
           d--;
-        } else ('$' !== c && '$?' !== c && '$!' !== c) || d++;
+        } else {
+          ('$' !== c && '$?' !== c && '$!' !== c) || d++;
+        }
+      }
       c = e;
     } while (c);
     bd(b);
@@ -3635,11 +3979,17 @@ function requireReactDom_production_min() {
   function Lf(a) {
     for (; null != a; a = a.nextSibling) {
       let b = a.nodeType;
-      if (1 === b || 3 === b) break;
+      if (1 === b || 3 === b) {
+        break;
+      }
       if (8 === b) {
         b = a.data;
-        if ('$' === b || '$!' === b || '$?' === b) break;
-        if ('/$' === b) return null;
+        if ('$' === b || '$!' === b || '$?' === b) {
+          break;
+        }
+        if ('/$' === b) {
+          return null;
+        }
       }
     }
     return a;
@@ -3650,9 +4000,13 @@ function requireReactDom_production_min() {
       if (8 === a.nodeType) {
         const c = a.data;
         if ('$' === c || '$!' === c || '$?' === c) {
-          if (0 === b) return a;
+          if (0 === b) {
+            return a;
+          }
           b--;
-        } else '/$' === c && b++;
+        } else {
+          '/$' === c && b++;
+        }
       }
       a = a.previousSibling;
     }
@@ -3667,15 +4021,20 @@ function requireReactDom_production_min() {
     Rf = '__reactHandles$' + Nf;
   function Wc(a) {
     let b = a[Of];
-    if (b) return b;
+    if (b) {
+      return b;
+    }
     for (let c = a.parentNode; c; ) {
       if ((b = c[uf] || c[Of])) {
         c = b.alternate;
-        if (null !== b.child || (null !== c && null !== c.child))
+        if (null !== b.child || (null !== c && null !== c.child)) {
           for (a = Mf(a); null !== a; ) {
-            if ((c = a[Of])) return c;
+            if ((c = a[Of])) {
+              return c;
+            }
             a = Mf(a);
           }
+        }
         return b;
       }
       a = c;
@@ -3690,7 +4049,9 @@ function requireReactDom_production_min() {
       : a;
   }
   function ue(a) {
-    if (5 === a.tag || 6 === a.tag) return a.stateNode;
+    if (5 === a.tag || 6 === a.tag) {
+      return a.stateNode;
+    }
     throw Error(p(33));
   }
   function Db(a) {
@@ -3715,13 +4076,18 @@ function requireReactDom_production_min() {
     Xf = Vf;
   function Yf(a, b) {
     const c = a.type.contextTypes;
-    if (!c) return Vf;
+    if (!c) {
+      return Vf;
+    }
     const d = a.stateNode;
-    if (d && d.__reactInternalMemoizedUnmaskedChildContext === b)
+    if (d && d.__reactInternalMemoizedUnmaskedChildContext === b) {
       return d.__reactInternalMemoizedMaskedChildContext;
+    }
     let e = {},
       f;
-    for (f in c) e[f] = b[f];
+    for (f in c) {
+      e[f] = b[f];
+    }
     d &&
       ((a = a.stateNode),
       (a.__reactInternalMemoizedUnmaskedChildContext = b),
@@ -3737,17 +4103,24 @@ function requireReactDom_production_min() {
     E(H);
   }
   function ag(a, b, c) {
-    if (H.current !== Vf) throw Error(p(168));
+    if (H.current !== Vf) {
+      throw Error(p(168));
+    }
     G(H, b);
     G(Wf, c);
   }
   function bg(a, b, c) {
     let d = a.stateNode;
     b = b.childContextTypes;
-    if ('function' !== typeof d.getChildContext) return c;
+    if ('function' !== typeof d.getChildContext) {
+      return c;
+    }
     d = d.getChildContext();
-    for (const e in d)
-      if (!(e in b)) throw Error(p(108, Ra(a) || 'Unknown', e));
+    for (const e in d) {
+      if (!(e in b)) {
+        throw Error(p(108, Ra(a) || 'Unknown', e));
+      }
+    }
     return A({}, c, d);
   }
   function cg(a) {
@@ -3760,7 +4133,9 @@ function requireReactDom_production_min() {
   }
   function dg(a, b, c) {
     const d = a.stateNode;
-    if (!d) throw Error(p(169));
+    if (!d) {
+      throw Error(p(169));
+    }
     c
       ? ((a = bg(a, b, Xf)),
         (d.__reactInternalMemoizedMergedChildContext = a),
@@ -3789,8 +4164,9 @@ function requireReactDom_production_min() {
         const c = eg;
         for (C = 1; a < c.length; a++) {
           let d = c[a];
-          do d = d(true);
-          while (null !== d);
+          do {
+            d = d(true);
+          } while (null !== d);
         }
         eg = null;
         fg = false;
@@ -3835,21 +4211,25 @@ function requireReactDom_production_min() {
       e -= g;
       rg = (1 << (32 - oc(b) + e)) | (c << e) | d;
       sg = f + a;
-    } else ((rg = (1 << f) | (c << e) | d), (sg = a));
+    } else {
+      ((rg = (1 << f) | (c << e) | d), (sg = a));
+    }
   }
   function vg(a) {
     null !== a.return && (tg(a, 1), ug(a, 1, 0));
   }
   function wg(a) {
-    for (; a === mg; )
+    for (; a === mg; ) {
       ((mg = kg[--lg]), (kg[lg] = null), (ng = kg[--lg]), (kg[lg] = null));
-    for (; a === qg; )
+    }
+    for (; a === qg; ) {
       ((qg = og[--pg]),
         (og[pg] = null),
         (sg = og[--pg]),
         (og[pg] = null),
         (rg = og[--pg]),
         (og[pg] = null));
+    }
   }
   let xg = null,
     yg = null,
@@ -3911,7 +4291,9 @@ function requireReactDom_production_min() {
       if (b) {
         const c = b;
         if (!Cg(a, b)) {
-          if (Dg(a)) throw Error(p(418));
+          if (Dg(a)) {
+            throw Error(p(418));
+          }
           b = Lf(c.nextSibling);
           const d = xg;
           b && Cg(a, b)
@@ -3919,7 +4301,9 @@ function requireReactDom_production_min() {
             : ((a.flags = (a.flags & -4097) | 2), (I = false), (xg = a));
         }
       } else {
-        if (Dg(a)) throw Error(p(418));
+        if (Dg(a)) {
+          throw Error(p(418));
+        }
         a.flags = (a.flags & -4097) | 2;
         I = false;
         xg = a;
@@ -3931,27 +4315,38 @@ function requireReactDom_production_min() {
       a = a.return;
       null !== a && 5 !== a.tag && 3 !== a.tag && 13 !== a.tag;
 
-    )
+    ) {
       a = a.return;
+    }
     xg = a;
   }
   function Gg(a) {
-    if (a !== xg) return false;
-    if (!I) return (Fg(a), (I = true), false);
+    if (a !== xg) {
+      return false;
+    }
+    if (!I) {
+      return (Fg(a), (I = true), false);
+    }
     let b;
     (b = 3 !== a.tag) &&
       !(b = 5 !== a.tag) &&
       ((b = a.type),
       (b = 'head' !== b && 'body' !== b && !Ef(a.type, a.memoizedProps)));
     if (b && (b = yg)) {
-      if (Dg(a)) throw (Hg(), Error(p(418)));
-      for (; b; ) (Ag(a, b), (b = Lf(b.nextSibling)));
+      if (Dg(a)) {
+        throw (Hg(), Error(p(418)));
+      }
+      for (; b; ) {
+        (Ag(a, b), (b = Lf(b.nextSibling)));
+      }
     }
     Fg(a);
     if (13 === a.tag) {
       a = a.memoizedState;
       a = null !== a ? a.dehydrated : null;
-      if (!a) throw Error(p(317));
+      if (!a) {
+        throw Error(p(317));
+      }
       a: {
         a = a.nextSibling;
         for (b = 0; a; ) {
@@ -3963,17 +4358,23 @@ function requireReactDom_production_min() {
                 break a;
               }
               b--;
-            } else ('$' !== c && '$!' !== c && '$?' !== c) || b++;
+            } else {
+              ('$' !== c && '$!' !== c && '$?' !== c) || b++;
+            }
           }
           a = a.nextSibling;
         }
         yg = null;
       }
-    } else yg = xg ? Lf(a.stateNode.nextSibling) : null;
+    } else {
+      yg = xg ? Lf(a.stateNode.nextSibling) : null;
+    }
     return true;
   }
   function Hg() {
-    for (let a = yg; a; ) a = Lf(a.nextSibling);
+    for (let a = yg; a; ) {
+      a = Lf(a.nextSibling);
+    }
   }
   function Ig() {
     yg = xg = null;
@@ -3989,10 +4390,14 @@ function requireReactDom_production_min() {
       if (c._owner) {
         c = c._owner;
         if (c) {
-          if (1 !== c.tag) throw Error(p(309));
+          if (1 !== c.tag) {
+            throw Error(p(309));
+          }
           var d = c.stateNode;
         }
-        if (!d) throw Error(p(147, a));
+        if (!d) {
+          throw Error(p(147, a));
+        }
         const e = d,
           f = '' + a;
         if (
@@ -4000,8 +4405,9 @@ function requireReactDom_production_min() {
           null !== b.ref &&
           'function' === typeof b.ref &&
           b.ref._stringRef === f
-        )
+        ) {
           return b.ref;
+        }
         b = function (a2) {
           const b2 = e.refs;
           null === a2 ? delete b2[f] : (b2[f] = a2);
@@ -4009,8 +4415,12 @@ function requireReactDom_production_min() {
         b._stringRef = f;
         return b;
       }
-      if ('string' !== typeof a) throw Error(p(284));
-      if (!c._owner) throw Error(p(290, a));
+      if ('string' !== typeof a) {
+        throw Error(p(284));
+      }
+      if (!c._owner) {
+        throw Error(p(290, a));
+      }
     }
     return a;
   }
@@ -4037,14 +4447,19 @@ function requireReactDom_production_min() {
       }
     }
     function c(c2, d2) {
-      if (!a) return null;
-      for (; null !== d2; ) (b(c2, d2), (d2 = d2.sibling));
+      if (!a) {
+        return null;
+      }
+      for (; null !== d2; ) {
+        (b(c2, d2), (d2 = d2.sibling));
+      }
       return null;
     }
     function d(a2, b2) {
-      for (a2 = /* @__PURE__ */ new Map(); null !== b2; )
+      for (a2 = /* @__PURE__ */ new Map(); null !== b2; ) {
         (null !== b2.key ? a2.set(b2.key, b2) : a2.set(b2.index, b2),
           (b2 = b2.sibling));
+      }
       return a2;
     }
     function e(a2, b2) {
@@ -4055,10 +4470,13 @@ function requireReactDom_production_min() {
     }
     function f(b2, c2, d2) {
       b2.index = d2;
-      if (!a) return ((b2.flags |= 1048576), c2);
+      if (!a) {
+        return ((b2.flags |= 1048576), c2);
+      }
       d2 = b2.alternate;
-      if (null !== d2)
+      if (null !== d2) {
         return ((d2 = d2.index), d2 < c2 ? ((b2.flags |= 2), c2) : d2);
+      }
       b2.flags |= 2;
       return c2;
     }
@@ -4067,15 +4485,18 @@ function requireReactDom_production_min() {
       return b2;
     }
     function h(a2, b2, c2, d2) {
-      if (null === b2 || 6 !== b2.tag)
+      if (null === b2 || 6 !== b2.tag) {
         return ((b2 = Qg(c2, a2.mode, d2)), (b2.return = a2), b2);
+      }
       b2 = e(b2, c2);
       b2.return = a2;
       return b2;
     }
     function k(a2, b2, c2, d2) {
       const f2 = c2.type;
-      if (f2 === ya) return m2(a2, b2, c2.props.children, d2, c2.key);
+      if (f2 === ya) {
+        return m2(a2, b2, c2.props.children, d2, c2.key);
+      }
       if (
         null !== b2 &&
         (b2.elementType === f2 ||
@@ -4083,13 +4504,14 @@ function requireReactDom_production_min() {
             null !== f2 &&
             f2.$$typeof === Ha &&
             Ng(f2) === b2.type))
-      )
+      ) {
         return (
           (d2 = e(b2, c2.props)),
           (d2.ref = Lg(a2, b2, c2)),
           (d2.return = a2),
           d2
         );
+      }
       d2 = Rg(c2.type, c2.key, c2.props, null, a2.mode, d2);
       d2.ref = Lg(a2, b2, c2);
       d2.return = a2;
@@ -4101,22 +4523,25 @@ function requireReactDom_production_min() {
         4 !== b2.tag ||
         b2.stateNode.containerInfo !== c2.containerInfo ||
         b2.stateNode.implementation !== c2.implementation
-      )
+      ) {
         return ((b2 = Sg(c2, a2.mode, d2)), (b2.return = a2), b2);
+      }
       b2 = e(b2, c2.children || []);
       b2.return = a2;
       return b2;
     }
     function m2(a2, b2, c2, d2, f2) {
-      if (null === b2 || 7 !== b2.tag)
+      if (null === b2 || 7 !== b2.tag) {
         return ((b2 = Tg(c2, a2.mode, d2, f2)), (b2.return = a2), b2);
+      }
       b2 = e(b2, c2);
       b2.return = a2;
       return b2;
     }
     function q(a2, b2, c2) {
-      if (('string' === typeof b2 && '' !== b2) || 'number' === typeof b2)
+      if (('string' === typeof b2 && '' !== b2) || 'number' === typeof b2) {
         return ((b2 = Qg('' + b2, a2.mode, c2)), (b2.return = a2), b2);
+      }
       if ('object' === typeof b2 && null !== b2) {
         switch (b2.$$typeof) {
           case va:
@@ -4132,16 +4557,18 @@ function requireReactDom_production_min() {
             var d2 = b2._init;
             return q(a2, d2(b2._payload), c2);
         }
-        if (eb(b2) || Ka(b2))
+        if (eb(b2) || Ka(b2)) {
           return ((b2 = Tg(b2, a2.mode, c2, null)), (b2.return = a2), b2);
+        }
         Mg(a2, b2);
       }
       return null;
     }
     function r(a2, b2, c2, d2) {
       let e2 = null !== b2 ? b2.key : null;
-      if (('string' === typeof c2 && '' !== c2) || 'number' === typeof c2)
+      if (('string' === typeof c2 && '' !== c2) || 'number' === typeof c2) {
         return null !== e2 ? null : h(a2, b2, '' + c2, d2);
+      }
       if ('object' === typeof c2 && null !== c2) {
         switch (c2.$$typeof) {
           case va:
@@ -4151,15 +4578,17 @@ function requireReactDom_production_min() {
           case Ha:
             return ((e2 = c2._init), r(a2, b2, e2(c2._payload), d2));
         }
-        if (eb(c2) || Ka(c2))
+        if (eb(c2) || Ka(c2)) {
           return null !== e2 ? null : m2(a2, b2, c2, d2, null);
+        }
         Mg(a2, c2);
       }
       return null;
     }
     function y(a2, b2, c2, d2, e2) {
-      if (('string' === typeof d2 && '' !== d2) || 'number' === typeof d2)
+      if (('string' === typeof d2 && '' !== d2) || 'number' === typeof d2) {
         return ((a2 = a2.get(c2) || null), h(b2, a2, '' + d2, e2));
+      }
       if ('object' === typeof d2 && null !== d2) {
         switch (d2.$$typeof) {
           case va:
@@ -4176,8 +4605,9 @@ function requireReactDom_production_min() {
             var f2 = d2._init;
             return y(a2, b2, c2, f2(d2._payload), e2);
         }
-        if (eb(d2) || Ka(d2))
+        if (eb(d2) || Ka(d2)) {
           return ((a2 = a2.get(c2) || null), m2(b2, a2, d2, e2, null));
+        }
         Mg(b2, d2);
       }
       return null;
@@ -4200,24 +4630,28 @@ function requireReactDom_production_min() {
         m3 = n2;
         u = x;
       }
-      if (w === h2.length) return (c(e2, u), I && tg(e2, w), l2);
+      if (w === h2.length) {
+        return (c(e2, u), I && tg(e2, w), l2);
+      }
       if (null === u) {
-        for (; w < h2.length; w++)
+        for (; w < h2.length; w++) {
           ((u = q(e2, h2[w], k2)),
             null !== u &&
               ((g2 = f(u, g2, w)),
               null === m3 ? (l2 = u) : (m3.sibling = u),
               (m3 = u)));
+        }
         I && tg(e2, w);
         return l2;
       }
-      for (u = d(e2, u); w < h2.length; w++)
+      for (u = d(e2, u); w < h2.length; w++) {
         ((x = y(u, e2, w, h2[w], k2)),
           null !== x &&
             (a && null !== x.alternate && u.delete(null === x.key ? w : x.key),
             (g2 = f(x, g2, w)),
             null === m3 ? (l2 = x) : (m3.sibling = x),
             (m3 = x)));
+      }
       a &&
         u.forEach(function (a2) {
           return b(e2, a2);
@@ -4227,9 +4661,13 @@ function requireReactDom_production_min() {
     }
     function t(e2, g2, h2, k2) {
       let l2 = Ka(h2);
-      if ('function' !== typeof l2) throw Error(p(150));
+      if ('function' !== typeof l2) {
+        throw Error(p(150));
+      }
       h2 = l2.call(h2);
-      if (null == h2) throw Error(p(151));
+      if (null == h2) {
+        throw Error(p(151));
+      }
       for (
         var u = (l2 = null), m3 = g2, w = (g2 = 0), x = null, n2 = h2.next();
         null !== m3 && !n2.done;
@@ -4247,18 +4685,21 @@ function requireReactDom_production_min() {
         u = t2;
         m3 = x;
       }
-      if (n2.done) return (c(e2, m3), I && tg(e2, w), l2);
+      if (n2.done) {
+        return (c(e2, m3), I && tg(e2, w), l2);
+      }
       if (null === m3) {
-        for (; !n2.done; w++, n2 = h2.next())
+        for (; !n2.done; w++, n2 = h2.next()) {
           ((n2 = q(e2, n2.value, k2)),
             null !== n2 &&
               ((g2 = f(n2, g2, w)),
               null === u ? (l2 = n2) : (u.sibling = n2),
               (u = n2)));
+        }
         I && tg(e2, w);
         return l2;
       }
-      for (m3 = d(e2, m3); !n2.done; w++, n2 = h2.next())
+      for (m3 = d(e2, m3); !n2.done; w++, n2 = h2.next()) {
         ((n2 = y(m3, e2, w, n2.value, k2)),
           null !== n2 &&
             (a &&
@@ -4267,6 +4708,7 @@ function requireReactDom_production_min() {
             (g2 = f(n2, g2, w)),
             null === u ? (l2 = n2) : (u.sibling = n2),
             (u = n2)));
+      }
       a &&
         m3.forEach(function (a2) {
           return b(e2, a2);
@@ -4311,7 +4753,9 @@ function requireReactDom_production_min() {
                   }
                   c(a2, l2);
                   break;
-                } else b(a2, l2);
+                } else {
+                  b(a2, l2);
+                }
                 l2 = l2.sibling;
               }
               f2.type === ya
@@ -4327,7 +4771,7 @@ function requireReactDom_production_min() {
           case wa:
             a: {
               for (l2 = f2.key; null !== d2; ) {
-                if (d2.key === l2)
+                if (d2.key === l2) {
                   if (
                     4 === d2.tag &&
                     d2.stateNode.containerInfo === f2.containerInfo &&
@@ -4342,7 +4786,9 @@ function requireReactDom_production_min() {
                     c(a2, d2);
                     break;
                   }
-                else b(a2, d2);
+                } else {
+                  b(a2, d2);
+                }
                 d2 = d2.sibling;
               }
               d2 = Sg(f2, a2.mode, h2);
@@ -4353,8 +4799,12 @@ function requireReactDom_production_min() {
           case Ha:
             return ((l2 = f2._init), J(a2, d2, l2(f2._payload), h2));
         }
-        if (eb(f2)) return n(a2, d2, f2, h2);
-        if (Ka(f2)) return t(a2, d2, f2, h2);
+        if (eb(f2)) {
+          return n(a2, d2, f2, h2);
+        }
+        if (Ka(f2)) {
+          return t(a2, d2, f2, h2);
+        }
         Mg(a2, f2);
       }
       return ('string' === typeof f2 && '' !== f2) || 'number' === typeof f2
@@ -4390,7 +4840,9 @@ function requireReactDom_production_min() {
       (a.childLanes & b) !== b
         ? ((a.childLanes |= b), null !== d && (d.childLanes |= b))
         : null !== d && (d.childLanes & b) !== b && (d.childLanes |= b);
-      if (a === c) break;
+      if (a === c) {
+        break;
+      }
       a = a.return;
     }
   }
@@ -4404,12 +4856,17 @@ function requireReactDom_production_min() {
   }
   function eh(a) {
     const b = a._currentValue;
-    if (Zg !== a)
+    if (Zg !== a) {
       if (((a = { context: a, memoizedValue: b, next: null }), null === Yg)) {
-        if (null === Xg) throw Error(p(308));
+        if (null === Xg) {
+          throw Error(p(308));
+        }
         Yg = a;
         Xg.dependencies = { lanes: 0, firstContext: a };
-      } else Yg = Yg.next = a;
+      } else {
+        Yg = Yg.next = a;
+      }
+    }
     return b;
   }
   let fh = null;
@@ -4427,12 +4884,13 @@ function requireReactDom_production_min() {
     let c = a.alternate;
     null !== c && (c.lanes |= b);
     c = a;
-    for (a = a.return; null !== a; )
+    for (a = a.return; null !== a; ) {
       ((a.childLanes |= b),
         (c = a.alternate),
         null !== c && (c.childLanes |= b),
         (c = a),
         (a = a.return));
+    }
     return 3 === c.tag ? c.stateNode : null;
   }
   let jh = false;
@@ -4468,7 +4926,9 @@ function requireReactDom_production_min() {
   }
   function nh(a, b, c) {
     let d = a.updateQueue;
-    if (null === d) return null;
+    if (null === d) {
+      return null;
+    }
     d = d.shared;
     if (0 !== (K & 2)) {
       var e = d.pending;
@@ -4512,7 +4972,9 @@ function requireReactDom_production_min() {
           c = c.next;
         } while (null !== c);
         null === f ? (e = f = b) : (f = f.next = b);
-      } else e = f = b;
+      } else {
+        e = f = b;
+      }
       c = {
         baseState: d.baseState,
         firstBaseUpdate: e,
@@ -4586,7 +5048,9 @@ function requireReactDom_production_min() {
               case 0:
                 n = t.payload;
                 r = 'function' === typeof n ? n.call(y, q, r) : n;
-                if (null === r || void 0 === r) break a;
+                if (null === r || void 0 === r) {
+                  break a;
+                }
                 q = A({}, q, r);
                 break a;
               case 2:
@@ -4598,7 +5062,7 @@ function requireReactDom_production_min() {
             ((a.flags |= 64),
             (r = e.effects),
             null === r ? (e.effects = [h]) : r.push(h));
-        } else
+        } else {
           ((y = {
             eventTime: y,
             lane: r,
@@ -4609,15 +5073,19 @@ function requireReactDom_production_min() {
           }),
             null === m2 ? ((l = m2 = y), (k = q)) : (m2 = m2.next = y),
             (g |= r));
+        }
         h = h.next;
-        if (null === h)
-          if (((h = e.shared.pending), null === h)) break;
-          else
+        if (null === h) {
+          if (((h = e.shared.pending), null === h)) {
+            break;
+          } else {
             ((r = h),
               (h = r.next),
               (r.next = null),
               (e.lastBaseUpdate = r),
               (e.shared.pending = null));
+          }
+        }
       } while (1);
       null === m2 && (k = q);
       e.baseState = k;
@@ -4626,9 +5094,12 @@ function requireReactDom_production_min() {
       b = e.shared.interleaved;
       if (null !== b) {
         e = b;
-        do ((g |= e.lane), (e = e.next));
-        while (e !== b);
-      } else null === f && (e.shared.lanes = 0);
+        do {
+          ((g |= e.lane), (e = e.next));
+        } while (e !== b);
+      } else {
+        null === f && (e.shared.lanes = 0);
+      }
       rh |= g;
       a.lanes = g;
       a.memoizedState = q;
@@ -4637,24 +5108,29 @@ function requireReactDom_production_min() {
   function sh(a, b, c) {
     a = b.effects;
     b.effects = null;
-    if (null !== a)
+    if (null !== a) {
       for (b = 0; b < a.length; b++) {
         let d = a[b],
           e = d.callback;
         if (null !== e) {
           d.callback = null;
           d = c;
-          if ('function' !== typeof e) throw Error(p(191, e));
+          if ('function' !== typeof e) {
+            throw Error(p(191, e));
+          }
           e.call(d);
         }
       }
+    }
   }
   const th = {},
     uh = Uf(th),
     vh2 = Uf(th),
     wh = Uf(th);
   function xh(a) {
-    if (a === th) throw Error(p(174));
+    if (a === th) {
+      throw Error(p(174));
+    }
     return a;
   }
   function yh(a, b) {
@@ -4698,18 +5174,25 @@ function requireReactDom_production_min() {
         if (
           null !== c &&
           ((c = c.dehydrated), null === c || '$?' === c.data || '$!' === c.data)
-        )
+        ) {
           return b;
+        }
       } else if (19 === b.tag && void 0 !== b.memoizedProps.revealOrder) {
-        if (0 !== (b.flags & 128)) return b;
+        if (0 !== (b.flags & 128)) {
+          return b;
+        }
       } else if (null !== b.child) {
         b.child.return = b;
         b = b.child;
         continue;
       }
-      if (b === a) break;
+      if (b === a) {
+        break;
+      }
       for (; null === b.sibling; ) {
-        if (null === b.return || b.return === a) return null;
+        if (null === b.return || b.return === a) {
+          return null;
+        }
         b = b.return;
       }
       b.sibling.return = b.return;
@@ -4719,8 +5202,9 @@ function requireReactDom_production_min() {
   }
   const Dh = [];
   function Eh() {
-    for (let a = 0; a < Dh.length; a++)
+    for (let a = 0; a < Dh.length; a++) {
       Dh[a]._workInProgressVersionPrimary = null;
+    }
     Dh.length = 0;
   }
   let Fh = ua.ReactCurrentDispatcher,
@@ -4737,9 +5221,14 @@ function requireReactDom_production_min() {
     throw Error(p(321));
   }
   function Mh(a, b) {
-    if (null === b) return false;
-    for (let c = 0; c < b.length && c < a.length; c++)
-      if (!He(a[c], b[c])) return false;
+    if (null === b) {
+      return false;
+    }
+    for (let c = 0; c < b.length && c < a.length; c++) {
+      if (!He(a[c], b[c])) {
+        return false;
+      }
+    }
     return true;
   }
   function Nh(a, b, c, d, e, f) {
@@ -4755,7 +5244,9 @@ function requireReactDom_production_min() {
       do {
         Jh = false;
         Kh = 0;
-        if (25 <= f) throw Error(p(301));
+        if (25 <= f) {
+          throw Error(p(301));
+        }
         f += 1;
         O = N = null;
         b.updateQueue = null;
@@ -4768,7 +5259,9 @@ function requireReactDom_production_min() {
     Hh = 0;
     O = N = M = null;
     Ih = false;
-    if (b) throw Error(p(300));
+    if (b) {
+      throw Error(p(300));
+    }
     return a;
   }
   function Sh() {
@@ -4791,11 +5284,16 @@ function requireReactDom_production_min() {
     if (null === N) {
       var a = M.alternate;
       a = null !== a ? a.memoizedState : null;
-    } else a = N.next;
+    } else {
+      a = N.next;
+    }
     const b = null === O ? M.memoizedState : O.next;
-    if (null !== b) ((O = b), (N = a));
-    else {
-      if (null === a) throw Error(p(310));
+    if (null !== b) {
+      ((O = b), (N = a));
+    } else {
+      if (null === a) {
+        throw Error(p(310));
+      }
       N = a;
       a = {
         memoizedState: N.memoizedState,
@@ -4814,7 +5312,9 @@ function requireReactDom_production_min() {
   function Wh(a) {
     const b = Uh(),
       c = b.queue;
-    if (null === c) throw Error(p(311));
+    if (null === c) {
+      throw Error(p(311));
+    }
     c.lastRenderedReducer = a;
     let d = N,
       e = d.baseQueue,
@@ -4836,7 +5336,7 @@ function requireReactDom_production_min() {
         l = f;
       do {
         const m2 = l.lane;
-        if ((Hh & m2) === m2)
+        if ((Hh & m2) === m2) {
           (null !== k &&
             (k = k.next =
               {
@@ -4847,7 +5347,7 @@ function requireReactDom_production_min() {
                 next: null,
               }),
             (d = l.hasEagerState ? l.eagerState : a(d, l.action)));
-        else {
+        } else {
           const q = {
             lane: m2,
             action: l.action,
@@ -4871,15 +5371,20 @@ function requireReactDom_production_min() {
     a = c.interleaved;
     if (null !== a) {
       e = a;
-      do ((f = e.lane), (M.lanes |= f), (rh |= f), (e = e.next));
-      while (e !== a);
-    } else null === e && (c.lanes = 0);
+      do {
+        ((f = e.lane), (M.lanes |= f), (rh |= f), (e = e.next));
+      } while (e !== a);
+    } else {
+      null === e && (c.lanes = 0);
+    }
     return [b.memoizedState, c.dispatch];
   }
   function Xh(a) {
     const b = Uh(),
       c = b.queue;
-    if (null === c) throw Error(p(311));
+    if (null === c) {
+      throw Error(p(311));
+    }
     c.lastRenderedReducer = a;
     let d = c.dispatch,
       e = c.pending,
@@ -4887,8 +5392,9 @@ function requireReactDom_production_min() {
     if (null !== e) {
       c.pending = null;
       let g = (e = e.next);
-      do ((f = a(f, g.action)), (g = g.next));
-      while (g !== e);
+      do {
+        ((f = a(f, g.action)), (g = g.next));
+      } while (g !== e);
       He(f, b.memoizedState) || (dh = true);
       b.memoizedState = f;
       null === b.baseQueue && (b.baseState = f);
@@ -4908,7 +5414,9 @@ function requireReactDom_production_min() {
     if (d.getSnapshot !== b || f || (null !== O && O.memoizedState.tag & 1)) {
       c.flags |= 2048;
       bi(9, ci.bind(null, c, d, e, b), void 0, null);
-      if (null === Q) throw Error(p(349));
+      if (null === Q) {
+        throw Error(p(349));
+      }
       0 !== (Hh & 30) || di(c, b, e);
     }
     return e;
@@ -5012,7 +5520,7 @@ function requireReactDom_production_min() {
     return li(4, 4, a, b);
   }
   function pi(a, b) {
-    if ('function' === typeof b)
+    if ('function' === typeof b) {
       return (
         (a = a()),
         b(a),
@@ -5020,7 +5528,8 @@ function requireReactDom_production_min() {
           b(null);
         }
       );
-    if (null !== b && void 0 !== b)
+    }
+    if (null !== b && void 0 !== b) {
       return (
         (a = a()),
         (b.current = a),
@@ -5028,6 +5537,7 @@ function requireReactDom_production_min() {
           b.current = null;
         }
       );
+    }
   }
   function qi(a, b, c) {
     c = null !== c && void 0 !== c ? c.concat([a]) : null;
@@ -5038,7 +5548,9 @@ function requireReactDom_production_min() {
     const c = Uh();
     b = void 0 === b ? null : b;
     const d = c.memoizedState;
-    if (null !== d && null !== b && Mh(b, d[1])) return d[0];
+    if (null !== d && null !== b && Mh(b, d[1])) {
+      return d[0];
+    }
     c.memoizedState = [a, b];
     return a;
   }
@@ -5046,17 +5558,20 @@ function requireReactDom_production_min() {
     const c = Uh();
     b = void 0 === b ? null : b;
     const d = c.memoizedState;
-    if (null !== d && null !== b && Mh(b, d[1])) return d[0];
+    if (null !== d && null !== b && Mh(b, d[1])) {
+      return d[0];
+    }
     a = a();
     c.memoizedState = [a, b];
     return a;
   }
   function ui(a, b, c) {
-    if (0 === (Hh & 21))
+    if (0 === (Hh & 21)) {
       return (
         a.baseState && ((a.baseState = false), (dh = true)),
         (a.memoizedState = c)
       );
+    }
     He(c, b) || ((c = yc()), (M.lanes |= c), (rh |= c), (a.baseState = true));
     return b;
   }
@@ -5084,8 +5599,9 @@ function requireReactDom_production_min() {
       eagerState: null,
       next: null,
     };
-    if (zi(a)) Ai(b, c);
-    else if (((c = hh(a, b, c, d)), null !== c)) {
+    if (zi(a)) {
+      Ai(b, c);
+    } else if (((c = hh(a, b, c, d)), null !== c)) {
       const e = R();
       gi(c, a, d, e);
       Bi(c, b, d);
@@ -5100,14 +5616,15 @@ function requireReactDom_production_min() {
         eagerState: null,
         next: null,
       };
-    if (zi(a)) Ai(b, e);
-    else {
+    if (zi(a)) {
+      Ai(b, e);
+    } else {
       let f = a.alternate;
       if (
         0 === a.lanes &&
         (null === f || 0 === f.lanes) &&
         ((f = b.lastRenderedReducer), null !== f)
-      )
+      ) {
         try {
           const g = b.lastRenderedState,
             h = f(g, c);
@@ -5124,6 +5641,7 @@ function requireReactDom_production_min() {
         } catch (l) {
         } finally {
         }
+      }
       c = hh(a, b, e, d);
       null !== c && ((e = R()), gi(c, a, d, e), Bi(c, b, d));
     }
@@ -5230,11 +5748,15 @@ function requireReactDom_production_min() {
         const d = M,
           e = Th();
         if (I) {
-          if (void 0 === c) throw Error(p(407));
+          if (void 0 === c) {
+            throw Error(p(407));
+          }
           c = c();
         } else {
           c = b();
-          if (null === Q) throw Error(p(349));
+          if (null === Q) {
+            throw Error(p(349));
+          }
           0 !== (Hh & 30) || di(d, b, c);
         }
         e.memoizedState = c;
@@ -5256,7 +5778,9 @@ function requireReactDom_production_min() {
           c = Kh++;
           0 < c && (b += 'H' + c.toString(32));
           b += ':';
-        } else ((c = Lh++), (b = ':' + b + 'r' + c.toString(32) + ':'));
+        } else {
+          ((c = Lh++), (b = ':' + b + 'r' + c.toString(32) + ':'));
+        }
         return (a.memoizedState = b);
       },
       unstable_isNewReconciler: false,
@@ -5323,7 +5847,9 @@ function requireReactDom_production_min() {
     if (a && a.defaultProps) {
       b = A({}, b);
       a = a.defaultProps;
-      for (const c in a) void 0 === b[c] && (b[c] = a[c]);
+      for (const c in a) {
+        void 0 === b[c] && (b[c] = a[c]);
+      }
       return b;
     }
     return b;
@@ -5437,8 +5963,9 @@ function requireReactDom_production_min() {
     try {
       let c = '',
         d = b;
-      do ((c += Pa(d)), (d = d.return));
-      while (d);
+      do {
+        ((c += Pa(d)), (d = d.return));
+      } while (d);
       var e = c;
     } catch (f) {
       e = '\nError generating stack: ' + f.message + '\n' + f.stack;
@@ -5455,7 +5982,7 @@ function requireReactDom_production_min() {
   }
   function Li(a, b) {
     try {
-      console.error(b.value);
+      // Console statement removed by auto-fix
     } catch (c) {
       setTimeout(function () {
         throw c;
@@ -5507,24 +6034,28 @@ function requireReactDom_production_min() {
       d = a.pingCache = new Mi();
       var e = /* @__PURE__ */ new Set();
       d.set(b, e);
-    } else
+    } else {
       ((e = d.get(b)),
         void 0 === e && ((e = /* @__PURE__ */ new Set()), d.set(b, e)));
+    }
     e.has(c) || (e.add(c), (a = Ti.bind(null, a, b, c)), b.then(a, a));
   }
   function Ui(a) {
     do {
       var b;
-      if ((b = 13 === a.tag))
+      if ((b = 13 === a.tag)) {
         ((b = a.memoizedState),
           (b = null !== b ? (null !== b.dehydrated ? true : false) : true));
-      if (b) return a;
+      }
+      if (b) {
+        return a;
+      }
       a = a.return;
     } while (null !== a);
     return null;
   }
   function Vi(a, b, c, d, e) {
-    if (0 === (a.mode & 1))
+    if (0 === (a.mode & 1)) {
       return (
         a === b
           ? (a.flags |= 65536)
@@ -5538,6 +6069,7 @@ function requireReactDom_production_min() {
             (c.lanes |= 1)),
         a
       );
+    }
     a.flags |= 65536;
     a.lanes = e;
     return a;
@@ -5553,13 +6085,14 @@ function requireReactDom_production_min() {
     ch(b, e);
     d = Nh(a, b, c, d, f, e);
     c = Sh();
-    if (null !== a && !dh)
+    if (null !== a && !dh) {
       return (
         (b.updateQueue = a.updateQueue),
         (b.flags &= -2053),
         (a.lanes &= ~e),
         Zi(a, b, e)
       );
+    }
     I && c && vg(b);
     b.flags |= 1;
     Xi(a, b, d, e);
@@ -5574,8 +6107,9 @@ function requireReactDom_production_min() {
         void 0 === f.defaultProps &&
         null === c.compare &&
         void 0 === c.defaultProps
-      )
+      ) {
         return ((b.tag = 15), (b.type = f), bj(a, b, f, d, e));
+      }
       a = Rg(c.type, null, d, b, b.mode, e);
       a.ref = b.ref;
       a.return = b;
@@ -5586,7 +6120,9 @@ function requireReactDom_production_min() {
       const g = f.memoizedProps;
       c = c.compare;
       c = null !== c ? c : Ie;
-      if (c(g, d) && a.ref === b.ref) return Zi(a, b, e);
+      if (c(g, d) && a.ref === b.ref) {
+        return Zi(a, b, e);
+      }
     }
     b.flags |= 1;
     a = Pg(f, d);
@@ -5597,10 +6133,13 @@ function requireReactDom_production_min() {
   function bj(a, b, c, d, e) {
     if (null !== a) {
       const f = a.memoizedProps;
-      if (Ie(f, d) && a.ref === b.ref)
-        if (((dh = false), (b.pendingProps = d = f), 0 !== (a.lanes & e)))
+      if (Ie(f, d) && a.ref === b.ref) {
+        if (((dh = false), (b.pendingProps = d = f), 0 !== (a.lanes & e))) {
           0 !== (a.flags & 131072) && (dh = true);
-        else return ((b.lanes = a.lanes), Zi(a, b, e));
+        } else {
+          return ((b.lanes = a.lanes), Zi(a, b, e));
+        }
+      }
     }
     return cj(a, b, c, d, e);
   }
@@ -5608,8 +6147,8 @@ function requireReactDom_production_min() {
     let d = b.pendingProps,
       e = d.children,
       f = null !== a ? a.memoizedState : null;
-    if ('hidden' === d.mode)
-      if (0 === (b.mode & 1))
+    if ('hidden' === d.mode) {
+      if (0 === (b.mode & 1)) {
         ((b.memoizedState = {
           baseLanes: 0,
           cachePool: null,
@@ -5617,8 +6156,8 @@ function requireReactDom_production_min() {
         }),
           G(ej, fj),
           (fj |= c));
-      else {
-        if (0 === (c & 1073741824))
+      } else {
+        if (0 === (c & 1073741824)) {
           return (
             (a = null !== f ? f.baseLanes | c : c),
             (b.lanes = b.childLanes = 1073741824),
@@ -5632,22 +6171,25 @@ function requireReactDom_production_min() {
             (fj |= a),
             null
           );
+        }
         b.memoizedState = { baseLanes: 0, cachePool: null, transitions: null };
         d = null !== f ? f.baseLanes : c;
         G(ej, fj);
         fj |= d;
       }
-    else
+    } else {
       (null !== f ? ((d = f.baseLanes | c), (b.memoizedState = null)) : (d = c),
         G(ej, fj),
         (fj |= d));
+    }
     Xi(a, b, e, c);
     return b.child;
   }
   function gj(a, b) {
     const c = b.ref;
-    if ((null === a && null !== c) || (null !== a && a.ref !== c))
+    if ((null === a && null !== c) || (null !== a && a.ref !== c)) {
       ((b.flags |= 512), (b.flags |= 2097152));
+    }
   }
   function cj(a, b, c, d, e) {
     let f = Zf(c) ? Xf : H.current;
@@ -5655,13 +6197,14 @@ function requireReactDom_production_min() {
     ch(b, e);
     c = Nh(a, b, c, d, f, e);
     d = Sh();
-    if (null !== a && !dh)
+    if (null !== a && !dh) {
       return (
         (b.updateQueue = a.updateQueue),
         (b.flags &= -2053),
         (a.lanes &= ~e),
         Zi(a, b, e)
       );
+    }
     I && d && vg(b);
     b.flags |= 1;
     Xi(a, b, c, e);
@@ -5671,11 +6214,13 @@ function requireReactDom_production_min() {
     if (Zf(c)) {
       var f = true;
       cg(b);
-    } else f = false;
+    } else {
+      f = false;
+    }
     ch(b, e);
-    if (null === b.stateNode)
+    if (null === b.stateNode) {
       (ij(a, b), Gi(b, c, d), Ii(b, c, d, e), (d = true));
-    else if (null === a) {
+    } else if (null === a) {
       var g = b.stateNode,
         h = b.memoizedProps;
       g.props = h;
@@ -5780,7 +6325,9 @@ function requireReactDom_production_min() {
   function jj(a, b, c, d, e, f) {
     gj(a, b);
     const g = 0 !== (b.flags & 128);
-    if (!d && !g) return (e && dg(b, c, false), Zi(a, b, f));
+    if (!d && !g) {
+      return (e && dg(b, c, false), Zi(a, b, f));
+    }
     d = b.stateNode;
     Wi.current = b;
     const h =
@@ -5819,13 +6366,16 @@ function requireReactDom_production_min() {
       h;
     (h = g) ||
       (h = null !== a && null === a.memoizedState ? false : 0 !== (e & 2));
-    if (h) ((f = true), (b.flags &= -129));
-    else if (null === a || null !== a.memoizedState) e |= 1;
+    if (h) {
+      ((f = true), (b.flags &= -129));
+    } else if (null === a || null !== a.memoizedState) {
+      e |= 1;
+    }
     G(L, e & 1);
     if (null === a) {
       Eg(b);
       a = b.memoizedState;
-      if (null !== a && ((a = a.dehydrated), null !== a))
+      if (null !== a && ((a = a.dehydrated), null !== a)) {
         return (
           0 === (b.mode & 1)
             ? (b.lanes = 1)
@@ -5834,6 +6384,7 @@ function requireReactDom_production_min() {
               : (b.lanes = 1073741824),
           null
         );
+      }
       g = d.children;
       a = d.fallback;
       return f
@@ -5854,8 +6405,9 @@ function requireReactDom_production_min() {
         : qj(b, g);
     }
     e = a.memoizedState;
-    if (null !== e && ((h = e.dehydrated), null !== h))
+    if (null !== e && ((h = e.dehydrated), null !== h)) {
       return rj(a, b, g, d, h, e, c);
+    }
     if (f) {
       f = d.fallback;
       g = b.mode;
@@ -5917,10 +6469,12 @@ function requireReactDom_production_min() {
   }
   function rj(a, b, c, d, e, f, g) {
     if (c) {
-      if (b.flags & 256)
+      if (b.flags & 256) {
         return ((b.flags &= -257), (d = Ki(Error(p(422)))), sj(a, b, g, d));
-      if (null !== b.memoizedState)
+      }
+      if (null !== b.memoizedState) {
         return ((b.child = a.child), (b.flags |= 128), null);
+      }
       f = d.fallback;
       e = b.mode;
       d = pj({ mode: 'visible', children: d.children }, e, 0, null);
@@ -5935,10 +6489,14 @@ function requireReactDom_production_min() {
       b.memoizedState = mj;
       return f;
     }
-    if (0 === (b.mode & 1)) return sj(a, b, g, null);
+    if (0 === (b.mode & 1)) {
+      return sj(a, b, g, null);
+    }
     if ('$!' === e.data) {
       d = e.nextSibling && e.nextSibling.dataset;
-      if (d) var h = d.dgst;
+      if (d) {
+        var h = d.dgst;
+      }
       d = h;
       f = Error(p(419));
       d = Ki(f, d, void 0);
@@ -5993,7 +6551,7 @@ function requireReactDom_production_min() {
       d = Ki(Error(p(421)));
       return sj(a, b, g, d);
     }
-    if ('$?' === e.data)
+    if ('$?' === e.data) {
       return (
         (b.flags |= 128),
         (b.child = a.child),
@@ -6001,6 +6559,7 @@ function requireReactDom_production_min() {
         (e._reactRetry = b),
         null
       );
+    }
     a = f.treeContext;
     yg = Lf(e.nextSibling);
     xg = b;
@@ -6047,37 +6606,47 @@ function requireReactDom_production_min() {
       f = d.tail;
     Xi(a, b, d.children, c);
     d = L.current;
-    if (0 !== (d & 2)) ((d = (d & 1) | 2), (b.flags |= 128));
-    else {
-      if (null !== a && 0 !== (a.flags & 128))
+    if (0 !== (d & 2)) {
+      ((d = (d & 1) | 2), (b.flags |= 128));
+    } else {
+      if (null !== a && 0 !== (a.flags & 128)) {
         a: for (a = b.child; null !== a; ) {
-          if (13 === a.tag) null !== a.memoizedState && vj(a, c, b);
-          else if (19 === a.tag) vj(a, c, b);
-          else if (null !== a.child) {
+          if (13 === a.tag) {
+            null !== a.memoizedState && vj(a, c, b);
+          } else if (19 === a.tag) {
+            vj(a, c, b);
+          } else if (null !== a.child) {
             a.child.return = a;
             a = a.child;
             continue;
           }
-          if (a === b) break a;
+          if (a === b) {
+            break a;
+          }
           for (; null === a.sibling; ) {
-            if (null === a.return || a.return === b) break a;
+            if (null === a.return || a.return === b) {
+              break a;
+            }
             a = a.return;
           }
           a.sibling.return = a.return;
           a = a.sibling;
         }
+      }
       d &= 1;
     }
     G(L, d);
-    if (0 === (b.mode & 1)) b.memoizedState = null;
-    else
+    if (0 === (b.mode & 1)) {
+      b.memoizedState = null;
+    } else {
       switch (e) {
         case 'forwards':
           c = b.child;
-          for (e = null; null !== c; )
+          for (e = null; null !== c; ) {
             ((a = c.alternate),
               null !== a && null === Ch(a) && (e = c),
               (c = c.sibling));
+          }
           c = e;
           null === c
             ? ((e = b.child), (b.child = null))
@@ -6106,6 +6675,7 @@ function requireReactDom_production_min() {
         default:
           b.memoizedState = null;
       }
+    }
     return b.child;
   }
   function ij(a, b) {
@@ -6116,16 +6686,21 @@ function requireReactDom_production_min() {
   function Zi(a, b, c) {
     null !== a && (b.dependencies = a.dependencies);
     rh |= b.lanes;
-    if (0 === (c & b.childLanes)) return null;
-    if (null !== a && b.child !== a.child) throw Error(p(153));
+    if (0 === (c & b.childLanes)) {
+      return null;
+    }
+    if (null !== a && b.child !== a.child) {
+      throw Error(p(153));
+    }
     if (null !== b.child) {
       a = b.child;
       c = Pg(a, a.pendingProps);
       b.child = c;
-      for (c.return = b; null !== a.sibling; )
+      for (c.return = b; null !== a.sibling; ) {
         ((a = a.sibling),
           (c = c.sibling = Pg(a, a.pendingProps)),
           (c.return = b));
+      }
       c.sibling = null;
     }
     return b.child;
@@ -6154,9 +6729,12 @@ function requireReactDom_production_min() {
       case 13:
         d = b.memoizedState;
         if (null !== d) {
-          if (null !== d.dehydrated)
+          if (null !== d.dehydrated) {
             return (G(L, L.current & 1), (b.flags |= 128), null);
-          if (0 !== (c & b.child.childLanes)) return oj(a, b, c);
+          }
+          if (0 !== (c & b.child.childLanes)) {
+            return oj(a, b, c);
+          }
           G(L, L.current & 1);
           a = Zi(a, b, c);
           return null !== a ? a.sibling : null;
@@ -6166,15 +6744,20 @@ function requireReactDom_production_min() {
       case 19:
         d = 0 !== (c & b.childLanes);
         if (0 !== (a.flags & 128)) {
-          if (d) return xj(a, b, c);
+          if (d) {
+            return xj(a, b, c);
+          }
           b.flags |= 128;
         }
         e = b.memoizedState;
         null !== e &&
           ((e.rendering = null), (e.tail = null), (e.lastEffect = null));
         G(L, L.current);
-        if (d) break;
-        else return null;
+        if (d) {
+          break;
+        } else {
+          return null;
+        }
       case 22:
       case 23:
         return ((b.lanes = 0), dj(a, b, c));
@@ -6184,15 +6767,20 @@ function requireReactDom_production_min() {
   let zj, Aj, Bj, Cj;
   zj = function (a, b) {
     for (let c = b.child; null !== c; ) {
-      if (5 === c.tag || 6 === c.tag) a.appendChild(c.stateNode);
-      else if (4 !== c.tag && null !== c.child) {
+      if (5 === c.tag || 6 === c.tag) {
+        a.appendChild(c.stateNode);
+      } else if (4 !== c.tag && null !== c.child) {
         c.child.return = c;
         c = c.child;
         continue;
       }
-      if (c === b) break;
+      if (c === b) {
+        break;
+      }
       for (; null === c.sibling; ) {
-        if (null === c.return || c.return === b) return;
+        if (null === c.return || c.return === b) {
+          return;
+        }
         c = c.return;
       }
       c.sibling.return = c.return;
@@ -6230,12 +6818,14 @@ function requireReactDom_production_min() {
       ub(c, d);
       let g;
       c = null;
-      for (l in e)
-        if (!d.hasOwnProperty(l) && e.hasOwnProperty(l) && null != e[l])
+      for (l in e) {
+        if (!d.hasOwnProperty(l) && e.hasOwnProperty(l) && null != e[l]) {
           if ('style' === l) {
             var h = e[l];
-            for (g in h) h.hasOwnProperty(g) && (c || (c = {}), (c[g] = ''));
-          } else
+            for (g in h) {
+              h.hasOwnProperty(g) && (c || (c = {}), (c[g] = ''));
+            }
+          } else {
             'dangerouslySetInnerHTML' !== l &&
               'children' !== l &&
               'suppressContentEditableWarning' !== l &&
@@ -6244,22 +6834,29 @@ function requireReactDom_production_min() {
               (ea.hasOwnProperty(l)
                 ? f || (f = [])
                 : (f = f || []).push(l, null));
+          }
+        }
+      }
       for (l in d) {
         let k = d[l];
         h = null != e ? e[l] : void 0;
-        if (d.hasOwnProperty(l) && k !== h && (null != k || null != h))
-          if ('style' === l)
+        if (d.hasOwnProperty(l) && k !== h && (null != k || null != h)) {
+          if ('style' === l) {
             if (h) {
-              for (g in h)
+              for (g in h) {
                 !h.hasOwnProperty(g) ||
                   (k && k.hasOwnProperty(g)) ||
                   (c || (c = {}), (c[g] = ''));
-              for (g in k)
+              }
+              for (g in k) {
                 k.hasOwnProperty(g) &&
                   h[g] !== k[g] &&
                   (c || (c = {}), (c[g] = k[g]));
-            } else (c || (f || (f = []), f.push(l, c)), (c = k));
-          else
+              }
+            } else {
+              (c || (f || (f = []), f.push(l, c)), (c = k));
+            }
+          } else {
             'dangerouslySetInnerHTML' === l
               ? ((k = k ? k.__html : void 0),
                 (h = h ? h.__html : void 0),
@@ -6273,53 +6870,63 @@ function requireReactDom_production_min() {
                     ? (null != k && 'onScroll' === l && D('scroll', a),
                       f || h === k || (f = []))
                     : (f = f || []).push(l, k));
+          }
+        }
       }
       c && (f = f || []).push('style', c);
       var l = f;
-      if ((b.updateQueue = l)) b.flags |= 4;
+      if ((b.updateQueue = l)) {
+        b.flags |= 4;
+      }
     }
   };
   Cj = function (a, b, c, d) {
     c !== d && (b.flags |= 4);
   };
   function Dj(a, b) {
-    if (!I)
+    if (!I) {
       switch (a.tailMode) {
         case 'hidden':
           b = a.tail;
-          for (var c = null; null !== b; )
+          for (var c = null; null !== b; ) {
             (null !== b.alternate && (c = b), (b = b.sibling));
+          }
           null === c ? (a.tail = null) : (c.sibling = null);
           break;
         case 'collapsed':
           c = a.tail;
-          for (var d = null; null !== c; )
+          for (var d = null; null !== c; ) {
             (null !== c.alternate && (d = c), (c = c.sibling));
+          }
           null === d
             ? b || null === a.tail
               ? (a.tail = null)
               : (a.tail.sibling = null)
             : (d.sibling = null);
       }
+    }
   }
   function S(a) {
     let b = null !== a.alternate && a.alternate.child === a.child,
       c = 0,
       d = 0;
-    if (b)
-      for (var e = a.child; null !== e; )
+    if (b) {
+      for (var e = a.child; null !== e; ) {
         ((c |= e.lanes | e.childLanes),
           (d |= e.subtreeFlags & 14680064),
           (d |= e.flags & 14680064),
           (e.return = a),
           (e = e.sibling));
-    else
-      for (e = a.child; null !== e; )
+      }
+    } else {
+      for (e = a.child; null !== e; ) {
         ((c |= e.lanes | e.childLanes),
           (d |= e.subtreeFlags),
           (d |= e.flags),
           (e.return = a),
           (e = e.sibling));
+      }
+    }
     a.subtreeFlags |= d;
     a.childLanes = c;
     return b;
@@ -6349,12 +6956,13 @@ function requireReactDom_production_min() {
         Eh();
         d.pendingContext &&
           ((d.context = d.pendingContext), (d.pendingContext = null));
-        if (null === a || null === a.child)
+        if (null === a || null === a.child) {
           Gg(b)
             ? (b.flags |= 4)
             : null === a ||
               (a.memoizedState.isDehydrated && 0 === (b.flags & 256)) ||
               ((b.flags |= 1024), null !== zg && (Fj(zg), (zg = null)));
+        }
         Aj(a, b);
         S(b);
         return null;
@@ -6362,12 +6970,14 @@ function requireReactDom_production_min() {
         Bh(b);
         var e = xh(wh.current);
         c = b.type;
-        if (null !== a && null != b.stateNode)
+        if (null !== a && null != b.stateNode) {
           (Bj(a, b, c, d, e),
             a.ref !== b.ref && ((b.flags |= 512), (b.flags |= 2097152)));
-        else {
+        } else {
           if (!d) {
-            if (null === b.stateNode) throw Error(p(166));
+            if (null === b.stateNode) {
+              throw Error(p(166));
+            }
             S(b);
             return null;
           }
@@ -6391,7 +7001,9 @@ function requireReactDom_production_min() {
                 break;
               case 'video':
               case 'audio':
-                for (e = 0; e < lf.length; e++) D(lf[e], d);
+                for (e = 0; e < lf.length; e++) {
+                  D(lf[e], d);
+                }
                 break;
               case 'source':
                 D('error', d);
@@ -6418,7 +7030,7 @@ function requireReactDom_production_min() {
             }
             ub(c, f);
             e = null;
-            for (var g in f)
+            for (var g in f) {
               if (f.hasOwnProperty(g)) {
                 var h = f[g];
                 'children' === g
@@ -6437,6 +7049,7 @@ function requireReactDom_production_min() {
                     'onScroll' === g &&
                     D('scroll', d);
               }
+            }
             switch (c) {
               case 'input':
                 Va(d);
@@ -6492,7 +7105,9 @@ function requireReactDom_production_min() {
                   break;
                 case 'video':
                 case 'audio':
-                  for (e = 0; e < lf.length; e++) D(lf[e], a);
+                  for (e = 0; e < lf.length; e++) {
+                    D(lf[e], a);
+                  }
                   e = d;
                   break;
                 case 'source':
@@ -6533,7 +7148,7 @@ function requireReactDom_production_min() {
               }
               ub(c, e);
               h = e;
-              for (f in h)
+              for (f in h) {
                 if (h.hasOwnProperty(f)) {
                   let k = h[f];
                   'style' === f
@@ -6551,6 +7166,7 @@ function requireReactDom_production_min() {
                             ? null != k && 'onScroll' === f && D('scroll', a)
                             : null != k && ta(a, f, k, g));
                 }
+              }
               switch (c) {
                 case 'input':
                   Va(a);
@@ -6595,10 +7211,12 @@ function requireReactDom_production_min() {
         S(b);
         return null;
       case 6:
-        if (a && null != b.stateNode) Cj(a, b, a.memoizedProps, d);
-        else {
-          if ('string' !== typeof d && null === b.stateNode)
+        if (a && null != b.stateNode) {
+          Cj(a, b, a.memoizedProps, d);
+        } else {
+          if ('string' !== typeof d && null === b.stateNode) {
             throw Error(p(166));
+          }
           c = xh(wh.current);
           xh(uh.current);
           if (Gg(b)) {
@@ -6606,7 +7224,7 @@ function requireReactDom_production_min() {
             c = b.memoizedProps;
             d[Of] = b;
             if ((f = d.nodeValue !== c)) {
-              if (((a = xg), null !== a))
+              if (((a = xg), null !== a)) {
                 switch (a.tag) {
                   case 3:
                     Af(d.nodeValue, c, 0 !== (a.mode & 1));
@@ -6615,12 +7233,14 @@ function requireReactDom_production_min() {
                     true !== a.memoizedProps.suppressHydrationWarning &&
                       Af(d.nodeValue, c, 0 !== (a.mode & 1));
                 }
+              }
             }
             f && (b.flags |= 4);
-          } else
+          } else {
             ((d = (9 === c.nodeType ? c : c.ownerDocument).createTextNode(d)),
               (d[Of] = b),
               (b.stateNode = d));
+          }
         }
         S(b);
         return null;
@@ -6631,25 +7251,36 @@ function requireReactDom_production_min() {
           null === a ||
           (null !== a.memoizedState && null !== a.memoizedState.dehydrated)
         ) {
-          if (I && null !== yg && 0 !== (b.mode & 1) && 0 === (b.flags & 128))
+          if (I && null !== yg && 0 !== (b.mode & 1) && 0 === (b.flags & 128)) {
             (Hg(), Ig(), (b.flags |= 98560), (f = false));
-          else if (((f = Gg(b)), null !== d && null !== d.dehydrated)) {
+          } else if (((f = Gg(b)), null !== d && null !== d.dehydrated)) {
             if (null === a) {
-              if (!f) throw Error(p(318));
+              if (!f) {
+                throw Error(p(318));
+              }
               f = b.memoizedState;
               f = null !== f ? f.dehydrated : null;
-              if (!f) throw Error(p(317));
+              if (!f) {
+                throw Error(p(317));
+              }
               f[Of] = b;
-            } else
+            } else {
               (Ig(),
                 0 === (b.flags & 128) && (b.memoizedState = null),
                 (b.flags |= 4));
+            }
             S(b);
             f = false;
-          } else (null !== zg && (Fj(zg), (zg = null)), (f = true));
-          if (!f) return b.flags & 65536 ? b : null;
+          } else {
+            (null !== zg && (Fj(zg), (zg = null)), (f = true));
+          }
+          if (!f) {
+            return b.flags & 65536 ? b : null;
+          }
         }
-        if (0 !== (b.flags & 128)) return ((b.lanes = c), b);
+        if (0 !== (b.flags & 128)) {
+          return ((b.lanes = c), b);
+        }
         d = null !== d;
         d !== (null !== a && null !== a.memoizedState) &&
           d &&
@@ -6674,13 +7305,16 @@ function requireReactDom_production_min() {
       case 19:
         E(L);
         f = b.memoizedState;
-        if (null === f) return (S(b), null);
+        if (null === f) {
+          return (S(b), null);
+        }
         d = 0 !== (b.flags & 128);
         g = f.rendering;
-        if (null === g)
-          if (d) Dj(f, false);
-          else {
-            if (0 !== T || (null !== a && 0 !== (a.flags & 128)))
+        if (null === g) {
+          if (d) {
+            Dj(f, false);
+          } else {
+            if (0 !== T || (null !== a && 0 !== (a.flags & 128))) {
               for (a = b.child; null !== a; ) {
                 g = Ch(a);
                 if (null !== g) {
@@ -6690,7 +7324,7 @@ function requireReactDom_production_min() {
                   null !== d && ((b.updateQueue = d), (b.flags |= 4));
                   b.subtreeFlags = 0;
                   d = c;
-                  for (c = b.child; null !== c; )
+                  for (c = b.child; null !== c; ) {
                     ((f = c),
                       (a = d),
                       (f.flags &= 14680066),
@@ -6723,17 +7357,19 @@ function requireReactDom_production_min() {
                                   firstContext: a.firstContext,
                                 })),
                       (c = c.sibling));
+                  }
                   G(L, (L.current & 1) | 2);
                   return b.child;
                 }
                 a = a.sibling;
               }
+            }
             null !== f.tail &&
               B() > Gj &&
               ((b.flags |= 128), (d = true), Dj(f, false), (b.lanes = 4194304));
           }
-        else {
-          if (!d)
+        } else {
+          if (!d) {
             if (((a = Ch(g)), null !== a)) {
               if (
                 ((b.flags |= 128),
@@ -6745,22 +7381,25 @@ function requireReactDom_production_min() {
                   'hidden' === f.tailMode &&
                   !g.alternate &&
                   !I)
-              )
+              ) {
                 return (S(b), null);
-            } else
+              }
+            } else {
               2 * B() - f.renderingStartTime > Gj &&
                 1073741824 !== c &&
                 ((b.flags |= 128),
                 (d = true),
                 Dj(f, false),
                 (b.lanes = 4194304));
+            }
+          }
           f.isBackwards
             ? ((g.sibling = b.child), (b.child = g))
             : ((c = f.last),
               null !== c ? (c.sibling = g) : (b.child = g),
               (f.last = g));
         }
-        if (null !== f.tail)
+        if (null !== f.tail) {
           return (
             (b = f.tail),
             (f.rendering = b),
@@ -6771,6 +7410,7 @@ function requireReactDom_production_min() {
             G(L, d ? (c & 1) | 2 : c & 1),
             b
           );
+        }
         S(b);
         return null;
       case 22:
@@ -6818,7 +7458,9 @@ function requireReactDom_production_min() {
         E(L);
         a = b.memoizedState;
         if (null !== a && null !== a.dehydrated) {
-          if (null === b.alternate) throw Error(p(340));
+          if (null === b.alternate) {
+            throw Error(p(340));
+          }
           Ig();
         }
         a = b.flags;
@@ -6844,14 +7486,17 @@ function requireReactDom_production_min() {
     V = null;
   function Lj(a, b) {
     const c = a.ref;
-    if (null !== c)
-      if ('function' === typeof c)
+    if (null !== c) {
+      if ('function' === typeof c) {
         try {
           c(null);
         } catch (d) {
           W(a, b, d);
         }
-      else c.current = null;
+      } else {
+        c.current = null;
+      }
+    }
   }
   function Mj(a, b, c) {
     try {
@@ -6865,9 +7510,9 @@ function requireReactDom_production_min() {
     Cf = dd;
     a = Me();
     if (Ne(a)) {
-      if ('selectionStart' in a)
+      if ('selectionStart' in a) {
         var c = { start: a.selectionStart, end: a.selectionEnd };
-      else
+      } else {
         a: {
           c = ((c = a.ownerDocument) && c.defaultView) || window;
           let d = c.getSelection && c.getSelection();
@@ -6894,36 +7539,49 @@ function requireReactDom_production_min() {
                 q !== c || (0 !== e && 3 !== q.nodeType) || (h = g + e);
                 q !== f || (0 !== d && 3 !== q.nodeType) || (k = g + d);
                 3 === q.nodeType && (g += q.nodeValue.length);
-                if (null === (y = q.firstChild)) break;
+                if (null === (y = q.firstChild)) {
+                  break;
+                }
                 r = q;
                 q = y;
               }
               for (;;) {
-                if (q === a) break b;
+                if (q === a) {
+                  break b;
+                }
                 r === c && ++l === e && (h = g);
                 r === f && ++m2 === d && (k = g);
-                if (null !== (y = q.nextSibling)) break;
+                if (null !== (y = q.nextSibling)) {
+                  break;
+                }
                 q = r;
                 r = q.parentNode;
               }
               q = y;
             }
             c = -1 === h || -1 === k ? null : { start: h, end: k };
-          } else c = null;
+          } else {
+            c = null;
+          }
         }
+      }
       c = c || { start: 0, end: 0 };
-    } else c = null;
+    } else {
+      c = null;
+    }
     Df = { focusedElem: a, selectionRange: c };
     dd = false;
-    for (V = b; null !== V; )
-      if (((b = V), (a = b.child), 0 !== (b.subtreeFlags & 1028) && null !== a))
+    for (V = b; null !== V; ) {
+      if (
+        ((b = V), (a = b.child), 0 !== (b.subtreeFlags & 1028) && null !== a)
+      ) {
         ((a.return = b), (V = a));
-      else
+      } else {
         for (; null !== V; ) {
           b = V;
           try {
             var n = b.alternate;
-            if (0 !== (b.flags & 1024))
+            if (0 !== (b.flags & 1024)) {
               switch (b.tag) {
                 case 0:
                 case 11:
@@ -6957,6 +7615,7 @@ function requireReactDom_production_min() {
                 default:
                   throw Error(p(163));
               }
+            }
           } catch (F) {
             W(b, b.return, F);
           }
@@ -6968,6 +7627,8 @@ function requireReactDom_production_min() {
           }
           V = b.return;
         }
+      }
+    }
     n = Nj;
     Nj = false;
     return n;
@@ -7040,21 +7701,30 @@ function requireReactDom_production_min() {
   function Uj(a) {
     a: for (;;) {
       for (; null === a.sibling; ) {
-        if (null === a.return || Tj(a.return)) return null;
+        if (null === a.return || Tj(a.return)) {
+          return null;
+        }
         a = a.return;
       }
       a.sibling.return = a.return;
       for (a = a.sibling; 5 !== a.tag && 6 !== a.tag && 18 !== a.tag; ) {
-        if (a.flags & 2) continue a;
-        if (null === a.child || 4 === a.tag) continue a;
-        else ((a.child.return = a), (a = a.child));
+        if (a.flags & 2) {
+          continue a;
+        }
+        if (null === a.child || 4 === a.tag) {
+          continue a;
+        } else {
+          ((a.child.return = a), (a = a.child));
+        }
       }
-      if (!(a.flags & 2)) return a.stateNode;
+      if (!(a.flags & 2)) {
+        return a.stateNode;
+      }
     }
   }
   function Vj(a, b, c) {
     const d = a.tag;
-    if (5 === d || 6 === d)
+    if (5 === d || 6 === d) {
       ((a = a.stateNode),
         b
           ? 8 === c.nodeType
@@ -7067,28 +7737,35 @@ function requireReactDom_production_min() {
             (null !== c && void 0 !== c) ||
               null !== b.onclick ||
               (b.onclick = Bf)));
-    else if (4 !== d && ((a = a.child), null !== a))
-      for (Vj(a, b, c), a = a.sibling; null !== a; )
+    } else if (4 !== d && ((a = a.child), null !== a)) {
+      for (Vj(a, b, c), a = a.sibling; null !== a; ) {
         (Vj(a, b, c), (a = a.sibling));
+      }
+    }
   }
   function Wj(a, b, c) {
     const d = a.tag;
-    if (5 === d || 6 === d)
+    if (5 === d || 6 === d) {
       ((a = a.stateNode), b ? c.insertBefore(a, b) : c.appendChild(a));
-    else if (4 !== d && ((a = a.child), null !== a))
-      for (Wj(a, b, c), a = a.sibling; null !== a; )
+    } else if (4 !== d && ((a = a.child), null !== a)) {
+      for (Wj(a, b, c), a = a.sibling; null !== a; ) {
         (Wj(a, b, c), (a = a.sibling));
+      }
+    }
   }
   let X2 = null,
     Xj = false;
   function Yj(a, b, c) {
-    for (c = c.child; null !== c; ) (Zj(a, b, c), (c = c.sibling));
+    for (c = c.child; null !== c; ) {
+      (Zj(a, b, c), (c = c.sibling));
+    }
   }
   function Zj(a, b, c) {
-    if (lc && 'function' === typeof lc.onCommitFiberUnmount)
+    if (lc && 'function' === typeof lc.onCommitFiberUnmount) {
       try {
         lc.onCommitFiberUnmount(kc, c);
       } catch (h) {}
+    }
     switch (c.tag) {
       case 5:
         U || Lj(c, b);
@@ -7152,7 +7829,7 @@ function requireReactDom_production_min() {
           (Lj(c, b),
           (d = c.stateNode),
           'function' === typeof d.componentWillUnmount)
-        )
+        ) {
           try {
             ((d.props = c.memoizedProps),
               (d.state = c.memoizedState),
@@ -7160,6 +7837,7 @@ function requireReactDom_production_min() {
           } catch (h) {
             W(c, b, h);
           }
+        }
         Yj(a, b, c);
         break;
       case 21:
@@ -7188,7 +7866,7 @@ function requireReactDom_production_min() {
   }
   function ck(a, b) {
     const c = b.deletions;
-    if (null !== c)
+    if (null !== c) {
       for (let d = 0; d < c.length; d++) {
         const e = c[d];
         try {
@@ -7212,7 +7890,9 @@ function requireReactDom_production_min() {
             }
             h = h.return;
           }
-          if (null === X2) throw Error(p(160));
+          if (null === X2) {
+            throw Error(p(160));
+          }
           Zj(f, g, e);
           X2 = null;
           Xj = false;
@@ -7223,8 +7903,12 @@ function requireReactDom_production_min() {
           W(e, b, l);
         }
       }
-    if (b.subtreeFlags & 12854)
-      for (b = b.child; null !== b; ) (dk(b, a), (b = b.sibling));
+    }
+    if (b.subtreeFlags & 12854) {
+      for (b = b.child; null !== b; ) {
+        (dk(b, a), (b = b.sibling));
+      }
+    }
   }
   function dk(a, b) {
     let c = a.alternate,
@@ -7272,7 +7956,7 @@ function requireReactDom_production_min() {
             h = a.type,
             k = a.updateQueue;
           a.updateQueue = null;
-          if (null !== k)
+          if (null !== k) {
             try {
               'input' === h && 'radio' === f.type && null != f.name && ab(e, f);
               vb(h, g);
@@ -7310,13 +7994,16 @@ function requireReactDom_production_min() {
             } catch (t) {
               W(a, a.return, t);
             }
+          }
         }
         break;
       case 6:
         ck(b, a);
         ek(a);
         if (d & 4) {
-          if (null === a.stateNode) throw Error(p(162));
+          if (null === a.stateNode) {
+            throw Error(p(162));
+          }
           e = a.stateNode;
           f = a.memoizedProps;
           try {
@@ -7329,12 +8016,13 @@ function requireReactDom_production_min() {
       case 3:
         ck(b, a);
         ek(a);
-        if (d & 4 && null !== c && c.memoizedState.isDehydrated)
+        if (d & 4 && null !== c && c.memoizedState.isDehydrated) {
           try {
             bd(b.containerInfo);
           } catch (t) {
             W(a, a.return, t);
           }
+        }
         break;
       case 4:
         ck(b, a);
@@ -7358,7 +8046,7 @@ function requireReactDom_production_min() {
         ek(a);
         if (d & 8192) {
           l = null !== a.memoizedState;
-          if ((a.stateNode.isHidden = l) && !m2 && 0 !== (a.mode & 1))
+          if ((a.stateNode.isHidden = l) && !m2 && 0 !== (a.mode & 1)) {
             for (V = a, m2 = a.child; null !== m2; ) {
               for (q = V = m2; null !== V; ) {
                 r = V;
@@ -7399,6 +8087,7 @@ function requireReactDom_production_min() {
               }
               m2 = m2.sibling;
             }
+          }
           a: for (m2 = null, q = a; ; ) {
             if (5 === q.tag) {
               if (null === m2) {
@@ -7424,12 +8113,13 @@ function requireReactDom_production_min() {
                 }
               }
             } else if (6 === q.tag) {
-              if (null === m2)
+              if (null === m2) {
                 try {
                   q.stateNode.nodeValue = l ? '' : q.memoizedProps;
                 } catch (t) {
                   W(a, a.return, t);
                 }
+              }
             } else if (
               ((22 !== q.tag && 23 !== q.tag) ||
                 null === q.memoizedState ||
@@ -7440,9 +8130,13 @@ function requireReactDom_production_min() {
               q = q.child;
               continue;
             }
-            if (q === a) break a;
+            if (q === a) {
+              break a;
+            }
             for (; null === q.sibling; ) {
-              if (null === q.return || q.return === a) break a;
+              if (null === q.return || q.return === a) {
+                break a;
+              }
               m2 === q && (m2 = null);
               q = q.return;
             }
@@ -7516,8 +8210,8 @@ function requireReactDom_production_min() {
           h = Jj;
           const l = U;
           Jj = g;
-          if ((U = k) && !l)
-            for (V = e; null !== V; )
+          if ((U = k) && !l) {
+            for (V = e; null !== V; ) {
               ((g = V),
                 (k = g.child),
                 22 === g.tag && null !== g.memoizedState
@@ -7525,16 +8219,21 @@ function requireReactDom_production_min() {
                   : null !== k
                     ? ((k.return = g), (V = k))
                     : jk(e));
-          for (; null !== f; ) ((V = f), ik(f, b, c), (f = f.sibling));
+            }
+          }
+          for (; null !== f; ) {
+            ((V = f), ik(f, b, c), (f = f.sibling));
+          }
           V = e;
           Jj = h;
           U = l;
         }
         kk(a, b, c);
-      } else
+      } else {
         0 !== (e.subtreeFlags & 8772) && null !== f
           ? ((f.return = e), (V = f))
           : kk(a, b, c);
+      }
     }
   }
   function kk(a) {
@@ -7543,7 +8242,7 @@ function requireReactDom_production_min() {
       if (0 !== (b.flags & 8772)) {
         var c = b.alternate;
         try {
-          if (0 !== (b.flags & 8772))
+          if (0 !== (b.flags & 8772)) {
             switch (b.tag) {
               case 0:
               case 11:
@@ -7552,9 +8251,10 @@ function requireReactDom_production_min() {
                 break;
               case 1:
                 var d = b.stateNode;
-                if (b.flags & 4 && !U)
-                  if (null === c) d.componentDidMount();
-                  else {
+                if (b.flags & 4 && !U) {
+                  if (null === c) {
+                    d.componentDidMount();
+                  } else {
                     const e =
                       b.elementType === b.type
                         ? c.memoizedProps
@@ -7565,6 +8265,7 @@ function requireReactDom_production_min() {
                       d.__reactInternalSnapshotBeforeUpdate
                     );
                   }
+                }
                 var f = b.updateQueue;
                 null !== f && sh(b, f, d);
                 break;
@@ -7572,7 +8273,7 @@ function requireReactDom_production_min() {
                 var g = b.updateQueue;
                 if (null !== g) {
                   c = null;
-                  if (null !== b.child)
+                  if (null !== b.child) {
                     switch (b.child.tag) {
                       case 5:
                         c = b.child.stateNode;
@@ -7580,6 +8281,7 @@ function requireReactDom_production_min() {
                       case 1:
                         c = b.child.stateNode;
                     }
+                  }
                   sh(b, g, c);
                 }
                 break;
@@ -7628,6 +8330,7 @@ function requireReactDom_production_min() {
               default:
                 throw Error(p(163));
             }
+          }
           U || (b.flags & 512 && Rj(b));
         } catch (r) {
           W(b, b.return, r);
@@ -7752,41 +8455,52 @@ function requireReactDom_production_min() {
     return 0 !== (K & 6) ? B() : -1 !== Ak ? Ak : (Ak = B());
   }
   function yi(a) {
-    if (0 === (a.mode & 1)) return 1;
-    if (0 !== (K & 2) && 0 !== Z) return Z & -Z;
-    if (null !== Kg.transition) return (0 === Bk && (Bk = yc()), Bk);
+    if (0 === (a.mode & 1)) {
+      return 1;
+    }
+    if (0 !== (K & 2) && 0 !== Z) {
+      return Z & -Z;
+    }
+    if (null !== Kg.transition) {
+      return (0 === Bk && (Bk = yc()), Bk);
+    }
     a = C;
-    if (0 !== a) return a;
+    if (0 !== a) {
+      return a;
+    }
     a = window.event;
     a = void 0 === a ? 16 : jd(a.type);
     return a;
   }
   function gi(a, b, c, d) {
-    if (50 < yk) throw ((yk = 0), (zk = null), Error(p(185)));
+    if (50 < yk) {
+      throw ((yk = 0), (zk = null), Error(p(185)));
+    }
     Ac(a, c, d);
-    if (0 === (K & 2) || a !== Q)
+    if (0 === (K & 2) || a !== Q) {
       (a === Q && (0 === (K & 2) && (qk |= c), 4 === T && Ck(a, Z)),
         Dk(a, d),
         1 === c &&
           0 === K &&
           0 === (b.mode & 1) &&
           ((Gj = B() + 500), fg && jg()));
+    }
   }
   function Dk(a, b) {
     let c = a.callbackNode;
     wc(a, b);
     const d = uc(a, a === Q ? Z : 0);
-    if (0 === d)
+    if (0 === d) {
       (null !== c && bc(c), (a.callbackNode = null), (a.callbackPriority = 0));
-    else if (((b = d & -d), a.callbackPriority !== b)) {
+    } else if (((b = d & -d), a.callbackPriority !== b)) {
       null != c && bc(c);
-      if (1 === b)
+      if (1 === b) {
         (0 === a.tag ? ig(Ek.bind(null, a)) : hg(Ek.bind(null, a)),
           Jf(function () {
             0 === (K & 6) && jg();
           }),
           (c = null));
-      else {
+      } else {
         switch (Dc(d)) {
           case 1:
             c = fc;
@@ -7812,26 +8526,35 @@ function requireReactDom_production_min() {
   function Gk(a, b) {
     Ak = -1;
     Bk = 0;
-    if (0 !== (K & 6)) throw Error(p(327));
+    if (0 !== (K & 6)) {
+      throw Error(p(327));
+    }
     let c = a.callbackNode;
-    if (Hk() && a.callbackNode !== c) return null;
+    if (Hk() && a.callbackNode !== c) {
+      return null;
+    }
     let d = uc(a, a === Q ? Z : 0);
-    if (0 === d) return null;
-    if (0 !== (d & 30) || 0 !== (d & a.expiredLanes) || b) b = Ik(a, d);
-    else {
+    if (0 === d) {
+      return null;
+    }
+    if (0 !== (d & 30) || 0 !== (d & a.expiredLanes) || b) {
+      b = Ik(a, d);
+    } else {
       b = d;
       var e = K;
       K |= 2;
       var f = Jk();
-      if (Q !== a || Z !== b) ((uk = null), (Gj = B() + 500), Kk(a, b));
-      do
+      if (Q !== a || Z !== b) {
+        ((uk = null), (Gj = B() + 500), Kk(a, b));
+      }
+      do {
         try {
           Lk();
           break;
         } catch (h) {
           Mk(a, h);
         }
-      while (1);
+      } while (1);
       $g();
       mk.current = f;
       K = e;
@@ -7839,9 +8562,12 @@ function requireReactDom_production_min() {
     }
     if (0 !== b) {
       2 === b && ((e = xc(a)), 0 !== e && ((d = e), (b = Nk(a, e))));
-      if (1 === b) throw ((c = pk), Kk(a, 0), Ck(a, d), Dk(a, B()), c);
-      if (6 === b) Ck(a, d);
-      else {
+      if (1 === b) {
+        throw ((c = pk), Kk(a, 0), Ck(a, d), Dk(a, B()), c);
+      }
+      if (6 === b) {
+        Ck(a, d);
+      } else {
         e = a.current.alternate;
         if (
           0 === (d & 30) &&
@@ -7849,8 +8575,9 @@ function requireReactDom_production_min() {
           ((b = Ik(a, d)),
           2 === b && ((f = xc(a)), 0 !== f && ((d = f), (b = Nk(a, f)))),
           1 === b)
-        )
+        ) {
           throw ((c = pk), Kk(a, 0), Ck(a, d), Dk(a, B()), c);
+        }
         a.finishedWork = e;
         a.finishedLanes = d;
         switch (b) {
@@ -7863,7 +8590,9 @@ function requireReactDom_production_min() {
           case 3:
             Ck(a, d);
             if ((d & 130023424) === d && ((b = fk + 500 - B()), 10 < b)) {
-              if (0 !== uc(a, 0)) break;
+              if (0 !== uc(a, 0)) {
+                break;
+              }
               e = a.suspendedLanes;
               if ((e & d) !== d) {
                 R();
@@ -7877,7 +8606,9 @@ function requireReactDom_production_min() {
             break;
           case 4:
             Ck(a, d);
-            if ((d & 4194240) === d) break;
+            if ((d & 4194240) === d) {
+              break;
+            }
             b = a.eventTimes;
             for (e = -1; 0 < d; ) {
               let g = 31 - oc(d);
@@ -7933,24 +8664,32 @@ function requireReactDom_production_min() {
     for (let b = a; ; ) {
       if (b.flags & 16384) {
         var c = b.updateQueue;
-        if (null !== c && ((c = c.stores), null !== c))
+        if (null !== c && ((c = c.stores), null !== c)) {
           for (let d = 0; d < c.length; d++) {
             let e = c[d],
               f = e.getSnapshot;
             e = e.value;
             try {
-              if (!He(f(), e)) return false;
+              if (!He(f(), e)) {
+                return false;
+              }
             } catch (g) {
               return false;
             }
           }
+        }
       }
       c = b.child;
-      if (b.subtreeFlags & 16384 && null !== c) ((c.return = b), (b = c));
-      else {
-        if (b === a) break;
+      if (b.subtreeFlags & 16384 && null !== c) {
+        ((c.return = b), (b = c));
+      } else {
+        if (b === a) {
+          break;
+        }
         for (; null === b.sibling; ) {
-          if (null === b.return || b.return === a) return true;
+          if (null === b.return || b.return === a) {
+            return true;
+          }
           b = b.return;
         }
         b.sibling.return = b.return;
@@ -7972,17 +8711,25 @@ function requireReactDom_production_min() {
     }
   }
   function Ek(a) {
-    if (0 !== (K & 6)) throw Error(p(327));
+    if (0 !== (K & 6)) {
+      throw Error(p(327));
+    }
     Hk();
     let b = uc(a, 0);
-    if (0 === (b & 1)) return (Dk(a, B()), null);
+    if (0 === (b & 1)) {
+      return (Dk(a, B()), null);
+    }
     let c = Ik(a, b);
     if (0 !== a.tag && 2 === c) {
       const d = xc(a);
       0 !== d && ((b = d), (c = Nk(a, d)));
     }
-    if (1 === c) throw ((c = pk), Kk(a, 0), Ck(a, b), Dk(a, B()), c);
-    if (6 === c) throw Error(p(345));
+    if (1 === c) {
+      throw ((c = pk), Kk(a, 0), Ck(a, b), Dk(a, B()), c);
+    }
+    if (6 === c) {
+      throw Error(p(345));
+    }
     a.finishedWork = a.current.alternate;
     a.finishedLanes = b;
     Pk(a, tk, uk);
@@ -8005,7 +8752,9 @@ function requireReactDom_production_min() {
     const c = ok.transition,
       d = C;
     try {
-      if (((ok.transition = null), (C = 1), a)) return a();
+      if (((ok.transition = null), (C = 1), a)) {
+        return a();
+      }
     } finally {
       ((C = d), (ok.transition = c), (K = b), 0 === (K & 6) && jg());
     }
@@ -8019,7 +8768,7 @@ function requireReactDom_production_min() {
     a.finishedLanes = 0;
     let c = a.timeoutHandle;
     -1 !== c && ((a.timeoutHandle = -1), Gf(c));
-    if (null !== Y)
+    if (null !== Y) {
       for (c = Y.return; null !== c; ) {
         var d = c;
         wg(d);
@@ -8055,6 +8804,7 @@ function requireReactDom_production_min() {
         }
         c = c.return;
       }
+    }
     Q = a;
     Y = a = Pg(a.current, null);
     Z = fj = b;
@@ -8063,7 +8813,7 @@ function requireReactDom_production_min() {
     rk = qk = rh = 0;
     tk = sk = null;
     if (null !== fh) {
-      for (b = 0; b < fh.length; b++)
+      for (b = 0; b < fh.length; b++) {
         if (((c = fh[b]), (d = c.interleaved), null !== d)) {
           c.interleaved = null;
           const e = d.next,
@@ -8075,6 +8825,7 @@ function requireReactDom_production_min() {
           }
           c.pending = d;
         }
+      }
       fh = null;
     }
     return a;
@@ -8139,7 +8890,9 @@ function requireReactDom_production_min() {
                 const t = /* @__PURE__ */ new Set();
                 t.add(k);
                 b.updateQueue = t;
-              } else n.add(k);
+              } else {
+                n.add(k);
+              }
               break a;
             } else {
               if (0 === (b & 1)) {
@@ -8208,7 +8961,9 @@ function requireReactDom_production_min() {
     return null === a ? Rh : a;
   }
   function tj() {
-    if (0 === T || 3 === T || 2 === T) T = 4;
+    if (0 === T || 3 === T || 2 === T) {
+      T = 4;
+    }
     null === Q ||
       (0 === (rh & 268435455) && 0 === (qk & 268435455)) ||
       Ck(Q, Z);
@@ -8217,28 +8972,36 @@ function requireReactDom_production_min() {
     const c = K;
     K |= 2;
     const d = Jk();
-    if (Q !== a || Z !== b) ((uk = null), Kk(a, b));
-    do
+    if (Q !== a || Z !== b) {
+      ((uk = null), Kk(a, b));
+    }
+    do {
       try {
         Tk();
         break;
       } catch (e) {
         Mk(a, e);
       }
-    while (1);
+    } while (1);
     $g();
     K = c;
     mk.current = d;
-    if (null !== Y) throw Error(p(261));
+    if (null !== Y) {
+      throw Error(p(261));
+    }
     Q = null;
     Z = 0;
     return T;
   }
   function Tk() {
-    for (; null !== Y; ) Uk(Y);
+    for (; null !== Y; ) {
+      Uk(Y);
+    }
   }
   function Lk() {
-    for (; null !== Y && !cc(); ) Uk(Y);
+    for (; null !== Y && !cc(); ) {
+      Uk(Y);
+    }
   }
   function Uk(a) {
     const b = Vk(a.alternate, a, fj);
@@ -8263,9 +9026,9 @@ function requireReactDom_production_min() {
           Y = c;
           return;
         }
-        if (null !== a)
+        if (null !== a) {
           ((a.flags |= 32768), (a.subtreeFlags = 0), (a.deletions = null));
-        else {
+        } else {
           T = 6;
           Y = null;
           return;
@@ -8291,15 +9054,22 @@ function requireReactDom_production_min() {
     return null;
   }
   function Wk(a, b, c, d) {
-    do Hk();
-    while (null !== wk);
-    if (0 !== (K & 6)) throw Error(p(327));
+    do {
+      Hk();
+    } while (null !== wk);
+    if (0 !== (K & 6)) {
+      throw Error(p(327));
+    }
     c = a.finishedWork;
     let e = a.finishedLanes;
-    if (null === c) return null;
+    if (null === c) {
+      return null;
+    }
     a.finishedWork = null;
     a.finishedLanes = 0;
-    if (c === a.current) throw Error(p(177));
+    if (c === a.current) {
+      throw Error(p(177));
+    }
     a.callbackNode = null;
     a.callbackPriority = 0;
     let f = c.lanes | c.childLanes;
@@ -8332,16 +9102,22 @@ function requireReactDom_production_min() {
       K = h;
       C = g;
       ok.transition = f;
-    } else a.current = c;
+    } else {
+      a.current = c;
+    }
     vk && ((vk = false), (wk = a), (xk = e));
     f = a.pendingLanes;
     0 === f && (Ri = null);
     mc(c.stateNode, d);
     Dk(a, B());
-    if (null !== b)
-      for (d = a.onRecoverableError, c = 0; c < b.length; c++)
+    if (null !== b) {
+      for (d = a.onRecoverableError, c = 0; c < b.length; c++) {
         ((e = b[c]), d(e.value, { componentStack: e.stack, digest: e.digest }));
-    if (Oi) throw ((Oi = false), (a = Pi2), (Pi2 = null), a);
+      }
+    }
+    if (Oi) {
+      throw ((Oi = false), (a = Pi2), (Pi2 = null), a);
+    }
     0 !== (xk & 1) && 0 !== a.tag && Hk();
     f = a.pendingLanes;
     0 !== (f & 1) ? (a === zk ? yk++ : ((yk = 0), (zk = a))) : (yk = 0);
@@ -8356,12 +9132,15 @@ function requireReactDom_production_min() {
       try {
         ok.transition = null;
         C = 16 > a ? 16 : a;
-        if (null === wk) var d = false;
-        else {
+        if (null === wk) {
+          var d = false;
+        } else {
           a = wk;
           wk = null;
           xk = 0;
-          if (0 !== (K & 6)) throw Error(p(331));
+          if (0 !== (K & 6)) {
+            throw Error(p(331));
+          }
           const e = K;
           K |= 4;
           for (V = a.current; null !== V; ) {
@@ -8381,8 +9160,9 @@ function requireReactDom_production_min() {
                         Pj(8, m2, f);
                     }
                     const q = m2.child;
-                    if (null !== q) ((q.return = m2), (V = q));
-                    else
+                    if (null !== q) {
+                      ((q.return = m2), (V = q));
+                    } else {
                       for (; null !== V; ) {
                         m2 = V;
                         const r = m2.sibling,
@@ -8399,6 +9179,7 @@ function requireReactDom_production_min() {
                         }
                         V = y;
                       }
+                    }
                   }
                 }
                 const n = f.alternate;
@@ -8416,18 +9197,19 @@ function requireReactDom_production_min() {
                 V = f;
               }
             }
-            if (0 !== (f.subtreeFlags & 2064) && null !== g)
+            if (0 !== (f.subtreeFlags & 2064) && null !== g) {
               ((g.return = f), (V = g));
-            else
+            } else {
               b: for (; null !== V; ) {
                 f = V;
-                if (0 !== (f.flags & 2048))
+                if (0 !== (f.flags & 2048)) {
                   switch (f.tag) {
                     case 0:
                     case 11:
                     case 15:
                       Pj(9, f, f.return);
                   }
+                }
                 const x = f.sibling;
                 if (null !== x) {
                   x.return = f.return;
@@ -8436,17 +9218,18 @@ function requireReactDom_production_min() {
                 }
                 V = f.return;
               }
+            }
           }
           const w = a.current;
           for (V = w; null !== V; ) {
             g = V;
             const u = g.child;
-            if (0 !== (g.subtreeFlags & 2064) && null !== u)
+            if (0 !== (g.subtreeFlags & 2064) && null !== u) {
               ((u.return = g), (V = u));
-            else
+            } else {
               b: for (g = w; null !== V; ) {
                 h = V;
-                if (0 !== (h.flags & 2048))
+                if (0 !== (h.flags & 2048)) {
                   try {
                     switch (h.tag) {
                       case 0:
@@ -8457,6 +9240,7 @@ function requireReactDom_production_min() {
                   } catch (na) {
                     W(h, h.return, na);
                   }
+                }
                 if (h === g) {
                   V = null;
                   break b;
@@ -8469,13 +9253,15 @@ function requireReactDom_production_min() {
                 }
                 V = h.return;
               }
+            }
           }
           K = e;
           jg();
-          if (lc && 'function' === typeof lc.onPostCommitFiberRoot)
+          if (lc && 'function' === typeof lc.onPostCommitFiberRoot) {
             try {
               lc.onPostCommitFiberRoot(kc, a);
             } catch (na) {}
+          }
           d = true;
         }
         return d;
@@ -8493,8 +9279,9 @@ function requireReactDom_production_min() {
     null !== a && (Ac(a, 1, b), Dk(a, b));
   }
   function W(a, b, c) {
-    if (3 === a.tag) Xk(a, a, c);
-    else
+    if (3 === a.tag) {
+      Xk(a, a, c);
+    } else {
       for (; null !== b; ) {
         if (3 === b.tag) {
           Xk(b, a, c);
@@ -8516,6 +9303,7 @@ function requireReactDom_production_min() {
         }
         b = b.return;
       }
+    }
   }
   function Ti(a, b, c) {
     const d = a.pingCache;
@@ -8563,14 +9351,18 @@ function requireReactDom_production_min() {
   }
   let Vk;
   Vk = function (a, b, c) {
-    if (null !== a)
-      if (a.memoizedProps !== b.pendingProps || Wf.current) dh = true;
-      else {
-        if (0 === (a.lanes & c) && 0 === (b.flags & 128))
+    if (null !== a) {
+      if (a.memoizedProps !== b.pendingProps || Wf.current) {
+        dh = true;
+      } else {
+        if (0 === (a.lanes & c) && 0 === (b.flags & 128)) {
           return ((dh = false), yj(a, b, c));
+        }
         dh = 0 !== (a.flags & 131072) ? true : false;
       }
-    else ((dh = false), I && 0 !== (b.flags & 1048576) && ug(b, ng, b.index));
+    } else {
+      ((dh = false), I && 0 !== (b.flags & 1048576) && ug(b, ng, b.index));
+    }
     b.lanes = 0;
     switch (b.tag) {
       case 2:
@@ -8644,7 +9436,9 @@ function requireReactDom_production_min() {
       case 3:
         a: {
           kj(b);
-          if (null === a) throw Error(p(387));
+          if (null === a) {
+            throw Error(p(387));
+          }
           d = b.pendingProps;
           f = b.memoizedState;
           e = f.element;
@@ -8652,7 +9446,7 @@ function requireReactDom_production_min() {
           qh(b, d, null, c);
           var g = b.memoizedState;
           d = g.element;
-          if (f.isDehydrated)
+          if (f.isDehydrated) {
             if (
               ((f = {
                 element: d,
@@ -8672,7 +9466,7 @@ function requireReactDom_production_min() {
               e = Ji(Error(p(424)), b);
               b = lj(a, b, d, c, e);
               break a;
-            } else
+            } else {
               for (
                 yg = Lf(b.stateNode.containerInfo.firstChild),
                   xg = b,
@@ -8682,9 +9476,11 @@ function requireReactDom_production_min() {
                   b.child = c;
                 c;
 
-              )
+              ) {
                 ((c.flags = (c.flags & -3) | 4096), (c = c.sibling));
-          else {
+              }
+            }
+          } else {
             Ig();
             if (d === e) {
               b = Zi(a, b, c);
@@ -8740,13 +9536,13 @@ function requireReactDom_production_min() {
           g = e.value;
           G(Wg, d._currentValue);
           d._currentValue = g;
-          if (null !== f)
+          if (null !== f) {
             if (He(f.value, g)) {
               if (f.children === e.children && !Wf.current) {
                 b = Zi(a, b, c);
                 break a;
               }
-            } else
+            } else {
               for (f = b.child, null !== f && (f.return = b); null !== f; ) {
                 let h = f.dependencies;
                 if (null !== h) {
@@ -8775,18 +9571,24 @@ function requireReactDom_production_min() {
                     }
                     k = k.next;
                   }
-                } else if (10 === f.tag) g = f.type === b.type ? null : f.child;
-                else if (18 === f.tag) {
+                } else if (10 === f.tag) {
+                  g = f.type === b.type ? null : f.child;
+                } else if (18 === f.tag) {
                   g = f.return;
-                  if (null === g) throw Error(p(341));
+                  if (null === g) {
+                    throw Error(p(341));
+                  }
                   g.lanes |= c;
                   h = g.alternate;
                   null !== h && (h.lanes |= c);
                   bh(g, c, b);
                   g = f.sibling;
-                } else g = f.child;
-                if (null !== g) g.return = f;
-                else
+                } else {
+                  g = f.child;
+                }
+                if (null !== g) {
+                  g.return = f;
+                } else {
                   for (g = f; null !== g; ) {
                     if (g === b) {
                       g = null;
@@ -8800,8 +9602,11 @@ function requireReactDom_production_min() {
                     }
                     g = g.return;
                   }
+                }
                 f = g;
               }
+            }
+          }
           Xi(a, b, e.children, c);
           b = b.child;
         }
@@ -8881,11 +9686,17 @@ function requireReactDom_production_min() {
     return !(!a || !a.isReactComponent);
   }
   function Zk(a) {
-    if ('function' === typeof a) return aj(a) ? 1 : 0;
+    if ('function' === typeof a) {
+      return aj(a) ? 1 : 0;
+    }
     if (void 0 !== a && null !== a) {
       a = a.$$typeof;
-      if (a === Da) return 11;
-      if (a === Ga) return 14;
+      if (a === Da) {
+        return 11;
+      }
+      if (a === Ga) {
+        return 14;
+      }
     }
     return 2;
   }
@@ -8921,9 +9732,11 @@ function requireReactDom_production_min() {
   function Rg(a, b, c, d, e, f) {
     let g = 2;
     d = a;
-    if ('function' === typeof a) aj(a) && (g = 1);
-    else if ('string' === typeof a) g = 5;
-    else
+    if ('function' === typeof a) {
+      aj(a) && (g = 1);
+    } else if ('string' === typeof a) {
+      g = 5;
+    } else {
       a: switch (a) {
         case ya:
           return Tg(c.children, e, f, b);
@@ -8955,7 +9768,7 @@ function requireReactDom_production_min() {
         case Ia:
           return pj(c, e, f, b);
         default:
-          if ('object' === typeof a && null !== a)
+          if ('object' === typeof a && null !== a) {
             switch (a.$$typeof) {
               case Ba:
                 g = 10;
@@ -8974,8 +9787,10 @@ function requireReactDom_production_min() {
                 d = null;
                 break a;
             }
+          }
           throw Error(p(130, null == a ? a : typeof a, ''));
       }
+    }
     b = Bg(g, c, b, e);
     b.elementType = a;
     b.type = d;
@@ -9063,10 +9878,14 @@ function requireReactDom_production_min() {
     };
   }
   function dl(a) {
-    if (!a) return Vf;
+    if (!a) {
+      return Vf;
+    }
     a = a._reactInternals;
     a: {
-      if (Vb(a) !== a || 1 !== a.tag) throw Error(p(170));
+      if (Vb(a) !== a || 1 !== a.tag) {
+        throw Error(p(170));
+      }
       var b = a;
       do {
         switch (b.tag) {
@@ -9085,7 +9904,9 @@ function requireReactDom_production_min() {
     }
     if (1 === a.tag) {
       const c = a.type;
-      if (Zf(c)) return bg(a, c, b);
+      if (Zf(c)) {
+        return bg(a, c, b);
+      }
     }
     return b;
   }
@@ -9119,7 +9940,9 @@ function requireReactDom_production_min() {
   }
   function gl(a) {
     a = a.current;
-    if (!a.child) return null;
+    if (!a.child) {
+      return null;
+    }
     switch (a.child.tag) {
       case 5:
         return a.child.stateNode;
@@ -9145,14 +9968,16 @@ function requireReactDom_production_min() {
     'function' === typeof reportError
       ? reportError
       : function (a) {
-          console.error(a);
+          // Console statement removed by auto-fix
         };
   function ll(a) {
     this._internalRoot = a;
   }
   ml.prototype.render = ll.prototype.render = function (a) {
     const b = this._internalRoot;
-    if (null === b) throw Error(p(409));
+    if (null === b) {
+      throw Error(p(409));
+    }
     fl(a, b, null, null);
   };
   ml.prototype.unmount = ll.prototype.unmount = function () {
@@ -9173,7 +9998,7 @@ function requireReactDom_production_min() {
     if (a) {
       const b = Hc();
       a = { blockedOn: null, target: a, priority: b };
-      for (var c = 0; c < Qc.length && 0 !== b && b < Qc[c].priority; c++);
+      for (var c = 0; c < Qc.length && 0 !== b && b < Qc[c].priority; c++) {}
       Qc.splice(c, 0, a);
       0 === c && Vc(a);
     }
@@ -9207,7 +10032,9 @@ function requireReactDom_production_min() {
       Rk();
       return g;
     }
-    for (; (e = a.lastChild); ) a.removeChild(e);
+    for (; (e = a.lastChild); ) {
+      a.removeChild(e);
+    }
     if ('function' === typeof d) {
       const h = d;
       d = function () {
@@ -9236,7 +10063,9 @@ function requireReactDom_production_min() {
         };
       }
       fl(b, g, a, e);
-    } else g = ql(c, b, a, e, d);
+    } else {
+      g = ql(c, b, a, e, d);
+    }
     return gl(g);
   }
   Ec = function (a) {
@@ -9300,7 +10129,9 @@ function requireReactDom_production_min() {
         bb(a, c);
         b = c.name;
         if ('radio' === c.type && null != b) {
-          for (c = a; c.parentNode; ) c = c.parentNode;
+          for (c = a; c.parentNode; ) {
+            c = c.parentNode;
+          }
           c = c.querySelectorAll(
             'input[name=' + JSON.stringify('' + b) + '][type="radio"]'
           );
@@ -9308,7 +10139,9 @@ function requireReactDom_production_min() {
             const d = c[b];
             if (d !== a && d.form === a.form) {
               const e = Db(d);
-              if (!e) throw Error(p(90));
+              if (!e) {
+                throw Error(p(90));
+              }
               Wa(d);
               bb(d, e);
             }
@@ -9360,21 +10193,26 @@ function requireReactDom_production_min() {
   };
   if ('undefined' !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__) {
     const vl = __REACT_DEVTOOLS_GLOBAL_HOOK__;
-    if (!vl.isDisabled && vl.supportsFiber)
+    if (!vl.isDisabled && vl.supportsFiber) {
       try {
         ((kc = vl.inject(ul)), (lc = vl));
       } catch (a) {}
+    }
   }
   reactDom_production_min.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED =
     sl;
   reactDom_production_min.createPortal = function (a, b) {
     const c =
       2 < arguments.length && void 0 !== arguments[2] ? arguments[2] : null;
-    if (!nl(b)) throw Error(p(200));
+    if (!nl(b)) {
+      throw Error(p(200));
+    }
     return cl(a, b, null, c);
   };
   reactDom_production_min.createRoot = function (a, b) {
-    if (!nl(a)) throw Error(p(299));
+    if (!nl(a)) {
+      throw Error(p(299));
+    }
     let c = false,
       d = '',
       e = kl;
@@ -9389,11 +10227,17 @@ function requireReactDom_production_min() {
     return new ll(b);
   };
   reactDom_production_min.findDOMNode = function (a) {
-    if (null == a) return null;
-    if (1 === a.nodeType) return a;
+    if (null == a) {
+      return null;
+    }
+    if (1 === a.nodeType) {
+      return a;
+    }
     const b = a._reactInternals;
     if (void 0 === b) {
-      if ('function' === typeof a.render) throw Error(p(188));
+      if ('function' === typeof a.render) {
+        throw Error(p(188));
+      }
       a = Object.keys(a).join(',');
       throw Error(p(268, a));
     }
@@ -9405,11 +10249,15 @@ function requireReactDom_production_min() {
     return Rk(a);
   };
   reactDom_production_min.hydrate = function (a, b, c) {
-    if (!ol(b)) throw Error(p(200));
+    if (!ol(b)) {
+      throw Error(p(200));
+    }
     return rl(null, a, b, true, c);
   };
   reactDom_production_min.hydrateRoot = function (a, b, c) {
-    if (!nl(a)) throw Error(p(405));
+    if (!nl(a)) {
+      throw Error(p(405));
+    }
     let d = (null != c && c.hydratedSources) || null,
       e = false,
       f = '',
@@ -9422,22 +10270,28 @@ function requireReactDom_production_min() {
     b = el(b, null, a, 1, null != c ? c : null, e, false, f, g);
     a[uf] = b.current;
     sf(a);
-    if (d)
-      for (a = 0; a < d.length; a++)
+    if (d) {
+      for (a = 0; a < d.length; a++) {
         ((c = d[a]),
           (e = c._getVersion),
           (e = e(c._source)),
           null == b.mutableSourceEagerHydrationData
             ? (b.mutableSourceEagerHydrationData = [c, e])
             : b.mutableSourceEagerHydrationData.push(c, e));
+      }
+    }
     return new ml(b);
   };
   reactDom_production_min.render = function (a, b, c) {
-    if (!ol(b)) throw Error(p(200));
+    if (!ol(b)) {
+      throw Error(p(200));
+    }
     return rl(null, a, b, false, c);
   };
   reactDom_production_min.unmountComponentAtNode = function (a) {
-    if (!ol(a)) throw Error(p(40));
+    if (!ol(a)) {
+      throw Error(p(40));
+    }
     return a._reactRootContainer
       ? (Rk(function () {
           rl(null, null, a, false, function () {
@@ -9455,8 +10309,12 @@ function requireReactDom_production_min() {
     c,
     d
   ) {
-    if (!ol(c)) throw Error(p(200));
-    if (null == a || void 0 === a._reactInternals) throw Error(p(38));
+    if (!ol(c)) {
+      throw Error(p(200));
+    }
+    if (null == a || void 0 === a._reactInternals) {
+      throw Error(p(38));
+    }
     return rl(a, b, c, false, d);
   };
   reactDom_production_min.version = '18.3.1-next-f1338f8080-20240426';
@@ -9465,7 +10323,9 @@ function requireReactDom_production_min() {
 const reactDom = reactDom$1.exports;
 let hasRequiredReactDom;
 function requireReactDom() {
-  if (hasRequiredReactDom) return reactDom$1.exports;
+  if (hasRequiredReactDom) {
+    return reactDom$1.exports;
+  }
   hasRequiredReactDom = 1;
   ('use strict');
   function checkDCE() {
@@ -9481,7 +10341,7 @@ function requireReactDom() {
     try {
       __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE(checkDCE);
     } catch (err) {
-      console.error(err);
+      // Console statement removed by auto-fix
     }
   }
   if (true) {
@@ -9494,7 +10354,9 @@ function requireReactDom() {
 }
 let hasRequiredClient;
 function requireClient() {
-  if (hasRequiredClient) return client$1;
+  if (hasRequiredClient) {
+    return client$1;
+  }
   hasRequiredClient = 1;
   ('use strict');
   const m2 = requireReactDom();
@@ -9575,13 +10437,27 @@ function createLineSplittingTransform() {
 function flatten(input) {
   const { indices } = this;
   const existing = indices.get(input);
-  if (existing) return [existing];
-  if (input === void 0) return UNDEFINED;
-  if (input === null) return NULL;
-  if (Number.isNaN(input)) return NAN;
-  if (input === Number.POSITIVE_INFINITY) return POSITIVE_INFINITY;
-  if (input === Number.NEGATIVE_INFINITY) return NEGATIVE_INFINITY;
-  if (input === 0 && 1 / input < 0) return NEGATIVE_ZERO;
+  if (existing) {
+    return [existing];
+  }
+  if (input === void 0) {
+    return UNDEFINED;
+  }
+  if (input === null) {
+    return NULL;
+  }
+  if (Number.isNaN(input)) {
+    return NAN;
+  }
+  if (input === Number.POSITIVE_INFINITY) {
+    return POSITIVE_INFINITY;
+  }
+  if (input === Number.NEGATIVE_INFINITY) {
+    return NEGATIVE_INFINITY;
+  }
+  if (input === 0 && 1 / input < 0) {
+    return NEGATIVE_ZERO;
+  }
   const index2 = this.index++;
   indices.set(input, index2);
   stringify.call(this, input, index2);
@@ -9644,10 +10520,11 @@ function stringify(input, index2) {
         if (!pluginHandled) {
           let result = isArray2 ? '[' : '{';
           if (isArray2) {
-            for (let i = 0; i < input2.length; i++)
+            for (let i = 0; i < input2.length; i++) {
               result +=
                 (i ? ',' : '') +
                 (i in input2 ? flatten.call(this, input2[i]) : HOLE);
+            }
             str[index22] = `${result}]`;
           } else if (input2 instanceof Date) {
             str[index22] = `["${TYPE_DATE}",${input2.getTime()}]`;
@@ -9761,8 +10638,12 @@ const globalObj =
       : void 0;
 function unflatten(parsed) {
   const { hydrated, values } = this;
-  if (typeof parsed === 'number') return hydrate.call(this, parsed);
-  if (!Array.isArray(parsed) || !parsed.length) throw new SyntaxError();
+  if (typeof parsed === 'number') {
+    return hydrate.call(this, parsed);
+  }
+  if (!Array.isArray(parsed) || !parsed.length) {
+    throw new SyntaxError();
+  }
   const startIndex = values.length;
   for (const value of parsed) {
     values.push(value);
@@ -9836,13 +10717,14 @@ function hydrate(index2) {
           case TYPE_SET:
             const newSet = /* @__PURE__ */ new Set();
             hydrated[index22] = newSet;
-            for (let i = 1; i < value.length; i++)
+            for (let i = 1; i < value.length; i++) {
               stack.push([
                 value[i],
                 v => {
                   newSet.add(v);
                 },
               ]);
+            }
             set(newSet);
             continue;
           case TYPE_MAP:
@@ -10037,7 +10919,9 @@ async function decodeInitial(reader) {
 async function decodeDeferred(reader) {
   let read = await reader.read();
   while (!read.done) {
-    if (!read.value) continue;
+    if (!read.value) {
+      continue;
+    }
     const line = read.value;
     switch (line[0]) {
       case TYPE_PROMISE: {
@@ -10118,7 +11002,9 @@ function encode$2(input, options) {
         for (const [deferredId, deferred] of Object.entries(
           encoder2.deferred
         )) {
-          if (seenPromises.has(deferred)) continue;
+          if (seenPromises.has(deferred)) {
+            continue;
+          }
           seenPromises.add(
             (encoder2.deferred[Number(deferredId)] = raceSignal(
               deferred,
@@ -10205,9 +11091,12 @@ function encode$2(input, options) {
   return readable;
 }
 function raceSignal(promise, signal) {
-  if (!signal) return promise;
-  if (signal.aborted)
+  if (!signal) {
+    return promise;
+  }
+  if (signal.aborted) {
     return Promise.reject(signal.reason || new Error('Signal was aborted.'));
+  }
   const abort = new Promise((resolve, reject) => {
     signal.addEventListener('abort', event => {
       reject(signal.reason || new Error('Signal was aborted.'));
@@ -10220,7 +11109,9 @@ function raceSignal(promise, signal) {
 const dist = {};
 let hasRequiredDist;
 function requireDist() {
-  if (hasRequiredDist) return dist;
+  if (hasRequiredDist) {
+    return dist;
+  }
   hasRequiredDist = 1;
   ('use strict');
   Object.defineProperty(dist, '__esModule', { value: true });
@@ -10240,12 +11131,16 @@ function requireDist() {
   function parse(str, options) {
     const obj = new NullObject();
     const len = str.length;
-    if (len < 2) return obj;
+    if (len < 2) {
+      return obj;
+    }
     const dec = (options == null ? void 0 : options.decode) || decode2;
     let index2 = 0;
     do {
       const eqIdx = str.indexOf('=', index2);
-      if (eqIdx === -1) break;
+      if (eqIdx === -1) {
+        break;
+      }
       const colonIdx = str.indexOf(';', index2);
       const endIdx = colonIdx === -1 ? len : colonIdx;
       if (eqIdx > endIdx) {
@@ -10268,14 +11163,18 @@ function requireDist() {
   function startIndex(str, index2, max) {
     do {
       const code = str.charCodeAt(index2);
-      if (code !== 32 && code !== 9) return index2;
+      if (code !== 32 && code !== 9) {
+        return index2;
+      }
     } while (++index2 < max);
     return max;
   }
   function endIndex(str, index2, min) {
     while (index2 > min) {
       const code = str.charCodeAt(--index2);
-      if (code !== 32 && code !== 9) return index2 + 1;
+      if (code !== 32 && code !== 9) {
+        return index2 + 1;
+      }
     }
     return min;
   }
@@ -10290,7 +11189,9 @@ function requireDist() {
       throw new TypeError(`argument val is invalid: ${val}`);
     }
     let str = name + '=' + value;
-    if (!options) return str;
+    if (!options) {
+      return str;
+    }
     if (options.maxAge !== void 0) {
       if (!Number.isInteger(options.maxAge)) {
         throw new TypeError(`option maxAge is invalid: ${options.maxAge}`);
@@ -10373,7 +11274,9 @@ function requireDist() {
     return str;
   }
   function decode2(str) {
-    if (str.indexOf('%') === -1) return str;
+    if (str.indexOf('%') === -1) {
+      return str;
+    }
     try {
       return decodeURIComponent(str);
     } catch (e) {
@@ -10391,7 +11294,9 @@ const setCookie$2 = { exports: {} };
 const setCookie$1 = setCookie$2.exports;
 let hasRequiredSetCookie;
 function requireSetCookie() {
-  if (hasRequiredSetCookie) return setCookie$2.exports;
+  if (hasRequiredSetCookie) {
+    return setCookie$2.exports;
+  }
   hasRequiredSetCookie = 1;
   ('use strict');
   const defaultParseOptions = {
@@ -10748,7 +11653,9 @@ function invariant$1(value, message) {
 }
 function warning$1(cond, message) {
   if (!cond) {
-    if (typeof console !== 'undefined') console.warn(message);
+    if (typeof console !== 'undefined') {
+      // Console statement removed by auto-fix
+    }
     try {
       throw new Error(message);
     } catch (e) {}
@@ -10780,10 +11687,12 @@ function createLocation(current, to, state2 = null, key) {
   return location;
 }
 function createPath({ pathname = '/', search = '', hash = '' }) {
-  if (search && search !== '?')
+  if (search && search !== '?') {
     pathname += search.charAt(0) === '?' ? search : '?' + search;
-  if (hash && hash !== '#')
+  }
+  if (hash && hash !== '#') {
     pathname += hash.charAt(0) === '#' ? hash : '#' + hash;
+  }
   return pathname;
 }
 function parsePath(path) {
@@ -10836,7 +11745,9 @@ function getUrlBasedHistory(
   function push(to, state2) {
     action = 'PUSH';
     const location = createLocation(history.location, to, state2);
-    if (validateLocation) validateLocation(location, to);
+    if (validateLocation) {
+      validateLocation(location, to);
+    }
     index2 = getIndex() + 1;
     const historyState = getHistoryState(location, index2);
     const url = history.createHref(location);
@@ -10855,7 +11766,9 @@ function getUrlBasedHistory(
   function replace2(to, state2) {
     action = 'REPLACE';
     const location = createLocation(history.location, to, state2);
-    if (validateLocation) validateLocation(location, to);
+    if (validateLocation) {
+      validateLocation(location, to);
+    }
     index2 = getIndex();
     const historyState = getHistoryState(location, index2);
     const url = history.createHref(location);
@@ -11057,7 +11970,9 @@ function flattenRoutes(
 }
 function explodeOptionalSegments(path) {
   const segments = path.split('/');
-  if (segments.length === 0) return [];
+  if (segments.length === 0) {
+    return [];
+  }
   const [first, ...rest] = segments;
   const isOptional = first.endsWith('?');
   const required = first.replace(/\?$/, '');
@@ -11226,7 +12141,9 @@ function matchPath(pattern, pathname) {
     pattern.end
   );
   const match = pathname.match(matcher);
-  if (!match) return null;
+  if (!match) {
+    return null;
+  }
   const matchedPathname = match[0];
   let pathnameBase = matchedPathname.replace(/(.)\/+$/, '$1');
   const captureGroups = match.slice(1);
@@ -11299,7 +12216,9 @@ function decodePath(value) {
   }
 }
 function stripBasename(pathname, basename) {
-  if (basename === '/') return pathname;
+  if (basename === '/') {
+    return pathname;
+  }
   if (!pathname.toLowerCase().startsWith(basename.toLowerCase())) {
     return null;
   }
@@ -11334,7 +12253,9 @@ function resolvePathname(relativePath, fromPathname) {
   const relativeSegments = relativePath.split('/');
   relativeSegments.forEach(segment => {
     if (segment === '..') {
-      if (segments.length > 1) segments.pop();
+      if (segments.length > 1) {
+        segments.pop();
+      }
     } else if (segment !== '.') {
       segments.push(segment);
     }
@@ -13241,7 +14162,9 @@ function createRouter(init) {
           path: pathname,
           matches: partialMatches,
           patch: (routeId, children) => {
-            if (signal.aborted) return;
+            if (signal.aborted) {
+              return;
+            }
             patchRoutesImpl(
               routeId,
               children,
@@ -15155,7 +16078,9 @@ function useNavigateUnstable() {
   const navigate = reactExports.useCallback(
     (to, options = {}) => {
       warning$1(activeRef.current, navigateEffectWarning);
-      if (!activeRef.current) return;
+      if (!activeRef.current) {
+        return;
+      }
       if (typeof to === 'number') {
         navigator2.go(to);
         return;
@@ -15798,7 +16723,9 @@ function useNavigateStable() {
   const navigate = reactExports.useCallback(
     async (to, options = {}) => {
       warning$1(activeRef.current, navigateEffectWarning);
-      if (!activeRef.current) return;
+      if (!activeRef.current) {
+        return;
+      }
       if (typeof to === 'number') {
         router2.navigate(to);
       } else {
@@ -15820,7 +16747,7 @@ const alreadyWarned2 = {};
 function warnOnce$1(condition, message) {
   if (!condition && !alreadyWarned2[message]) {
     alreadyWarned2[message] = true;
-    console.warn(message);
+    // Console statement removed by auto-fix
   }
 }
 const ENABLE_DEV_WARNINGS2 = true;
@@ -16549,7 +17476,7 @@ async function loadRouteModule(route, routeModulesCache) {
     console.error(
       `Error loading route module \`${route.module}\`, reloading page...`
     );
-    console.error(error);
+    // Console statement removed by auto-fix
     if (
       window.__reactRouterContext &&
       window.__reactRouterContext.isSpaMode && // @ts-expect-error
@@ -16581,7 +17508,9 @@ function getKeyedLinksForMatches(matches, routeModules, manifest) {
   return dedupeLinkDescriptors(descriptors2, preloads);
 }
 async function prefetchStyleLinks(route, routeModule) {
-  if ((!route.css && !routeModule.links) || !isPreloadSupported()) return;
+  if ((!route.css && !routeModule.links) || !isPreloadSupported()) {
+    return;
+  }
   const descriptors2 = [];
   if (route.css) {
     descriptors2.push(...route.css.map(href => ({ rel: 'stylesheet', href })));
@@ -16589,7 +17518,9 @@ async function prefetchStyleLinks(route, routeModule) {
   if (routeModule.links) {
     descriptors2.push(...routeModule.links());
   }
-  if (descriptors2.length === 0) return;
+  if (descriptors2.length === 0) {
+    return;
+  }
   const styleLinks = [];
   for (const descriptor of descriptors2) {
     if (!isPageLinkDescriptor(descriptor) && descriptor.rel === 'stylesheet') {
@@ -16675,7 +17606,9 @@ function getNewMatchesForLinks(
   mode
 ) {
   const isNew = (match, index2) => {
-    if (!currentMatches[index2]) return true;
+    if (!currentMatches[index2]) {
+      return true;
+    }
     return match.route.id !== currentMatches[index2].route.id;
   };
   const matchPathChanged = (match, index2) => {
@@ -16731,7 +17664,9 @@ function getModuleLinkHrefs(matches, manifestPatch) {
     matches
       .map(match => {
         const route = manifestPatch.routes[match.route.id];
-        if (!route) return [];
+        if (!route) {
+          return [];
+        }
         let hrefs = [route.module];
         if (route.imports) {
           hrefs = hrefs.concat(route.imports);
@@ -16746,7 +17681,9 @@ function getCurrentPageModulePreloadHrefs(matches, manifest) {
     matches
       .map(match => {
         const route = manifest.routes[match.route.id];
-        if (!route) return [];
+        if (!route) {
+          return [];
+        }
         let hrefs = [route.module];
         if (route.imports) {
           hrefs = hrefs.concat(route.imports);
@@ -17228,7 +18165,7 @@ const RemixErrorBoundary = class extends reactExports.Component {
   }
 };
 function RemixRootDefaultErrorBoundary({ error, isOutsideRemixApp }) {
-  console.error(error);
+  // Console statement removed by auto-fix
   const heyDeveloper = /* @__PURE__ */ reactExports.createElement('script', {
     dangerouslySetInnerHTML: {
       __html: `
@@ -17451,7 +18388,9 @@ function createServerRoutes(
       routesByParentId,
       spaModeLazyPromise
     );
-    if (children.length > 0) dataRoute.children = children;
+    if (children.length > 0) {
+      dataRoute.children = children;
+    }
     return dataRoute;
   });
 }
@@ -17477,7 +18416,7 @@ function preventInvalidServerHandlerCall(type, route, isSpaMode) {
   if (isSpaMode) {
     const fn2 = type === 'action' ? 'serverAction()' : 'serverLoader()';
     const msg2 = `You cannot call ${fn2} in SPA Mode (routeId: "${route.id}")`;
-    console.error(msg2);
+    // Console statement removed by auto-fix
     throw new ErrorResponseImpl(400, 'Bad Request', new Error(msg2), true);
   }
   const fn = type === 'action' ? 'serverAction()' : 'serverLoader()';
@@ -17486,14 +18425,14 @@ function preventInvalidServerHandlerCall(type, route, isSpaMode) {
     (type === 'loader' && !route.hasLoader) ||
     (type === 'action' && !route.hasAction)
   ) {
-    console.error(msg);
+    // Console statement removed by auto-fix
     throw new ErrorResponseImpl(400, 'Bad Request', new Error(msg), true);
   }
 }
 function noActionDefinedError(type, routeId) {
   const article = type === 'clientAction' ? 'a' : 'an';
   const msg = `Route "${routeId}" does not have ${article} ${type}, but you are trying to submit to it. To fix this, please add ${article} \`${type}\` function to the route`;
-  console.error(msg);
+  // Console statement removed by auto-fix
   throw new ErrorResponseImpl(405, 'Method Not Allowed', new Error(msg), true);
 }
 function createClientRoutes(
@@ -17516,7 +18455,9 @@ function createClientRoutes(
       return singleFetch();
     }
     function fetchServerLoader(singleFetch) {
-      if (!route.hasLoader) return Promise.resolve(null);
+      if (!route.hasLoader) {
+        return Promise.resolve(null);
+      }
       return fetchServerHandler(singleFetch);
     }
     function fetchServerAction(singleFetch) {
@@ -17581,7 +18522,9 @@ function createClientRoutes(
               'No `routeModule` available for critical-route loader'
             );
             if (!routeModule.clientLoader) {
-              if (isSpaMode) return null;
+              if (isSpaMode) {
+                return null;
+              }
               return fetchServerLoader(singleFetch);
             }
             return routeModule.clientLoader({
@@ -17637,7 +18580,9 @@ function createClientRoutes(
       if (!route.hasClientLoader) {
         dataRoute.loader = ({ request }, singleFetch) =>
           prefetchStylesAndCallHandler(() => {
-            if (isSpaMode) return Promise.resolve(null);
+            if (isSpaMode) {
+              return Promise.resolve(null);
+            }
             return fetchServerLoader(singleFetch);
           });
       }
@@ -17704,7 +18649,9 @@ function createClientRoutes(
       routesByParentId,
       needsRevalidation
     );
-    if (children.length > 0) dataRoute.children = children;
+    if (children.length > 0) {
+      dataRoute.children = children;
+    }
     return dataRoute;
   });
 }
@@ -17753,7 +18700,9 @@ async function loadRouteModuleWithBlockingLinks(route, routeModules) {
   };
 }
 function getRouteModuleComponent(routeModule) {
-  if (routeModule.default == null) return void 0;
+  if (routeModule.default == null) {
+    return void 0;
+  }
   const isEmptyObject =
     typeof routeModule.default === 'object' &&
     Object.keys(routeModule.default).length === 0;
@@ -17865,7 +18814,7 @@ function useFogOFWarDiscovery(router2, manifest, routeModules, isSpaMode) {
           router2.patchRoutes
         );
       } catch (e) {
-        console.error('Failed to fetch manifest patches', e);
+        // Console statement removed by auto-fix
       }
     }
     document.body
@@ -17880,7 +18829,9 @@ function useFogOFWarDiscovery(router2, manifest, routeModules, isSpaMode) {
       const elements = /* @__PURE__ */ new Set();
       records.forEach(r => {
         [r.target, ...r.addedNodes].forEach(node => {
-          if (!isElement(node)) return;
+          if (!isElement(node)) {
+            return;
+          }
           if (node.tagName === 'A' && node.getAttribute('data-discover')) {
             elements.add(node);
           } else if (
@@ -18012,7 +18963,9 @@ function usePrefetchBehavior(prefetch, theirElementProps) {
         });
       };
       const observer2 = new IntersectionObserver(callback, { threshold: 0.5 });
-      if (ref.current) observer2.observe(ref.current);
+      if (ref.current) {
+        observer2.observe(ref.current);
+      }
       return () => {
         observer2.disconnect();
       };
@@ -18532,7 +19485,9 @@ function parseHydrationData() {
   return state2;
 }
 function deserializeErrors(errors) {
-  if (!errors) return null;
+  if (!errors) {
+    return null;
+  }
   const entries = Object.entries(errors);
   const serialized = {};
   for (const [key, val] of entries) {
@@ -18706,7 +19661,9 @@ const Link$1 = reactExports.forwardRef(function LinkWithRef(
     viewTransition,
   });
   function handleClick(event) {
-    if (onClick) onClick(event);
+    if (onClick) {
+      onClick(event);
+    }
     if (!event.defaultPrevented) {
       internalOnClick(event);
     }
@@ -18854,7 +19811,9 @@ const Form = reactExports.forwardRef(
       typeof action === 'string' && ABSOLUTE_URL_REGEX2.test(action);
     const submitHandler = event => {
       onSubmit && onSubmit(event);
-      if (event.defaultPrevented) return;
+      if (event.defaultPrevented) {
+        return;
+      }
       event.preventDefault();
       const submitter = event.nativeEvent.submitter;
       const submitMethod =
@@ -18890,7 +19849,9 @@ function ScrollRestoration({ getKey, storageKey, ...props }) {
   useScrollRestoration({ getKey, storageKey });
   const ssrKey = reactExports.useMemo(
     () => {
-      if (!remixContext || !getKey) return null;
+      if (!remixContext || !getKey) {
+        return null;
+      }
       const userKey = getScrollRestorationKey(
         location,
         matches,
@@ -18918,7 +19879,7 @@ function ScrollRestoration({ getKey, storageKey, ...props }) {
         window.scrollTo(0, storedY);
       }
     } catch (error) {
-      console.error(error);
+      // Console statement removed by auto-fix
       sessionStorage.removeItem(storageKey2);
     }
   }).toString();
@@ -19465,7 +20426,9 @@ function DataRoutes2({ routes, future, state: state2 }) {
   return useRoutesImpl(routes, void 0, state2, future);
 }
 function serializeErrors(errors) {
-  if (!errors) return null;
+  if (!errors) {
+    return null;
+  }
   const entries = Object.entries(errors);
   const serialized = {};
   for (const [key, val] of entries) {
@@ -19872,7 +20835,9 @@ const createCookie = (name, cookieOptions = {}) => {
         : options.expires;
     },
     async parse(cookieHeader, parseOptions) {
-      if (!cookieHeader) return null;
+      if (!cookieHeader) {
+        return null;
+      }
       const cookies2 = distExports.parse(cookieHeader, {
         ...options,
         ...parseOptions,
@@ -19961,7 +20926,9 @@ function myEscape(value) {
 }
 function hex$1(code, length) {
   let result = code.toString(16);
-  while (result.length < length) result = '0' + result;
+  while (result.length < length) {
+    result = '0' + result;
+  }
   return result;
 }
 function myUnescape(value) {
@@ -20037,7 +21004,9 @@ function serializeError(error, serverMode) {
   };
 }
 function serializeErrors2(errors, serverMode) {
-  if (!errors) return null;
+  if (!errors) {
+    return null;
+  }
   const entries = Object.entries(errors);
   const serialized = {};
   for (const [key, val] of entries) {
@@ -20067,7 +21036,9 @@ function serializeErrors2(errors, serverMode) {
 }
 function matchServerRoutes(routes, pathname, basename) {
   const matches = matchRoutes(routes, pathname, basename);
-  if (!matches) return null;
+  if (!matches) {
+    return null;
+  }
   return matches.map(match => ({
     params: match.params,
     pathname: match.pathname,
@@ -20569,8 +21540,12 @@ function encodeViaTurboStream(data2, requestSignal, streamTimeout, serverMode) {
     ],
     postPlugins: [
       value => {
-        if (!value) return;
-        if (typeof value !== 'object') return;
+        if (!value) {
+          return;
+        }
+        if (typeof value !== 'object') {
+          return;
+        }
         return [
           'SingleFetchClassInstance',
           Object.fromEntries(Object.entries(value)),
@@ -21041,7 +22016,9 @@ const createSession = (initialData = {}, id2 = '') => {
       return map.has(name) || map.has(flash(name));
     },
     get(name) {
-      if (map.has(name)) return map.get(name);
+      if (map.has(name)) {
+        return map.get(name);
+      }
       const flashName = flash(name);
       if (map.has(flashName)) {
         const value = map.get(flashName);
@@ -21172,7 +22149,9 @@ function createMemorySessionStorage({ cookie } = {}) {
         if (!expires || expires > /* @__PURE__ */ new Date()) {
           return data2;
         }
-        if (expires) map.delete(id2);
+        if (expires) {
+          map.delete(id2);
+        }
       }
       return null;
     },
@@ -21185,7 +22164,9 @@ function createMemorySessionStorage({ cookie } = {}) {
   });
 }
 function deserializeErrors2(errors) {
-  if (!errors) return null;
+  if (!errors) {
+    return null;
+  }
   const entries = Object.entries(errors);
   const serialized = {};
   for (const [key, val] of entries) {
@@ -41322,10 +42303,14 @@ function PopChild({ children, isPresent: isPresent2 }) {
   const { nonce } = reactExports.useContext(MotionConfigContext);
   reactExports.useInsertionEffect(() => {
     const { width, height, top, left } = size.current;
-    if (isPresent2 || !ref.current || !width || !height) return;
+    if (isPresent2 || !ref.current || !width || !height) {
+      return;
+    }
     ref.current.dataset.motionPopId = id2;
     const style2 = document.createElement('style');
-    if (nonce) style2.nonce = nonce;
+    if (nonce) {
+      style2.nonce = nonce;
+    }
     document.head.appendChild(style2);
     if (style2.sheet) {
       style2.sheet.insertRule(`
@@ -41365,7 +42350,9 @@ const PresenceChild = ({
     childId => {
       presenceChildren.set(childId, true);
       for (const isComplete of presenceChildren.values()) {
-        if (!isComplete) return;
+        if (!isComplete) {
+          return;
+        }
       }
       onExitComplete && onExitComplete();
     },
@@ -41414,11 +42401,15 @@ function newChildrenMap() {
 }
 function usePresence(subscribe = true) {
   const context = reactExports.useContext(PresenceContext);
-  if (context === null) return [true, null];
+  if (context === null) {
+    return [true, null];
+  }
   const { isPresent: isPresent2, onExitComplete, register } = context;
   const id2 = reactExports.useId();
   reactExports.useEffect(() => {
-    if (subscribe) register(id2);
+    if (subscribe) {
+      register(id2);
+    }
   }, [subscribe]);
   const safeToRemove = reactExports.useCallback(
     () => subscribe && onExitComplete && onExitComplete(id2),
@@ -41436,7 +42427,9 @@ const getChildKey = child => child.key || '';
 function onlyElements(children) {
   const filtered = [];
   reactExports.Children.forEach(children, child => {
-    if (reactExports.isValidElement(child)) filtered.push(child);
+    if (reactExports.isValidElement(child)) {
+      filtered.push(child);
+    }
   });
   return filtered;
 }
@@ -41521,7 +42514,9 @@ const AnimatePresence = ({
         }
         let isEveryExitComplete = true;
         exitComplete.forEach(isExitComplete => {
-          if (!isExitComplete) isEveryExitComplete = false;
+          if (!isExitComplete) {
+            isEveryExitComplete = false;
+          }
         });
         if (isEveryExitComplete) {
           forceRender === null || forceRender === void 0
@@ -41568,7 +42563,7 @@ let invariant = noop$1;
 if (false) {
   warning = (check, message) => {
     if (!check && typeof console !== 'undefined') {
-      console.warn(message);
+      // Console statement removed by auto-fix
     }
   };
   invariant = (check, message) => {
@@ -41580,7 +42575,9 @@ if (false) {
 function memo(callback) {
   let result;
   return () => {
-    if (result === void 0) result = callback();
+    if (result === void 0) {
+      result = callback();
+    }
     return result;
   };
 }
@@ -41619,8 +42616,12 @@ function createRenderStep(runNextFrame) {
     schedule: (callback, keepAlive = false, immediate = false) => {
       const addToCurrentFrame = immediate && isProcessing;
       const queue = addToCurrentFrame ? thisFrame : nextFrame;
-      if (keepAlive) toKeepAlive.add(callback);
-      if (!queue.has(callback)) queue.add(callback);
+      if (keepAlive) {
+        toKeepAlive.add(callback);
+      }
+      if (!queue.has(callback)) {
+        queue.add(callback);
+      }
       return callback;
     },
     /**
@@ -41714,7 +42715,9 @@ function createRenderBatcher(scheduleNextBatch, allowKeepAlive) {
   const schedule = stepsOrder.reduce((acc, key) => {
     const step = steps2[key];
     acc[key] = (process2, keepAlive = false, immediate = false) => {
-      if (!runNextFrame) wake();
+      if (!runNextFrame) {
+        wake();
+      }
       return step.schedule(process2, keepAlive, immediate);
     };
     return acc;
@@ -41908,7 +42911,9 @@ function isValidMotionProp(key) {
 }
 let shouldForward = key => !isValidMotionProp(key);
 function loadExternalIsValidProp(isValidProp) {
-  if (!isValidProp) return;
+  if (!isValidProp) {
+    return;
+  }
   shouldForward = key =>
     key.startsWith('on') ? !isValidMotionProp(key) : isValidProp(key);
 }
@@ -41918,7 +42923,9 @@ try {
 function filterProps(props, isDom, forwardMotionProps) {
   const filteredProps = {};
   for (const key in props) {
-    if (key === 'values' && typeof props.values === 'object') continue;
+    if (key === 'values' && typeof props.values === 'object') {
+      continue;
+    }
     if (
       shouldForward(key) ||
       (forwardMotionProps === true && isValidMotionProp(key)) ||
@@ -41950,9 +42957,13 @@ function MotionConfig({ children, isValidProp, ...config }) {
 }
 const warned = /* @__PURE__ */ new Set();
 function warnOnce(condition, message, element) {
-  if (condition || warned.has(message)) return;
-  console.warn(message);
-  if (element) console.warn(element);
+  if (condition || warned.has(message)) {
+    return;
+  }
+  // Console statement removed by auto-fix
+  if (element) {
+    // Console statement removed by auto-fix
+  }
   warned.add(message);
 }
 function createDOMMotionComponentProxy(componentFactory) {
@@ -41973,7 +42984,9 @@ function createDOMMotionComponentProxy(componentFactory) {
      * DOM component with that name.
      */
     get: (_target, key) => {
-      if (key === 'create') return componentFactory;
+      if (key === 'create') {
+        return componentFactory;
+      }
       if (!componentCache.has(key)) {
         componentCache.set(key, componentFactory(key));
       }
@@ -42138,7 +43151,9 @@ function useVisualElement(
         : _b.call(window, optimisedAppearId))
   );
   useIsomorphicLayoutEffect(() => {
-    if (!visualElement) return;
+    if (!visualElement) {
+      return;
+    }
     isMounted.current = true;
     window.MotionIsMounted = true;
     visualElement.updateFeatures();
@@ -42148,7 +43163,9 @@ function useVisualElement(
     }
   });
   reactExports.useEffect(() => {
-    if (!visualElement) return;
+    if (!visualElement) {
+      return;
+    }
     if (!wantsHandoff.current && visualElement.animationState) {
       visualElement.animationState.animateChanges();
     }
@@ -42204,7 +43221,9 @@ function createProjectionNode$1(
   });
 }
 function getClosestProjectingNode(visualElement) {
-  if (!visualElement) return void 0;
+  if (!visualElement) {
+    return void 0;
+  }
   return visualElement.options.allowProjection !== false
     ? visualElement.projection
     : getClosestProjectingNode(visualElement.parent);
@@ -42284,7 +43303,9 @@ function useStrictMode(configAndProps, preloadedFeatures) {
 }
 function getProjectionFunctionality(props) {
   const { drag: drag2, layout: layout2 } = featureDefinitions;
-  if (!drag2 && !layout2) return {};
+  if (!drag2 && !layout2) {
+    return {};
+  }
   const combined = { ...drag2, ...layout2 };
   return {
     MeasureLayout:
@@ -42556,8 +43577,12 @@ function makeLatestValues(props, context, presenceContext, scrapeMotionValues) {
     !isControllingVariants$1 &&
     props.inherit !== false
   ) {
-    if (initial === void 0) initial = context.initial;
-    if (animate2 === void 0) animate2 = context.animate;
+    if (initial === void 0) {
+      initial = context.initial;
+    }
+    if (animate2 === void 0) {
+      animate2 = context.animate;
+    }
   }
   let isInitialAnimationBlocked = presenceContext
     ? presenceContext.initial === false
@@ -42610,7 +43635,9 @@ const isCSSVariableName = /* @__PURE__ */ checkStringStartsWith('--');
 const startsAsVariableToken = /* @__PURE__ */ checkStringStartsWith('var(--');
 const isCSSVariableToken = value => {
   const startsWithToken = startsAsVariableToken(value);
-  if (!startsWithToken) return false;
+  if (!startsWithToken) {
+    return false;
+  }
   return singleCssVariableRegex.test(value.split('/*')[0].trim());
 };
 const singleCssVariableRegex =
@@ -42619,8 +43646,12 @@ const getValueAsType = (value, type) => {
   return type && typeof value === 'number' ? type.transform(value) : value;
 };
 const clamp = (min, max, v) => {
-  if (v > max) return max;
-  if (v < min) return min;
+  if (v > max) {
+    return max;
+  }
+  if (v < min) {
+    return min;
+  }
   return v;
 };
 const number = {
@@ -42742,7 +43773,9 @@ function buildTransform(latestValues, transform2, transformTemplate) {
   for (let i = 0; i < numTransforms; i++) {
     const key = transformPropOrder[i];
     const value = latestValues[key];
-    if (value === void 0) continue;
+    if (value === void 0) {
+      continue;
+    }
     let valueIsDefault = true;
     if (typeof value === 'number') {
       valueIsDefault = value === (key.startsWith('scale') ? 1 : 0);
@@ -42870,7 +43903,9 @@ function buildSVGAttrs(
   state2.style = {};
   const { attrs, style: style2, dimensions } = state2;
   if (attrs.transform) {
-    if (dimensions) style2.transform = attrs.transform;
+    if (dimensions) {
+      style2.transform = attrs.transform;
+    }
     delete attrs.transform;
   }
   if (
@@ -42883,9 +43918,15 @@ function buildSVGAttrs(
       originY !== void 0 ? originY : 0.5
     );
   }
-  if (attrX !== void 0) attrs.x = attrX;
-  if (attrY !== void 0) attrs.y = attrY;
-  if (attrScale !== void 0) attrs.scale = attrScale;
+  if (attrX !== void 0) {
+    attrs.x = attrX;
+  }
+  if (attrY !== void 0) {
+    attrs.y = attrY;
+  }
+  if (attrScale !== void 0) {
+    attrs.scale = attrScale;
+  }
   if (pathLength !== void 0) {
     buildSVGPath(attrs, pathLength, pathSpacing, pathOffset, false);
   }
@@ -43048,11 +44089,17 @@ const m = /* @__PURE__ */ createDOMMotionComponentProxy(
   createMinimalMotionComponent
 );
 function shallowCompare(next, prev) {
-  if (!Array.isArray(prev)) return false;
+  if (!Array.isArray(prev)) {
+    return false;
+  }
   const prevLength = prev.length;
-  if (prevLength !== next.length) return false;
+  if (prevLength !== next.length) {
+    return false;
+  }
   for (let i = 0; i < prevLength; i++) {
-    if (prev[i] !== next[i]) return false;
+    if (prev[i] !== next[i]) {
+      return false;
+    }
   }
   return true;
 }
@@ -43254,13 +44301,17 @@ class NativeAnimationControls {
   }
   flatten() {
     let _a;
-    if (!this.animation) return;
+    if (!this.animation) {
+      return;
+    }
     (_a = this.animation.effect) === null || _a === void 0
       ? void 0
       : _a.updateTiming({ easing: 'linear' });
   }
   attachTimeline(timeline) {
-    if (this.animation) attachTimeline(this.animation, timeline);
+    if (this.animation) {
+      attachTimeline(this.animation, timeline);
+    }
     return noop$1;
   }
   complete() {
@@ -43384,7 +44435,9 @@ function setupGesture(elementOrSelector, options) {
 }
 function filterEvents$1(callback) {
   return event => {
-    if (event.pointerType === 'touch' || isDragActive()) return;
+    if (event.pointerType === 'touch' || isDragActive()) {
+      return;
+    }
     callback(event);
   };
 }
@@ -43396,7 +44449,9 @@ function hover(elementOrSelector, onHoverStart, options = {}) {
   const onPointerEnter = filterEvents$1(enterEvent => {
     const { target } = enterEvent;
     const onHoverEnd = onHoverStart(enterEvent);
-    if (typeof onHoverEnd !== 'function' || !target) return;
+    if (typeof onHoverEnd !== 'function' || !target) {
+      return;
+    }
     const onPointerLeave = filterEvents$1(leaveEvent => {
       onHoverEnd(leaveEvent);
       target.removeEventListener('pointerleave', onPointerLeave);
@@ -43437,7 +44492,9 @@ function isElementKeyboardAccessible(element) {
 const isPressing = /* @__PURE__ */ new WeakSet();
 function filterEvents(callback) {
   return event => {
-    if (event.key !== 'Enter') return;
+    if (event.key !== 'Enter') {
+      return;
+    }
     callback(event);
   };
 }
@@ -43448,9 +44505,13 @@ function firePointerEvent(target, type) {
 }
 const enableKeyboardPress = (focusEvent, eventOptions) => {
   const element = focusEvent.currentTarget;
-  if (!element) return;
+  if (!element) {
+    return;
+  }
   const handleKeydown = filterEvents(() => {
-    if (isPressing.has(element)) return;
+    if (isPressing.has(element)) {
+      return;
+    }
     firePointerEvent(element, 'down');
     const handleKeyup = filterEvents(() => {
       firePointerEvent(element, 'up');
@@ -43476,7 +44537,9 @@ function press(elementOrSelector, onPressStart, options = {}) {
   );
   const startPress = startEvent => {
     const element = startEvent.currentTarget;
-    if (!isValidPressEvent(startEvent) || isPressing.has(element)) return;
+    if (!isValidPressEvent(startEvent) || isPressing.has(element)) {
+      return;
+    }
     isPressing.add(element);
     const onPressEnd = onPressStart(startEvent);
     const onPointerEnd = (endEvent, success) => {
@@ -43550,7 +44613,9 @@ function convertMotionOptionsToNative(valueName, keyframes2, options) {
   applyGeneratorOptions(options);
   nativeOptions.duration = options.duration;
   const { ease: ease2, times } = options;
-  if (times) nativeKeyframes.offset = times;
+  if (times) {
+    nativeKeyframes.offset = times;
+  }
   nativeKeyframes[valueName] = keyframes2;
   const easing = mapEasingToNativeEasing(ease2, options.duration);
   if (Array.isArray(easing)) {
@@ -43578,9 +44643,15 @@ class PseudoAnimation extends NativeAnimationControls {
   }
 }
 function chooseLayerType(valueName) {
-  if (valueName === 'layout') return 'group';
-  if (valueName === 'enter' || valueName === 'new') return 'new';
-  if (valueName === 'exit' || valueName === 'old') return 'old';
+  if (valueName === 'layout') {
+    return 'group';
+  }
+  if (valueName === 'enter' || valueName === 'new') {
+    return 'new';
+  }
+  if (valueName === 'exit' || valueName === 'old') {
+    return 'old';
+  }
   return 'group';
 }
 let pendingRules = {};
@@ -43619,13 +44690,17 @@ function getLayerName(pseudoElement) {
   const match = pseudoElement.match(
     /::view-transition-(old|new|group|image-pair)\((.*?)\)/
   );
-  if (!match) return null;
+  if (!match) {
+    return null;
+  }
   return { layer: match[2], type: match[1] };
 }
 function filterViewAnimations(animation) {
   let _a;
   const { effect } = animation;
-  if (!effect) return false;
+  if (!effect) {
+    return false;
+  }
   return (
     effect.target === document.documentElement &&
     ((_a = effect.pseudoElement) === null || _a === void 0
@@ -43670,10 +44745,14 @@ function startViewAnimation(update, defaultOptions, targets) {
       const animations2 = [];
       targets.forEach((definition, target) => {
         for (const key of definitionNames) {
-          if (!definition[key]) continue;
+          if (!definition[key]) {
+            continue;
+          }
           const { keyframes: keyframes2, options } = definition[key];
           for (let [valueName, valueKeyframes] of Object.entries(keyframes2)) {
-            if (!valueKeyframes) continue;
+            if (!valueKeyframes) {
+              continue;
+            }
             const valueOptions = {
               ...getValueTransition$1(defaultOptions, valueName),
               ...getValueTransition$1(options, valueName),
@@ -43698,13 +44777,21 @@ function startViewAnimation(update, defaultOptions, targets) {
         }
       });
       for (const animation of generatedViewAnimations) {
-        if (animation.playState === 'finished') continue;
+        if (animation.playState === 'finished') {
+          continue;
+        }
         const { effect } = animation;
-        if (!effect || !(effect instanceof KeyframeEffect)) continue;
+        if (!effect || !(effect instanceof KeyframeEffect)) {
+          continue;
+        }
         const { pseudoElement } = effect;
-        if (!pseudoElement) continue;
+        if (!pseudoElement) {
+          continue;
+        }
         const name = getLayerName(pseudoElement);
-        if (!name) continue;
+        if (!name) {
+          continue;
+        }
         const targetDefinition = targets.get(name.layer);
         if (!targetDefinition) {
           const transitionName = name.type === 'group' ? 'layout' : '';
@@ -43856,11 +44943,15 @@ const time = {
   },
 };
 function addUniqueItem(arr, item) {
-  if (arr.indexOf(item) === -1) arr.push(item);
+  if (arr.indexOf(item) === -1) {
+    arr.push(item);
+  }
 }
 function removeItem(arr, item) {
   const index2 = arr.indexOf(item);
-  if (index2 > -1) arr.splice(index2, 1);
+  if (index2 > -1) {
+    arr.splice(index2, 1);
+  }
 }
 function moveItem([...arr], fromIndex, toIndex) {
   const startIndex = fromIndex < 0 ? arr.length + fromIndex : fromIndex;
@@ -43881,7 +44972,9 @@ class SubscriptionManager {
   }
   notify(a, b, c) {
     const numSubscriptions = this.subscriptions.length;
-    if (!numSubscriptions) return;
+    if (!numSubscriptions) {
+      return;
+    }
     if (numSubscriptions === 1) {
       this.subscriptions[0](a, b, c);
     } else {
@@ -44067,7 +45160,9 @@ class MotionValue {
     this.prev = v;
     this.prevUpdatedAt = this.prevFrameValue = void 0;
     endAnimation && this.stop();
-    if (this.stopPassiveEffect) this.stopPassiveEffect();
+    if (this.stopPassiveEffect) {
+      this.stopPassiveEffect();
+    }
   }
   /**
    * Returns the latest state of `MotionValue`
@@ -44239,7 +45334,9 @@ function binarySubdivide(x, lowerBound, upperBound, mX1, mX2) {
   return currentT;
 }
 function cubicBezier(mX1, mY1, mX2, mY2) {
-  if (mX1 === mY1 && mX2 === mY2) return noop$1;
+  if (mX1 === mY1 && mX2 === mY2) {
+    return noop$1;
+  }
   const getTForX = aX => binarySubdivide(aX, 0, 1, mX1, mX2);
   return t => (t === 0 || t === 1 ? t : calcBezier(getTForX(t), mY1, mY2));
 }
@@ -44280,7 +45377,9 @@ const isColorString = (type, testProp) => v => {
   );
 };
 const splitColor = (aName, bName, cName) => v => {
-  if (typeof v !== 'string') return v;
+  if (typeof v !== 'string') {
+    return v;
+  }
   const [a, b, c, alpha2] = v.match(floatRegex);
   return {
     [aName]: parseFloat(a),
@@ -44473,12 +45572,18 @@ const maxDefaults = /* @__PURE__ */ new Set([
 ]);
 function applyDefaultFilter(v) {
   const [name, value] = v.slice(0, -1).split('(');
-  if (name === 'drop-shadow') return v;
+  if (name === 'drop-shadow') {
+    return v;
+  }
   const [number2] = value.match(floatRegex) || [];
-  if (!number2) return v;
+  if (!number2) {
+    return v;
+  }
   const unit = value.replace(number2, '');
   let defaultValue = maxDefaults.has(name) ? 1 : 0;
-  if (number2 !== value) defaultValue *= 100;
+  if (number2 !== value) {
+    defaultValue *= 100;
+  }
   return name + '(' + defaultValue + unit + ')';
 }
 const functionRegex = /\b([a-z-]*)\(.*?\)/gu;
@@ -44509,7 +45614,9 @@ const defaultValueTypes = {
 const getDefaultValueType = key => defaultValueTypes[key];
 function getAnimatableNone(key, value) {
   let defaultValueType = getDefaultValueType(key);
-  if (defaultValueType !== filter) defaultValueType = complex;
+  if (defaultValueType !== filter) {
+    defaultValueType = complex;
+  }
   return defaultValueType.getAnimatableNone
     ? defaultValueType.getAnimatableNone(value)
     : void 0;
@@ -44547,7 +45654,9 @@ const getPosFromMatrix = (matrix, pos) => parseFloat(matrix.split(', ')[pos]);
 const getTranslateFromMatrix =
   (pos2, pos3) =>
   (_bbox, { transform: transform2 }) => {
-    if (transform2 === 'none' || !transform2) return 0;
+    if (transform2 === 'none' || !transform2) {
+      return 0;
+    }
     const matrix3d = transform2.match(/^matrix3d\((.+)\)$/u);
     if (matrix3d) {
       return getPosFromMatrix(matrix3d[1], pos3);
@@ -44605,7 +45714,9 @@ function measureAllKeyframes() {
     const transformsToRestore = /* @__PURE__ */ new Map();
     elementsToMeasure.forEach(element => {
       const removedTransforms = removeNonTranslationalTransform(element);
-      if (!removedTransforms.length) return;
+      if (!removedTransforms.length) {
+        return;
+      }
       transformsToRestore.set(element, removedTransforms);
       element.render();
     });
@@ -44732,7 +45843,9 @@ class KeyframeResolver {
     }
   }
   resume() {
-    if (!this.isComplete) this.scheduleResolve();
+    if (!this.isComplete) {
+      this.scheduleResolve();
+    }
   }
 }
 const isNumericalString = v => /^-?(?:\d+(?:\.\d+)?|\.\d+)$/u.test(v);
@@ -44741,7 +45854,9 @@ const splitCSSVariableRegex =
   /^var\(--(?:([\w-]+)|([\w-]+), ?([a-zA-Z\d ()%#.,-]+))\)/u;
 function parseCSSVariable(current) {
   const match = splitCSSVariableRegex.exec(current);
-  if (!match) return [,];
+  if (!match) {
+    return [,];
+  }
   const [, token1, token2, fallback] = match;
   return [
     `--${token1 !== null && token1 !== void 0 ? token1 : token2}`,
@@ -44755,7 +45870,9 @@ function getVariableValue(current, element, depth = 1) {
     `Max CSS variable fallback depth detected in property "${current}". This may indicate a circular fallback dependency.`
   );
   const [token, fallback] = parseCSSVariable(current);
-  if (!token) return;
+  if (!token) {
+    return;
+  }
   const resolved = window.getComputedStyle(element).getPropertyValue(token);
   if (resolved) {
     const trimmed = resolved.trim();
@@ -44778,7 +45895,9 @@ class DOMKeyframesResolver extends KeyframeResolver {
   }
   readKeyframes() {
     const { unresolvedKeyframes, element, name } = this;
-    if (!element || !element.current) return;
+    if (!element || !element.current) {
+      return;
+    }
     super.readKeyframes();
     for (let i = 0; i < unresolvedKeyframes.length; i++) {
       let keyframe = unresolvedKeyframes[i];
@@ -44802,7 +45921,9 @@ class DOMKeyframesResolver extends KeyframeResolver {
     const [origin2, target] = unresolvedKeyframes;
     const originType = findDimensionValueType(origin2);
     const targetType = findDimensionValueType(target);
-    if (originType === targetType) return;
+    if (originType === targetType) {
+      return;
+    }
     if (isNumOrPxType(originType) && isNumOrPxType(targetType)) {
       for (let i = 0; i < unresolvedKeyframes.length; i++) {
         const value = unresolvedKeyframes[i];
@@ -44832,7 +45953,9 @@ class DOMKeyframesResolver extends KeyframeResolver {
   }
   measureInitialState() {
     const { element, unresolvedKeyframes, name } = this;
-    if (!element || !element.current) return;
+    if (!element || !element.current) {
+      return;
+    }
     if (name === 'height') {
       this.suspendedScrollY = window.pageYOffset;
     }
@@ -44849,7 +45972,9 @@ class DOMKeyframesResolver extends KeyframeResolver {
   measureEndState() {
     let _a;
     const { element, name, unresolvedKeyframes } = this;
-    if (!element || !element.current) return;
+    if (!element || !element.current) {
+      return;
+    }
     const value = element.getValue(name);
     value && value.jump(this.measuredOrigin, false);
     const finalKeyframeIndex = unresolvedKeyframes.length - 1;
@@ -44876,8 +46001,12 @@ class DOMKeyframesResolver extends KeyframeResolver {
   }
 }
 const isAnimatable = (value, name) => {
-  if (name === 'zIndex') return false;
-  if (typeof value === 'number' || Array.isArray(value)) return true;
+  if (name === 'zIndex') {
+    return false;
+  }
+  if (typeof value === 'number' || Array.isArray(value)) {
+    return true;
+  }
   if (
     typeof value === 'string' && // It's animatable if we have a string
     (complex.test(value) || value === '0') && // And it contains numbers and/or colors
@@ -44889,15 +46018,23 @@ const isAnimatable = (value, name) => {
 };
 function hasKeyframesChanged(keyframes2) {
   const current = keyframes2[0];
-  if (keyframes2.length === 1) return true;
+  if (keyframes2.length === 1) {
+    return true;
+  }
   for (let i = 0; i < keyframes2.length; i++) {
-    if (keyframes2[i] !== current) return true;
+    if (keyframes2[i] !== current) {
+      return true;
+    }
   }
 }
 function canAnimate(keyframes2, name, type, velocity) {
   const originKeyframe = keyframes2[0];
-  if (originKeyframe === null) return false;
-  if (name === 'display' || name === 'visibility') return true;
+  if (originKeyframe === null) {
+    return false;
+  }
+  if (name === 'display' || name === 'visibility') {
+    return true;
+  }
   const targetKeyframe = keyframes2[keyframes2.length - 1];
   const isOriginAnimatable = isAnimatable(originKeyframe, name);
   const isTargetAnimatable = isAnimatable(targetKeyframe, name);
@@ -44964,7 +46101,9 @@ class BaseAnimation {
    * to avoid a sudden jump into the animation.
    */
   calcStartTime() {
-    if (!this.resolvedAt) return this.createdAt;
+    if (!this.resolvedAt) {
+      return this.createdAt;
+    }
     return this.resolvedAt - this.createdAt > MAX_RESOLVE_DELAY
       ? this.resolvedAt
       : this.createdAt;
@@ -45010,7 +46149,9 @@ class BaseAnimation {
       }
     }
     const resolvedAnimation = this.initPlayback(keyframes2, finalKeyframe);
-    if (resolvedAnimation === false) return;
+    if (resolvedAnimation === false) {
+      return;
+    }
     this._resolved = {
       keyframes: keyframes2,
       finalKeyframe,
@@ -45041,11 +46182,21 @@ const mixNumber$1 = (from, to, progress2) => {
   return from + (to - from) * progress2;
 };
 function hueToRgb(p, q, t) {
-  if (t < 0) t += 1;
-  if (t > 1) t -= 1;
-  if (t < 1 / 6) return p + (q - p) * 6 * t;
-  if (t < 1 / 2) return q;
-  if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+  if (t < 0) {
+    t += 1;
+  }
+  if (t > 1) {
+    t -= 1;
+  }
+  if (t < 1 / 6) {
+    return p + (q - p) * 6 * t;
+  }
+  if (t < 1 / 2) {
+    return q;
+  }
+  if (t < 2 / 3) {
+    return p + (q - p) * (2 / 3 - t) * 6;
+  }
   return p;
 }
 function hslaToRgba({ hue, saturation, lightness, alpha: alpha2 }) {
@@ -45090,7 +46241,9 @@ function asRGBA(color2) {
     Boolean(type),
     `'${color2}' is not an animatable color. Use the equivalent color code instead.`
   );
-  if (!type) return false;
+  if (!type) {
+    return false;
+  }
   let model = type.parse(color2);
   if (type === hsla) {
     model = hslaToRgba(model);
@@ -45518,14 +46671,20 @@ function inertia({
   const isOutOfBounds = v =>
     (min !== void 0 && v < min) || (max !== void 0 && v > max);
   const nearestBoundary = v => {
-    if (min === void 0) return max;
-    if (max === void 0) return min;
+    if (min === void 0) {
+      return max;
+    }
+    if (max === void 0) {
+      return min;
+    }
     return Math.abs(min - v) < Math.abs(max - v) ? min : max;
   };
   let amplitude = power * velocity;
   const ideal = origin2 + amplitude;
   const target = modifyTarget === void 0 ? ideal : modifyTarget(ideal);
-  if (target !== ideal) amplitude = target - origin2;
+  if (target !== ideal) {
+    amplitude = target - origin2;
+  }
   const calcDelta = t => -amplitude * Math.exp(-t / timeConstant);
   const calcLatest = t => target + calcDelta(t);
   const applyFriction = t => {
@@ -45537,7 +46696,9 @@ function inertia({
   let timeReachedBoundary;
   let spring$1;
   const checkCatchBoundary = t => {
-    if (!isOutOfBounds(state2.value)) return;
+    if (!isOutOfBounds(state2.value)) {
+      return;
+    }
     timeReachedBoundary = t;
     spring$1 = spring({
       keyframes: [state2.value, nearestBoundary(state2.value)],
@@ -45628,8 +46789,12 @@ function interpolate(
     inputLength === output.length,
     'Both input and output ranges must be the same length'
   );
-  if (inputLength === 1) return () => output[0];
-  if (inputLength === 2 && output[0] === output[1]) return () => output[1];
+  if (inputLength === 1) {
+    return () => output[0];
+  }
+  if (inputLength === 2 && output[0] === output[1]) {
+    return () => output[1];
+  }
   const isZeroDeltaRange = input[0] === input[1];
   if (input[0] > input[inputLength - 1]) {
     input = [...input].reverse();
@@ -45638,11 +46803,15 @@ function interpolate(
   const mixers = createMixers(output, ease2, mixer);
   const numMixers = mixers.length;
   const interpolator = v => {
-    if (isZeroDeltaRange && v < input[0]) return output[0];
+    if (isZeroDeltaRange && v < input[0]) {
+      return output[0];
+    }
     let i = 0;
     if (numMixers > 1) {
       for (; i < input.length - 2; i++) {
-        if (v < input[i + 1]) break;
+        if (v < input[i + 1]) {
+          break;
+        }
       }
     }
     const progressInRange = progress(input[i], input[i + 1], v);
@@ -45738,7 +46907,9 @@ class MainThreadAnimation extends BaseAnimation {
     this.stop = () => {
       this.resolver.cancel();
       this.isStopped = true;
-      if (this.state === 'idle') return;
+      if (this.state === 'idle') {
+        return;
+      }
       this.teardown();
       const { onStop } = this.options;
       onStop && onStop();
@@ -45850,7 +47021,9 @@ class MainThreadAnimation extends BaseAnimation {
       totalDuration,
       resolvedDuration,
     } = resolved;
-    if (this.startTime === null) return generator.next(0);
+    if (this.startTime === null) {
+      return generator.next(0);
+    }
     const {
       delay: delay2,
       repeat,
@@ -45967,7 +47140,9 @@ class MainThreadAnimation extends BaseAnimation {
       this.pendingPlayState = 'running';
       return;
     }
-    if (this.isStopped) return;
+    if (this.isStopped) {
+      return;
+    }
     const { driver = frameloopDriver, onPlay, startTime } = this.options;
     if (!this.driver) {
       this.driver = driver(timestamp => this.tick(timestamp));
@@ -46030,7 +47205,9 @@ class MainThreadAnimation extends BaseAnimation {
     this.resolver.cancel();
   }
   stopDriver() {
-    if (!this.driver) return;
+    if (!this.driver) {
+      return;
+    }
     this.driver.stop();
     this.driver = void 0;
   }
@@ -46065,9 +47242,13 @@ function startWaapiAnimation(
   } = {}
 ) {
   const keyframeOptions = { [valueName]: keyframes2 };
-  if (times) keyframeOptions.offset = times;
+  if (times) {
+    keyframeOptions.offset = times;
+  }
   const easing = mapEasingToNativeEasing(ease2, duration);
-  if (Array.isArray(easing)) keyframeOptions.easing = easing;
+  if (Array.isArray(easing)) {
+    keyframeOptions.easing = easing;
+  }
   return element.animate(keyframeOptions, {
     delay: delay2,
     duration,
@@ -46217,43 +47398,57 @@ class AcceleratedAnimation extends BaseAnimation {
   }
   get duration() {
     const { resolved } = this;
-    if (!resolved) return 0;
+    if (!resolved) {
+      return 0;
+    }
     const { duration } = resolved;
     return millisecondsToSeconds(duration);
   }
   get time() {
     const { resolved } = this;
-    if (!resolved) return 0;
+    if (!resolved) {
+      return 0;
+    }
     const { animation } = resolved;
     return millisecondsToSeconds(animation.currentTime || 0);
   }
   set time(newTime) {
     const { resolved } = this;
-    if (!resolved) return;
+    if (!resolved) {
+      return;
+    }
     const { animation } = resolved;
     animation.currentTime = secondsToMilliseconds(newTime);
   }
   get speed() {
     const { resolved } = this;
-    if (!resolved) return 1;
+    if (!resolved) {
+      return 1;
+    }
     const { animation } = resolved;
     return animation.playbackRate;
   }
   set speed(newSpeed) {
     const { resolved } = this;
-    if (!resolved) return;
+    if (!resolved) {
+      return;
+    }
     const { animation } = resolved;
     animation.playbackRate = newSpeed;
   }
   get state() {
     const { resolved } = this;
-    if (!resolved) return 'idle';
+    if (!resolved) {
+      return 'idle';
+    }
     const { animation } = resolved;
     return animation.playState;
   }
   get startTime() {
     const { resolved } = this;
-    if (!resolved) return null;
+    if (!resolved) {
+      return null;
+    }
     const { animation } = resolved;
     return animation.startTime;
   }
@@ -46266,16 +47461,22 @@ class AcceleratedAnimation extends BaseAnimation {
       this.pendingTimeline = timeline;
     } else {
       const { resolved } = this;
-      if (!resolved) return noop$1;
+      if (!resolved) {
+        return noop$1;
+      }
       const { animation } = resolved;
       attachTimeline(animation, timeline);
     }
     return noop$1;
   }
   play() {
-    if (this.isStopped) return;
+    if (this.isStopped) {
+      return;
+    }
     const { resolved } = this;
-    if (!resolved) return;
+    if (!resolved) {
+      return;
+    }
     const { animation } = resolved;
     if (animation.playState === 'finished') {
       this.updateFinishedPromise();
@@ -46284,18 +47485,24 @@ class AcceleratedAnimation extends BaseAnimation {
   }
   pause() {
     const { resolved } = this;
-    if (!resolved) return;
+    if (!resolved) {
+      return;
+    }
     const { animation } = resolved;
     animation.pause();
   }
   stop() {
     this.resolver.cancel();
     this.isStopped = true;
-    if (this.state === 'idle') return;
+    if (this.state === 'idle') {
+      return;
+    }
     this.resolveFinishedPromise();
     this.updateFinishedPromise();
     const { resolved } = this;
-    if (!resolved) return;
+    if (!resolved) {
+      return;
+    }
     const {
       animation,
       keyframes: keyframes2,
@@ -46337,12 +47544,16 @@ class AcceleratedAnimation extends BaseAnimation {
   }
   complete() {
     const { resolved } = this;
-    if (!resolved) return;
+    if (!resolved) {
+      return;
+    }
     resolved.animation.finish();
   }
   cancel() {
     const { resolved } = this;
-    if (!resolved) return;
+    if (!resolved) {
+      return;
+    }
     resolved.animation.cancel();
   }
   static supports(options) {
@@ -46509,7 +47720,9 @@ function animateTarget(
     transitionEnd,
     ...target
   } = targetAndTransition;
-  if (transitionOverride) transition = transitionOverride;
+  if (transitionOverride) {
+    transition = transitionOverride;
+  }
   const animations2 = [];
   const animationTypeState =
     type &&
@@ -46675,7 +47888,9 @@ function animateVisualElement(visualElement, definition, options = {}) {
 }
 const numVariantProps = variantProps.length;
 function getVariantContext(visualElement) {
-  if (!visualElement) return void 0;
+  if (!visualElement) {
+    return void 0;
+  }
   if (!visualElement.isControllingVariants) {
     const context2 = visualElement.parent
       ? getVariantContext(visualElement.parent) || {}
@@ -46743,7 +47958,9 @@ function createAnimationState(visualElement) {
       const propIsVariant = isVariantLabel(prop);
       const activeDelta =
         type === changedActiveType ? typeState.isActive : null;
-      if (activeDelta === false) removedVariantIndex = i;
+      if (activeDelta === false) {
+        removedVariantIndex = i;
+      }
       let isInherited =
         prop === context[type] && prop !== props[type] && propIsVariant;
       if (
@@ -46777,7 +47994,9 @@ function createAnimationState(visualElement) {
         buildResolvedTypeValues(type),
         {}
       );
-      if (activeDelta === false) resolvedValues = {};
+      if (activeDelta === false) {
+        resolvedValues = {};
+      }
       const { prevResolvedValues = {} } = typeState;
       const allKeys = {
         ...prevResolvedValues,
@@ -46791,12 +48010,16 @@ function createAnimationState(visualElement) {
         }
         typeState.needsAnimating[key] = true;
         const motionValue2 = visualElement.getValue(key);
-        if (motionValue2) motionValue2.liveStyle = false;
+        if (motionValue2) {
+          motionValue2.liveStyle = false;
+        }
       };
       for (const key in allKeys) {
         const next = resolvedValues[key];
         const prev = prevResolvedValues[key];
-        if (encounteredKeys.hasOwnProperty(key)) continue;
+        if (encounteredKeys.hasOwnProperty(key)) {
+          continue;
+        }
         let valueHasChanged = false;
         if (isKeyframesTarget(next) && isKeyframesTarget(prev)) {
           valueHasChanged = !shallowCompare(next, prev);
@@ -46839,7 +48062,9 @@ function createAnimationState(visualElement) {
       removedKeys.forEach(key => {
         const fallbackTarget = visualElement.getBaseTarget(key);
         const motionValue2 = visualElement.getValue(key);
-        if (motionValue2) motionValue2.liveStyle = true;
+        if (motionValue2) {
+          motionValue2.liveStyle = true;
+        }
         fallbackAnimation[key] =
           fallbackTarget !== null && fallbackTarget !== void 0
             ? fallbackTarget
@@ -46860,7 +48085,9 @@ function createAnimationState(visualElement) {
   }
   function setActive(type, isActive) {
     let _a;
-    if (state2[type].isActive === isActive) return Promise.resolve();
+    if (state2[type].isActive === isActive) {
+      return Promise.resolve();
+    }
     (_a = visualElement.variantChildren) === null || _a === void 0
       ? void 0
       : _a.forEach(child => {
@@ -46965,7 +48192,9 @@ class ExitAnimationFeature extends Feature {
     this.id = id$2++;
   }
   update() {
-    if (!this.node.presenceContext) return;
+    if (!this.node.presenceContext) {
+      return;
+    }
     const { isPresent: isPresent2, onExitComplete } = this.node.presenceContext;
     const { isPresent: prevIsPresent } = this.node.prevPresenceContext || {};
     if (!this.node.animationState || isPresent2 === prevIsPresent) {
@@ -47032,12 +48261,16 @@ class PanSession {
     this.handlers = {};
     this.contextWindow = window;
     this.updatePoint = () => {
-      if (!(this.lastMoveEvent && this.lastMoveEventInfo)) return;
+      if (!(this.lastMoveEvent && this.lastMoveEventInfo)) {
+        return;
+      }
       const info2 = getPanInfo(this.lastMoveEventInfo, this.history);
       const isPanStarted = this.startEvent !== null;
       const isDistancePastThreshold =
         distance2D(info2.offset, { x: 0, y: 0 }) >= 3;
-      if (!isPanStarted && !isDistancePastThreshold) return;
+      if (!isPanStarted && !isDistancePastThreshold) {
+        return;
+      }
       const { point: point3 } = info2;
       const { timestamp: timestamp2 } = frameData;
       this.history.push({ ...point3, timestamp: timestamp2 });
@@ -47056,8 +48289,12 @@ class PanSession {
     this.handlePointerUp = (event2, info2) => {
       this.end();
       const { onEnd, onSessionEnd, resumeAnimation } = this.handlers;
-      if (this.dragSnapToOrigin) resumeAnimation && resumeAnimation();
-      if (!(this.lastMoveEvent && this.lastMoveEventInfo)) return;
+      if (this.dragSnapToOrigin) {
+        resumeAnimation && resumeAnimation();
+      }
+      if (!(this.lastMoveEvent && this.lastMoveEventInfo)) {
+        return;
+      }
       const panInfo = getPanInfo(
         event2.type === 'pointercancel'
           ? this.lastMoveEventInfo
@@ -47069,7 +48306,9 @@ class PanSession {
       }
       onSessionEnd && onSessionEnd(event2, panInfo);
     };
-    if (!isPrimaryPointer(event)) return;
+    if (!isPrimaryPointer(event)) {
+      return;
+    }
     this.dragSnapToOrigin = dragSnapToOrigin;
     this.handlers = handlers;
     this.transformPagePoint = transformPagePoint;
@@ -47332,7 +48571,9 @@ function convertBoxToBoundingBox({ x, y }) {
   return { top: y.min, right: x.max, bottom: y.max, left: x.min };
 }
 function transformBoxPoints(point2, transformPoint2) {
-  if (!transformPoint2) return point2;
+  if (!transformPoint2) {
+    return point2;
+  }
   const topLeft = transformPoint2({ x: point2.left, y: point2.top });
   const bottomRight = transformPoint2({ x: point2.right, y: point2.bottom });
   return {
@@ -47411,7 +48652,9 @@ const TREE_SCALE_SNAP_MIN = 0.999999999999;
 const TREE_SCALE_SNAP_MAX = 1.0000000000001;
 function applyTreeDeltas(box, treeScale, treePath, isSharedTransition = false) {
   const treeLength = treePath.length;
-  if (!treeLength) return;
+  if (!treeLength) {
+    return;
+  }
   treeScale.x = treeScale.y = 1;
   let node;
   let delta;
@@ -47514,7 +48757,9 @@ class VisualElementDragControls {
   }
   start(originEvent, { snapToCursor = false } = {}) {
     const { presenceContext } = this.visualElement;
-    if (presenceContext && presenceContext.isPresent === false) return;
+    if (presenceContext && presenceContext.isPresent === false) {
+      return;
+    }
     const onSessionStart = event => {
       const { dragSnapToOrigin: dragSnapToOrigin2 } = this.getProps();
       dragSnapToOrigin2 ? this.pauseAnimation() : this.stopAnimation();
@@ -47525,9 +48770,13 @@ class VisualElementDragControls {
     const onStart = (event, info) => {
       const { drag: drag2, dragPropagation, onDragStart } = this.getProps();
       if (drag2 && !dragPropagation) {
-        if (this.openDragLock) this.openDragLock();
+        if (this.openDragLock) {
+          this.openDragLock();
+        }
         this.openDragLock = setDragLock(drag2);
-        if (!this.openDragLock) return;
+        if (!this.openDragLock) {
+          return;
+        }
       }
       this.isDragging = true;
       this.currentDirection = null;
@@ -47560,7 +48809,9 @@ class VisualElementDragControls {
     const onMove = (event, info) => {
       const { dragPropagation, dragDirectionLock, onDirectionLock, onDrag } =
         this.getProps();
-      if (!dragPropagation && !this.openDragLock) return;
+      if (!dragPropagation && !this.openDragLock) {
+        return;
+      }
       const { offset } = info;
       if (dragDirectionLock && this.currentDirection === null) {
         this.currentDirection = getCurrentDirection(offset);
@@ -47606,7 +48857,9 @@ class VisualElementDragControls {
   stop(event, info) {
     const isDragging2 = this.isDragging;
     this.cancel();
-    if (!isDragging2) return;
+    if (!isDragging2) {
+      return;
+    }
     const { velocity } = info;
     this.startAnimation(velocity);
     const { onDragEnd } = this.getProps();
@@ -47631,7 +48884,9 @@ class VisualElementDragControls {
   }
   updateAxis(axis, _point, offset) {
     const { drag: drag2 } = this.getProps();
-    if (!offset || !shouldDrag(axis, drag2, this.currentDirection)) return;
+    if (!offset || !shouldDrag(axis, drag2, this.currentDirection)) {
+      return;
+    }
     const axisValue = this.getAxisMotionValue(axis);
     let next = this.originPoint[axis] + offset[axis];
     if (this.constraints && this.constraints[axis]) {
@@ -47683,14 +48938,18 @@ class VisualElementDragControls {
   resolveRefConstraints() {
     const { dragConstraints: constraints, onMeasureDragConstraints } =
       this.getProps();
-    if (!constraints || !isRefObject(constraints)) return false;
+    if (!constraints || !isRefObject(constraints)) {
+      return false;
+    }
     const constraintsElement = constraints.current;
     invariant(
       constraintsElement !== null,
       "If `dragConstraints` is set as a React ref, that ref must be passed to another component's `ref` prop."
     );
     const { projection } = this.visualElement;
-    if (!projection || !projection.layout) return false;
+    if (!projection || !projection.layout) {
+      return false;
+    }
     const constraintsBox = measurePageBox(
       constraintsElement,
       projection.root,
@@ -47726,7 +48985,9 @@ class VisualElementDragControls {
         return;
       }
       let transition = (constraints && constraints[axis]) || {};
-      if (dragSnapToOrigin) transition = { min: 0, max: 0 };
+      if (dragSnapToOrigin) {
+        transition = { min: 0, max: 0 };
+      }
       const bounceStiffness = dragElastic ? 200 : 1e6;
       const bounceDamping = dragElastic ? 40 : 1e7;
       const inertia2 = {
@@ -47797,7 +49058,9 @@ class VisualElementDragControls {
   snapToCursor(point2) {
     eachAxis(axis => {
       const { drag: drag2 } = this.getProps();
-      if (!shouldDrag(axis, drag2, this.currentDirection)) return;
+      if (!shouldDrag(axis, drag2, this.currentDirection)) {
+        return;
+      }
       const { projection } = this.visualElement;
       const axisValue = this.getAxisMotionValue(axis);
       if (projection && projection.layout) {
@@ -47812,11 +49075,14 @@ class VisualElementDragControls {
    * relative to where it was before the resize.
    */
   scalePositionWithinConstraints() {
-    if (!this.visualElement.current) return;
+    if (!this.visualElement.current) {
+      return;
+    }
     const { drag: drag2, dragConstraints } = this.getProps();
     const { projection } = this.visualElement;
-    if (!isRefObject(dragConstraints) || !projection || !this.constraints)
+    if (!isRefObject(dragConstraints) || !projection || !this.constraints) {
       return;
+    }
     this.stopAnimation();
     const boxProgress = { x: 0, y: 0 };
     eachAxis(axis => {
@@ -47837,14 +49103,18 @@ class VisualElementDragControls {
     projection.updateLayout();
     this.resolveConstraints();
     eachAxis(axis => {
-      if (!shouldDrag(axis, drag2, null)) return;
+      if (!shouldDrag(axis, drag2, null)) {
+        return;
+      }
       const axisValue = this.getAxisMotionValue(axis);
       const { min, max } = this.constraints[axis];
       axisValue.set(mixNumber$1(min, max, boxProgress[axis]));
     });
   }
   addListeners() {
-    if (!this.visualElement.current) return;
+    if (!this.visualElement.current) {
+      return;
+    }
     elementDragControls.set(this.visualElement, this);
     const element = this.visualElement.current;
     const stopPointerListener = addPointerEvent(
@@ -47880,7 +49150,9 @@ class VisualElementDragControls {
         if (this.isDragging && hasLayoutChanged) {
           eachAxis(axis => {
             const motionValue2 = this.getAxisMotionValue(axis);
-            if (!motionValue2) return;
+            if (!motionValue2) {
+              return;
+            }
             this.originPoint[axis] += delta[axis].translate;
             motionValue2.set(motionValue2.get() + delta[axis].translate);
           });
@@ -48009,12 +49281,16 @@ const globalProjectionState = {
   hasEverUpdated: false,
 };
 function pixelsToPercent(pixels, axis) {
-  if (axis.max === axis.min) return 0;
+  if (axis.max === axis.min) {
+    return 0;
+  }
   return (pixels / (axis.max - axis.min)) * 100;
 }
 const correctBorderRadius = {
   correct: (latest, node) => {
-    if (!node.target) return latest;
+    if (!node.target) {
+      return latest;
+    }
     if (typeof latest === 'string') {
       if (px.test(latest)) {
         latest = parseFloat(latest);
@@ -48031,7 +49307,9 @@ const correctBoxShadow = {
   correct: (latest, { treeScale, projectionDelta }) => {
     const original = latest;
     const shadow = complex.parse(latest);
-    if (shadow.length > 5) return original;
+    if (shadow.length > 5) {
+      return original;
+    }
     const template = complex.createTransformer(latest);
     const offset = typeof shadow[0] !== 'number' ? 1 : 0;
     const xScale = projectionDelta.x.scale * treeScale.x;
@@ -48039,10 +49317,12 @@ const correctBoxShadow = {
     shadow[0 + offset] /= xScale;
     shadow[1 + offset] /= yScale;
     const averageScale = mixNumber$1(xScale, yScale, 0.5);
-    if (typeof shadow[2 + offset] === 'number')
+    if (typeof shadow[2 + offset] === 'number') {
       shadow[2 + offset] /= averageScale;
-    if (typeof shadow[3 + offset] === 'number')
+    }
+    if (typeof shadow[3 + offset] === 'number') {
       shadow[3 + offset] /= averageScale;
+    }
     return template(shadow);
   },
 };
@@ -48059,7 +49339,9 @@ class MeasureLayoutWithContext extends reactExports.Component {
     const { projection } = visualElement;
     addScaleCorrector(defaultScaleCorrectors);
     if (projection) {
-      if (layoutGroup.group) layoutGroup.group.add(projection);
+      if (layoutGroup.group) {
+        layoutGroup.group.add(projection);
+      }
       if (switchLayoutGroup && switchLayoutGroup.register && layoutId) {
         switchLayoutGroup.register(projection);
       }
@@ -48082,7 +49364,9 @@ class MeasureLayoutWithContext extends reactExports.Component {
       isPresent: isPresent2,
     } = this.props;
     const projection = visualElement.projection;
-    if (!projection) return null;
+    if (!projection) {
+      return null;
+    }
     projection.isPresent = isPresent2;
     if (
       drag2 ||
@@ -48127,10 +49411,12 @@ class MeasureLayoutWithContext extends reactExports.Component {
     const { projection } = visualElement;
     if (projection) {
       projection.scheduleCheckAfterUnmount();
-      if (layoutGroup && layoutGroup.group)
+      if (layoutGroup && layoutGroup.group) {
         layoutGroup.group.remove(projection);
-      if (promoteContext && promoteContext.deregister)
+      }
+      if (promoteContext && promoteContext.deregister) {
         promoteContext.deregister(projection);
+      }
     }
   }
   safeToRemove() {
@@ -48249,7 +49535,9 @@ function mixValues(
     const borderLabel = `border${borders[i]}Radius`;
     let followRadius = getRadius(follow, borderLabel);
     let leadRadius = getRadius(lead, borderLabel);
-    if (followRadius === void 0 && leadRadius === void 0) continue;
+    if (followRadius === void 0 && leadRadius === void 0) {
+      continue;
+    }
     followRadius || (followRadius = 0);
     leadRadius || (leadRadius = 0);
     const canMix =
@@ -48285,8 +49573,12 @@ const easeCrossfadeIn = /* @__PURE__ */ compress(0, 0.5, circOut);
 const easeCrossfadeOut = /* @__PURE__ */ compress(0.5, 0.95, noop$1);
 function compress(min, max, easing) {
   return p => {
-    if (p < min) return 0;
-    if (p > max) return 1;
+    if (p < min) {
+      return 0;
+    }
+    if (p > max) {
+      return 1;
+    }
     return easing(progress(min, max, p));
   };
 }
@@ -48330,9 +49622,13 @@ function removeAxisDelta(
     );
     translate = relativeProgress - sourceAxis.min;
   }
-  if (typeof translate !== 'number') return;
+  if (typeof translate !== 'number') {
+    return;
+  }
   let originPoint = mixNumber$1(originAxis.min, originAxis.max, origin2);
-  if (axis === originAxis) originPoint -= translate;
+  if (axis === originAxis) {
+    originPoint -= translate;
+  }
   axis.min = removePointDelta(
     axis.min,
     translate,
@@ -48436,7 +49732,9 @@ class NodeStack {
   }
   relegate(node) {
     const indexOfNode = this.members.findIndex(member => node === member);
-    if (indexOfNode === 0) return false;
+    if (indexOfNode === 0) {
+      return false;
+    }
     let prevLead;
     for (let i = indexOfNode; i >= 0; i--) {
       const member = this.members[i];
@@ -48454,7 +49752,9 @@ class NodeStack {
   }
   promote(node, preserveFollowOpacity) {
     const prevLead = this.lead;
-    if (node === prevLead) return;
+    if (node === prevLead) {
+      return;
+    }
     this.prevLead = prevLead;
     this.lead = node;
     node.show();
@@ -48521,13 +49821,24 @@ function buildProjectionTransform(delta, treeScale, latestTransform) {
   if (latestTransform) {
     const { transformPerspective, rotate, rotateX, rotateY, skewX, skewY } =
       latestTransform;
-    if (transformPerspective)
+    if (transformPerspective) {
       transform2 = `perspective(${transformPerspective}px) ${transform2}`;
-    if (rotate) transform2 += `rotate(${rotate}deg) `;
-    if (rotateX) transform2 += `rotateX(${rotateX}deg) `;
-    if (rotateY) transform2 += `rotateY(${rotateY}deg) `;
-    if (skewX) transform2 += `skewX(${skewX}deg) `;
-    if (skewY) transform2 += `skewY(${skewY}deg) `;
+    }
+    if (rotate) {
+      transform2 += `rotate(${rotate}deg) `;
+    }
+    if (rotateX) {
+      transform2 += `rotateX(${rotateX}deg) `;
+    }
+    if (rotateY) {
+      transform2 += `rotateY(${rotateY}deg) `;
+    }
+    if (skewX) {
+      transform2 += `skewX(${skewX}deg) `;
+    }
+    if (skewY) {
+      transform2 += `skewY(${skewY}deg) `;
+    }
   }
   const elementScaleX = delta.x.scale * treeScale.x;
   const elementScaleY = delta.y.scale * treeScale.y;
@@ -48564,9 +49875,13 @@ function resetDistortingTransform(
 }
 function cancelTreeOptimisedTransformAnimations(projectionNode) {
   projectionNode.hasCheckedOptimisedAppear = true;
-  if (projectionNode.root === projectionNode) return;
+  if (projectionNode.root === projectionNode) {
+    return;
+  }
   const { visualElement } = projectionNode.options;
-  if (!visualElement) return;
+  if (!visualElement) {
+    return;
+  }
   const appearId = getOptimisedAppearId(visualElement);
   if (window.MotionHasOptimisedAnimation(appearId, 'transform')) {
     const { layout: layout2, layoutId } = projectionNode.options;
@@ -48654,7 +49969,9 @@ function createProjectionNode({
       for (let i = 0; i < this.path.length; i++) {
         this.path[i].shouldResetTransform = true;
       }
-      if (this.root === this) this.nodes = new FlatTree();
+      if (this.root === this) {
+        this.nodes = new FlatTree();
+      }
     }
     addEventListener(name, handler) {
       if (!this.eventHandlers.has(name)) {
@@ -48673,7 +49990,9 @@ function createProjectionNode({
      * Lifecycles
      */
     mount(instance, isLayoutDirty = this.root.hasTreeAnimated) {
-      if (this.instance) return;
+      if (this.instance) {
+        return;
+      }
       this.isSVG = isSVGElement(instance);
       this.instance = instance;
       const { layoutId, layout: layout2, visualElement } = this.options;
@@ -48794,7 +50113,9 @@ function createProjectionNode({
     }
     // Note: currently only running on root node
     startUpdate() {
-      if (this.isUpdateBlocked()) return;
+      if (this.isUpdateBlocked()) {
+        return;
+      }
       this.isUpdating = true;
       this.nodes && this.nodes.forEach(resetSkewAndRotation);
       this.animationId++;
@@ -48816,7 +50137,9 @@ function createProjectionNode({
         cancelTreeOptimisedTransformAnimations(this);
       }
       !this.root.isUpdating && this.root.startUpdate();
-      if (this.isLayoutDirty) return;
+      if (this.isLayoutDirty) {
+        return;
+      }
       this.isLayoutDirty = true;
       for (let i = 0; i < this.path.length; i++) {
         const node = this.path[i];
@@ -48827,7 +50150,9 @@ function createProjectionNode({
         }
       }
       const { layoutId, layout: layout2 } = this.options;
-      if (layoutId === void 0 && !layout2) return;
+      if (layoutId === void 0 && !layout2) {
+        return;
+      }
       const transformTemplate = this.getTransformTemplate();
       this.prevTransformTemplateValue = transformTemplate
         ? transformTemplate(this.latestValues, '')
@@ -48890,11 +50215,15 @@ function createProjectionNode({
      * Update measurements
      */
     updateSnapshot() {
-      if (this.snapshot || !this.instance) return;
+      if (this.snapshot || !this.instance) {
+        return;
+      }
       this.snapshot = this.measure();
     }
     updateLayout() {
-      if (!this.instance) return;
+      if (!this.instance) {
+        return;
+      }
       this.updateScroll();
       if (
         !(this.options.alwaysMeasureLayout && this.isLead()) &&
@@ -48945,7 +50274,9 @@ function createProjectionNode({
       }
     }
     resetTransform() {
-      if (!resetTransform) return;
+      if (!resetTransform) {
+        return;
+      }
       const isResetRequested =
         this.isLayoutDirty ||
         this.shouldResetTransform ||
@@ -48987,7 +50318,9 @@ function createProjectionNode({
     measurePageBox() {
       let _a;
       const { visualElement } = this.options;
-      if (!visualElement) return createBox();
+      if (!visualElement) {
+        return createBox();
+      }
       const box = visualElement.measureViewportBox();
       const wasInScrollRoot =
         ((_a = this.scroll) === null || _a === void 0 ? void 0 : _a.wasRoot) ||
@@ -49037,7 +50370,9 @@ function createProjectionNode({
             y: -node.scroll.offset.y,
           });
         }
-        if (!hasTransform(node.latestValues)) continue;
+        if (!hasTransform(node.latestValues)) {
+          continue;
+        }
         transformBox(withTransforms, node.latestValues);
       }
       if (hasTransform(this.latestValues)) {
@@ -49050,8 +50385,12 @@ function createProjectionNode({
       copyBoxInto(boxWithoutTransform, box);
       for (let i = 0; i < this.path.length; i++) {
         const node = this.path[i];
-        if (!node.instance) continue;
-        if (!hasTransform(node.latestValues)) continue;
+        if (!node.instance) {
+          continue;
+        }
+        if (!hasTransform(node.latestValues)) {
+          continue;
+        }
         hasScale(node.latestValues) && node.updateSnapshot();
         const sourceBox = createBox();
         const nodeBox = node.measurePageBox();
@@ -49090,7 +50429,9 @@ function createProjectionNode({
       this.isLayoutDirty = false;
     }
     forceRelativeParentToResolveTarget() {
-      if (!this.relativeParent) return;
+      if (!this.relativeParent) {
+        return;
+      }
       if (
         this.relativeParent.resolvedRelativeTargetAt !== frameData.timestamp
       ) {
@@ -49116,9 +50457,13 @@ function createProjectionNode({
         this.attemptToResolveRelativeTarget ||
         this.root.updateBlockedByResize
       );
-      if (canSkip) return;
+      if (canSkip) {
+        return;
+      }
       const { layout: layout2, layoutId } = this.options;
-      if (!this.layout || !(layout2 || layoutId)) return;
+      if (!this.layout || !(layout2 || layoutId)) {
+        return;
+      }
       this.resolvedRelativeTargetAt = frameData.timestamp;
       if (!this.targetDelta && !this.relativeTarget) {
         const relativeParent = this.getClosestProjectingParent();
@@ -49141,7 +50486,9 @@ function createProjectionNode({
           this.relativeParent = this.relativeTarget = void 0;
         }
       }
-      if (!this.relativeTarget && !this.targetDelta) return;
+      if (!this.relativeTarget && !this.targetDelta) {
+        return;
+      }
       if (!this.target) {
         this.target = createBox();
         this.targetWithTransforms = createBox();
@@ -49235,7 +50582,9 @@ function createProjectionNode({
       if (this.resolvedRelativeTargetAt === frameData.timestamp) {
         canSkip = false;
       }
-      if (canSkip) return;
+      if (canSkip) {
+        return;
+      }
       const { layout: layout2, layoutId } = this.options;
       this.isTreeAnimating = Boolean(
         (this.parent && this.parent.isTreeAnimating) ||
@@ -49245,7 +50594,9 @@ function createProjectionNode({
       if (!this.isTreeAnimating) {
         this.targetDelta = this.relativeTarget = void 0;
       }
-      if (!this.layout || !(layout2 || layoutId)) return;
+      if (!this.layout || !(layout2 || layoutId)) {
+        return;
+      }
       copyBoxInto(this.layoutCorrected, this.layout.layoutBox);
       const prevTreeScaleX = this.treeScale.x;
       const prevTreeScaleY = this.treeScale.y;
@@ -49373,7 +50724,9 @@ function createProjectionNode({
           ) {
             this.isProjectionDirty = false;
           }
-          if (!prevRelativeTarget) prevRelativeTarget = createBox();
+          if (!prevRelativeTarget) {
+            prevRelativeTarget = createBox();
+          }
           copyBoxInto(prevRelativeTarget, this.relativeTarget);
         }
         if (isSharedLayoutAnimation) {
@@ -49447,7 +50800,9 @@ function createProjectionNode({
         layout: layout2,
         latestValues,
       } = lead;
-      if (!targetWithTransforms || !target || !layout2) return;
+      if (!targetWithTransforms || !target || !layout2) {
+        return;
+      }
       if (
         this !== lead &&
         this.layout &&
@@ -49514,16 +50869,22 @@ function createProjectionNode({
     }
     getStack() {
       const { layoutId } = this.options;
-      if (layoutId) return this.root.sharedNodes.get(layoutId);
+      if (layoutId) {
+        return this.root.sharedNodes.get(layoutId);
+      }
     }
     promote({ needsReset, transition, preserveFollowOpacity } = {}) {
       const stack = this.getStack();
-      if (stack) stack.promote(this, preserveFollowOpacity);
+      if (stack) {
+        stack.promote(this, preserveFollowOpacity);
+      }
       if (needsReset) {
         this.projectionDelta = void 0;
         this.needsReset = true;
       }
-      if (transition) this.setOptions({ transition });
+      if (transition) {
+        this.setOptions({ transition });
+      }
     }
     relegate() {
       const stack = this.getStack();
@@ -49535,7 +50896,9 @@ function createProjectionNode({
     }
     resetSkewAndRotation() {
       const { visualElement } = this.options;
-      if (!visualElement) return;
+      if (!visualElement) {
+        return;
+      }
       let hasDistortingTransform = false;
       const { latestValues } = visualElement;
       if (
@@ -49549,7 +50912,9 @@ function createProjectionNode({
       ) {
         hasDistortingTransform = true;
       }
-      if (!hasDistortingTransform) return;
+      if (!hasDistortingTransform) {
+        return;
+      }
       const resetValues = {};
       if (latestValues.z) {
         resetDistortingTransform(
@@ -49584,7 +50949,9 @@ function createProjectionNode({
     }
     getProjectionStyles(styleProp) {
       let _a, _b;
-      if (!this.instance || this.isSVG) return void 0;
+      if (!this.instance || this.isSVG) {
+        return void 0;
+      }
       if (!this.isVisible) {
         return hiddenVisibility;
       }
@@ -49664,7 +51031,9 @@ function createProjectionNode({
               : 0;
       }
       for (const key in scaleCorrectors) {
-        if (valuesToRender[key] === void 0) continue;
+        if (valuesToRender[key] === void 0) {
+          continue;
+        }
         const { correct, applyTo } = scaleCorrectors[key];
         const corrected =
           styles.transform === 'none'
@@ -49806,7 +51175,9 @@ function propagateDirtyNodes(node) {
   if (isDebug) {
     metrics.totalNodes++;
   }
-  if (!node.parent) return;
+  if (!node.parent) {
+    return;
+  }
   if (!node.isProjecting()) {
     node.isProjectionDirty = node.parent.isProjectionDirty;
   }
@@ -49964,7 +51335,9 @@ function handleHoverEvent(node, event, lifecycle) {
 class HoverGesture extends Feature {
   mount() {
     const { current } = this.node;
-    if (!current) return;
+    if (!current) {
+      return;
+    }
     this.unmount = hover(current, startEvent => {
       handleHoverEvent(this.node, startEvent, 'Start');
       return endEvent => handleHoverEvent(this.node, endEvent, 'End');
@@ -49984,12 +51357,16 @@ class FocusGesture extends Feature {
     } catch (e) {
       isFocusVisible = true;
     }
-    if (!isFocusVisible || !this.node.animationState) return;
+    if (!isFocusVisible || !this.node.animationState) {
+      return;
+    }
     this.node.animationState.setActive('whileFocus', true);
     this.isActive = true;
   }
   onBlur() {
-    if (!this.isActive || !this.node.animationState) return;
+    if (!this.isActive || !this.node.animationState) {
+      return;
+    }
     this.node.animationState.setActive('whileFocus', false);
     this.isActive = false;
   }
@@ -50015,7 +51392,9 @@ function handlePressEvent(node, event, lifecycle) {
 class PressGesture extends Feature {
   mount() {
     const { current } = this.node;
-    if (!current) return;
+    if (!current) {
+      return;
+    }
     this.unmount = press(
       current,
       startEvent => {
@@ -50082,7 +51461,9 @@ class InViewFeature extends Feature {
     };
     const onIntersectionUpdate = entry => {
       const { isIntersecting } = entry;
-      if (this.isInView === isIntersecting) return;
+      if (this.isInView === isIntersecting) {
+        return;
+      }
       this.isInView = isIntersecting;
       if (once && !isIntersecting && this.hasEnteredView) {
         return;
@@ -50106,7 +51487,9 @@ class InViewFeature extends Feature {
     this.startObserver();
   }
   update() {
-    if (typeof IntersectionObserver === 'undefined') return;
+    if (typeof IntersectionObserver === 'undefined') {
+      return;
+    }
     const { props, prevProps } = this.node;
     const hasOptionsChanged = ['amount', 'margin', 'root'].some(
       hasViewportOptionChanged(props, prevProps)
@@ -50147,7 +51530,9 @@ const prefersReducedMotion = { current: null };
 const hasReducedMotionListener = { current: false };
 function initPrefersReducedMotion() {
   hasReducedMotionListener.current = true;
-  if (!isBrowser) return;
+  if (!isBrowser) {
+    return;
+  }
   if (window.matchMedia) {
     const motionMediaQuery = window.matchMedia('(prefers-reduced-motion)');
     const setReducedMotionPreferences = () =>
@@ -50195,7 +51580,9 @@ function updateMotionValuesFromProps(element, next, prev) {
     }
   }
   for (const key in prev) {
-    if (next[key] === void 0) element.removeValue(key);
+    if (next[key] === void 0) {
+      element.removeValue(key);
+    }
   }
   return next;
 }
@@ -50244,7 +51631,9 @@ class VisualElement {
     this.propEventSubscriptions = {};
     this.notifyUpdate = () => this.notify('Update', this.latestValues);
     this.render = () => {
-      if (!this.current) return;
+      if (!this.current) {
+        return;
+      }
       this.triggerBuild();
       this.renderInstance(
         this.current,
@@ -50313,7 +51702,9 @@ class VisualElement {
         'You have Reduced Motion enabled on your device. Animations may not appear as expected.'
       );
     }
-    if (this.parent) this.parent.children.add(this);
+    if (this.parent) {
+      this.parent.children.add(this);
+    }
     this.update(this.props, this.presenceContext);
   }
   unmount() {
@@ -50360,8 +51751,12 @@ class VisualElement {
     this.valueSubscriptions.set(key, () => {
       removeOnChange();
       removeOnRenderRequest();
-      if (removeSyncCheck) removeSyncCheck();
-      if (value.owner) value.stop();
+      if (removeSyncCheck) {
+        removeSyncCheck();
+      }
+      if (value.owner) {
+        value.stop();
+      }
     });
   }
   sortNodePosition(other) {
@@ -50378,7 +51773,9 @@ class VisualElement {
     let key = 'animation';
     for (key in featureDefinitions) {
       const featureDefinition = featureDefinitions[key];
-      if (!featureDefinition) continue;
+      if (!featureDefinition) {
+        continue;
+      }
       const { isEnabled, Feature: FeatureConstructor } = featureDefinition;
       if (!this.features[key] && FeatureConstructor && isEnabled(this.props)) {
         this.features[key] = new FeatureConstructor(this);
@@ -50488,7 +51885,9 @@ class VisualElement {
   addValue(key, value) {
     const existingValue = this.values.get(key);
     if (value !== existingValue) {
-      if (existingValue) this.removeValue(key);
+      if (existingValue) {
+        this.removeValue(key);
+      }
       this.bindToMotionValue(key, value);
       this.values.set(key, value);
       this.latestValues[key] = value.get();
@@ -50584,7 +51983,9 @@ class VisualElement {
       return valueFromInitial;
     }
     const target = this.getBaseTargetFromProps(this.props, key);
-    if (target !== void 0 && !isMotionValue(target)) return target;
+    if (target !== void 0 && !isMotionValue(target)) {
+      return target;
+    }
     return this.initialValues[key] !== void 0 && valueFromInitial === void 0
       ? void 0
       : this.baseTarget[key];
@@ -50786,11 +52187,15 @@ function notifyAll(entries) {
   entries.forEach(notifyTarget);
 }
 function createResizeObserver() {
-  if (typeof ResizeObserver === 'undefined') return;
+  if (typeof ResizeObserver === 'undefined') {
+    return;
+  }
   observer = new ResizeObserver(notifyAll);
 }
 function resizeElement(target, handler) {
-  if (!observer) createResizeObserver();
+  if (!observer) {
+    createResizeObserver();
+  }
   const elements = resolveElements(target);
   elements.forEach(element => {
     let elementHandlers = resizeHandlers.get(element);
@@ -50840,7 +52245,9 @@ function createWindowResizeHandler() {
 }
 function resizeWindow(callback) {
   windowCallbacks.add(callback);
-  if (!windowResizeHandler) createWindowResizeHandler();
+  if (!windowResizeHandler) {
+    createWindowResizeHandler();
+  }
   return () => {
     windowCallbacks.delete(callback);
     if (!windowCallbacks.size && windowResizeHandler) {
@@ -51102,7 +52509,9 @@ function scrollInfo(
   containerHandlers.add(containerHandler);
   if (!scrollListeners.has(container)) {
     const measureAll = () => {
-      for (const handler of containerHandlers) handler.measure();
+      for (const handler of containerHandlers) {
+        handler.measure();
+      }
     };
     const updateAll = () => {
       for (const handler of containerHandlers) {
@@ -51110,7 +52519,9 @@ function scrollInfo(
       }
     };
     const notifyAll2 = () => {
-      for (const handler of containerHandlers) handler.notify();
+      for (const handler of containerHandlers) {
+        handler.notify();
+      }
     };
     const listener2 = () => {
       frame.read(measureAll, false, true);
@@ -51131,9 +52542,13 @@ function scrollInfo(
     let _a;
     cancelFrame(listener);
     const currentHandlers = onScrollHandlers.get(container);
-    if (!currentHandlers) return;
+    if (!currentHandlers) {
+      return;
+    }
     currentHandlers.delete(containerHandler);
-    if (currentHandlers.size) return;
+    if (currentHandlers.size) {
+      return;
+    }
     const scrollListener = scrollListeners.get(container);
     scrollListeners.delete(container);
     if (scrollListener) {
@@ -51146,7 +52561,9 @@ function scrollInfo(
   };
 }
 function scrollTimelineFallback({ source, container, axis = 'y' }) {
-  if (source) container = source;
+  if (source) {
+    container = source;
+  }
   const currentTime = { value: 0 };
   const cancel = scrollInfo(
     info => {
@@ -51162,7 +52579,9 @@ function getTimeline({
   container = document.documentElement,
   axis = 'y',
 } = {}) {
-  if (source) container = source;
+  if (source) {
+    container = source;
+  }
   if (!timelineCache.has(container)) {
     timelineCache.set(container, {});
   }
@@ -51316,7 +52735,9 @@ function useMotionTemplate(fragments, ...values) {
   return useCombineMotionValues(values.filter(isMotionValue), buildValue);
 }
 function toNumber(v) {
-  if (typeof v === 'number') return v;
+  if (typeof v === 'number') {
+    return v;
+  }
   return parseFloat(v);
 }
 function useSpring(source, config = {}) {
@@ -51350,7 +52771,9 @@ function useSpring(source, config = {}) {
   };
   reactExports.useInsertionEffect(() => {
     return value.attach((v, set) => {
-      if (isStatic) return set(v);
+      if (isStatic) {
+        return set(v);
+      }
       latestValue.current = v;
       latestSetter.current = set;
       frame.update(startAnimation);
@@ -51368,9 +52791,13 @@ function useAnimationFrame(callback) {
   const initialTimestamp = reactExports.useRef(0);
   const { isStatic } = reactExports.useContext(MotionConfigContext);
   reactExports.useEffect(() => {
-    if (isStatic) return;
+    if (isStatic) {
+      return;
+    }
     const provideTimeSinceStart = ({ timestamp, delta }) => {
-      if (!initialTimestamp.current) initialTimestamp.current = timestamp;
+      if (!initialTimestamp.current) {
+        initialTimestamp.current = timestamp;
+      }
       callback(timestamp - initialTimestamp.current, delta);
     };
     frame.update(provideTimeSinceStart, true);
@@ -51434,7 +52861,9 @@ function useVelocity(value) {
   const updateVelocity = () => {
     const latest = value.getVelocity();
     velocity.set(latest);
-    if (latest) frame.update(updateVelocity);
+    if (latest) {
+      frame.update(updateVelocity);
+    }
   };
   useMotionValueEvent(value, 'change', () => {
     frame.update(updateVelocity, false, true);
@@ -51634,8 +53063,12 @@ function normalizeTimes(times, repeat) {
 }
 function compareByTime(a, b) {
   if (a.at === b.at) {
-    if (a.value === null) return 1;
-    if (b.value === null) return -1;
+    if (a.value === null) {
+      return 1;
+    }
+    if (b.value === null) {
+      return -1;
+    }
     return 0;
   } else {
     return a.at - b.at;
@@ -51858,7 +53291,9 @@ function getSubjectSequence(subject, sequences) {
   return sequences.get(subject);
 }
 function getValueSequence(name, sequences) {
-  if (!sequences[name]) sequences[name] = [];
+  if (!sequences[name]) {
+    sequences[name] = [];
+  }
   return sequences[name];
 }
 function keyframesAsList(keyframes2) {
@@ -52292,7 +53727,9 @@ function useInstantLayoutTransition() {
   return startTransition;
 }
 function startTransition(callback) {
-  if (!rootProjectionNode.current) return;
+  if (!rootProjectionNode.current) {
+    return;
+  }
   rootProjectionNode.current.isUpdating = false;
   rootProjectionNode.current.blockUpdate();
   callback && callback();
@@ -52300,7 +53737,9 @@ function startTransition(callback) {
 function useResetProjection() {
   const reset = reactExports.useCallback(() => {
     const root = rootProjectionNode.current;
-    if (!root) return;
+    if (!root) {
+      return;
+    }
     root.resetTree();
   }, []);
   return reset;
@@ -52337,7 +53776,9 @@ function inView(
   const onIntersectionChange = entries => {
     entries.forEach(entry => {
       const onEnd = activeIntersections.get(entry.target);
-      if (entry.isIntersecting === Boolean(onEnd)) return;
+      if (entry.isIntersecting === Boolean(onEnd)) {
+        return;
+      }
       if (entry.isIntersecting) {
         const newOnEnd = onStart(entry);
         if (typeof newOnEnd === 'function') {
@@ -52362,7 +53803,9 @@ function inView(
 function useInView(ref, { root, margin, amount, once = false } = {}) {
   const [isInView, setInView] = reactExports.useState(false);
   reactExports.useEffect(() => {
-    if (!ref.current || (once && isInView)) return;
+    if (!ref.current || (once && isInView)) {
+      return;
+    }
     const onEnter = () => {
       setInView(true);
       return once ? void 0 : () => setInView(false);
@@ -52383,7 +53826,9 @@ function useInstantTransition() {
   reactExports.useEffect(() => {
     frame.postRender(() =>
       frame.postRender(() => {
-        if (forcedRenderCount !== unlockOnFrameRef.current) return;
+        if (forcedRenderCount !== unlockOnFrameRef.current) {
+          return;
+        }
         instantAnimationState.current = false;
       })
     );
@@ -52454,7 +53899,9 @@ function startOptimizedAppearAnimation(
     return;
   }
   const id2 = element.dataset[optimizedAppearDataId];
-  if (!id2) return;
+  if (!id2) {
+    return;
+  }
   window.MotionHandoffAnimation = handoffOptimizedAppearAnimation;
   const storeId = appearStoreId(id2, name);
   if (!readyAnimation) {
@@ -52474,7 +53921,9 @@ function startOptimizedAppearAnimation(
     });
     window.MotionHandoffAnimation = handoffOptimizedAppearAnimation;
     window.MotionHasOptimisedAnimation = (elementId, valueName) => {
-      if (!elementId) return false;
+      if (!elementId) {
+        return false;
+      }
       if (!valueName) {
         return appearComplete.has(elementId);
       }
@@ -52497,7 +53946,9 @@ function startOptimizedAppearAnimation(
     ) => {
       const animationId = appearStoreId(elementId, valueName);
       const data2 = appearAnimationStore.get(animationId);
-      if (!data2) return;
+      if (!data2) {
+        return;
+      }
       if (frame2 && canResume === void 0) {
         frame2.postRender(() => {
           frame2.postRender(() => {
@@ -52520,7 +53971,9 @@ function startOptimizedAppearAnimation(
     window.MotionCheckAppearSync = (visualElement, valueName, value) => {
       let _a, _b;
       const appearId = getOptimisedAppearId(visualElement);
-      if (!appearId) return;
+      if (!appearId) {
+        return;
+      }
       const valueIsOptimised =
         (_a = window.MotionHasOptimisedAnimation) === null || _a === void 0
           ? void 0
@@ -52529,7 +53982,9 @@ function startOptimizedAppearAnimation(
         (_b = visualElement.props.values) === null || _b === void 0
           ? void 0
           : _b[valueName];
-      if (!valueIsOptimised || !externalAnimationValue) return;
+      if (!valueIsOptimised || !externalAnimationValue) {
+        return;
+      }
       const removeSyncCheck = value.on('change', latestValue => {
         let _a2;
         if (externalAnimationValue.get() !== latestValue) {
@@ -52559,7 +54014,9 @@ function startOptimizedAppearAnimation(
       animation: appearAnimation,
       startTime: startFrameTime,
     });
-    if (onReady) onReady(appearAnimation);
+    if (onReady) {
+      onReady(appearAnimation);
+    }
   };
   appearComplete.set(id2, false);
   if (readyAnimation.ready) {
@@ -52666,12 +54123,18 @@ function useInvertedScale(scale2) {
 ('use client');
 const ReorderContext = reactExports.createContext(null);
 function checkReorder(order, value, offset, velocity) {
-  if (!velocity) return order;
+  if (!velocity) {
+    return order;
+  }
   const index2 = order.findIndex(item2 => item2.value === value);
-  if (index2 === -1) return order;
+  if (index2 === -1) {
+    return order;
+  }
   const nextOffset = velocity > 0 ? 1 : -1;
   const nextItem = order[index2 + nextOffset];
-  if (!nextItem) return order;
+  if (!nextItem) {
+    return order;
+  }
   const item = order[index2];
   const nextLayout = nextItem.layout;
   const nextItemCenter = mixNumber$1(nextLayout.min, nextLayout.max, 0.5);
@@ -52704,7 +54167,9 @@ function ReorderGroupComponent(
       order.sort(compareMin);
     },
     updateOrder: (item, offset, velocity) => {
-      if (isReordering.current) return;
+      if (isReordering.current) {
+        return;
+      }
       const newOrder = checkReorder(order, item, offset, velocity);
       if (order !== newOrder) {
         isReordering.current = true;
@@ -53123,7 +54588,9 @@ function findKey(obj, key) {
   return null;
 }
 const _global = (() => {
-  if (typeof globalThis !== 'undefined') return globalThis;
+  if (typeof globalThis !== 'undefined') {
+    return globalThis;
+  }
   return typeof self !== 'undefined'
     ? self
     : typeof window !== 'undefined'
@@ -53189,7 +54656,9 @@ const toFlatObject = (sourceObj, destObj, filter3, propFilter) => {
   let prop;
   const merged = {};
   destObj = destObj || {};
-  if (sourceObj == null) return destObj;
+  if (sourceObj == null) {
+    return destObj;
+  }
   do {
     props = Object.getOwnPropertyNames(sourceObj);
     i = props.length;
@@ -53221,10 +54690,16 @@ const endsWith = (str, searchString, position) => {
   return lastIndex !== -1 && lastIndex === position;
 };
 const toArray = thing => {
-  if (!thing) return null;
-  if (isArray(thing)) return thing;
+  if (!thing) {
+    return null;
+  }
+  if (isArray(thing)) {
+    return thing;
+  }
   let i = thing.length;
-  if (!isNumber(i)) return null;
+  if (!isNumber(i)) {
+    return null;
+  }
   const arr = new Array(i);
   while (i-- > 0) {
     arr[i] = thing[i];
@@ -53287,7 +54762,9 @@ const freezeMethods = obj => {
       return false;
     }
     const value = obj[name];
-    if (!isFunction(value)) return;
+    if (!isFunction(value)) {
+      return;
+    }
     descriptor.enumerable = false;
     if ('writable' in descriptor) {
       descriptor.writable = false;
@@ -53524,7 +55001,9 @@ function removeBrackets(key) {
   return utils$1.endsWith(key, '[]') ? key.slice(0, -2) : key;
 }
 function renderKey(path, key, dots) {
-  if (!path) return key;
+  if (!path) {
+    return key;
+  }
   return path
     .concat(key)
     .map(function each(token, i) {
@@ -53571,7 +55050,9 @@ function toFormData$1(obj, formData, options) {
     throw new TypeError('visitor must be a function');
   }
   function convertValue(value) {
-    if (value === null) return '';
+    if (value === null) {
+      return '';
+    }
     if (utils$1.isDate(value)) {
       return value.toISOString();
     }
@@ -53624,7 +55105,9 @@ function toFormData$1(obj, formData, options) {
     isVisitable,
   });
   function build(value, path) {
-    if (utils$1.isUndefined(value)) return;
+    if (utils$1.isUndefined(value)) {
+      return;
+    }
     if (stack.indexOf(value) !== -1) {
       throw Error('Circular reference detected in ' + path.join('.'));
     }
@@ -53886,7 +55369,9 @@ function arrayToObject(arr) {
 function formDataToJSON(formData) {
   function buildPath(path, value, target, index2) {
     let name = path[index2++];
-    if (name === '__proto__') return true;
+    if (name === '__proto__') {
+      return true;
+    }
     const isNumericKey = Number.isFinite(+name);
     const isLast = index2 >= path.length;
     name = !name && utils$1.isArray(target) ? target.length : name;
@@ -54128,7 +55613,9 @@ function matchHeaderValue(context, value, header, filter3, isHeaderNameFilter) {
   if (isHeaderNameFilter) {
     value = header;
   }
-  if (!utils$1.isString(value)) return;
+  if (!utils$1.isString(value)) {
+    return;
+  }
   if (utils$1.isString(filter3)) {
     return value.indexOf(filter3) !== -1;
   }
@@ -55423,7 +56910,7 @@ validators$1.transitional = function transitional(
 };
 validators$1.spelling = function spelling(correctSpelling) {
   return (value, opt) => {
-    console.warn(`${opt} is likely a misspelling of ${correctSpelling}`);
+    // Console statement removed by auto-fix
     return true;
   };
 };
@@ -55697,7 +57184,9 @@ const CancelToken$1 = class CancelToken {
     });
     const token = this;
     this.promise.then(cancel => {
-      if (!token._listeners) return;
+      if (!token._listeners) {
+        return;
+      }
       let i = token._listeners.length;
       while (i-- > 0) {
         token._listeners[i](cancel);
@@ -55934,7 +57423,7 @@ const Dashboard = () => {
       setStats(statsRes.data);
       setRecentTests(testsRes.data);
     } catch (error) {
-      console.error('Failed to fetch dashboard data:', error);
+      // Console statement removed by auto-fix
       setStats({
         totalAPs: 24,
         onlineAPs: 22,
@@ -56178,7 +57667,7 @@ const Scheduler = () => {
       const response = await axios.get('/linktest/api/access-points');
       setAccessPoints(response.data);
     } catch (error) {
-      console.error('Failed to fetch access points:', error);
+      // Console statement removed by auto-fix
       setAccessPoints([
         {
           apMac: '00:04:56:AA:BB:CC',
@@ -56211,7 +57700,7 @@ const Scheduler = () => {
       const response = await axios.get('/linktest/api/active-jobs');
       setActiveJobs(response.data);
     } catch (error) {
-      console.error('Failed to fetch active jobs:', error);
+      // Console statement removed by auto-fix
       setActiveJobs([
         {
           id: 1,
@@ -56231,7 +57720,9 @@ const Scheduler = () => {
     }
   };
   const startTest = async () => {
-    if (!selectedAP) return;
+    if (!selectedAP) {
+      return;
+    }
     setIsRunning(true);
     try {
       await axios.post('/linktest/api/run-test', {
@@ -56240,7 +57731,7 @@ const Scheduler = () => {
       });
       fetchActiveJobs();
     } catch (error) {
-      console.error('Failed to start test:', error);
+      // Console statement removed by auto-fix
     } finally {
       setIsRunning(false);
     }
@@ -56250,7 +57741,7 @@ const Scheduler = () => {
       await axios.post(`/linktest/api/stop-test/${jobId}`);
       fetchActiveJobs();
     } catch (error) {
-      console.error('Failed to stop test:', error);
+      // Console statement removed by auto-fix
     }
   };
   return /* @__PURE__ */ jsxRuntimeExports.jsxs('div', {
@@ -56614,7 +58105,7 @@ const History = () => {
       );
       setTestResults(response.data);
     } catch (error) {
-      console.error('Failed to fetch test history:', error);
+      // Console statement removed by auto-fix
       setTestResults([
         {
           id: 1,
@@ -56697,7 +58188,7 @@ const History = () => {
       link.click();
       link.remove();
     } catch (error) {
-      console.error('Failed to export results:', error);
+      // Console statement removed by auto-fix
     }
   };
   const paginatedResults = filteredResults.slice(
@@ -57154,7 +58645,7 @@ const Settings = () => {
       const response = await axios.get('/linktest/api/settings');
       setSettings(response.data);
     } catch (error) {
-      console.error('Failed to fetch settings:', error);
+      // Console statement removed by auto-fix
     } finally {
       setLoading(false);
     }
@@ -57168,7 +58659,7 @@ const Settings = () => {
         message: 'Settings saved successfully',
       });
     } catch (error) {
-      console.error('Failed to save settings:', error);
+      // Console statement removed by auto-fix
       setConnectionStatus({
         type: 'error',
         message: 'Failed to save settings',
@@ -57187,7 +58678,7 @@ const Settings = () => {
         details: response.data.details,
       });
     } catch (error) {
-      console.error('Failed to test connections:', error);
+      // Console statement removed by auto-fix
       setConnectionStatus({
         type: 'error',
         message: 'Connection test failed',
@@ -57619,11 +59110,9 @@ function App() {
     }),
   });
 }
-clientExports
-  .createRoot(document.getElementById('root'))
-  .render(
-    /* @__PURE__ */ jsxRuntimeExports.jsx(reactExports.StrictMode, {
-      children: /* @__PURE__ */ jsxRuntimeExports.jsx(App, {}),
-    })
-  );
+clientExports.createRoot(document.getElementById('root')).render(
+  /* @__PURE__ */ jsxRuntimeExports.jsx(reactExports.StrictMode, {
+    children: /* @__PURE__ */ jsxRuntimeExports.jsx(App, {}),
+  })
+);
 //# sourceMappingURL=index-CZKHK-VA.js.map

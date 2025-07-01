@@ -3,7 +3,7 @@ import { writeFileSync, existsSync, mkdirSync, readFileSync } from 'fs';
 import { glob } from 'glob';
 
 const runCommand = (command, description, autoFix = false) => {
-  console.log(`🔄 ${description}...`);
+  // Console statement removed by auto-fix
   try {
     const output = execSync(command, {
       encoding: 'utf8',
@@ -11,11 +11,11 @@ const runCommand = (command, description, autoFix = false) => {
       timeout: 180000, // Increased timeout for comprehensive scanning
       cwd: process.cwd(),
     });
-    console.log(`✅ ${description} completed`);
+    // Console statement removed by auto-fix
     return { success: true, output: output.slice(0, 1000), fixed: autoFix };
   } catch (error) {
     if (autoFix || error.status === 1) {
-      console.log(`⚠️ ${description} found issues but applied available fixes`);
+      // Console statement removed by auto-fix
       return {
         success: true,
         output: error.stdout?.slice(0, 1000) || '',
@@ -23,7 +23,7 @@ const runCommand = (command, description, autoFix = false) => {
         warnings: error.stderr?.slice(0, 500),
       };
     }
-    console.log(`❌ ${description} failed: ${error.message.split('\n')[0]}`);
+    // Console statement removed by auto-fix[0]}`);
     return {
       success: false,
       error: error.message.split('\n')[0],
@@ -34,7 +34,7 @@ const runCommand = (command, description, autoFix = false) => {
 
 const scanEntireCodebase = () => {
   try {
-    console.log('🔍 COMPREHENSIVE CODEBASE ANALYSIS...');
+    // Console statement removed by auto-fix
 
     // Get ALL files in the entire project
     const allFiles = execSync(
@@ -80,22 +80,22 @@ const scanEntireCodebase = () => {
       }
     });
 
-    console.log(`📊 CODEBASE OVERVIEW:`);
-    console.log(`   Total Files: ${stats.totalFiles}`);
-    console.log(`   Code Files: ${stats.codeFiles}`);
-    console.log(`   Config Files: ${stats.configFiles}`);
-    console.log(`   Documents: ${stats.documentFiles}`);
+    // Console statement removed by auto-fix
+    // Console statement removed by auto-fix
+    // Console statement removed by auto-fix
+    // Console statement removed by auto-fix
+    // Console statement removed by auto-fix
 
     return stats;
   } catch (error) {
-    console.log('⚠️ Could not complete comprehensive codebase analysis');
+    // Console statement removed by auto-fix
     return null;
   }
 };
 
 const detectAllProblems = () => {
   try {
-    console.log('🔍 DEEP PROBLEM DETECTION ACROSS ALL FILES...');
+    // Console statement removed by auto-fix
 
     const problems = {
       react: [],
@@ -259,19 +259,20 @@ const detectAllProblems = () => {
         }
       });
 
-    console.log(`🚨 PROBLEMS DETECTED:`);
+    // Console statement removed by auto-fix
     Object.entries(problems).forEach(([category, issues]) => {
       if (issues.length > 0) {
-        console.log(`   ${category.toUpperCase()}: ${issues.length} issues`);
+        // Console statement removed by auto-fix}: ${issues.length} issues`);
         issues.slice(0, 3).forEach(issue => console.log(`     - ${issue}`));
-        if (issues.length > 3)
-          console.log(`     - ... and ${issues.length - 3} more`);
+        if (issues.length > 3) {
+          // Console statement removed by auto-fix
+        }
       }
     });
 
     return problems;
   } catch (error) {
-    console.log('⚠️ Could not complete deep problem detection');
+    // Console statement removed by auto-fix
     return {};
   }
 };
@@ -550,17 +551,17 @@ ${
     JSON.stringify(results, null, 2)
   );
 
-  console.log(`\n📊 COMPREHENSIVE QUALITY ANALYSIS COMPLETE`);
+  // Console statement removed by auto-fix
   console.log(
     `   Files Scanned: ${results.codebaseStats?.totalFiles || 'Unknown'}`
   );
   console.log(
     `   Checks: ${results.summary.passed}/${results.summary.total} passed`
   );
-  console.log(`   Auto-Fixed: ${results.summary.fixed} issues`);
+  // Console statement removed by auto-fix
 
   if (results.summary.failed > 0) {
-    console.log(`⚠️ ${results.summary.failed} checks need manual attention`);
+    // Console statement removed by auto-fix
   }
 
   return results;
@@ -570,7 +571,7 @@ const fixEntireCodebaseDuplicates = async () => {
   let fixedCount = 0;
 
   try {
-    console.log('🔧 FIXING DUPLICATES ACROSS ENTIRE CODEBASE...');
+    // Console statement removed by auto-fix
 
     // Get ALL files (not just src)
     const allFiles = execSync(
@@ -616,7 +617,7 @@ const fixEntireCodebaseDuplicates = async () => {
           if (hasFixedImports) {
             writeFileSync(file, cleanedLines.join('\n'));
             fixedCount++;
-            console.log(`   Fixed duplicate imports in ${file}`);
+            // Console statement removed by auto-fix
           }
         }
 
@@ -643,7 +644,7 @@ const fixEntireCodebaseDuplicates = async () => {
           if (hasFixedImports) {
             writeFileSync(file, cleanedLines.join('\n'));
             fixedCount++;
-            console.log(`   Fixed duplicate Python imports in ${file}`);
+            // Console statement removed by auto-fix
           }
         }
       } catch (err) {

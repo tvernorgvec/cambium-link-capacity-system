@@ -143,7 +143,7 @@ const handleTailwindArbitraryValues = () => {
 
             // Log the changes for debugging
             if (code !== modifiedCode) {
-              console.log(`[Tailwind Fix] Modified JSX file: ${id}`);
+              // Console statement removed by auto-fix
             }
 
             return {
@@ -151,7 +151,7 @@ const handleTailwindArbitraryValues = () => {
               map: null,
             };
           } catch (error) {
-            console.error(`[Tailwind Fix] Error processing file ${id}:`, error);
+            // Console statement removed by auto-fix
             // Return original code if transform fails
             return null;
           }
@@ -293,7 +293,7 @@ const createErrorFreeBuilder = () => {
             deps.forEach(dep => {
               if (!seen[dep]) {
                 seen[dep] = true;
-                console.log("[Preview] Would preload:", dep);
+                // Console statement removed by auto-fix
               }
             });
             
@@ -414,7 +414,7 @@ const createErrorFreeBuilder = () => {
                   if (typeof window !== 'undefined') {
                     window.__ERROR_REGISTRY.missingComponents.add(\`\${prop} (from ${packageName})\`);
                   }
-                  console.warn(\`Using placeholder for missing icon: \${prop} from "${packageName}"\`);
+                  // Console statement removed by auto-fix
                   return IconStub;
                 }
                 return target[prop];
@@ -600,11 +600,11 @@ const createErrorFreeBuilder = () => {
           
           // Create error message for missing package
           const errorMessage = 'Missing package: ${packageName}';
-          console.warn(errorMessage);
+          // Console statement removed by auto-fix
           
           // Default export as function
           export default function MissingPackage(...args) {
-            console.warn(\`Using placeholder for missing package: ${packageName}\`);
+            // Console statement removed by auto-fix
             return React.createElement('div', { 
               style: { 
                 color: 'red',
@@ -626,7 +626,7 @@ const createErrorFreeBuilder = () => {
                 }
                 // Return a function for method calls
                 return function(...args) {
-                  console.warn(\`Using placeholder for missing method: \${prop} from "${packageName}"\`);
+                  // Console statement removed by auto-fix
                   return null;
                 };
               }
@@ -736,7 +736,7 @@ const createErrorFreeBuilder = () => {
                     if (typeof window !== 'undefined') {
                       window.__ERROR_REGISTRY.missingComponents.add(\`${exportName} (from ${moduleName})\`);
                     }
-                    console.warn(\`Using placeholder for missing function: ${exportName} from "${moduleName}"\`);
+                    // Console statement removed by auto-fix
                     return null;
                   }`
               };
@@ -803,7 +803,7 @@ const createErrorFreeBuilder = () => {
                 } else {
                   // Likely a utility function
                   return function() {
-                    console.warn(\`Using placeholder for missing function: \${prop} from "${moduleName}"\`);
+                    // Console statement removed by auto-fix
                     return null;
                   };
                 }
@@ -933,7 +933,7 @@ const createErrorFreeBuilder = () => {
         '</head>',
         `
         <script>
-          console.log("[Preview] Initializing error tracking...");
+          // Console statement removed by auto-fix
           
           // Create global error registry
           window.__ERROR_REGISTRY = {
@@ -966,40 +966,40 @@ const createErrorFreeBuilder = () => {
                   errors.runtimeErrors.length > 0;
                 
                 if (hasErrors) {
-                  console.log("[Preview] Sending errors to parent:", errors);
+                  // Console statement removed by auto-fix
                   window.parent.postMessage({
                     type: 'PREVIEW_ERRORS',
                     payload: errors
                   }, '*');
                 }
               } catch (err) {
-                console.warn('[Preview] Failed to send errors to parent:', err);
+                // Console statement removed by auto-fix
               }
             }
           };
           
           // Register a missing module
           window.registerMissingModule = function(moduleName) {
-            console.log('[Preview] Registering missing module:', moduleName);
+            // Console statement removed by auto-fix
             window.__ERROR_REGISTRY.missingModules.add(moduleName);
             window.__ERROR_REGISTRY.sendErrorsToParent();
           };
           
           window.registerMissingPackage = function(packageName) {
-            console.log('[Preview] Registering missing package:', packageName);
+            // Console statement removed by auto-fix
             window.__ERROR_REGISTRY.missingPackages.add(packageName);
             window.__ERROR_REGISTRY.sendErrorsToParent();
           };
           
           window.registerMissingComponent = function(componentName) {
-            console.log('[Preview] Registering missing component:', componentName);
+            // Console statement removed by auto-fix
             window.__ERROR_REGISTRY.missingComponents.add(componentName);
             window.__ERROR_REGISTRY.sendErrorsToParent();
           };
           
           // Global error handler for runtime errors
           window.addEventListener('error', function(event) {
-            console.log('[Preview] Error event:', event.message);
+            // Console statement removed by auto-fix
             
             // Check if it's likely a React component error
             if (event.message && (
@@ -1014,7 +1014,7 @@ const createErrorFreeBuilder = () => {
               window.__ERROR_REGISTRY.runtimeErrors.add(event.message);
               window.__ERROR_REGISTRY.sendErrorsToParent();
               
-              console.warn('[Preview] Runtime error caught:', event.message);
+              // Console statement removed by auto-fix
               
               // Create a placeholder for the missing component
               const errorElement = document.createElement('div');
@@ -1039,7 +1039,7 @@ const createErrorFreeBuilder = () => {
           
           // When all resources are loaded, check for errors and send them once
           window.addEventListener('load', function() {
-            console.log('[Preview] Window loaded, checking for errors');
+            // Console statement removed by auto-fix
             
             // Wait a bit for any errors to be registered
             setTimeout(function() {
@@ -1050,7 +1050,7 @@ const createErrorFreeBuilder = () => {
             }, 1000);
           });
           
-          console.log("[Preview] Error tracking initialized");
+          // Console statement removed by auto-fix
         </script>
       </head>`
       );
@@ -1085,11 +1085,11 @@ const ensureBuildCompletes = () => {
       try {
         return { code, map: null };
       } catch (e) {
-        console.error(`Error in transform for ${id}:`, e);
+        // Console statement removed by auto-fix
         return {
           code: `
             // Replacing problematic file with stub
-            console.error("Error in file ${id}, replaced with stub");
+            // Console statement removed by auto-fix
             export default function ErrorComponent() { 
               return document.createTextNode("Error in module: ${id}"); 
             }
@@ -1104,7 +1104,7 @@ const ensureBuildCompletes = () => {
       try {
         return { code, map: null };
       } catch (e) {
-        console.error(`Error in chunk ${chunk.name}:`, e);
+        // Console statement removed by auto-fix
         return {
           code: `console.error("Error in chunk: ${chunk.name}");`,
           map: null,
@@ -1115,7 +1115,7 @@ const ensureBuildCompletes = () => {
     // Force build to complete
     buildEnd(error) {
       if (error) {
-        console.log('Errors suppressed during build:', error.message);
+        // Console statement removed by auto-fix
         return null; // Return null to suppress the error
       }
     },

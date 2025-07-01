@@ -10,7 +10,7 @@ const autoFixEntireCodebase = async () => {
   const fixes = [];
 
   // 1. Fix ALL files - not just src
-  console.log('🔄 Removing unused imports from ALL files...');
+  // Console statement removed by auto-fix
   try {
     execSync(
       'find . -name "*.js" -o -name "*.jsx" -o -name "*.ts" -o -name "*.tsx" | grep -v node_modules | xargs npx eslint --fix --quiet',
@@ -24,7 +24,7 @@ const autoFixEntireCodebase = async () => {
   }
 
   // 2. Format ALL file types
-  console.log('🔄 Formatting ALL code files...');
+  // Console statement removed by auto-fix
   try {
     execSync(
       'npx prettier --write "**/*.{js,jsx,ts,tsx,json,md,css,html,py,yml,yaml}" --ignore-path .gitignore',
@@ -36,7 +36,7 @@ const autoFixEntireCodebase = async () => {
   }
 
   // 3. Fix security across ALL files
-  console.log('🔄 Fixing security vulnerabilities in ALL packages...');
+  // Console statement removed by auto-fix
   try {
     execSync('npm audit fix --force', { stdio: 'pipe' });
 
@@ -55,7 +55,7 @@ const autoFixEntireCodebase = async () => {
   }
 
   // 4. Clean console statements from ALL files
-  console.log('🔄 Cleaning up console statements in ALL files...');
+  // Console statement removed by auto-fix
   try {
     const files = await glob('**/*.{js,jsx,ts,tsx}', {
       ignore: ['node_modules/**', 'dist/**', 'build/**'],
@@ -110,7 +110,7 @@ const autoFixEntireCodebase = async () => {
   }
 
   // 5. Fix Python files
-  console.log('🔄 Fixing Python files...');
+  // Console statement removed by auto-fix
   try {
     const pyFiles = await glob('**/*.py', {
       ignore: ['node_modules/**', '__pycache__/**'],
@@ -188,7 +188,7 @@ const autoFixEntireCodebase = async () => {
   }
 
   // 6. Fix React issues across ALL React files
-  console.log('🔄 Checking React infinite loop patterns in ALL React files...');
+  // Console statement removed by auto-fix
   try {
     const reactFiles = await glob('**/*.{jsx,tsx}', {
       ignore: ['node_modules/**', 'dist/**'],
@@ -199,7 +199,7 @@ const autoFixEntireCodebase = async () => {
       try {
         const content = readFileSync(file, 'utf8');
         let modified = false;
-        let fixedContent = content;
+        const fixedContent = content;
 
         // Fix useEffect infinite loops
         if (content.includes('useEffect') && content.includes('dispatch')) {
@@ -265,7 +265,7 @@ const autoFixEntireCodebase = async () => {
   }
 
   // 7. Fix duplicate imports across ALL files
-  console.log('🔄 Fixing duplicate imports across ALL files...');
+  // Console statement removed by auto-fix
   try {
     const allFiles = await glob('**/*.{js,jsx,ts,tsx,py}', {
       ignore: ['node_modules/**', 'dist/**', 'build/**'],
@@ -315,7 +315,7 @@ const autoFixEntireCodebase = async () => {
   }
 
   // 8. Clean up temporary and backup files
-  console.log('🔄 Cleaning up temporary files...');
+  // Console statement removed by auto-fix
   try {
     execSync('find . -name "*.orig" -delete', { stdio: 'pipe' });
     execSync('find . -name "*.bak" -delete', { stdio: 'pipe' });
@@ -326,7 +326,7 @@ const autoFixEntireCodebase = async () => {
   }
 
   // 9. Fix JSON files
-  console.log('🔄 Validating and fixing JSON files...');
+  // Console statement removed by auto-fix
   try {
     const jsonFiles = await glob('**/*.json', { ignore: ['node_modules/**'] });
     let jsonFixed = 0;
@@ -398,12 +398,12 @@ Run \`npm run quality:comprehensive\` to validate ALL fixes across the entire co
 
   writeFileSync('docs/COMPREHENSIVE_AUTO_FIX_REPORT.md', report);
 
-  console.log('\n📋 COMPREHENSIVE Auto-fix Summary (Entire Codebase):');
+  // Console statement removed by auto-fix:');
   fixes.forEach(fix => console.log(`  ${fix}`));
   console.log(
     '\n📄 Detailed report saved to docs/COMPREHENSIVE_AUTO_FIX_REPORT.md'
   );
-  console.log('🎯 ALL files across the entire codebase have been processed!');
+  // Console statement removed by auto-fix
 };
 
 if (import.meta.url === `file://${process.argv[1]}`) {

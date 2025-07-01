@@ -69,7 +69,10 @@
       ],
       ".ts": [],
       ".tsx": [],
-      ".css": ["src/App.css", "src/index.css"],
+      ".css": [
+        "src/App.css",
+        "src/index.css"
+      ],
       ".json": []
     },
     "directories": [

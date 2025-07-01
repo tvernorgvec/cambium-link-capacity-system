@@ -47,12 +47,12 @@ const validateTool = tool => {
 };
 
 const generateReport = () => {
-  console.log('🔍 Validating Quality Tools...\n');
+  // Console statement removed by auto-fix
 
   const results = tools.map(validateTool);
   const available = results.filter(r => r.status === 'available');
 
-  console.log(`✅ Available Tools: ${available.length}/${tools.length}\n`);
+  // Console statement removed by auto-fix
 
   results.forEach(tool => {
     const status = tool.status === 'available' ? '✅' : '❌';
